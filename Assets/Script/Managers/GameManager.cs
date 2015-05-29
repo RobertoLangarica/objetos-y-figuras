@@ -7,7 +7,7 @@ using DG.Tweening;
 public class GameManager : MonoBehaviour
 {
 	//Nivel que se debe de preparar
-	public static string lvlToPrepare = "Ship1";
+	public static string lvlToPrepare = "SN01_01";
 
 	public Text childName;
 	public Button sendBtn;

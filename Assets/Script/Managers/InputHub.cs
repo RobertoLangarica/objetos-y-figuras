@@ -14,8 +14,9 @@ public class InputHub : MonoBehaviour
 	protected Shape selected;
 	protected GameManager manager;
 	protected bool isRotating = false;
-	protected bool nextDragIsAnchor = false;//Indica si el siguiente draggin se trata como anchor
-
+	protected float wheel;
+	protected float lastRotation = -1;
+	protected float timeToSnapRotation = 0.50f;
 
 	void Start ()
 	{
@@ -26,7 +27,24 @@ public class InputHub : MonoBehaviour
 		GetComponent<TwistRecognizer>().OnGesture += OnTwist;
 	}
 	
+	void Update()
+	{
 
+		if(selected != null)
+		{
+			wheel = Input.GetAxis("Mouse ScrollWheel");
+			if(wheel != 0)
+			{
+				lastRotation = Time.time;
+				selected.transform.Rotate(Vector3.back,wheel*15);
+			}
+			else if(lastRotation != -1 && Time.time-lastRotation >= timeToSnapRotation)
+			{
+				stopRotation();
+				manager.checkForLevelComplete();
+			}
+		}
+	}
 
 	void OnDrag(DragGesture gesture)
 	{
@@ -44,22 +62,14 @@ public class InputHub : MonoBehaviour
 			case ContinuousGesturePhase.Updated:
 			if(selected && !isRotating)
 			{
-				if(nextDragIsAnchor)
-				{
-					selected.onTouchBegan(Camera.main.ScreenToWorldPoint(gesture.Position));
-					nextDragIsAnchor = false;
-				}
-				else
-				{
-					selected.onTouchMove(Camera.main.ScreenToWorldPoint(gesture.Position));
-				}
+				selected.onTouchMove(Camera.main.ScreenToWorldPoint(gesture.Position));
 			}
 			break;
 
 			case ContinuousGesturePhase.Ended:
 			if(selected)
 			{
-				stopSelected();
+				manager.checkForLevelComplete();
 			}
 			break;
 		}
@@ -73,34 +83,37 @@ public class InputHub : MonoBehaviour
 		{
 			case ContinuousGesturePhase.Started:
 				isRotating = true;
-				selected.onTouchBegan(Camera.main.ScreenToWorldPoint(gesture.Position));
 				selected.transform.Rotate(Vector3.back,-gesture.DeltaRotation);
 				break;
 
 			case ContinuousGesturePhase.Updated:
 				selected.transform.Rotate(Vector3.back,-gesture.DeltaRotation);
-				selected.onTouchMove(Camera.main.ScreenToWorldPoint(gesture.Position));
 				break;
 
 			case ContinuousGesturePhase.Ended:
 			isRotating = false;
 			if(selected)//Evitando alguna race condition
 			{
-				nextDragIsAnchor = true;
 				selected.onRotationComplete();
+				manager.checkForLevelComplete();
 			}
 			break;
 		}
+	}
+
+	void stopRotation()
+	{
+		lastRotation = -1;
+		isRotating = false;
+		selected.onRotationComplete();
 	}
 
 	void stopSelected()
 	{
 		if(isRotating)
 		{
-			isRotating = false;
-			selected.onRotationComplete();
+			stopRotation();
 		}
-		nextDragIsAnchor = false;
 
 		selected.onTouchStop();
 		selected = null;
