@@ -48,6 +48,7 @@ public class InputHub : MonoBehaviour
 
 	void OnDrag(DragGesture gesture)
 	{
+		DOTween.Kill("SnapMove");
 		switch(gesture.Phase)
 		{
 			case ContinuousGesturePhase.Started:

@@ -12,8 +12,8 @@ public class GameManager : MonoBehaviour
 	public Text childName;
 	public Button sendBtn;
 	public Button continueBtn;
+	public GameObject[] shapes;
 
-	protected GameObject[] shapes;
 	protected Level currentLevel;
 	protected Placeholder placeholder;
 	protected GameObject reference;

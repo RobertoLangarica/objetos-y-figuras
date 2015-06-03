@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
+using DG.Tweening.Core;
 
 public class Placeholder : MonoBehaviour 
 {
@@ -20,11 +22,31 @@ public class Placeholder : MonoBehaviour
 		{
 			intShp.requiredAngle[i] = angle[i];
 		}
-		intShp.range = range;
 	}
 
 	public bool isCorrect()
 	{
+		DOTween.Kill("SnapMove");
+		GameObject[] tempshps = ((GameManager)FindObjectOfType (typeof(GameManager))).shapes;
+
+		for (int i = 0; i < internalShapes.Count; i++) 
+		{
+			internalShapes [i].correctPiece = false;
+			for(int j = 0;j < tempshps.Length;j++)
+			{
+				if(internalShapes[i].isOption(tempshps[j]))
+				{
+					if(internalShapes[i].isWithinRange(tempshps[j]))
+					{
+						if(internalShapes[i].calculateAngle(tempshps[j]))
+						{
+							internalShapes[i].setPiece(tempshps[j]);
+						}
+					}
+				}
+			}
+		}
+
 		foreach(InternalShape val in internalShapes)
 		{
 			if(!val.correctPiece)
