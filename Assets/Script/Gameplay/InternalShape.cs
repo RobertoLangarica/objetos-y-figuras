@@ -8,59 +8,41 @@ public class InternalShape : MonoBehaviour
 {
 	[HideInInspector]
 	public List<GameObject> possibleAnswers = new List<GameObject>();
-	//[HideInInspector]
+	[HideInInspector]
 	public bool correctPiece;
 	[HideInInspector]
 	public int[] requiredAngle;
 	[HideInInspector]
 	public float range;
+	[HideInInspector]
+	public float distRange = 0.3f;
 
-	public string firstCorrectPiece = "";
-
-	void OnTriggerEnter2D(Collider2D other) 
+	public bool isOption(GameObject go)
 	{
-		foreach(GameObject val in possibleAnswers)
+		for(int i = 0;i < possibleAnswers.Count;i++)
 		{
-			if(other.gameObject.Equals(val))
+			if(possibleAnswers[i].transform.parent.gameObject.Equals(go))
 			{
-				if(calculateAngle(other.gameObject))
-				{
-					if(firstCorrectPiece == "")
-					{
-						int rotAngle = 0;
-
-						firstCorrectPiece = val.transform.parent.name;
-						correctPiece = true;
-						DOTween.Kill("SnapMove",true);
-						other.transform.parent.transform.DOMove(transform.position,1).SetEase(Ease.InOutSine).SetId("SnapMove");
-						rotAngle = getClosestAngle(other.gameObject);
-						other.transform.parent.transform.DOLocalRotate(new Vector3(0,0,rotAngle),0.5f).SetEase(Ease.InOutSine).SetId("SnapMove");
-						DOTween.Pause("SnapMove");
-					}
-				}
+				return true;
 			}
 		}
+		return false;
 	}
 
-	//void Update()
-	//{
-	//	Debug.Log(possibleAnswers.Capacity);
-	//	for(int i=0; i<possibleAnswers.Capacity; i++)
-	//	{
-	//		if(firstCorrectPiece == possibleAnswers[i].transform.parent.name)
-	//		{
-	//			possibleAnswers[i].transform.parent.renderer.material.color = Color.black;
-	//		}
-	//		else
-	//		{
-	//			possibleAnswers[i].transform.parent.renderer.material.color = Color.red;
-	//		}
-	//	}
-	//}
-
-	bool calculateAngle(GameObject go)
+	public bool isWithinRange(GameObject go)
 	{
-		Shape shp = go.transform.parent.GetComponent<Shape>();
+		float sqrDist = (transform.position - go.transform.position).sqrMagnitude;
+
+		if (sqrDist < distRange) 
+		{
+			return true;
+		}
+		return false;
+	}
+
+	public bool calculateAngle(GameObject go)
+	{
+		Shape shp = go.GetComponent<Shape>();
 		bool flag = false;
 		for(int i = 0;i < requiredAngle.Length;i++)
 		{
@@ -72,49 +54,11 @@ public class InternalShape : MonoBehaviour
 		return flag;
 	}
 
-	void OnTriggerExit2D(Collider2D other) 
-	{
-		DOTween.Kill("SnapMove",true);
-		if(other.transform.parent.name == firstCorrectPiece)
-		{
-			firstCorrectPiece = "";
-			correctPiece = false;
-		}
-	}
-	
-	void OnTriggerStay2D(Collider2D other) 
-	{
-		if(firstCorrectPiece == "")
-		{
-			foreach(GameObject val in possibleAnswers)
-			{
-				if(other.gameObject.Equals(val))
-				{
-					if(calculateAngle(other.gameObject))
-					{
-						if(firstCorrectPiece == "")
-						{
-							int rotAngle = 0;
-							
-							firstCorrectPiece = val.transform.parent.name;
-							correctPiece = true;
-							DOTween.Kill("SnapMove",true);
-							other.transform.parent.transform.DOMove(transform.position,1).SetEase(Ease.InOutSine).SetId("SnapMove");
-							rotAngle = getClosestAngle(other.gameObject);
-							other.transform.parent.transform.DOLocalRotate(new Vector3(0,0,rotAngle),0.5f).SetEase(Ease.InOutSine).SetId("SnapMove");
-							DOTween.Pause("SnapMove");
-						}
-					}
-				}
-			}
-		}
-	}
-
 	int getClosestAngle(GameObject go)
 	{
 		float dist = 400;
 		int result = 0;
-		Shape shp = go.transform.parent.GetComponent<Shape>();
+		Shape shp = go.GetComponent<Shape>();
 		for (int i = 0; i < requiredAngle.Length; i++) 
 		{
 			if(Mathf.Abs(requiredAngle[i] - shp.currentRotation) < dist)
@@ -124,5 +68,16 @@ public class InternalShape : MonoBehaviour
 			}
 		}
 		return result;
+	}
+
+	public void setPiece(GameObject go)
+	{
+		int rotAngle = 0;
+
+		correctPiece = true;
+		DOTween.Kill("SnapMove",true);
+		go.transform.DOMove(transform.position,1).SetEase(Ease.InOutSine).SetId("SnapMove");
+		rotAngle = getClosestAngle(go);
+		go.transform.DOLocalRotate(new Vector3(0,0,rotAngle),0.5f).SetEase(Ease.InOutSine).SetId("SnapMove");
 	}
 }
