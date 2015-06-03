@@ -5,6 +5,6 @@ public class StartMenu : MonoBehaviour {
 
 	public void onStart()
 	{
-		ScreenManager.instance.GoToScene("PhotoScene");
+		ScreenManager.instance.GoToScene("MainMenu");
 	}
 }

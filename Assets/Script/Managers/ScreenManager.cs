@@ -17,9 +17,9 @@ public class ScreenManager : MonoBehaviour {
 			//Cliente
 			#if UNITY_EDITOR
 			UserDataManager.instance.cleanData();
-			GoToScene("Splash");
+			GoToScene("SplashVilla");
 			#else
-			GoToScene("Splash");
+			GoToScene("SplashVilla");
 			#endif
 		}
 		else

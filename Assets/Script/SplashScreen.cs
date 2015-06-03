@@ -20,17 +20,7 @@ public class SplashScreen : MonoBehaviour {
 				ScreenManager.instance.GoToScene("SplashVilla");
 				break;
 			case "Intro":
-				ScreenManager.instance.GoToScene("SplashVilla");
-				break;
-			case "Splash":
-				UserDataManager.instance.cleanData();
 				ScreenManager.instance.GoToScene("StartMenu");
-				break;
-			case "ServerIntro":
-				ScreenManager.instance.GoToScene("SplashVillaServer");
-				break;
-			case "SplashServer":
-				ScreenManager.instance.GoToScene("StartMenuServer");
 				break;
 			}
 
