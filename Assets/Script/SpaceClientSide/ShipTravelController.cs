@@ -5,7 +5,7 @@ public class ShipTravelController : MonoBehaviour
 {
 	public RectTransform container;
 
-	public static string shipName = ScreenManager.instance.myCurrentShip; //"SN01_01";
+	public static string shipName = "SN01_03";//ScreenManager.instance.myCurrentShip; //"SN01_01";
 
 	protected GameObject ship;
 	//protected ClientManager client;
@@ -18,7 +18,7 @@ public class ShipTravelController : MonoBehaviour
 
 	//[HideInInspector]
 	public bool startShip = false;
-	protected float limitSpeed = 90550;//cuadrada
+	protected float limitSpeed = 5;//cuadrada
 	protected float width;//Ancho para el acomodo
 	protected Vector2 force = new Vector2(0,10);//Fuerza que se agrega cada frame
 	public int col;//hardcoding de posicion (fila) solo funciona en el editor
