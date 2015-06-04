@@ -9,7 +9,6 @@ public class GameManager : MonoBehaviour
 	//Nivel que se debe de preparar
 	public static string lvlToPrepare = "SN01_01";
 
-	public Text childName;
 	public Button sendBtn;
 	public Button continueBtn;
 	public GameObject[] shapes;
@@ -32,7 +31,6 @@ public class GameManager : MonoBehaviour
 			return;
 		}
 
-		childName.text = UserDataManager.instance.name;
 		if(UserDataManager.instance.isLevelComplete(currentLevel.name))
 		{
 			Debug.Log("GM-> Nivel completado previamente.");
@@ -187,6 +185,7 @@ public class GameManager : MonoBehaviour
 			//Agregamos la imagen bonita de la nave y el boton de continue
 			initializeReferenceImage();
 			continueBtn.gameObject.SetActive(true);
+			sendBtn.gameObject.SetActive(true);
 			
 			GameObject.FindObjectOfType<ShipsPanel>().refresh();
 
@@ -216,6 +215,7 @@ public class GameManager : MonoBehaviour
 			//Agregamos la imagen bonita de la nave y el boton de continue
 			initializeReferenceImage();
 			continueBtn.gameObject.SetActive(true);
+			sendBtn.gameObject.SetActive(true);
 
 			GameObject.FindObjectOfType<ShipsPanel>().refresh();
 
@@ -256,6 +256,11 @@ public class GameManager : MonoBehaviour
 			UserDataManager.instance.level = UserDataManager.instance.level+1;
 		}*/
 		ScreenManager.instance.GoToScene("MainMenu");
+	}
+
+	public void onSendShip()
+	{
+		ScreenManager.instance.GoToScene("Space");
 	}
 
 	public void sendShip()
