@@ -5,7 +5,12 @@ using DG.Tweening.Core;
 using DG.Tweening;
 
 public class Shape : MonoBehaviour {
- 
+	
+	public float boundaryTop;
+	public float boundaryBottom;
+	public float boundaryLeft;
+	public float boundaryRight;
+
 	protected static short sort; 
 	public float rotateAmount = 15;
 	public float maxRotationAllowed = -1;
@@ -20,6 +25,11 @@ public class Shape : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		boundaryTop = Camera.main.orthographicSize;
+		boundaryBottom = -Camera.main.orthographicSize;
+		boundaryLeft = -Camera.main.aspect * Camera.main.orthographicSize;
+		boundaryRight = Camera.main.aspect * Camera.main.orthographicSize;
+
 		sprite = GetComponent<SpriteRenderer>();
 		sort = -32767;
 		sprite.sortingOrder = sort;
@@ -30,33 +40,28 @@ public class Shape : MonoBehaviour {
 	{
 		Vector3 centerDif = transform.position - transform.collider2D.bounds.center;
 		Vector3 nVec3 = transform.position;
-		bool modified = false;
 
-		if((transform.collider2D.bounds.center).x - (transform.collider2D.bounds.size.x * 0.5f) < -(Screen.width * 0.009f)) 
+		if((transform.collider2D.bounds.center).x - (transform.collider2D.bounds.size.x * 0.5f) < boundaryLeft) 
 		{
-			nVec3.x = -(Screen.width * 0.01f) + ((transform.collider2D.bounds.center).x - (transform.collider2D.bounds.size.x * 0.5f));
-			modified = true;
+			nVec3.x = boundaryLeft + (transform.collider2D.bounds.size.x * 0.5f);
+			nVec3.x += centerDif.x;
 		}
-		if((transform.collider2D.bounds.center).x + (transform.collider2D.bounds.size.x * 0.5f) > Screen.width * 0.009f)
+		if((transform.collider2D.bounds.center).x + (transform.collider2D.bounds.size.x * 0.5f) > boundaryRight) 
 		{
-			nVec3.x = (Screen.width * 0.01f) - ((transform.collider2D.bounds.center).x - (transform.collider2D.bounds.size.x * 0.5f));
-			modified = true;
+			nVec3.x = boundaryRight - (transform.collider2D.bounds.size.x * 0.5f);
+			nVec3.x += centerDif.x;
 		}
-		if((transform.collider2D.bounds.center).y - (transform.collider2D.bounds.size.y * 0.5f) < -(Screen.height * 0.009f))
+		if((transform.collider2D.bounds.center).y - (transform.collider2D.bounds.size.y * 0.5f) < boundaryBottom) 
 		{
-			nVec3.y = -(Screen.height * 0.01f) + ((transform.collider2D.bounds.center).x - (transform.collider2D.bounds.size.x * 0.5f));
-			modified = true;
+			nVec3.y = boundaryBottom + (transform.collider2D.bounds.size.y * 0.5f);
+			nVec3.y += centerDif.y;
 		}
-		if((transform.collider2D.bounds.center).y + (transform.collider2D.bounds.size.y * 0.5f) > Screen.height * 0.009f) 
+		if((transform.collider2D.bounds.center).y + (transform.collider2D.bounds.size.y * 0.5f) > boundaryTop) 
 		{
-			nVec3.y = (Screen.height * 0.01f) - ((transform.collider2D.bounds.center).x - (transform.collider2D.bounds.size.x * 0.5f));
-			modified = true;
+			nVec3.y = boundaryTop - (transform.collider2D.bounds.size.y * 0.5f);
+			nVec3.y += centerDif.y;
 		}
-
-		if (modified) 
-		{
-			transform.position = nVec3 + centerDif;
-		}
+		transform.position = nVec3;
 	}
 
 	public void onTouchBegan(Vector3 position)
