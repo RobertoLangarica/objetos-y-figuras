@@ -34,7 +34,8 @@ public class GameManager : MonoBehaviour
 		if(UserDataManager.instance.isLevelComplete(currentLevel.name))
 		{
 			Debug.Log("GM-> Nivel completado previamente.");
-			initializeReferenceImage();
+			//initializeReferenceImage();
+			initializeShapes();
 			continueBtn.gameObject.SetActive(false);
 			sendBtn.gameObject.SetActive(true);
 		}
@@ -260,6 +261,7 @@ public class GameManager : MonoBehaviour
 
 	public void onSendShip()
 	{
+		ScreenManager.instance.myCurrentShip = lvlToPrepare;
 		ScreenManager.instance.GoToScene("Space");
 	}
 

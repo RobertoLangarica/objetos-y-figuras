@@ -7,6 +7,7 @@ public class ScreenManager : MonoBehaviour {
 	public AudioSource music;
 	protected string _prevScene;
 	protected bool isAudioPlaying = false;
+	public string myCurrentShip;
 	
 	void Awake()
 	{
