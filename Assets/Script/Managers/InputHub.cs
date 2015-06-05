@@ -58,6 +58,10 @@ public class InputHub : MonoBehaviour
 				selected.onTouchBegan(Camera.main.ScreenToWorldPoint(gesture.StartPosition));
 				selected.onTouchMove(Camera.main.ScreenToWorldPoint(gesture.Position));
 			}
+			if(!gesture.StartSelection)
+			{
+				selected.onTouchBegan(Camera.main.ScreenToWorldPoint(gesture.StartPosition));
+			}
 			break;
 
 			case ContinuousGesturePhase.Updated:
