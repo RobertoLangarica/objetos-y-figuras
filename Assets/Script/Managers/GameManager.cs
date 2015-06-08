@@ -188,7 +188,7 @@ public class GameManager : MonoBehaviour
 			continueBtn.gameObject.SetActive(true);
 			sendBtn.gameObject.SetActive(true);
 			
-			GameObject.FindObjectOfType<ShipsPanel>().refresh();
+			//GameObject.FindObjectOfType<ShipsPanel>().refresh();
 
 			//Mandamos la nave
 			if(client)
