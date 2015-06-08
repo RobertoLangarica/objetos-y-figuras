@@ -28,18 +28,18 @@ public class ShipControler : MonoBehaviour
 		width = Screen.width/20.0f;
 		float height = Screen.height/10.0f;
 
-		//Debug.Log ("desired: " +width/(transform.localScale.x*sprite.bounds.extents.x*sprite.pixelsPerUnit));
-		//Debug.Log ("desired: " +height/(transform.localScale.y*sprite.bounds.extents.y*sprite.pixelsPerUnit));
+		Debug.Log ("desired: " +width/(transform.localScale.x*sprite.bounds.extents.x*sprite.pixelsPerUnit));
+		Debug.Log ("desired: " +height/(transform.localScale.y*sprite.bounds.extents.y*sprite.pixelsPerUnit));
 
 		float scale = Mathf.Min(width/(transform.localScale.x*sprite.bounds.extents.x*sprite.pixelsPerUnit)
 		                        ,height/(transform.localScale.y*sprite.bounds.extents.y*sprite.pixelsPerUnit));
-		//Debug.Log ("scale: "+scale);
+		Debug.Log ("scale: "+scale);
 
-		//Debug.Log ("WIDTH: "+Screen.width+"    HEIGHT: "+Screen.height);
+		Debug.Log ("WIDTH: "+Screen.width+"    HEIGHT: "+Screen.height);
 
 		width*=0.5f;
 		transform.localScale = new Vector3(scale,scale,1.0f);
-		//Debug.Log ("WIDTH_SHIP: "+transform.localScale.x*sprite.bounds.extents.x*sprite.pixelsPerUnit+"    HEIGHT_SHIP: "+transform.localScale.y*sprite.bounds.extents.y*sprite.pixelsPerUnit);
+		Debug.Log ("WIDTH_SHIP: "+transform.localScale.x*sprite.bounds.extents.x*sprite.pixelsPerUnit+"    HEIGHT_SHIP: "+transform.localScale.y*sprite.bounds.extents.y*sprite.pixelsPerUnit);
 
 		#if UNITY_EDITOR
 		//setPosition(col);

@@ -52,6 +52,13 @@ public class InputHub : MonoBehaviour
 		switch(gesture.Phase)
 		{
 			case ContinuousGesturePhase.Started:
+			if(selected != null  && gesture.StartSelection)
+			{
+				if(!gesture.StartSelection.Equals(selected))
+				{
+					stopSelected();
+				}
+			}
 			if(gesture.StartSelection)
 			{
 				selected = gesture.StartSelection.GetComponent<Shape>();
@@ -68,12 +75,14 @@ public class InputHub : MonoBehaviour
 			if(selected && !isRotating)
 			{
 				selected.onTouchMove(Camera.main.ScreenToWorldPoint(gesture.Position));
+				selected.turnRotationSpriter(false);
 			}
 			break;
 
 			case ContinuousGesturePhase.Ended:
 			if(selected)
 			{
+				selected.turnRotationSpriter(true);
 				manager.checkForLevelComplete();
 			}
 			break;
@@ -119,8 +128,8 @@ public class InputHub : MonoBehaviour
 		{
 			stopRotation();
 		}
-
 		selected.onTouchStop();
+		selected.turnRotationSpriter(false);
 		selected = null;
 		isRotating = false;
 		manager.checkForLevelComplete();
