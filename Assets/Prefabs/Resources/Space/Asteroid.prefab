@@ -45,6 +45,7 @@ GameObject:
   - 222: {fileID: 22232296}
   - 50: {fileID: 5032296}
   - 58: {fileID: 5818888}
+  - 114: {fileID: 11415226}
   m_Layer: 5
   m_Name: Asteroid
   m_TagString: Untagged
@@ -78,6 +79,19 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_Radius: 191.149994
   m_Center: {x: 0, y: 0}
+--- !u!114 &11415226
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 132296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b95ce5d5f3e5f074b809be9d9942ce26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  container: {fileID: 0}
+  rotateDirection: 
 --- !u!114 &11432294
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -180,7 +194,7 @@ RectTransform:
   m_GameObject: {fileID: 132296}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: .200008407, y: .200008407, z: .200008407}
+  m_LocalScale: {x: .100000001, y: .100000001, z: .100000001}
   m_Children:
   - {fileID: 22432294}
   - {fileID: 22432292}
