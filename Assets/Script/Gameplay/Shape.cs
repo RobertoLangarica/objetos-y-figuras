@@ -90,28 +90,11 @@ public class Shape : MonoBehaviour {
 	{
 		//z no varia
 		position.z = transform.position.z;
-		/*if(((transform.collider2D.bounds.center).x - (transform.collider2D.bounds.size.x * 0.5f) < -(Screen.width * 0.009f)) && (position-positionDifference).x < transform.position.x) 
-		{
-			position.x = (transform.position+positionDifference).x;
-		}
-		if(((transform.collider2D.bounds.center).x + (transform.collider2D.bounds.size.x * 0.5f) > Screen.width * 0.009f) && (position-positionDifference).x > transform.position.x) 
-		{
-			position.x = (transform.position+positionDifference).x;
-		}
-		if(((transform.collider2D.bounds.center).y - (transform.collider2D.bounds.size.y * 0.5f) < -(Screen.height * 0.009f)) && (position-positionDifference).y < transform.position.y) 
-		{
-			position.y = (transform.position+positionDifference).y;
-		}
-		if(((transform.collider2D.bounds.center).y + (transform.collider2D.bounds.size.y * 0.5f) > Screen.height * 0.009f) && (position-positionDifference).y > transform.position.y) 
-		{
-			position.y = (transform.position+positionDifference).y;
-		}*/
 		transform.position = (position-positionDifference);
 	}
 
 	public void onTouchStop()
 	{
-
 	}
 
 	public void onRotationComplete(float delay = .2f)
@@ -157,5 +140,10 @@ public class Shape : MonoBehaviour {
 		}
 
 		return current;
+	}
+
+	public void turnRotationSpriter(bool turnOn)
+	{
+		transform.GetChild (0).GetComponent<SpriteRenderer> ().enabled = turnOn;
 	}
 }
