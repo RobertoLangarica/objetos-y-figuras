@@ -5,7 +5,7 @@ public class ShipTravelController : MonoBehaviour
 {
 	public RectTransform container;
 
-	public static string shipName = "SN01_03";//ScreenManager.instance.myCurrentShip; //"SN01_01";
+	public static string shipName = "SN01_01";
 
 	protected GameObject ship;
 	//protected ClientManager client;
@@ -27,12 +27,15 @@ public class ShipTravelController : MonoBehaviour
 	void Start () 
 	{
 		//client = GameObject.FindObjectOfType<ClientManager>();
+		shipName = "SN01_01";//ScreenManager.instance.myCurrentShip;
 		Debug.Log(shipName);
 
 		GameObject tmp = (GameObject)Resources.Load("SpaceClient/"+shipName+"_client");
 		
 		ship = GameObject.Instantiate(tmp,Vector3.zero,Quaternion.identity) as GameObject;
 
+		ship.AddComponent<CircleCollider2D>();
+		ship.gameObject.GetComponent<CircleCollider2D>().radius = 100;
 		ship.transform.localScale = new Vector3(.2f,.2f,.2f);
 		ship.transform.SetParent(container,false);
 		ship.AddComponent<Rigidbody2D>();
