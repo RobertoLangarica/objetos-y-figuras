@@ -86,6 +86,16 @@ public class InputHub : MonoBehaviour
 
 			case ContinuousGesturePhase.Ended:
 			Debug.Log ("Termine!!!!!!!");
+			for(int i=0; i<manager.shapes.Length; i++)
+			{
+				if(selected.name !=manager.shapes[i].name)
+				{
+					manager.shapes[i].transform.localPosition = new Vector3(manager.shapes[i].transform.localPosition.x,manager.shapes[i].transform.localPosition.y,0);
+				}
+				else
+					selected.transform.localPosition=new Vector3(selected.transform.localPosition.x,selected.transform.localPosition.y,-1);
+			}
+
 			if(selected)
 			{
 				selected.turnRotationSpriter(true);
