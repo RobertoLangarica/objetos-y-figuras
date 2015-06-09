@@ -36,6 +36,7 @@ public class InputHub : MonoBehaviour
 			if(wheel != 0)
 			{
 				lastRotation = Time.time;
+				isRotating = true;
 				selected.transform.Rotate(Vector3.back,wheel*15);
 			}
 			else if(lastRotation != -1 && Time.time-lastRotation >= timeToSnapRotation)
@@ -77,9 +78,14 @@ public class InputHub : MonoBehaviour
 				selected.onTouchMove(Camera.main.ScreenToWorldPoint(gesture.Position));
 				selected.turnRotationSpriter(false);
 			}
+			else if(isRotating)
+			{
+				selected.onTouchBegan(Camera.main.ScreenToWorldPoint(gesture.Position));
+			}
 			break;
 
 			case ContinuousGesturePhase.Ended:
+			Debug.Log ("Termine!!!!!!!");
 			if(selected)
 			{
 				selected.turnRotationSpriter(true);
@@ -105,10 +111,11 @@ public class InputHub : MonoBehaviour
 				break;
 
 			case ContinuousGesturePhase.Ended:
-			isRotating = false;
-			if(selected)//Evitando alguna race condition
+			Debug.Log (Input.touchCount + "-------------");
+			if(Input.touchCount == 2 && selected)
 			{
-				selected.onRotationComplete();
+				Debug.Log("Terminare rotacion-------");
+				stopRotation();
 				manager.checkForLevelComplete();
 			}
 			break;
@@ -131,7 +138,6 @@ public class InputHub : MonoBehaviour
 		selected.onTouchStop();
 		selected.turnRotationSpriter(false);
 		selected = null;
-		isRotating = false;
 		manager.checkForLevelComplete();
 		DOTween.Play("SnapMove");
 	}
