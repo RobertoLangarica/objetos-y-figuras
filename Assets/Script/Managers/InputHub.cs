@@ -93,7 +93,7 @@ public class InputHub : MonoBehaviour
 					manager.shapes[i].transform.localPosition = new Vector3(manager.shapes[i].transform.localPosition.x,manager.shapes[i].transform.localPosition.y,0);
 				}
 				else
-					selected.transform.localPosition=new Vector3(selected.transform.localPosition.x,selected.transform.localPosition.y,-1);
+					selected.transform.localPosition=new Vector3(selected.transform.localPosition.x,selected.transform.localPosition.y,-0.1f);
 			}
 
 			if(selected)

@@ -67,7 +67,7 @@ public class Shape : MonoBehaviour {
 	public void onTouchBegan(Vector3 position)
 	{
 		sprite.sortingOrder = ++sort;
-
+		transform.GetChild (0).GetComponent<SpriteRenderer>().sortingOrder = sprite.sortingOrder;
 		if(sort == 32767)
 		{
 			Shape[] shapes = GameObject.FindObjectsOfType<Shape>();
