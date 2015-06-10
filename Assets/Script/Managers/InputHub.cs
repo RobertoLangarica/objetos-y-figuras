@@ -18,6 +18,9 @@ public class InputHub : MonoBehaviour
 	protected float lastRotation = -1;
 	protected float timeToSnapRotation = 0.50f;
 
+	private Vector3 initialP = Vector3.zero;
+	private bool mouseFlag = false;
+
 	void Start ()
 	{
 		selected = null;
@@ -45,6 +48,10 @@ public class InputHub : MonoBehaviour
 				manager.checkForLevelComplete();
 			}
 		}
+		if (Input.GetMouseButtonDown (0)) 
+		{
+			mouseFlag = true;
+		} 
 	}
 
 	void OnDrag(DragGesture gesture)
@@ -53,30 +60,27 @@ public class InputHub : MonoBehaviour
 		switch(gesture.Phase)
 		{
 			case ContinuousGesturePhase.Started:
-			if(selected != null  && gesture.StartSelection)
+			if(selected != null  && gesture.StartSelection && mouseFlag)
 			{
 				if(!gesture.StartSelection.Equals(selected))
 				{
 					stopSelected();
 				}
 			}
-			if(gesture.StartSelection)
+			if(gesture.StartSelection && mouseFlag)
 			{
 				selected = gesture.StartSelection.GetComponent<Shape>();
 				selected.onTouchBegan(Camera.main.ScreenToWorldPoint(gesture.StartPosition));
-				selected.onTouchMove(Camera.main.ScreenToWorldPoint(gesture.Position));
-			}
-			if(!gesture.StartSelection)
-			{
-				selected.onTouchBegan(Camera.main.ScreenToWorldPoint(gesture.StartPosition));
+				initialP = Input.mousePosition;
 			}
 			break;
 
 			case ContinuousGesturePhase.Updated:
-			if(selected && !isRotating)
+			if(selected && !isRotating && Input.mousePosition != initialP)
 			{
 				selected.onTouchMove(Camera.main.ScreenToWorldPoint(gesture.Position));
 				selected.turnRotationSpriter(false);
+				initialP = Input.mousePosition;
 			}
 			else if(isRotating)
 			{
@@ -85,9 +89,9 @@ public class InputHub : MonoBehaviour
 			break;
 
 			case ContinuousGesturePhase.Ended:
-			Debug.Log ("Termine!!!!!!!");
 			if(selected)
 			{
+				mouseFlag = false;
 				selected.turnRotationSpriter(true);
 				manager.checkForLevelComplete();
 			}
@@ -111,10 +115,8 @@ public class InputHub : MonoBehaviour
 				break;
 
 			case ContinuousGesturePhase.Ended:
-			Debug.Log (Input.touchCount + "-------------");
 			if(Input.touchCount == 2 && selected)
 			{
-				Debug.Log("Terminare rotacion-------");
 				stopRotation();
 				manager.checkForLevelComplete();
 			}
@@ -131,6 +133,7 @@ public class InputHub : MonoBehaviour
 
 	void stopSelected()
 	{
+		Debug.Log ("Se va a deseleccionar");
 		if(isRotating)
 		{
 			stopRotation();
