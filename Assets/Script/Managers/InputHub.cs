@@ -89,6 +89,20 @@ public class InputHub : MonoBehaviour
 			break;
 
 			case ContinuousGesturePhase.Ended:
+<<<<<<< HEAD
+=======
+			Debug.Log ("Termine!!!!!!!");
+			for(int i=0; i<manager.shapes.Length; i++)
+			{
+				if(selected.name !=manager.shapes[i].name)
+				{
+					manager.shapes[i].transform.localPosition = new Vector3(manager.shapes[i].transform.localPosition.x,manager.shapes[i].transform.localPosition.y,0);
+				}
+				else
+					selected.transform.localPosition=new Vector3(selected.transform.localPosition.x,selected.transform.localPosition.y,-0.1f);
+			}
+
+>>>>>>> e60ae92106de7616845392bfba3247510fdd7099
 			if(selected)
 			{
 				mouseFlag = false;

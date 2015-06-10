@@ -188,6 +188,11 @@ public class GameManager : MonoBehaviour
 			continueBtn.gameObject.SetActive(true);
 			sendBtn.gameObject.SetActive(true);
 			GameObject.FindObjectOfType<DragRecognizer>().enabled = false;
+
+			for(int i =0; i<shapes.Length; i++)
+			{
+				shapes[i].transform.FindChild("Transform0").gameObject.SetActive(false);
+			}
 			//GameObject.FindObjectOfType<ShipsPanel>().refresh();
 
 			//Mandamos la nave
