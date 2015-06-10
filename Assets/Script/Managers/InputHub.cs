@@ -135,6 +135,7 @@ public class InputHub : MonoBehaviour
 
 	void stopRotation()
 	{
+		Debug.Log("s");
 		lastRotation = -1;
 		isRotating = false;
 		selected.onRotationComplete();
@@ -145,7 +146,7 @@ public class InputHub : MonoBehaviour
 		Debug.Log ("Se va a deseleccionar");
 		if(isRotating)
 		{
-			stopRotation();
+			//stopRotation();
 		}
 		selected.onTouchStop();
 		selected.turnRotationSpriter(false);
