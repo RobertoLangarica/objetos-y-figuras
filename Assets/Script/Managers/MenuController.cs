@@ -20,7 +20,7 @@ public class MenuController : MonoBehaviour {
 			GameObject tmp = (GameObject)Resources.Load("Menu/"+level.name+"_menu");
 			GameObject go = ((GameObject)GameObject.Instantiate(tmp));
 			go.transform.SetParent(content.transform);
-			go.GetComponent<MenuItem>().lvlName = level.name;
+			go.GetComponent<MenuItems>().lvlName = level.name;
 			go.GetComponent<LayoutElement>().minWidth = Screen.width/3.0f; 
 		}
 

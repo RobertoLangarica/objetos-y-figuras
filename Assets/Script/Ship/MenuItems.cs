@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MenuItem : MonoBehaviour {
+public class MenuItems : MonoBehaviour {
 
 	public string lvlName;
 
