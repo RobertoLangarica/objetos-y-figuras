@@ -66,6 +66,12 @@ public class LevelManager
 		return data.getLevelsFromDifficulty(difficulty);
 	}
 
+	//Todos los niveles
+	public Level[] getAllLevels()
+	{
+		return data.levels;
+	}
+
 	//Obtiene el nombre de la imagen de referencia para el nivel indicado
 	public string getImageReferenceNameFromLevel(string levelName)
 	{
