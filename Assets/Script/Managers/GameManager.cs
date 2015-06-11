@@ -73,7 +73,7 @@ public class GameManager : MonoBehaviour
 		float min;
 		float max;
 		Shape.sort = -32767;
-
+		float posTemp = -0.03f;
 		for(int i = 0; i < pieces.Length; i++)
 		{
 			if(Random.value < 0.5f)
@@ -102,6 +102,10 @@ public class GameManager : MonoBehaviour
 			sp.onRotationComplete(0);
 			sp.GetComponent<SpriteRenderer>().sortingOrder = Shape.sort+i;
 			Shape.sort = Shape.sort +i;
+
+			go.transform.localPosition = new Vector3 (go.transform.localPosition.x,go.transform.localPosition.y,posTemp);
+			posTemp -= .01f;
+
 		}
 
 		//placeholder
