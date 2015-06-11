@@ -32,7 +32,7 @@ public class AnalyticManager : MonoBehaviour {
 		UnityAnalytics.CustomEvent("gameOver", new Dictionary<string, object>
 		                           {
 			{ "Ship name", lvlPass },
-			{ "lvlTime", gameTime }
+			{ lvlPass+": Time", gameTime }
 		});
 	}
 
