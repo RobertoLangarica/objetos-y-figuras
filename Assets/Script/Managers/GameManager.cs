@@ -72,6 +72,7 @@ public class GameManager : MonoBehaviour
 
 		float min;
 		float max;
+		Shape.sort = -32767;
 
 		for(int i = 0; i < pieces.Length; i++)
 		{
@@ -99,6 +100,8 @@ public class GameManager : MonoBehaviour
 			Shape sp = go.GetComponent<Shape>();
 			sp.name = pieces[i].name;
 			sp.onRotationComplete(0);
+			sp.GetComponent<SpriteRenderer>().sortingOrder = Shape.sort+i;
+			Shape.sort = Shape.sort +i;
 		}
 
 		//placeholder

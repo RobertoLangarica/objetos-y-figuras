@@ -60,6 +60,7 @@ public class InputHub : MonoBehaviour
 		switch(gesture.Phase)
 		{
 			case ContinuousGesturePhase.Started:
+
 			if(selected != null  && gesture.StartSelection && mouseFlag)
 			{
 				if(!gesture.StartSelection.Equals(selected))
@@ -129,6 +130,7 @@ public class InputHub : MonoBehaviour
 
 	void stopRotation()
 	{
+		Debug.Log("s");
 		lastRotation = -1;
 		isRotating = false;
 		selected.onRotationComplete();
@@ -136,6 +138,7 @@ public class InputHub : MonoBehaviour
 
 	void stopSelected()
 	{
+		Debug.Log ("Se va a deseleccionar");
 		if(isRotating)
 		{
 			//stopRotation();

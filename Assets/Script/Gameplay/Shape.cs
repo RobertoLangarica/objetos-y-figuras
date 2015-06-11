@@ -11,7 +11,7 @@ public class Shape : MonoBehaviour {
 	public float boundaryLeft;
 	public float boundaryRight;
 
-	protected static short sort; 
+	public static int sort; 
 	public float rotateAmount = 15;
 	public float maxRotationAllowed = -1;
 
@@ -31,8 +31,7 @@ public class Shape : MonoBehaviour {
 		boundaryRight = Camera.main.aspect * Camera.main.orthographicSize;
 
 		sprite = GetComponent<SpriteRenderer>();
-		sort = -32767;
-		sprite.sortingOrder = sort;
+		//sprite.sortingOrder = sort;
 	}
 	
 	// Update is called once per frame
