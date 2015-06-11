@@ -89,15 +89,9 @@ public class InputHub : MonoBehaviour
 			break;
 
 			case ContinuousGesturePhase.Ended:
-			for(int i=0; i<manager.shapes.Length; i++)
-			{
-				if(selected.name !=manager.shapes[i].name)
-				{
-					manager.shapes[i].transform.localPosition = new Vector3(manager.shapes[i].transform.localPosition.x,manager.shapes[i].transform.localPosition.y,0);
-				}
-				else
-					selected.transform.localPosition=new Vector3(selected.transform.localPosition.x,selected.transform.localPosition.y,-0.1f);
-			}
+			sortShapes();
+			//selected.transform.localPosition=new Vector3(selected.transform.localPosition.x,selected.transform.localPosition.y,-0.1f);
+			
 			if(selected)
 			{
 				mouseFlag = false;
@@ -151,6 +145,30 @@ public class InputHub : MonoBehaviour
 		selected = null;
 		manager.checkForLevelComplete();
 		DOTween.Play("SnapMove");
+	}
+
+	void sortShapes()
+	{
+		GameObject temp;
+		float posTemp =-.1f;
+		for (int write = 0; write < manager.shapes.Length; write++) 
+		{
+			for (int sort = 0; sort < manager.shapes.Length - 1; sort++) 
+			{
+				if (manager.shapes[sort].transform.renderer.sortingOrder > manager.shapes[sort + 1].transform.renderer.sortingOrder) 
+				{
+					temp = manager.shapes[sort + 1];
+					manager.shapes[sort + 1] = manager.shapes[sort];
+					manager.shapes[sort] = temp;
+				}
+			}
+		}
+		for(int i=0; i<manager.shapes.Length; i++)
+		{
+			manager.shapes[i].transform.localPosition = new Vector3(manager.shapes[i].transform.localPosition.x,manager.shapes[i].transform.localPosition.y,posTemp);
+			posTemp -= .01f;
+		}
+		
 	}
 }
 
