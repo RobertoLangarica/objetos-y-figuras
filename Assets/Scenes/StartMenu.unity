@@ -104,7 +104,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2142623151}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_AnchorMin: {x: .70052743, y: .69121629}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -.5}
@@ -169,7 +169,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2142623151}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_AnchorMin: {x: .836000025, y: 0}
   m_AnchorMax: {x: 1, y: .338189214}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -551,7 +551,7 @@ GameObject:
   - 114: {fileID: 416431808}
   - 114: {fileID: 416431807}
   - 95: {fileID: 416431811}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Fondo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -646,7 +646,7 @@ GameObject:
   - 222: {fileID: 663301681}
   - 114: {fileID: 663301680}
   - 95: {fileID: 663301679}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: robot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -665,7 +665,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2142623151}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: .227000013, y: .5}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -791,7 +791,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2142623151}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_AnchorMin: {x: .634236336, y: 0}
   m_AnchorMax: {x: .814472616, y: .403216273}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -890,7 +890,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22439492, guid: ce7485f26c69f4b1faa6053e337e1964, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 46.4000244
+      value: 198
+      objectReference: {fileID: 0}
+    - target: {fileID: 22478778, guid: ce7485f26c69f4b1faa6053e337e1964, type: 2}
+      propertyPath: m_SizeDelta.x
+      value: -291.751343
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ce7485f26c69f4b1faa6053e337e1964, type: 2}
@@ -908,7 +912,7 @@ GameObject:
   - 222: {fileID: 863919865}
   - 114: {fileID: 863919864}
   - 95: {fileID: 863919867}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: planet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -956,7 +960,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2142623151}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_AnchorMin: {x: .0240000002, y: .615459323}
   m_AnchorMax: {x: .298881829, y: .962128997}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -978,85 +982,6 @@ Animator:
   m_ApplyRootMotion: 0
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!1 &1160678623
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 178780, guid: ce7485f26c69f4b1faa6053e337e1964, type: 2}
-  m_PrefabInternal: {fileID: 851500411}
-  serializedVersion: 4
-  m_Component:
-  - 224: {fileID: 1160678624}
-  - 222: {fileID: 1160678627}
-  - 114: {fileID: 1160678626}
-  - 114: {fileID: 1160678625}
-  m_Layer: 5
-  m_Name: Stars
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1160678624
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 22478780, guid: ce7485f26c69f4b1faa6053e337e1964,
-    type: 2}
-  m_PrefabInternal: {fileID: 851500411}
-  m_GameObject: {fileID: 1160678623}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2142623151}
-  m_RootOrder: 1
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: .5, y: .5}
---- !u!114 &1160678625
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11478778, guid: ce7485f26c69f4b1faa6053e337e1964,
-    type: 2}
-  m_PrefabInternal: {fileID: 851500411}
-  m_GameObject: {fileID: 1160678623}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1254083943, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_AspectMode: 4
-  m_AspectRatio: 1
---- !u!114 &1160678626
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11478780, guid: ce7485f26c69f4b1faa6053e337e1964,
-    type: 2}
-  m_PrefabInternal: {fileID: 851500411}
-  m_GameObject: {fileID: 1160678623}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Sprite: {fileID: 21300004, guid: 31a4666775afc42079525f05a66f0414, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 1
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
---- !u!222 &1160678627
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 22278780, guid: ce7485f26c69f4b1faa6053e337e1964,
-    type: 2}
-  m_PrefabInternal: {fileID: 851500411}
-  m_GameObject: {fileID: 1160678623}
 --- !u!1 &1176041453
 GameObject:
   m_ObjectHideFlags: 0
@@ -1218,7 +1143,7 @@ GameObject:
   - 222: {fileID: 1283484739}
   - 114: {fileID: 1283484738}
   - 114: {fileID: 1283484737}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1237,7 +1162,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2142623151}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_AnchorMin: {x: .200000003, y: 0}
   m_AnchorMax: {x: .800000012, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -1651,7 +1576,7 @@ RectTransform:
   - {fileID: 1416406759}
   - {fileID: 1452568450}
   m_Father: {fileID: 2142623151}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -1693,7 +1618,6 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 416431810}
-  - {fileID: 1160678624}
   - {fileID: 863919866}
   - {fileID: 1283484736}
   - {fileID: 663301678}
