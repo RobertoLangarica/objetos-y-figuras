@@ -10,7 +10,7 @@ public class Asteroid : MonoBehaviour {
 	protected float boundaryRight;
 	protected Vector3 size;
 	
-	protected float limitSpeed = 5;//cuadrada
+	protected float limitSpeed = 2;//cuadrada
 	protected float width;//Ancho para el acomodo
 	protected Vector2 force = new Vector2(0,5);//Fuerza que se agrega cada frame
 	public string rotateDirection;
@@ -53,7 +53,7 @@ public class Asteroid : MonoBehaviour {
 	{
 		if(right)
 		{
-			transform.rigidbody2D.angularVelocity -=5;
+			transform.rigidbody2D.angularVelocity -=10;
 			if(transform.rigidbody2D.angularVelocity < -25)
 			{
 				transform.rigidbody2D.angularVelocity = -25;
@@ -61,7 +61,7 @@ public class Asteroid : MonoBehaviour {
 		}
 		else
 		{
-			transform.rigidbody2D.angularVelocity +=5;
+			transform.rigidbody2D.angularVelocity +=10;
 			if(transform.rigidbody2D.angularVelocity > 25)
 			{
 				transform.rigidbody2D.angularVelocity = 25;
