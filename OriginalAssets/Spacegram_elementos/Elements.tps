@@ -204,6 +204,10 @@
             <filename>Spacegram_fondo/Bottom_Right.png</filename>
             <filename>Spacegram_fondo/Up_Left.png</filename>
             <filename>Spacegram_fondo/Up_Right.png</filename>
+            <filename>Spacegram_naves/Tangram_elementosB_0000_Turbina04.png</filename>
+            <filename>Spacegram_naves/Tangram_elementosB_0001_Turbina03.png</filename>
+            <filename>Spacegram_naves/Tangram_elementosB_0002_Turbina02.png</filename>
+            <filename>Spacegram_naves/Tangram_elementosB_0003_Turbina01.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
