@@ -6,7 +6,7 @@
         <key>texturePackerVersion</key>
         <string>3.7.1</string>
         <key>fileName</key>
-        <string>/Users/Robert/Documents/Trabajo/VillaVanilla/Kinders/kinder_spacegram/OriginalAssets/Spacegram_elementos/Spacegram_naves/Ships.tps</string>
+        <string>/Users/Robert/Documents/Trabajo/VillaVanilla/Kinders/kinder_spacegram/OriginalAssets/Spacegram_elementos/Spacegram_naves/Pieces.tps</string>
         <key>autoSDSettings</key>
         <array>
             <struct type="AutoSDSettings">
@@ -86,9 +86,9 @@
         <key>maxTextureSize</key>
         <QSize>
             <key>width</key>
-            <int>2048</int>
+            <int>1024</int>
             <key>height</key>
-            <int>2048</int>
+            <int>1024</int>
         </QSize>
         <key>fixedTextureSize</key>
         <QSize>
@@ -145,7 +145,7 @@
             <key>datafile</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename>../../../Assets/textures/Ships_{n}.tpsheet</filename>
+                <filename>../../../Assets/textures/Pieces_{n}.tpsheet</filename>
             </struct>
         </map>
         <key>multiPack</key>
@@ -188,27 +188,11 @@
         </struct>
         <key>fileList</key>
         <array>
-            <filename>Tangram_elementosB_0032_N03_02.png</filename>
-            <filename>Tangram_elementosB_0033_N03_01.png</filename>
-            <filename>Tangram_elementosB_0034_N03_03.png</filename>
-            <filename>Tangram_elementosB_0035_N04_01.png</filename>
-            <filename>Tangram_elementosB_0036_N04_02.png</filename>
-            <filename>Tangram_elementosB_0037_N04_03.png</filename>
-            <filename>Tangram_elementosB_0038_N04_04.png</filename>
-            <filename>Tangram_elementosB_0039_N03_06.png</filename>
-            <filename>Tangram_elementosB_0040_N03_05.png</filename>
-            <filename>Tangram_elementosB_0041_N03_04.png</filename>
-            <filename>Tangram_elementosB_0042_N02_06.png</filename>
-            <filename>Tangram_elementosB_0043_N02_05.png</filename>
-            <filename>Tangram_elementosB_0044_N02_04.png</filename>
-            <filename>Tangram_elementosB_0045_N02_03.png</filename>
-            <filename>Tangram_elementosB_0046_N02_02.png</filename>
-            <filename>Tangram_elementosB_0047_N02_01.png</filename>
-            <filename>Tangram_elementosB_0048_N01_05.png</filename>
-            <filename>Tangram_elementosB_0049_N01_04.png</filename>
-            <filename>Tangram_elementosB_0050_N01_03.png</filename>
-            <filename>Tangram_elementosB_0051_N01_02.png</filename>
-            <filename>Tangram_elementosB_0052_N01_01.png</filename>
+            <filename>Tangram_elementosB_0025_Pieza01.png</filename>
+            <filename>Tangram_elementosB_0026_Pieza02.png</filename>
+            <filename>Tangram_elementosB_0027_Pieza03.png</filename>
+            <filename>Tangram_elementosB_0028_Pieza04.png</filename>
+            <filename>Tangram_elementosB_0030_Pieza06.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

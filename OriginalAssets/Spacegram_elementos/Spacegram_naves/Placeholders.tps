@@ -6,7 +6,7 @@
         <key>texturePackerVersion</key>
         <string>3.7.1</string>
         <key>fileName</key>
-        <string>/Users/Robert/Documents/Trabajo/VillaVanilla/Kinders/kinder_spacegram/OriginalAssets/Spacegram_elementos/Spacegram_naves/Ships.tps</string>
+        <string>/Users/Robert/Documents/Trabajo/VillaVanilla/Kinders/kinder_spacegram/OriginalAssets/Spacegram_elementos/Spacegram_naves/References.tps</string>
         <key>autoSDSettings</key>
         <array>
             <struct type="AutoSDSettings">
@@ -114,7 +114,7 @@
             <key>maxRects</key>
             <struct type="AlgorithmMaxRectsSettings">
                 <key>heuristic</key>
-                <enum type="AlgorithmMaxRectsSettings::Heuristic">Best</enum>
+                <enum type="AlgorithmMaxRectsSettings::Heuristic">AreaFit</enum>
             </struct>
             <key>basic</key>
             <struct type="AlgorithmBasicSettings">
@@ -145,7 +145,7 @@
             <key>datafile</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename>../../../Assets/textures/Ships_{n}.tpsheet</filename>
+                <filename>../../../Assets/textures/Placeholders_{n}.tpsheet</filename>
             </struct>
         </map>
         <key>multiPack</key>
@@ -188,27 +188,27 @@
         </struct>
         <key>fileList</key>
         <array>
-            <filename>Tangram_elementosB_0032_N03_02.png</filename>
-            <filename>Tangram_elementosB_0033_N03_01.png</filename>
-            <filename>Tangram_elementosB_0034_N03_03.png</filename>
-            <filename>Tangram_elementosB_0035_N04_01.png</filename>
-            <filename>Tangram_elementosB_0036_N04_02.png</filename>
-            <filename>Tangram_elementosB_0037_N04_03.png</filename>
-            <filename>Tangram_elementosB_0038_N04_04.png</filename>
-            <filename>Tangram_elementosB_0039_N03_06.png</filename>
-            <filename>Tangram_elementosB_0040_N03_05.png</filename>
-            <filename>Tangram_elementosB_0041_N03_04.png</filename>
-            <filename>Tangram_elementosB_0042_N02_06.png</filename>
-            <filename>Tangram_elementosB_0043_N02_05.png</filename>
-            <filename>Tangram_elementosB_0044_N02_04.png</filename>
-            <filename>Tangram_elementosB_0045_N02_03.png</filename>
-            <filename>Tangram_elementosB_0046_N02_02.png</filename>
-            <filename>Tangram_elementosB_0047_N02_01.png</filename>
-            <filename>Tangram_elementosB_0048_N01_05.png</filename>
-            <filename>Tangram_elementosB_0049_N01_04.png</filename>
-            <filename>Tangram_elementosB_0050_N01_03.png</filename>
-            <filename>Tangram_elementosB_0051_N01_02.png</filename>
-            <filename>Tangram_elementosB_0052_N01_01.png</filename>
+            <filename>Tangram_elementosB_0004_N03_02-copy.png</filename>
+            <filename>Tangram_elementosB_0005_N03_01-copy.png</filename>
+            <filename>Tangram_elementosB_0006_N03_03-copy.png</filename>
+            <filename>Tangram_elementosB_0007_N04_01-copy.png</filename>
+            <filename>Tangram_elementosB_0008_N04_02-copy.png</filename>
+            <filename>Tangram_elementosB_0009_N04_03-copy.png</filename>
+            <filename>Tangram_elementosB_0010_N04_04-copy-2.png</filename>
+            <filename>Tangram_elementosB_0011_N03_06-copy-2.png</filename>
+            <filename>Tangram_elementosB_0012_N03_05-copy-2.png</filename>
+            <filename>Tangram_elementosB_0013_N03_04-copy-2.png</filename>
+            <filename>Tangram_elementosB_0014_15-copy.png</filename>
+            <filename>Tangram_elementosB_0015_N02_05-copy-2.png</filename>
+            <filename>Tangram_elementosB_0016_N02_04-copy-2.png</filename>
+            <filename>Tangram_elementosB_0017_N02_03-copy.png</filename>
+            <filename>Tangram_elementosB_0018_N02_02-copy.png</filename>
+            <filename>Tangram_elementosB_0019_N02_01-copy.png</filename>
+            <filename>Tangram_elementosB_0020_N01_05-copy.png</filename>
+            <filename>Tangram_elementosB_0021_N01_04-copy-2.png</filename>
+            <filename>Tangram_elementosB_0022_N01_03-copy.png</filename>
+            <filename>Tangram_elementosB_0023_N01_02-copy.png</filename>
+            <filename>Tangram_elementosB_0024_N01_01-copy.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
