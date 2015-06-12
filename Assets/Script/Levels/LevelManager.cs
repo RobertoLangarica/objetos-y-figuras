@@ -66,6 +66,11 @@ public class LevelManager
 		return data.getLevelsFromDifficulty(difficulty);
 	}
 
+	public Level[] getPurchasePack(string packName)
+	{
+		return data.getLevelsFromPurchaseName (packName);
+	}
+
 	//Todos los niveles
 	public Level[] getAllLevels()
 	{
@@ -77,4 +82,6 @@ public class LevelManager
 	{
 		return data.getLevelByName(levelName).referenceImage;
 	}
+
+
 }
