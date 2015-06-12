@@ -5,7 +5,8 @@ public class SplashScreen : MonoBehaviour {
 
 	public float timeBeforeNextScreen = 2;
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
 	}
 	
 	// Update is called once per frame

@@ -43,6 +43,10 @@ public class UserDataManager
 		PlayerPrefs.SetString("levels","");
 		PlayerPrefs.SetString("name","");
 		PlayerPrefs.SetString("shipSelected","");
+		if (!PlayerPrefs.HasKey ("premiumVersion")) 
+		{
+			premiumVersion = "freeVersion";
+		}
 
 	}
 
@@ -61,6 +65,12 @@ public class UserDataManager
 	{
 		get{return PlayerPrefs.GetInt("level");}
 		set{PlayerPrefs.SetInt("level",value);}
+	}
+	
+	public string premiumVersion
+	{
+		get{return PlayerPrefs.GetString("premiumVersion");}
+		set{PlayerPrefs.SetString("premiumVersion",value);}
 	}
 
 	public void cleanData()
