@@ -70,6 +70,17 @@ public class ShipTravelController : MonoBehaviour
 		//Para que al salir vuelva a entrar
 		checkBounds();
 
+		#if UNITY_EDITOR_WIN 
+		if(Input.GetKeyDown(KeyCode.LeftArrow))
+		{
+			moveShip("left");
+		}
+		if(Input.GetKeyDown(KeyCode.RightArrow))
+		{
+			moveShip("right");
+		}
+		#endif
+
 	}
 
 	public void rotation(bool right)
