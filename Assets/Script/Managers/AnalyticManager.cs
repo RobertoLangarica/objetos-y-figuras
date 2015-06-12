@@ -29,10 +29,13 @@ public class AnalyticManager : MonoBehaviour {
 		Debug.Log(lvlPass);
 		Debug.Log(gameTime);
 
-		UnityAnalytics.CustomEvent("gameOver", new Dictionary<string, object>
+		UnityAnalytics.CustomEvent("ships", new Dictionary<string, object>
 		                           {
 			{ "Ship name", lvlPass },
-			{ "lvlTime", gameTime }
+		});
+		UnityAnalytics.CustomEvent(lvlPass, new Dictionary<string, object>
+		                           {
+			{"Time: ", gameTime }
 		});
 	}
 

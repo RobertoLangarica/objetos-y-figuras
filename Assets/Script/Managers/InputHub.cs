@@ -130,7 +130,6 @@ public class InputHub : MonoBehaviour
 
 	void stopRotation()
 	{
-		Debug.Log("s");
 		lastRotation = -1;
 		isRotating = false;
 		selected.onRotationComplete();

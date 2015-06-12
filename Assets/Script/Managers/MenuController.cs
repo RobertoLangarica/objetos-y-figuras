@@ -9,7 +9,6 @@ public class MenuController : MonoBehaviour {
 	public Image right;
 	public Image left;
 	public ScrollRect scrollRect;
-
 	protected Tween rT;
 	protected Tween lT;
 	protected bool checkScrollPosition = false;
@@ -32,11 +31,13 @@ public class MenuController : MonoBehaviour {
 			GameObject go = ((GameObject)GameObject.Instantiate(tmp));
 			go.transform.SetParent(content.transform);
 			go.GetComponent<MenuItems>().lvlName = level.name;
-			go.GetComponent<LayoutElement>().minWidth = Screen.width/3.0f; 
+			go.GetComponent<MenuItems>().lvlPurchseID = level.purchaseID;
+			go.GetComponent<LayoutElement>().minWidth = Screen.width/3.0f;
+			if(UserDataManager.instance.premiumVersion != "premiumVersion" && level.purchaseID == "spacegramShips062015")
+			{
+				go.GetComponent<Image>().color = new Color(255,0,0);
+			}
 		}
-
-		GameObject lo = GameObject.Find("Level");
-		lo.GetComponent<Text>().text = "Nivel "+UserDataManager.instance.level;
 
 		left.DOFade(0,0.2f);
 	}
@@ -89,6 +90,11 @@ public class MenuController : MonoBehaviour {
 
 	public void onStopDrag()
 	{
-		checkScrollPosition = true;
+		checkScrollPosition = true; 
+	}
+
+	public void goToStartMenu()
+	{
+		ScreenManager.instance.GoToScene("StartMenu");
 	}
 }
