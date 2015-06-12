@@ -6,7 +6,7 @@
         <key>texturePackerVersion</key>
         <string>3.7.1</string>
         <key>fileName</key>
-        <string>/Users/Robert/Documents/Trabajo/VillaVanilla/Kinders/kinder_spacegram/OriginalAssets/Spacegram_elementos/Spacegram_naves/References.tps</string>
+        <string>/Users/Robert/Documents/Trabajo/VillaVanilla/Kinders/kinder_spacegram/OriginalAssets/Spacegram_elementos/Spacegram_naves/Placeholders.tps</string>
         <key>autoSDSettings</key>
         <array>
             <struct type="AutoSDSettings">
@@ -198,7 +198,6 @@
             <filename>Tangram_elementosB_0011_N03_06-copy-2.png</filename>
             <filename>Tangram_elementosB_0012_N03_05-copy-2.png</filename>
             <filename>Tangram_elementosB_0013_N03_04-copy-2.png</filename>
-            <filename>Tangram_elementosB_0014_15-copy.png</filename>
             <filename>Tangram_elementosB_0015_N02_05-copy-2.png</filename>
             <filename>Tangram_elementosB_0016_N02_04-copy-2.png</filename>
             <filename>Tangram_elementosB_0017_N02_03-copy.png</filename>
@@ -209,6 +208,7 @@
             <filename>Tangram_elementosB_0022_N01_03-copy.png</filename>
             <filename>Tangram_elementosB_0023_N01_02-copy.png</filename>
             <filename>Tangram_elementosB_0024_N01_01-copy.png</filename>
+            <filename>Tangram_elementosB_0014_N02_06.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
