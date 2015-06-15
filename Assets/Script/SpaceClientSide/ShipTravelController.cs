@@ -27,7 +27,7 @@ public class ShipTravelController : MonoBehaviour
 	void Start () 
 	{
 		//client = GameObject.FindObjectOfType<ClientManager>();
-		shipName = "SN01_01";//ScreenManager.instance.myCurrentShip;
+		shipName = ScreenManager.instance.myCurrentShip;//"SN01_01";//
 		Debug.Log(shipName);
 
 		GameObject tmp = (GameObject)Resources.Load("SpaceShips/"+shipName);
