@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class ShipTravelController : MonoBehaviour 
@@ -6,6 +7,8 @@ public class ShipTravelController : MonoBehaviour
 	public RectTransform container;
 
 	public static string shipName = "SN01_01";
+
+	public Text txt;
 
 	protected GameObject ship;
 	//protected ClientManager client;
@@ -23,8 +26,9 @@ public class ShipTravelController : MonoBehaviour
 	protected Vector2 force = new Vector2(0,10);//Fuerza que se agrega cada frame
 	public int col;//hardcoding de posicion (fila) solo funciona en el editor
 	public string rotateDirection;
-
-	public GameObject Asteroid;
+	
+	protected int currentCount = 5;
+	protected bool gameRunning = false;
 
 	void Start () 
 	{
@@ -45,7 +49,9 @@ public class ShipTravelController : MonoBehaviour
 		ship.rigidbody2D.gravityScale =0;
 
 		boundaries();
-		callingAsteroids();
+		
+		currentCount = 5;
+		starCronometer ();
 	}
 
 	void Update () 
@@ -90,7 +96,7 @@ public class ShipTravelController : MonoBehaviour
 	{
 		if(right)
 		{
-			ship.transform.rigidbody2D.angularVelocity -=15;
+			ship.transform.rigidbody2D.angularVelocity -=5;
 			if(ship.transform.rigidbody2D.angularVelocity < -25)
 			{
 				ship.transform.rigidbody2D.angularVelocity = -25;
@@ -98,7 +104,7 @@ public class ShipTravelController : MonoBehaviour
 		}
 		else
 		{
-			ship.transform.rigidbody2D.angularVelocity +=15;
+			ship.transform.rigidbody2D.angularVelocity +=5;
 			if(ship.transform.rigidbody2D.angularVelocity > 25)
 			{
 				ship.transform.rigidbody2D.angularVelocity = 25;
@@ -150,20 +156,28 @@ public class ShipTravelController : MonoBehaviour
 	public void ignition()
 	{
 		startShip = true;
-		GameObject.Find("Start").SetActive(false);
 	}
-	public void callingAsteroids()
+	
+	public void starCronometer()
 	{
-		float randAsteroid = Random.Range(10,20);
-		float min = Screen.width * .05f;;
-		float max = Screen.width - Screen.width * .05f;;
-
-
-		for(int i =0; i<randAsteroid; i++)
+		gameRunning = true;
+		StartCoroutine("cronometerCount");
+	}
+	
+	IEnumerator cronometerCount()
+	{
+		if(currentCount > 0)
 		{
-			Vector3 randPos = Camera.main.ScreenToWorldPoint(new Vector3(Random.Range(min,max),Random.Range(Screen.height*0.2f,Screen.height*0.8f),0));
-			randPos.z = 0;
-			Instantiate(Asteroid,randPos,Quaternion.identity);
+			txt.enabled = true;
+			txt.text = currentCount.ToString();//img.sprite = Resources.Load(currentCount.ToString(),typeof(Sprite)) as Sprite;
+			currentCount--;
+			yield return new WaitForSeconds (1);
+			StartCoroutine("cronometerCount");
+		}
+		else
+		{
+			txt.enabled = false;
+			ignition();
 		}
 	}
 }
