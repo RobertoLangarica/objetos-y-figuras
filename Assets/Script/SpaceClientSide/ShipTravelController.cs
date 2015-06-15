@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class ShipTravelController : MonoBehaviour 
@@ -6,6 +7,8 @@ public class ShipTravelController : MonoBehaviour
 	public RectTransform container;
 
 	public static string shipName = "SN01_01";
+
+	public Text txt;
 
 	protected GameObject ship;
 	//protected ClientManager client;
@@ -23,6 +26,9 @@ public class ShipTravelController : MonoBehaviour
 	protected Vector2 force = new Vector2(0,10);//Fuerza que se agrega cada frame
 	public int col;//hardcoding de posicion (fila) solo funciona en el editor
 	public string rotateDirection;
+	
+	protected int currentCount = 5;
+	protected bool gameRunning = false;
 
 	void Start () 
 	{
@@ -43,6 +49,9 @@ public class ShipTravelController : MonoBehaviour
 		ship.rigidbody2D.gravityScale =0;
 
 		boundaries();
+		
+		currentCount = 5;
+		starCronometer ();
 	}
 
 	void Update () 
@@ -147,6 +156,28 @@ public class ShipTravelController : MonoBehaviour
 	public void ignition()
 	{
 		startShip = true;
-		GameObject.Find("Start").SetActive(false);
+	}
+	
+	public void starCronometer()
+	{
+		gameRunning = true;
+		StartCoroutine("cronometerCount");
+	}
+	
+	IEnumerator cronometerCount()
+	{
+		if(currentCount > 0)
+		{
+			txt.enabled = true;
+			txt.text = currentCount.ToString();//img.sprite = Resources.Load(currentCount.ToString(),typeof(Sprite)) as Sprite;
+			currentCount--;
+			yield return new WaitForSeconds (1);
+			StartCoroutine("cronometerCount");
+		}
+		else
+		{
+			txt.enabled = false;
+			ignition();
+		}
 	}
 }
