@@ -24,6 +24,8 @@ public class ShipTravelController : MonoBehaviour
 	public int col;//hardcoding de posicion (fila) solo funciona en el editor
 	public string rotateDirection;
 
+	public GameObject Asteroid;
+
 	void Start () 
 	{
 		//client = GameObject.FindObjectOfType<ClientManager>();
@@ -43,6 +45,7 @@ public class ShipTravelController : MonoBehaviour
 		ship.rigidbody2D.gravityScale =0;
 
 		boundaries();
+		callingAsteroids();
 	}
 
 	void Update () 
@@ -87,7 +90,7 @@ public class ShipTravelController : MonoBehaviour
 	{
 		if(right)
 		{
-			ship.transform.rigidbody2D.angularVelocity -=5;
+			ship.transform.rigidbody2D.angularVelocity -=15;
 			if(ship.transform.rigidbody2D.angularVelocity < -25)
 			{
 				ship.transform.rigidbody2D.angularVelocity = -25;
@@ -95,7 +98,7 @@ public class ShipTravelController : MonoBehaviour
 		}
 		else
 		{
-			ship.transform.rigidbody2D.angularVelocity +=5;
+			ship.transform.rigidbody2D.angularVelocity +=15;
 			if(ship.transform.rigidbody2D.angularVelocity > 25)
 			{
 				ship.transform.rigidbody2D.angularVelocity = 25;
@@ -148,5 +151,19 @@ public class ShipTravelController : MonoBehaviour
 	{
 		startShip = true;
 		GameObject.Find("Start").SetActive(false);
+	}
+	public void callingAsteroids()
+	{
+		float randAsteroid = Random.Range(10,20);
+		float min = Screen.width * .05f;;
+		float max = Screen.width - Screen.width * .05f;;
+
+
+		for(int i =0; i<randAsteroid; i++)
+		{
+			Vector3 randPos = Camera.main.ScreenToWorldPoint(new Vector3(Random.Range(min,max),Random.Range(Screen.height*0.2f,Screen.height*0.8f),0));
+			randPos.z = 0;
+			Instantiate(Asteroid,randPos,Quaternion.identity);
+		}
 	}
 }

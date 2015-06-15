@@ -10,7 +10,7 @@ public class Asteroid : MonoBehaviour {
 	protected float boundaryRight;
 	protected Vector3 size;
 	
-	protected float limitSpeed = 2;//cuadrada
+	protected float limitSpeed = 50;//cuadrada
 	protected float width;//Ancho para el acomodo
 	protected Vector2 force = new Vector2(0,5);//Fuerza que se agrega cada frame
 	public string rotateDirection;
@@ -18,7 +18,20 @@ public class Asteroid : MonoBehaviour {
 	void Start () 
 	{
 		//client = GameObject.FindObjectOfType<ClientManager>();
-		
+		if(Random.value < 0.5f)
+		{
+			if(Random.value <0.5f)
+			{
+				force = transform.up * 30;
+			}
+			else
+			{
+				force = transform.up * -30;
+			}
+
+			transform.rigidbody2D.AddForce(force);
+			Debug.Log("S");
+		}
 		boundaries();
 	}
 	
