@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class ShipTravelController : MonoBehaviour 
@@ -6,6 +7,8 @@ public class ShipTravelController : MonoBehaviour
 	public RectTransform container;
 
 	public static string shipName = "SN01_01";
+
+	public Text txt;
 
 	protected GameObject ship;
 	//protected ClientManager client;
@@ -18,30 +21,37 @@ public class ShipTravelController : MonoBehaviour
 
 	//[HideInInspector]
 	public bool startShip = false;
-	protected float limitSpeed = 5;//cuadrada
+	protected float limitSpeed = 2;//cuadrada
 	protected float width;//Ancho para el acomodo
 	protected Vector2 force = new Vector2(0,10);//Fuerza que se agrega cada frame
 	public int col;//hardcoding de posicion (fila) solo funciona en el editor
 	public string rotateDirection;
+	
+	protected int currentCount = 5;
+	protected bool gameRunning = false;
 
 	void Start () 
 	{
 		//client = GameObject.FindObjectOfType<ClientManager>();
-		shipName = "SN01_01";//ScreenManager.instance.myCurrentShip;
+		shipName = ScreenManager.instance.myCurrentShip;//"SN01_01";//
 		Debug.Log(shipName);
 
-		GameObject tmp = (GameObject)Resources.Load("SpaceClient/"+shipName+"_client");
+		GameObject tmp = (GameObject)Resources.Load("SpaceShips/"+shipName);
 		
 		ship = GameObject.Instantiate(tmp,Vector3.zero,Quaternion.identity) as GameObject;
 
 		ship.AddComponent<CircleCollider2D>();
-		ship.gameObject.GetComponent<CircleCollider2D>().radius = 100;
-		ship.transform.localScale = new Vector3(.2f,.2f,.2f);
-		ship.transform.SetParent(container,false);
+		ship.gameObject.GetComponent<CircleCollider2D>().radius = 1.5f;
+		//Debug.Log(Screen.height+"  "+ship.transform.FindChild("turbina").renderer.bounds.size);
+		ship.transform.localScale = new Vector3(.15f,.15f,.15f);
+		//ship.transform.SetParent(container,false);
 		ship.AddComponent<Rigidbody2D>();
 		ship.rigidbody2D.gravityScale =0;
 
 		boundaries();
+		
+		currentCount = 5;
+		starCronometer ();
 	}
 
 	void Update () 
@@ -69,6 +79,17 @@ public class ShipTravelController : MonoBehaviour
 		//Para que al salir vuelva a entrar
 		checkBounds();
 
+		#if UNITY_EDITOR_WIN 
+		if(Input.GetKeyDown(KeyCode.LeftArrow))
+		{
+			moveShip("left");
+		}
+		if(Input.GetKeyDown(KeyCode.RightArrow))
+		{
+			moveShip("right");
+		}
+		#endif
+
 	}
 
 	public void rotation(bool right)
@@ -94,13 +115,18 @@ public class ShipTravelController : MonoBehaviour
 
 	private void boundaries()
 	{
-		boundaryTop = Screen.height*0.5f;
-		boundaryBottom = Screen.height*-0.5f;
-		boundaryLeft = Screen.width*(-0.5f);
-		boundaryRight = Screen.width*(0.5f);
+		//boundaryTop = Screen.height*0.5f;
+		//boundaryBottom = Screen.height*-0.5f;
+		//boundaryLeft = Screen.width*(-0.5f);
+		//boundaryRight = Screen.width*(0.5f);
 		
 		//Debug.Log(Screen.width*0.5f);
 		//Debug.Log(Screen.height*0.5f);
+
+		boundaryTop = Camera.main.orthographicSize;
+		boundaryBottom = -Camera.main.orthographicSize;
+		boundaryLeft = -Camera.main.aspect * Camera.main.orthographicSize;
+		boundaryRight = Camera.main.aspect * Camera.main.orthographicSize;
 	}
 
 	void checkBounds()
@@ -130,6 +156,28 @@ public class ShipTravelController : MonoBehaviour
 	public void ignition()
 	{
 		startShip = true;
-		GameObject.Find("Start").SetActive(false);
+	}
+	
+	public void starCronometer()
+	{
+		gameRunning = true;
+		StartCoroutine("cronometerCount");
+	}
+	
+	IEnumerator cronometerCount()
+	{
+		if(currentCount > 0)
+		{
+			txt.enabled = true;
+			txt.text = currentCount.ToString();//img.sprite = Resources.Load(currentCount.ToString(),typeof(Sprite)) as Sprite;
+			currentCount--;
+			yield return new WaitForSeconds (1);
+			StartCoroutine("cronometerCount");
+		}
+		else
+		{
+			txt.enabled = false;
+			ignition();
+		}
 	}
 }

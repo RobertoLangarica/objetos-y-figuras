@@ -15,6 +15,9 @@ public class Level
 	
 	[XmlAttribute("error")]
 	public float error;//Error aceptado en la distancia
+	
+	[XmlAttribute("purchaseID")]
+	public string purchaseID;//El idea de la nave a que paquete pertenece
 
 	//Piezas (se serializan como arreglo normal Piece[]
 	protected List<Piece> _pieces = new List<Piece>();

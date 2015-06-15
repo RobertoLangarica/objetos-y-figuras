@@ -66,6 +66,21 @@ public class Levels
 		return result.ToArray();
 	}
 
+	public Level[] getLevelsFromPurchaseName(string name)	
+	{
+		List<Level> result = new List<Level>();
+		
+		foreach(Level l in _levels)
+		{
+			if(l.purchaseID == name)
+			{
+				result.Add(l);
+			}
+		}
+		
+		return result.ToArray();
+	}
+
 	public Level getLevelByName(string lvlName)
 	{
 		foreach(Level l in _levels)

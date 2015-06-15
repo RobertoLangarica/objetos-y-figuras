@@ -210,7 +210,7 @@ public class GameManager : MonoBehaviour
 				client.isShipReady = true;//Esto envia la nave
 			}
 
-			if((UserDataManager.instance.getCompletedLevels().Length%3) == 0)
+			if((UserDataManager.instance.getCompletedLevels().Length%3) == 0 && UserDataManager.instance.premiumVersion == "premiumVersion")
 			{
 				if(UserDataManager.instance.level < LevelManager.instance.maxLevel)
 				{

@@ -9,7 +9,6 @@ public class MenuController : MonoBehaviour {
 	public Image right;
 	public Image left;
 	public ScrollRect scrollRect;
-	public bool Buyed;
 	protected Tween rT;
 	protected Tween lT;
 	protected bool checkScrollPosition = false;
@@ -32,14 +31,15 @@ public class MenuController : MonoBehaviour {
 			GameObject go = ((GameObject)GameObject.Instantiate(tmp));
 			go.transform.SetParent(content.transform);
 			go.GetComponent<MenuItems>().lvlName = level.name;
+			go.GetComponent<MenuItems>().lvlPurchseID = level.purchaseID;
 			go.GetComponent<LayoutElement>().minWidth = Screen.width/3.0f;
+			if(UserDataManager.instance.premiumVersion != "premiumVersion" && level.purchaseID == "spacegramShips062015")
+			{
+				go.GetComponent<Image>().color = new Color(255,0,0);
+			}
 		}
 
-		GameObject lo = GameObject.Find("Level");
-		lo.GetComponent<Text>().text = "Nivel "+UserDataManager.instance.level;
-
 		left.DOFade(0,0.2f);
-		allShips();
 	}
 
 	void Update()
@@ -93,21 +93,8 @@ public class MenuController : MonoBehaviour {
 		checkScrollPosition = true; 
 	}
 
-	public void allShips()
+	public void goToStartMenu()
 	{
-		if(!Buyed)
-		{
-			for(int i=3; i<gameObject.transform.Find("Content").childCount; i++)
-			{
-				gameObject.transform.Find("Content").GetChild(i).GetComponent<Image>().color = new Color(255,0,0);
-			}
-		}
-		else
-		{
-			for(int i=0; i<gameObject.transform.Find("Content").childCount; i++)
-			{
-				gameObject.transform.Find("Content").GetChild(i).GetComponent<Image>().color = new Color(255,255,255);
-			}
-		}
+		ScreenManager.instance.GoToScene("StartMenu");
 	}
 }
