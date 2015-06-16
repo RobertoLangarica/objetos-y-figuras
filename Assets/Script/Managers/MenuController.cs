@@ -19,14 +19,14 @@ public class MenuController : MonoBehaviour {
 	protected bool rH = false;
 	protected bool lH = false;
 	protected float prev = -1;
-<<<<<<< HEAD
+
 	protected bool mov = false;
 	public bool moveLeft= false;
 	public float speed;
-=======
+
 	protected List<GameObject> levelsPrefab = new List<GameObject>();
 
->>>>>>> 83378ba3baa380e21085320535f534a2db794dbb
+
 	void Start()
 	{
 		//Cargamos los niveles desde aqui
@@ -119,7 +119,7 @@ public class MenuController : MonoBehaviour {
 	{
 		ScreenManager.instance.GoToScene("StartMenu");
 	}
-<<<<<<< HEAD
+
 
 	public void moveScrollShips(bool l)
 	{
@@ -160,7 +160,9 @@ public class MenuController : MonoBehaviour {
 		else
 		{
 			moveLeft = false;
-=======
+		}
+	}
+
 	
 	public void onMarketPurchase(PurchasableVirtualItem pvi, string payload,Dictionary<string, string> extra) 
 	{
@@ -170,7 +172,7 @@ public class MenuController : MonoBehaviour {
 			{
 				levelsPrefab[i].GetComponent<Image>().color = new Color(255,255,255);
 			}
->>>>>>> 83378ba3baa380e21085320535f534a2db794dbb
+
 		}
 	}
 }
