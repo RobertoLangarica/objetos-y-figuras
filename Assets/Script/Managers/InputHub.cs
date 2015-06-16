@@ -74,6 +74,10 @@ public class InputHub : MonoBehaviour
 				selected.onTouchBegan(Camera.main.ScreenToWorldPoint(gesture.StartPosition));
 				initialP = Input.mousePosition;
 			}
+			if(selected != null && gesture.StartSelection == null && mouseFlag)
+			{
+				selected.onTouchBegan(Camera.main.ScreenToWorldPoint(gesture.StartPosition));
+			}
 			break;
 
 			case ContinuousGesturePhase.Updated:
