@@ -22,7 +22,8 @@ public class MenuController : MonoBehaviour {
 
 	protected bool mov = false;
 	public bool moveLeft= false;
-	public float speed;
+	protected float speedMax = 30;
+	protected float speedMin = 7;
 
 	protected List<GameObject> levelsPrefab = new List<GameObject>();
 
@@ -124,14 +125,19 @@ public class MenuController : MonoBehaviour {
 	public void moveScrollShips(bool l)
 	{
 		Vector2 pos =RT.anchoredPosition;
+		if(speedMin<speedMax)
+		{
+			speedMin += 0.4f;
+		}
+
 		if(l)
 		{
-			pos.x += 10;
+			pos.x += speedMin;
 			RT.anchoredPosition = pos;
 		}
 		else
 		{
-			pos.x -= 10;
+			pos.x -= speedMin;
 			RT.anchoredPosition = pos;
 		}
 
@@ -148,6 +154,7 @@ public class MenuController : MonoBehaviour {
 		{
 			checkScrollPosition = true; 
 			mov = false;
+			speedMin = 7;
 		}
 
 	}
