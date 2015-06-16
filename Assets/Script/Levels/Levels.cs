@@ -7,7 +7,7 @@ using UnityEngine;
 [XmlRoot("papirolas")]
 public class Levels
 {
-	//Niveles (se serializan como arreglo normal Level[]
+	//Niveles (se serializan como arreglo normal Level[] mas abajo)
 	protected List<Level> _levels = new List<Level>();
 
 	//Constructor existente para evitar problemas con XMLSerializer
