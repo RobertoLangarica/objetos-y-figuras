@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 using DG.Tweening;
+using Soomla.Store;
 
 public class MenuController : MonoBehaviour {
 
@@ -10,20 +12,27 @@ public class MenuController : MonoBehaviour {
 	public Image right;
 	public Image left;
 	public ScrollRect scrollRect;
+
 	protected Tween rT;
 	protected Tween lT;
 	protected bool checkScrollPosition = false;
 	protected bool rH = false;
 	protected bool lH = false;
 	protected float prev = -1;
+<<<<<<< HEAD
 	protected bool mov = false;
 	public bool moveLeft= false;
 	public float speed;
+=======
+	protected List<GameObject> levelsPrefab = new List<GameObject>();
+
+>>>>>>> 83378ba3baa380e21085320535f534a2db794dbb
 	void Start()
 	{
 		//Cargamos los niveles desde aqui
 		LevelManager.instance.getLevel("1");
-
+		
+		StoreEvents.OnMarketPurchase += onMarketPurchase;
 
 		//Todos los niveles
 		Level[] levels = LevelManager.instance.getAllLevels();
@@ -40,6 +49,7 @@ public class MenuController : MonoBehaviour {
 			{
 				go.GetComponent<Image>().color = new Color(255,0,0);
 			}
+			levelsPrefab.Add(go);
 		}
 
 		left.DOFade(0,0.2f);
@@ -109,6 +119,7 @@ public class MenuController : MonoBehaviour {
 	{
 		ScreenManager.instance.GoToScene("StartMenu");
 	}
+<<<<<<< HEAD
 
 	public void moveScrollShips(bool l)
 	{
@@ -149,6 +160,17 @@ public class MenuController : MonoBehaviour {
 		else
 		{
 			moveLeft = false;
+=======
+	
+	public void onMarketPurchase(PurchasableVirtualItem pvi, string payload,Dictionary<string, string> extra) 
+	{
+		for (int i = 0; i < levelsPrefab.Count; i++) 
+		{
+			if(levelsPrefab[i].GetComponent<MenuItems>().lvlPurchseID == "spacegramShips062015")
+			{
+				levelsPrefab[i].GetComponent<Image>().color = new Color(255,255,255);
+			}
+>>>>>>> 83378ba3baa380e21085320535f534a2db794dbb
 		}
 	}
 }

@@ -25,7 +25,6 @@ public class IAPPManager : MonoBehaviour
 
 	public void startPurchase()
 	{
-		Debug.Log ("Aqui");
 		StoreInventory.BuyItem("premium_ver_ID");
 	}
 
@@ -39,8 +38,6 @@ public class IAPPManager : MonoBehaviour
 		//    iOS: The "extra" dictionary will contain "receipt" and "token"
 		
 		// ... your game specific implementation here ...
-		Debug.Log (pvi);
-		Debug.Log ("Se compro");
 
 		UserDataManager.instance.premiumVersion = "premiumVersion";
 	}
