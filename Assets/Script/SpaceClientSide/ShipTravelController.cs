@@ -26,6 +26,7 @@ public class ShipTravelController : MonoBehaviour
 	protected Vector2 force = new Vector2(0,10);//Fuerza que se agrega cada frame
 	public int col;//hardcoding de posicion (fila) solo funciona en el editor
 	public string rotateDirection;
+	public GameObject Asteroid;
 	
 	protected int currentCount = 5;
 	protected bool gameRunning = false;
@@ -49,6 +50,7 @@ public class ShipTravelController : MonoBehaviour
 		ship.rigidbody2D.gravityScale =0;
 
 		boundaries();
+		callingAsteroids();
 		
 		currentCount = 5;
 		starCronometer ();
@@ -96,7 +98,7 @@ public class ShipTravelController : MonoBehaviour
 	{
 		if(right)
 		{
-			ship.transform.rigidbody2D.angularVelocity -=5;
+			ship.transform.rigidbody2D.angularVelocity -=15;
 			if(ship.transform.rigidbody2D.angularVelocity < -25)
 			{
 				ship.transform.rigidbody2D.angularVelocity = -25;
@@ -104,7 +106,7 @@ public class ShipTravelController : MonoBehaviour
 		}
 		else
 		{
-			ship.transform.rigidbody2D.angularVelocity +=5;
+			ship.transform.rigidbody2D.angularVelocity +=15;
 			if(ship.transform.rigidbody2D.angularVelocity > 25)
 			{
 				ship.transform.rigidbody2D.angularVelocity = 25;
@@ -179,5 +181,21 @@ public class ShipTravelController : MonoBehaviour
 			txt.enabled = false;
 			ignition();
 		}
+	}
+
+	public void callingAsteroids()
+	{
+		float randAsteroid = Random.Range(10,20);
+		float min = Screen.width * .05f;;
+		float max = Screen.width - Screen.width * .05f;;
+		
+		
+		for(int i =0; i<randAsteroid; i++)
+		{
+			Vector3 randPos = Camera.main.ScreenToWorldPoint(new Vector3(Random.Range(min,max),Random.Range(Screen.height*0.2f,Screen.height*0.8f),0));
+			randPos.z = 0;
+			Instantiate(Asteroid,randPos,Quaternion.identity);
+		}
+
 	}
 }

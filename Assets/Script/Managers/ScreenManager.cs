@@ -61,20 +61,19 @@ public class ScreenManager : MonoBehaviour {
 	{
 		switch(Application.loadedLevelName)
 		{
-			case "MainMenu":
-				//Application.Quit();
+			case "StartMenu":
+				Application.Quit();
 				//showPopUp
-
-				if(ExitPopUp.instance.popUp == false)
-				{	
-					ExitPopUp.instance.popUpActive();
-				}
-				break;
-			case "PhotoScene":
-			case"ShipSelector":
-				GoToScene("Test");
 			break;
-
+			case "MainMenu":
+				GoToScene(previousScene);
+			break;
+			case "Gameplay":
+			GoToScene(previousScene);
+			break;
+			case "Space":
+			GoToScene("MainMenu");
+			break;
 		}
 	}
 
