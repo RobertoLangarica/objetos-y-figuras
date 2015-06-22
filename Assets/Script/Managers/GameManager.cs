@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 {
 	//Nivel que se debe de preparar
 	public static string lvlToPrepare = "SN01_01";
-	public static bool isEasy = true;
+	public static bool isEasy = false;
 
 	public Button sendBtn;
 	public Button continueBtn;
