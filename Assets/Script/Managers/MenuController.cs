@@ -116,9 +116,9 @@ public class MenuController : MonoBehaviour {
 		checkScrollPosition = true; 
 	}
 
-	public void goToStartMenu()
+	public void goToGameMenu()
 	{
-		ScreenManager.instance.GoToScene("StartMenu");
+		ScreenManager.instance.GoToScene("GameMenu");
 	}
 
 

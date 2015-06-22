@@ -4,38 +4,15 @@ using System.Collections;
 
 public class NewVersions : MonoBehaviour {
 
-	public bool isEasy;
-	public Sprite easyActivate;
-	public Sprite normalActivate;
-	public Image img;
-	public Text txt;
-
-	void Start()
+	public void selectEasy()
 	{
-		if(GameManager.isEasy)
-		{
-			isEasy = true;
-			txt.text = "Facil";
-			img.sprite = easyActivate;
-			GameManager.isEasy = true;
-		}
+		GameManager.isEasy = true;
+		ScreenManager.instance.GoToScene("MainMenu");
 	}
 
-	public void changeDificulty()
+	public void selectNormal()
 	{
-		if(!isEasy)
-		{
-			isEasy = true;
-			txt.text = "Facil";
-			img.sprite = easyActivate;
-			GameManager.isEasy = true;
-		}
-		else
-		{
-			isEasy = false;
-			txt.text = "Normal";
-			img.sprite = normalActivate;
-			GameManager.isEasy = false;
-		}
+		GameManager.isEasy = false;
+		ScreenManager.instance.GoToScene("MainMenu");
 	}
 }

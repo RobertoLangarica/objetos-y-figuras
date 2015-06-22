@@ -48,6 +48,6 @@ public class StartMenu : MonoBehaviour
 			SoomlaStore.StopIabServiceInBg();
 		}
 		#endif
-		ScreenManager.instance.GoToScene("MainMenu");
+		ScreenManager.instance.GoToScene("GameMenu");
 	}
 }
