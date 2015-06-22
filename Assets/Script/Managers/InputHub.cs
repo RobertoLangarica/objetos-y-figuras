@@ -36,16 +36,19 @@ public class InputHub : MonoBehaviour
 		if(selected != null)
 		{
 			wheel = Input.GetAxis("Mouse ScrollWheel");
-			if(wheel != 0)
+			if(!GameManager.isEasy)
 			{
-				lastRotation = Time.time;
-				isRotating = true;
-				selected.transform.Rotate(Vector3.back,wheel*15);
-			}
-			else if(lastRotation != -1 && Time.time-lastRotation >= timeToSnapRotation)
-			{
-				stopRotation();
-				manager.checkForLevelComplete();
+				if(wheel != 0)
+				{
+					lastRotation = Time.time;
+					isRotating = true;
+					selected.transform.Rotate(Vector3.back,wheel*15);
+				}
+				else if(lastRotation != -1 && Time.time-lastRotation >= timeToSnapRotation)
+				{
+					stopRotation();
+					manager.checkForLevelComplete();
+				}
 			}
 		}
 		if (Input.GetMouseButtonDown (0)) 
@@ -56,25 +59,27 @@ public class InputHub : MonoBehaviour
 
 	void OnDrag(DragGesture gesture)
 	{
+		if (!mouseFlag)return;
+
 		DOTween.Kill("SnapMove");
 		switch(gesture.Phase)
 		{
 			case ContinuousGesturePhase.Started:
 
-			if(selected != null  && gesture.StartSelection && mouseFlag)
+			if(selected != null  && gesture.StartSelection)
 			{
 				if(!gesture.StartSelection.Equals(selected))
 				{
 					stopSelected();
 				}
 			}
-			if(gesture.StartSelection && mouseFlag)
+			if(gesture.StartSelection)
 			{
 				selected = gesture.StartSelection.GetComponent<Shape>();
 				selected.onTouchBegan(Camera.main.ScreenToWorldPoint(gesture.StartPosition));
 				initialP = Input.mousePosition;
 			}
-			if(selected != null && gesture.StartSelection == null && mouseFlag)
+			if(selected != null && gesture.StartSelection == null)
 			{
 				selected.onTouchBegan(Camera.main.ScreenToWorldPoint(gesture.StartPosition));
 			}
@@ -110,6 +115,7 @@ public class InputHub : MonoBehaviour
 	void OnTwist(TwistGesture gesture)
 	{
 		if(selected == null)return;
+		if (GameManager.isEasy)return;
 
 		switch(gesture.Phase)
 		{

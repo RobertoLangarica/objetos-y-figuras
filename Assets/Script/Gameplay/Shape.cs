@@ -143,6 +143,7 @@ public class Shape : MonoBehaviour {
 
 	public void turnRotationSpriter(bool turnOn)
 	{
+		if (GameManager.isEasy)return;
 		transform.GetChild (0).GetComponent<SpriteRenderer> ().enabled = turnOn;
 	}
 }

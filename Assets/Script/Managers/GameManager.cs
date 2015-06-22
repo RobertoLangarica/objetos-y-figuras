@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
 	//Nivel que se debe de preparar
 	public static string lvlToPrepare = "SN01_01";
+	public static bool isEasy = true;
 
 	public Button sendBtn;
 	public Button continueBtn;
@@ -67,6 +68,7 @@ public class GameManager : MonoBehaviour
 		AnalyticManager.instance.startGame();
 		//Imagenes
 		Piece[] pieces = currentLevel.pieces;
+		Pair[] pairs = currentLevel.pairs;
 
 		shapes = new GameObject[pieces.Length];
 
@@ -92,6 +94,21 @@ public class GameManager : MonoBehaviour
 			Vector3 randPos = Camera.main.ScreenToWorldPoint(new Vector3(Random.Range(min,max),Random.Range(Screen.height*0.2f,Screen.height*0.8f),0));
 			Vector3 randRot = new Vector3(0,0,(Random.Range(0,5)*15));
 			randPos.z = 0;
+
+			if(isEasy)
+			{
+				for(int j = 0;j < pairs.Length;j++)
+				{
+					string[] names = pairs[j].shapes.Split(new char[1]{','});
+					if(names[0] == pieces[i].name)
+					{	
+						int[] angles = getAngles(pairs[j].angles);
+						randRot.z = angles[0];
+						break;
+					}
+				}
+			}
+
 			GameObject shape = (GameObject)Resources.Load("Pieces/"+pieces[i].name);
 			go = GameObject.Instantiate(shape,randPos,Quaternion.Euler(randRot)) as GameObject;
 			shapes[i] = go;
