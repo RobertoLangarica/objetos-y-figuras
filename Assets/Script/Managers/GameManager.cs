@@ -291,7 +291,7 @@ public class GameManager : MonoBehaviour
 
 	public void onSendShip()
 	{
-		ScreenManager.instance.myCurrentShip = lvlToPrepare;
+		ShipTravelController.myCurrentShip = lvlToPrepare;
 		ScreenManager.instance.GoToScene("Space");
 	}
 

@@ -10,14 +10,14 @@ public class ExitButton : MonoBehaviour
 		if( gesture.Selection.name == this.transform.name)
 		{
 			Debug.Log ("Going to previous");
-			ScreenManager.instance.GoToScene(ScreenManager.instance.previousScene);
+			ScreenManager.instance.showPrevScene();
 		}
 	}
 
 	public void tap()
 	{
 		Debug.Log ("Going to previous");
-		ScreenManager.instance.GoToScene(ScreenManager.instance.previousScene);
+		ScreenManager.instance.showPrevScene();
 	}
 
 	public void back()
