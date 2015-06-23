@@ -1,42 +1,33 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ScreenManager : MonoBehaviour {
-	
 	public static ScreenManager instance;
+
+	public string firstScreenName;//Primer pantalla que se muestra en el juego
+	public string firstEditorScreen;//Primer pantalla que se muestra en el editor
+	public string screenBeforeClose;//Pantalla que no tiene back (cierra la app)
 	public AudioSource music;
-	protected string _prevScene;
+
 	protected bool isAudioPlaying = false;
-	public string myCurrentShip;
-	
+	protected Dictionary<string,string> backScreens;
+
 	void Awake()
 	{
 		DontDestroyOnLoad(this);
 		instance = this;
-		if(Application.loadedLevelName == "Intro")
-		{
-			//Cliente
-			#if UNITY_EDITOR
-			UserDataManager.instance.cleanData();
-			GoToScene("SplashVilla");
-			#else
-			GoToScene("SplashVilla");
-			#endif
-		}
-		else
-		{
-			//Server
-		}
 
-		if(Application.loadedLevelName == "ServerIntro")
-		{
-			//Cliente
-			GoToScene("SplashServer");
-		}
-		else
-		{
-			//Server
-		}
+		backScreens = new Dictionary<string, string>();
+
+		//Cliente
+		#if UNITY_EDITOR
+		UserDataManager.instance.cleanData();
+		GoToScene(firstEditorScreen);
+		#else
+		GoToScene(firstScreenName);
+		#endif
+	
 		transform.SetAsLastSibling ();
 	}
 	
@@ -50,46 +41,37 @@ public class ScreenManager : MonoBehaviour {
 			showPrevScene();
 		}
 		#endif
-		if (Input.GetKeyUp(KeyCode.B))
+
+		if (Input.GetKeyUp(KeyCode.Escape))
 		{
-			Debug.Log(previousScene);
 			showPrevScene();
 		}
 	}
 	
 	public void showPrevScene()	
 	{
-		switch(Application.loadedLevelName)
+
+		if(Application.loadedLevelName == screenBeforeClose)
 		{
-			case "StartMenu":
-				Application.Quit();
-				//showPopUp
-			break;
-			case "MainMenu":
-				GoToScene(previousScene);
-			break;
-			case "Gameplay":
-			GoToScene(previousScene);
-			break;
-			case "Space":
-			GoToScene("MainMenu");
-			break;
+			Application.Quit();
+		}
+		else
+		{
+			//Mostramos la pantalla anterior
+			if(backScreens.ContainsKey(Application.loadedLevelName))
+			{
+				GoToScene(backScreens[Application.loadedLevelName]);
+			}
 		}
 	}
 
-	public string previousScene
-	{
-		get{return _prevScene;}
-		protected set{_prevScene=value;}
-	}
-	
 	public void GoToScene(string newScene)
 	{
 		if (newScene == Application.loadedLevelName) 
 		{
 			return;
 		}
-		if (!isAudioPlaying && newScene == "StartMenu") 
+		if (!isAudioPlaying && newScene == firstEditorScreen) 
 		{
 			isAudioPlaying = true;
 			music.Play();
@@ -98,7 +80,15 @@ public class ScreenManager : MonoBehaviour {
 		if(SceneFadeInOut.instance != null)
 			SceneFadeInOut.instance.Fade();
 
-		previousScene = Application.loadedLevelName;
+		if(backScreens.ContainsKey(newScene))
+		{
+			backScreens[newScene] = Application.loadedLevelName;
+		}
+		else
+		{
+			backScreens.Add(newScene,Application.loadedLevelName);
+		}
+
 		Application.LoadLevel (newScene);
 	}
 }
