@@ -34,7 +34,7 @@ public class ExitPopUp : MonoBehaviour {
 	public void exit()
 	{
 		//borrar y mandarlo a la escena anterior
-		ScreenManager.instance.GoToScene(ScreenManager.instance.previousScene);
+		ScreenManager.instance.showPrevScene();
 		Debug.Log("Exit");
 	}
 

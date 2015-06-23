@@ -4,6 +4,8 @@ using System.Collections;
 
 public class ShipTravelController : MonoBehaviour 
 {
+	public static string myCurrentShip;
+
 	public RectTransform container;
 
 	public static string shipName = "SN01_01";
@@ -34,7 +36,7 @@ public class ShipTravelController : MonoBehaviour
 	void Start () 
 	{
 		//client = GameObject.FindObjectOfType<ClientManager>();
-		shipName = ScreenManager.instance.myCurrentShip;//"SN01_01";//
+		shipName = ShipTravelController.myCurrentShip;//"SN01_01";//
 		Debug.Log(shipName);
 
 		GameObject tmp = (GameObject)Resources.Load("SpaceShips/"+shipName);
