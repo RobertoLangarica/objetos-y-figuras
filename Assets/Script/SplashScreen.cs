@@ -16,12 +16,12 @@ public class SplashScreen : MonoBehaviour {
 		{
 			switch (ScreenManager.instance.previousScene) 
 			{
-			case "SpaceClient":
-				UserDataManager.instance.cleanData();
-				ScreenManager.instance.GoToScene("SplashVilla");
-				break;
 			case "Intro":
-				ScreenManager.instance.GoToScene("StartMenu");
+				ScreenManager.instance.GoToScene("SplashGame");
+				break;
+			case "SplashVilla":
+				Debug.Log("s");
+				ScreenManager.instance.GoToScene("GameMenu");
 				break;
 			}
 
