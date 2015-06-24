@@ -21,7 +21,7 @@ public class DrawingScene : MonoBehaviour
 	
 	public void onGoBack()
 	{
-		ScreenManager.instance.GoToScene("Conoce");
+		ScreenManager.instance.GoToScene("DrawingMenuScene");
 	}
 
 	protected void changeTexture(string nName)
