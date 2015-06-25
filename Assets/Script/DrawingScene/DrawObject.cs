@@ -6,8 +6,11 @@ using System.Collections.Generic;
 
 public class DrawObject : MonoBehaviour 
 {
+	public bool withPencil = false;
+	[HideInInspector]
+	public DrawingInput dInput;
+
 	protected GameObject HUD;
-	protected DrawingInput dInput;
 
 	void Start()
 	{
@@ -53,7 +56,23 @@ public class DrawObject : MonoBehaviour
 
 	protected void addDrawButtons()
 	{
-		GameObject tmp = (GameObject)Resources.Load("Drawing/EraseAllBtn");
+		GameObject tmp = (GameObject)Resources.Load("Drawing/Pencil");
+		GameObject goP = null;;
+
+		if(withPencil)
+		{
+			goP = GameObject.Instantiate (tmp) as GameObject;
+			goP.GetComponent<Button>().onClick.AddListener(() => {
+				dInput.change2Draw();
+			});
+			goP.transform.SetParent (HUD.transform);
+			goP.transform.localScale = new Vector3 (1,1,1);
+			goP.GetComponent<RectTransform> ().offsetMin = Vector2.zero;
+			goP.GetComponent<RectTransform> ().offsetMax = Vector2.zero;
+			dInput.canDraw = false;
+		}
+
+		tmp = (GameObject)Resources.Load("Drawing/EraseAllBtn");
 		GameObject go = GameObject.Instantiate (tmp) as GameObject;
 		go.GetComponent<Button>().onClick.AddListener(() => {
 			dInput.erraseAll();
@@ -62,6 +81,7 @@ public class DrawObject : MonoBehaviour
 		go.transform.localScale = new Vector3 (1,1,1);
 		go.GetComponent<RectTransform> ().offsetMin = Vector2.zero;
 		go.GetComponent<RectTransform> ().offsetMax = Vector2.zero;
+		if(withPencil) goP.GetComponent<Pencil>().EreaseAllBtn = go;
 
 		tmp = (GameObject)Resources.Load("Drawing/Switch2EraseBtn");
 		go = GameObject.Instantiate (tmp) as GameObject;
@@ -72,5 +92,6 @@ public class DrawObject : MonoBehaviour
 		go.transform.localScale = new Vector3 (1,1,1);
 		go.GetComponent<RectTransform> ().offsetMin = Vector2.zero;
 		go.GetComponent<RectTransform> ().offsetMax = Vector2.zero;
+		if(withPencil) goP.GetComponent<Pencil>().Switch2EraseBtn = go;
 	}
 }
