@@ -5,6 +5,8 @@ using System.Collections.Generic;
 public class DrawingInput : MonoBehaviour 
 {	
 	public GameObject brushType;
+	[HideInInspector]
+	public bool canDraw = true;
 
 	protected bool paintStarted = false;
 	protected bool isErrasing = false;
@@ -110,6 +112,7 @@ public class DrawingInput : MonoBehaviour
 
 	protected void spawnNewPoint(Vector3 nVec3)
 	{
+		if(!canDraw) return;
 		GameObject go;
 
 		nVec3.z = 0;
@@ -120,6 +123,7 @@ public class DrawingInput : MonoBehaviour
 
 	protected void moveErraser(Vector3 nVec3)
 	{
+		if(!canDraw) return;
 		nVec3.z = 0;
 		erraser.transform.position = nVec3;
 	}
@@ -152,5 +156,10 @@ public class DrawingInput : MonoBehaviour
 	{
 		allPainted.Remove (go);
 		Destroy (go);
+	}
+
+	public void change2Draw()
+	{
+		canDraw = canDraw == true ? false: true;
 	}
 }
