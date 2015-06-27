@@ -76,8 +76,8 @@ public class InternalShape : MonoBehaviour
 
 		correctPiece = true;
 		DOTween.Kill("SnapMove",true);
-		go.transform.DOMove(transform.position,1).SetEase(Ease.InOutSine).SetId("SnapMove");
+		go.transform.DOMove(transform.position,0.2f).SetEase(Ease.InOutSine).SetId("SnapMove");
 		rotAngle = getClosestAngle(go);
-		go.transform.DOLocalRotate(new Vector3(0,0,rotAngle),0.5f).SetEase(Ease.InOutSine).SetId("SnapMove");
+		go.transform.DOLocalRotate(new Vector3(0,0,rotAngle),0.2f).SetEase(Ease.InOutSine).SetId("SnapMove");
 	}
 }

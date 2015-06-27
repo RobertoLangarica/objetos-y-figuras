@@ -1,7 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class TangramInput : MonoBehaviour {
+
+	public string selectedLayerName;
+	public string normalLayerName;
+	public bool allowRotation = true;
 
 	[HideInInspector]
 	public BaseShape selected;
@@ -15,12 +20,25 @@ public class TangramInput : MonoBehaviour {
 	protected Vector3 initVector;
 	protected Vector3 currentVector;
 	protected Vector3 initialRotation;
+	
+	public delegate void DOnDragFinish();
+	public delegate void DOnDrag();
+	[HideInInspector]
+	public DOnDragFinish onDragFinish;
+	[HideInInspector]
+	public DOnDrag onAnyDrag;
+
 
 	void Awake()
 	{
 		cu = (Camera.main.orthographicSize*2)/Screen.height;
 		_sort = -1;
+
+		onDragFinish = foo;
+		onAnyDrag = foo;
 	}
+
+	protected void foo(){}
 
 	public int nextSort
 	{
@@ -37,6 +55,8 @@ public class TangramInput : MonoBehaviour {
 
 	void OnDrag(DragGesture gesture) 
 	{
+		onAnyDrag();
+
 		switch(gesture.Phase)
 		{
 		case ContinuousGesturePhase.Started:
@@ -48,25 +68,25 @@ public class TangramInput : MonoBehaviour {
 					{
 						if(hit2.collider)
 						{
-							SandboxShape obj1;
-							SandboxShape obj2;
-							
+							BaseShape obj1;
+							BaseShape obj2;
+
 							if(hit1.collider.gameObject.name.Equals("move"))
 							{
-								obj1 = hit1.collider.gameObject.transform.parent.gameObject.GetComponent<SandboxShape>();
+								obj1 = hit1.collider.gameObject.transform.parent.gameObject.GetComponent<BaseShape>();
 							}
 							else
 							{
-								obj1 = hit1.collider.gameObject.GetComponent<SandboxShape>();
+								obj1 = hit1.collider.gameObject.GetComponent<BaseShape>();
 							}
-							
+
 							if(hit2.collider.gameObject.name.Equals("move"))
 							{
-								obj2 = hit2.collider.gameObject.transform.parent.gameObject.GetComponent<SandboxShape>();
+								obj2 = hit2.collider.gameObject.transform.parent.gameObject.GetComponent<BaseShape>();
 							}
 							else
 							{
-								obj2 = hit2.collider.gameObject.GetComponent<SandboxShape>();
+								obj2 = hit2.collider.gameObject.GetComponent<BaseShape>();
 							}
 							
 							return -obj1.spriteRenderer.sortingOrder.CompareTo(obj2.spriteRenderer.sortingOrder);
@@ -81,7 +101,7 @@ public class TangramInput : MonoBehaviour {
 					
 				});
 				
-				SandboxShape first = null;
+				BaseShape first = null;
 				rotating = true;
 				
 				foreach(RaycastHit2D hit in gesture.Raycast.Hits2D)
@@ -90,14 +110,14 @@ public class TangramInput : MonoBehaviour {
 					{
 						if(hit.collider.gameObject.name.Equals("move"))
 						{
-							selected = hit.collider.gameObject.transform.parent.gameObject.GetComponent<SandboxShape>();
-							selected.sortingLayer = "SelectedShape";
+							selected = hit.collider.gameObject.transform.parent.gameObject.GetComponent<BaseShape>();
+							selected.sortingLayer = selectedLayerName;
 							rotating = false;
 							break;
 						}
-						else if(first == null)
+						else if(first == null && allowRotation)
 						{
-							first = hit.collider.gameObject.GetComponent<SandboxShape>();
+							first = hit.collider.gameObject.GetComponent<BaseShape>();
 						}
 					}
 				}
@@ -107,7 +127,7 @@ public class TangramInput : MonoBehaviour {
 					if(first != null)
 					{
 						selected = first;
-						selected.sortingLayer = "SelectedShape";
+						selected.sortingLayer = selectedLayerName;
 						if(!ignoreNextRotation)
 						{
 							initVector = Camera.main.ScreenToWorldPoint(new Vector3(gesture.StartPosition.x,gesture.StartPosition.y))
@@ -153,27 +173,74 @@ public class TangramInput : MonoBehaviour {
 		case ContinuousGesturePhase.Ended:
 			if(selected != null)
 			{
-				pos = Camera.main.WorldToScreenPoint(selected.transform.position);
-				
-				if(pos.x < Screen.width*.2f)
-				{
-					GameObject.Destroy(selected.gameObject);
-				}
-				else
-				{
-					pos.x = Mathf.Round(pos.x);
-					pos.y = Mathf.Round(pos.y);
-					pos = Camera.main.ScreenToWorldPoint(pos);
-					pos.z = selected.transform.position.z;
-					selected.transform.position = pos;
-					selected.sortingLayer = "Shapes";
-					selected.sortingOrder = nextSort;
-				}
+				selected.sortingLayer = normalLayerName;
+				selected.sortingOrder = nextSort;
 			}
+			onDragFinish();
 			ignoreNextRotation = false;
 			selected = null;
 			break;
 			
+		}
+	}
+
+	void OnTap(TapGesture gesture) 
+	{
+		if(gesture.Raycast.Hits2D != null && gesture.Raycast.Hits2D.Length > 0)
+		{
+			Array.Sort(gesture.Raycast.Hits2D,delegate(RaycastHit2D hit1, 
+			                                           RaycastHit2D hit2) {
+				if(hit1.collider)
+				{
+					if(hit2.collider)
+					{
+						BaseShape obj1;
+						BaseShape obj2;
+						
+						if(hit1.collider.gameObject.name.Equals("move"))
+						{
+							obj1 = hit1.collider.gameObject.transform.parent.gameObject.GetComponent<BaseShape>();
+						}
+						else
+						{
+							obj1 = hit1.collider.gameObject.GetComponent<BaseShape>();
+						}
+						
+						if(hit2.collider.gameObject.name.Equals("move"))
+						{
+							obj2 = hit2.collider.gameObject.transform.parent.gameObject.GetComponent<BaseShape>();
+						}
+						else
+						{
+							obj2 = hit2.collider.gameObject.GetComponent<BaseShape>();
+						}
+						
+						return -obj1.spriteRenderer.sortingOrder.CompareTo(obj2.spriteRenderer.sortingOrder);
+					}
+					else
+					{
+						return -1;
+					}
+				}
+				
+				return 1;
+				
+			});
+			
+			BaseShape first = null;
+			rotating = true;
+			
+			foreach(RaycastHit2D hit in gesture.Raycast.Hits2D)
+			{
+				if(hit.collider)
+				{
+					if(hit.collider.gameObject.name.Equals("move"))
+					{
+						hit.collider.gameObject.transform.parent.gameObject.GetComponent<BaseShape>().sortingOrder = nextSort;
+						break;
+					}
+				}
+			}
 		}
 	}
 }

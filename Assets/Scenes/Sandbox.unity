@@ -849,6 +849,7 @@ MonoBehaviour:
   img_rhomboid: {fileID: 1720057768}
   img_trapezium: {fileID: 2120849876}
   colorSelector: {fileID: 800053936}
+  input: {fileID: 1021770815}
 --- !u!1 &800053932
 GameObject:
   m_ObjectHideFlags: 0
@@ -937,6 +938,7 @@ GameObject:
   - 114: {fileID: 1021770812}
   - 114: {fileID: 1021770813}
   - 114: {fileID: 1021770814}
+  - 114: {fileID: 1021770815}
   m_Layer: 0
   m_Name: Input
   m_TagString: Untagged
@@ -977,7 +979,7 @@ MonoBehaviour:
   Delegate: {fileID: 0}
   UseSendMessage: 1
   EventMessageName: OnDrag
-  EventMessageTarget: {fileID: 628658890}
+  EventMessageTarget: {fileID: 1021770810}
   SendMessageToSelection: 0
   IsExclusive: 0
   MoveTolerance: .25
@@ -1020,13 +1022,28 @@ MonoBehaviour:
   Delegate: {fileID: 0}
   UseSendMessage: 1
   EventMessageName: OnTap
-  EventMessageTarget: {fileID: 628658890}
+  EventMessageTarget: {fileID: 1021770810}
   SendMessageToSelection: 0
   IsExclusive: 0
   RequiredTaps: 1
   MoveTolerance: .5
   MaxDuration: 0
   MaxDelayBetweenTaps: .5
+--- !u!114 &1021770815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1021770810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20aee8e361c2a40c5a45fd2dd93a06b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedLayerName: SelectedShape
+  normalLayerName: Shapes
+  selected: {fileID: 0}
+  ignoreNextRotation: 0
 --- !u!1 &1332710410
 GameObject:
   m_ObjectHideFlags: 0

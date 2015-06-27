@@ -8,11 +8,12 @@ public class GameManager : MonoBehaviour
 {
 	//Nivel que se debe de preparar
 	public static string lvlToPrepare = "SN01_01";
-	public static bool isEasy = false;
+	public static bool cannotRotate = false;
 
 	public Button sendBtn;
 	public Button continueBtn;
 	public GameObject[] shapes;
+	public TangramInput input;
 
 	protected Level currentLevel;
 	protected Placeholder placeholder;
@@ -47,7 +48,22 @@ public class GameManager : MonoBehaviour
 			sendBtn.gameObject.SetActive(false);
 			continueBtn.gameObject.SetActive(false);
 		}
+
+		input.onAnyDrag += onDrag;
+		input.onDragFinish += onDragFinish;
+		input.allowRotation = !cannotRotate;
 	}	
+
+	void onDrag()
+	{
+		DOTween.Kill("SnapMove");
+	}
+
+	void onDragFinish()
+	{
+		checkForLevelComplete();
+		DOTween.Play("SnapMove");
+	}
 
 	void initializeReferenceImage()
 	{
@@ -95,7 +111,7 @@ public class GameManager : MonoBehaviour
 			Vector3 randRot = new Vector3(0,0,(Random.Range(0,5)*15));
 			randPos.z = 0;
 
-			if(isEasy)
+			if(cannotRotate)
 			{
 				for(int j = 0;j < pairs.Length;j++)
 				{
@@ -116,7 +132,8 @@ public class GameManager : MonoBehaviour
 			//Que la figura no se ponga en una rotacion invalida
 			Shape sp = go.GetComponent<Shape>();
 			sp.name = pieces[i].name;
-			sp.onRotationComplete(0);
+			sp.onRotationComplete();
+			input.onDragFinish += sp.onRotationComplete;
 			sp.GetComponent<SpriteRenderer>().sortingOrder = Shape.sort+i;
 			Shape.sort = Shape.sort +i;
 
@@ -214,12 +231,6 @@ public class GameManager : MonoBehaviour
 			sendBtn.gameObject.SetActive(true);
 			GameObject.FindObjectOfType<DragRecognizer>().enabled = false;
 
-			for(int i =0; i<shapes.Length; i++)
-			{
-				shapes[i].transform.FindChild("Transform0").gameObject.SetActive(false);
-			}
-			//GameObject.FindObjectOfType<ShipsPanel>().refresh();
-
 			//Mandamos la nave
 			if(client)
 			{
@@ -248,7 +259,6 @@ public class GameManager : MonoBehaviour
 			continueBtn.gameObject.SetActive(true);
 			sendBtn.gameObject.SetActive(true);
 
-			GameObject.FindObjectOfType<ShipsPanel>().refresh();
 
 			//Mandamos la nave
 			if(client)

@@ -1,10 +1,10 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening.Core;
 using DG.Tweening;
 
-public class Shape : MonoBehaviour {
+public class Shape : BaseShape {
 	
 	public float boundaryTop;
 	public float boundaryBottom;
@@ -61,40 +61,7 @@ public class Shape : MonoBehaviour {
 		transform.position = nVec3;
 	}
 
-	public void onTouchBegan(Vector3 position)
-	{
-		sprite.sortingOrder = ++sort;
-		transform.GetChild (0).GetComponent<SpriteRenderer>().sortingOrder = sprite.sortingOrder;
-		if(sort == 32767)
-		{
-			Shape[] shapes = GameObject.FindObjectsOfType<Shape>();
-			foreach(Shape s in shapes)
-			{
-				s.sprite.sortingOrder = -32767;
-			}
-
-			sort = -32767;
-			sprite.sortingOrder = ++sort;
-		}
-
-		//Ignoramos z
-		positionDifference = position - transform.position;
-		positionDifference.z = 0;
-	}
-
-
-	public void onTouchMove(Vector3 position)
-	{
-		//z no varia
-		position.z = transform.position.z;
-		transform.position = (position-positionDifference);
-	}
-
-	public void onTouchStop()
-	{
-	}
-
-	public void onRotationComplete(float delay = .2f)
+	public void onRotationComplete()
 	{
 		rot = transform.rotation.eulerAngles.z;
 
@@ -109,16 +76,9 @@ public class Shape : MonoBehaviour {
 				rot += rotateAmount;
 			}
 
-			transform.DORotate(new Vector3(0,0,rot),delay);
+			transform.DORotate(new Vector3(0,0,rot),0.1f);
 		}
 
 		currentRotation = rot;
-
-	}
-
-	public void turnRotationSpriter(bool turnOn)
-	{
-		if (GameManager.isEasy)return;
-		transform.GetChild (0).GetComponent<SpriteRenderer> ().enabled = turnOn;
-	}
+	}	
 }
