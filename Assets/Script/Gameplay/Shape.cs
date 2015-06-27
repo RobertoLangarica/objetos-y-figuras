@@ -13,7 +13,6 @@ public class Shape : MonoBehaviour {
 
 	public static int sort; 
 	public float rotateAmount = 15;
-	public float maxRotationAllowed = -1;
 
 	[HideInInspector]
 	public float currentRotation;
@@ -31,7 +30,6 @@ public class Shape : MonoBehaviour {
 		boundaryRight = Camera.main.aspect * Camera.main.orthographicSize;
 
 		sprite = GetComponent<SpriteRenderer>();
-		//sprite.sortingOrder = sort;
 	}
 	
 	// Update is called once per frame
@@ -114,31 +112,8 @@ public class Shape : MonoBehaviour {
 			transform.DORotate(new Vector3(0,0,rot),delay);
 		}
 
-		//Figuras que de manera logica solo admiten una rotacion
-		if(maxRotationAllowed != -1 && rot>maxRotationAllowed)
-		{
+		currentRotation = rot;
 
-			currentRotation = getAllowedRotation(rot);
-
-			if(rot > 180)
-			{
-				currentRotation = -maxRotationAllowed+currentRotation;
-			}
-		}
-		else
-		{
-			currentRotation = rot;
-		}
-	}
-
-	float getAllowedRotation(float current)
-	{
-		while(current > maxRotationAllowed)
-		{
-			current-=maxRotationAllowed;
-		}
-
-		return current;
 	}
 
 	public void turnRotationSpriter(bool turnOn)

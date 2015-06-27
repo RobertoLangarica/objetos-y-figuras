@@ -8,6 +8,7 @@ public struct ScreenRaycastData
 
 #if !UNITY_3_5
     public RaycastHit2D Hit2D;
+	public RaycastHit2D[] Hits2D;
 #endif
 
     public GameObject GameObject
@@ -100,7 +101,13 @@ public class ScreenRaycaster : MonoBehaviour
         // try to raycast 2D first - this only makes sense on orthographic cameras (physics2D doesnt work with perspective cameras)
         if( UsePhysics2D && cam.orthographic )
         {
-            hitData.Hit2D = Physics2D.Raycast( ray.origin, Vector2.zero, Mathf.Infinity, ~IgnoreLayerMask );
+			hitData.Hits2D= Physics2D.RaycastAll( ray.origin, Vector2.zero, Mathf.Infinity, ~IgnoreLayerMask );
+            //hitData.Hit2D = Physics2D.Raycast( ray.origin, Vector2.zero, Mathf.Infinity, ~IgnoreLayerMask );
+
+			if(hitData.Hits2D.Length > 0)
+			{
+				hitData.Hit2D = hitData.Hits2D[0];
+			}
 
             if( hitData.Hit2D.collider )
             {

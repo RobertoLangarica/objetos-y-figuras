@@ -1,70 +1,38 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using System.Collections;
-using System;
 
-public class ShapeSelector : MonoBehaviour {
+public class TangramInput : MonoBehaviour {
 
-	public GameObject square;
-	public GameObject rectangle;
-	public GameObject triangle;
-	public GameObject rhomboid;
-	public GameObject trapezium;
+	[HideInInspector]
+	public BaseShape selected;
+	[HideInInspector]
+	public bool ignoreNextRotation = false;
 
-	public Image img_square;
-	public Image img_rectangle;
-	public Image img_triangle;
-	public Image img_rhomboid;
-	public Image img_trapezium; 
+	protected Vector3 pos;
+	protected float cu;
+	protected int _sort;
+	protected bool rotating = false;
+	protected Vector3 initVector;
+	protected Vector3 currentVector;
+	protected Vector3 initialRotation;
 
-	public ColorSelector colorSelector;
-	public TangramInput input;
-
-
-
-	public void instantiateShape(string name)
+	void Awake()
 	{
-		GameObject shape = null;
-		Image reference = null;
+		cu = (Camera.main.orthographicSize*2)/Screen.height;
+		_sort = -1;
+	}
 
-		switch(name)
+	public int nextSort
+	{
+		get
 		{
-		case "square":
-			shape = (GameObject.Instantiate(square) as GameObject);
-			reference = img_square;
-			break;
-		case "rectangle":
-			shape = (GameObject.Instantiate(rectangle) as GameObject);
-			reference = img_rectangle;
-			break;
-		case "triangle":
-			shape = (GameObject.Instantiate(triangle) as GameObject);
-			reference = img_triangle;
-			break;
-		case "rhomboid":
-			shape = (GameObject.Instantiate(rhomboid) as GameObject);
-			reference = img_rhomboid;
-			break;
-		case "trapezium":
-			shape = (GameObject.Instantiate(trapezium) as GameObject);
-			reference = img_trapezium;
-			break;
+			if(_sort == int.MaxValue)
+			{
+				_sort = -1;
+			}
+			
+			return ++_sort;
 		}
-		input.ignoreNextRotation = true;
-		input.selected = shape.GetComponent<SandboxShape>();
-		Sprite sprite = selected.spriteRenderer.sprite;
-
-		selected.sortingLayer = "SelectedShape";
-		selected.color = colorSelector.selectedColor;
-
-		float u = (Camera.main.orthographicSize*2*sprite.pixelsPerUnit)/Screen.height;
-		Vector3 size = sprite.bounds.size * sprite.pixelsPerUnit;
-		float s = Mathf.Min((reference.rectTransform.sizeDelta.y*u)/size.y
-		                    ,(reference.rectTransform.sizeDelta.x*u)/size.x);
-		shape.transform.localScale = new Vector3(s,s,1);
-		size = Camera.main.ScreenToWorldPoint(reference.transform.position);
-		size.z = 0;
-		shape.transform.position = size;
 	}
 
 	void OnDrag(DragGesture gesture) 
@@ -82,7 +50,7 @@ public class ShapeSelector : MonoBehaviour {
 						{
 							SandboxShape obj1;
 							SandboxShape obj2;
-
+							
 							if(hit1.collider.gameObject.name.Equals("move"))
 							{
 								obj1 = hit1.collider.gameObject.transform.parent.gameObject.GetComponent<SandboxShape>();
@@ -91,7 +59,7 @@ public class ShapeSelector : MonoBehaviour {
 							{
 								obj1 = hit1.collider.gameObject.GetComponent<SandboxShape>();
 							}
-
+							
 							if(hit2.collider.gameObject.name.Equals("move"))
 							{
 								obj2 = hit2.collider.gameObject.transform.parent.gameObject.GetComponent<SandboxShape>();
@@ -100,7 +68,7 @@ public class ShapeSelector : MonoBehaviour {
 							{
 								obj2 = hit2.collider.gameObject.GetComponent<SandboxShape>();
 							}
-
+							
 							return -obj1.spriteRenderer.sortingOrder.CompareTo(obj2.spriteRenderer.sortingOrder);
 						}
 						else
@@ -108,14 +76,14 @@ public class ShapeSelector : MonoBehaviour {
 							return -1;
 						}
 					}
-
+					
 					return 1;
-
+					
 				});
-
+				
 				SandboxShape first = null;
 				rotating = true;
-
+				
 				foreach(RaycastHit2D hit in gesture.Raycast.Hits2D)
 				{
 					if(hit.collider)
@@ -133,14 +101,14 @@ public class ShapeSelector : MonoBehaviour {
 						}
 					}
 				}
-
+				
 				if(rotating)
 				{
 					if(first != null)
 					{
 						selected = first;
 						selected.sortingLayer = "SelectedShape";
-						if(!creating)
+						if(!ignoreNextRotation)
 						{
 							initVector = Camera.main.ScreenToWorldPoint(new Vector3(gesture.StartPosition.x,gesture.StartPosition.y))
 								- selected.transform.position;
@@ -159,7 +127,7 @@ public class ShapeSelector : MonoBehaviour {
 				}
 			}
 			break;
-
+			
 		case ContinuousGesturePhase.Updated:
 			if(selected != null && gesture.DeltaMove != Vector2.zero)
 			{
@@ -169,9 +137,9 @@ public class ShapeSelector : MonoBehaviour {
 						- selected.transform.position;
 					currentVector.z = initVector.z;
 					float angle = Vector3.Angle(initVector,currentVector)*(Vector3.Cross(initVector,currentVector).z > 0 ? 1:-1);
-
+					
 					selected.transform.eulerAngles = new Vector3(0,0
-		                                             ,initialRotation.z + angle);
+					                                             ,initialRotation.z + angle);
 				}
 				else
 				{
@@ -186,7 +154,7 @@ public class ShapeSelector : MonoBehaviour {
 			if(selected != null)
 			{
 				pos = Camera.main.WorldToScreenPoint(selected.transform.position);
-
+				
 				if(pos.x < Screen.width*.2f)
 				{
 					GameObject.Destroy(selected.gameObject);
@@ -202,71 +170,10 @@ public class ShapeSelector : MonoBehaviour {
 					selected.sortingOrder = nextSort;
 				}
 			}
-			creating = false;
+			ignoreNextRotation = false;
 			selected = null;
 			break;
-
+			
 		}
 	}
-
-	void OnTap(TapGesture gesture) 
-	{
-		Debug.Log(int.MaxValue);
-		if(gesture.Raycast.Hits2D != null && gesture.Raycast.Hits2D.Length > 0)
-		{
-			Array.Sort(gesture.Raycast.Hits2D,delegate(RaycastHit2D hit1, 
-			                                           RaycastHit2D hit2) {
-				if(hit1.collider)
-				{
-					if(hit2.collider)
-					{
-						SandboxShape obj1;
-						SandboxShape obj2;
-						
-						if(hit1.collider.gameObject.name.Equals("move"))
-						{
-							obj1 = hit1.collider.gameObject.transform.parent.gameObject.GetComponent<SandboxShape>();
-						}
-						else
-						{
-							obj1 = hit1.collider.gameObject.GetComponent<SandboxShape>();
-						}
-						
-						if(hit2.collider.gameObject.name.Equals("move"))
-						{
-							obj2 = hit2.collider.gameObject.transform.parent.gameObject.GetComponent<SandboxShape>();
-						}
-						else
-						{
-							obj2 = hit2.collider.gameObject.GetComponent<SandboxShape>();
-						}
-						
-						return -obj1.spriteRenderer.sortingOrder.CompareTo(obj2.spriteRenderer.sortingOrder);
-					}
-					else
-					{
-						return -1;
-					}
-				}
-				
-				return 1;
-				
-			});
-			
-			SandboxShape first = null;
-			rotating = true;
-			
-			foreach(RaycastHit2D hit in gesture.Raycast.Hits2D)
-			{
-				if(hit.collider)
-				{
-					if(hit.collider.gameObject.name.Equals("move"))
-					{
-						hit.collider.gameObject.transform.parent.gameObject.GetComponent<SandboxShape>().sortingOrder = nextSort;
-						break;
-					}
-				}
-			}
-		}
-	}	
 }
