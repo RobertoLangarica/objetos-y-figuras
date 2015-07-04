@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
 	void initializeShapes()
 	{
 		GameObject go;
-		AnalyticManager.instance.startGame();
+		//AnalyticManager.instance.startGame();
 		//Imagenes
 		Piece[] pieces = currentLevel.pieces;
 		Pair[] pairs = currentLevel.pairs;
