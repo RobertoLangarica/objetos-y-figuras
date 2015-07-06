@@ -5,6 +5,8 @@ using System.Collections;
 public class BaseShape : MonoBehaviour {
 
 	public SpriteRenderer spriteRenderer;
+	public GameObject _rotateHandler = null;
+	public GameObject _translateHandler = null;
 	
 	public string sortingLayer
 	{
@@ -23,4 +25,47 @@ public class BaseShape : MonoBehaviour {
 		get{return spriteRenderer.color;}
 		set{spriteRenderer.color = value;}
 	}
+
+	void Awake()
+	{
+		if(_rotateHandler != null)
+		{
+			_rotateHandler.SetActive(false);
+		}
+		
+		if(_translateHandler != null)
+		{
+			_translateHandler.SetActive(false);
+		}
+	}
+	
+	public bool rotateHandler
+	{
+		set
+		{
+			if(_rotateHandler != null)
+			{
+				_rotateHandler.SetActive(value);
+			}
+		}
+	}
+	
+	public bool translateHandler
+	{
+		set
+		{
+			if(_translateHandler != null)
+			{
+				_translateHandler.SetActive(value);
+			}
+		}
+	}
+	
+	/*void Update()
+	{
+		if(_rotateHandler != null)
+		{
+			_rotateHandler.transform.eulerAngles = Vector3.zero;
+		}
+	}*/
 }

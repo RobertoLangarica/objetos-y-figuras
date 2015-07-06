@@ -189,6 +189,8 @@
         <key>fileList</key>
         <array>
             <filename>Figuras.swf</filename>
+            <filename>manejador_rotate.png</filename>
+            <filename>manejador_translate.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

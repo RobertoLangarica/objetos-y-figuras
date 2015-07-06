@@ -54,6 +54,7 @@ public class ShapeSelector : MonoBehaviour {
 			break;
 		}
 		input.ignoreNextRotation = true;
+		Debug.Log ("Cambiando selected");
 		input.selected = shape.GetComponent<SandboxShape>();
 		Sprite sprite = input.selected.spriteRenderer.sprite;
 

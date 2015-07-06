@@ -9,7 +9,7 @@ public class TangramInput : MonoBehaviour {
 	public bool allowRotation = true;
 
 	[HideInInspector]
-	public BaseShape selected;
+	protected BaseShape _selected;
 	[HideInInspector]
 	public bool ignoreNextRotation = false;
 
@@ -53,6 +53,20 @@ public class TangramInput : MonoBehaviour {
 		}
 	}
 
+	public BaseShape selected {
+		get {
+			return _selected;
+		}
+		set {
+			if(_selected != null)
+			{
+				_selected.translateHandler = false;
+				_selected.rotateHandler = false;
+			}
+			_selected = value;
+		}
+	}
+
 	void OnDrag(DragGesture gesture) 
 	{
 		onAnyDrag();
@@ -60,6 +74,7 @@ public class TangramInput : MonoBehaviour {
 		switch(gesture.Phase)
 		{
 		case ContinuousGesturePhase.Started:
+			Debug.Log ("START");
 			if(gesture.Raycast.Hits2D != null && gesture.Raycast.Hits2D.Length > 0)
 			{
 				Array.Sort(gesture.Raycast.Hits2D,delegate(RaycastHit2D hit1, 
@@ -101,84 +116,147 @@ public class TangramInput : MonoBehaviour {
 					
 				});
 				
-				BaseShape first = null;
+				BaseShape firstMove = null;
+				BaseShape firstRotate = null;
+				bool move = false;
 				rotating = true;
 				
 				foreach(RaycastHit2D hit in gesture.Raycast.Hits2D)
 				{
 					if(hit.collider)
 					{
-						if(hit.collider.gameObject.name.Equals("move"))
+						if(firstMove == null && hit.collider.gameObject.name.Equals("move"))
 						{
-							selected = hit.collider.gameObject.transform.parent.gameObject.GetComponent<BaseShape>();
-							selected.sortingLayer = selectedLayerName;
-							rotating = false;
-							break;
+							firstMove = hit.collider.gameObject.transform.parent.gameObject.GetComponent<BaseShape>();
+							
+							if(firstRotate == null)
+							{
+								move = true;
+							}
 						}
-						else if(first == null && allowRotation)
+						else if(firstRotate == null && allowRotation && !hit.collider.gameObject.name.Equals("move"))
 						{
-							first = hit.collider.gameObject.GetComponent<BaseShape>();
+							firstRotate = hit.collider.gameObject.GetComponent<BaseShape>();
 						}
+					}
+					
+					if(firstMove != null && firstRotate != null)
+					{
+						break;
 					}
 				}
 				
-				if(rotating)
+				if(firstMove != null || firstRotate != null)
 				{
-					if(first != null)
+					if(_selected != null)
 					{
-						selected = first;
-						selected.sortingLayer = selectedLayerName;
+						_selected.translateHandler = false;
+						_selected.rotateHandler = false;
+					}
+					else
+					{
+						move = true;
+					}
+					
+					if(firstMove != null && firstRotate == null)
+					{
+						//Se mueve
+						_selected = firstMove;
+						rotating = false;
+					}
+					else if(firstRotate != null && firstMove == null)
+					{
+						//Se rota
+						rotating = true;
+						_selected = firstRotate;
 						if(!ignoreNextRotation)
 						{
 							initVector = Camera.main.ScreenToWorldPoint(new Vector3(gesture.StartPosition.x,gesture.StartPosition.y))
-								- selected.transform.position;
+								- _selected.transform.position;
 							initVector.z = 0;
-							initialRotation = selected.transform.eulerAngles;
+							initialRotation = _selected.transform.eulerAngles;
 						}
 						else
 						{
 							rotating = false;
 						}
+						
+					}
+					else if(firstMove.name.Equals(firstRotate.name) || move)
+					{
+						//Se mueve
+						_selected = firstMove;
+						rotating = false;
 					}
 					else
 					{
-						rotating = false;
+						//Se rota
+						rotating = true;
+						_selected = firstRotate;
+						if(!ignoreNextRotation)
+						{
+							initVector = Camera.main.ScreenToWorldPoint(new Vector3(gesture.StartPosition.x,gesture.StartPosition.y))
+								- _selected.transform.position;
+							initVector.z = 0;
+							initialRotation = _selected.transform.eulerAngles;
+						}
+						else
+						{
+							rotating = false;
+						}
+						
 					}
+					
+					_selected.sortingLayer = selectedLayerName;
 				}
+			}
+			else if(_selected != null)
+			{
+				_selected.translateHandler = false;
+				_selected.rotateHandler = false;
+				_selected = null;
 			}
 			break;
 			
 		case ContinuousGesturePhase.Updated:
-			if(selected != null && gesture.DeltaMove != Vector2.zero)
+			if(_selected != null && gesture.DeltaMove != Vector2.zero)
 			{
 				if(rotating)
 				{
 					currentVector = Camera.main.ScreenToWorldPoint(new Vector3(gesture.Position.x,gesture.Position.y))
-						- selected.transform.position;
+						- _selected.transform.position;
 					currentVector.z = initVector.z;
 					float angle = Vector3.Angle(initVector,currentVector)*(Vector3.Cross(initVector,currentVector).z > 0 ? 1:-1);
 					
-					selected.transform.eulerAngles = new Vector3(0,0
+					_selected.transform.eulerAngles = new Vector3(0,0
 					                                             ,initialRotation.z + angle);
+
+					_selected.rotateHandler = true;
+					_selected.translateHandler = false;
 				}
 				else
 				{
-					pos = new Vector3(selected.transform.position.x + gesture.DeltaMove.x*cu
-					                  ,selected.transform.position.y + gesture.DeltaMove.y*cu
-					                  ,selected.transform.position.z);
-					selected.transform.position = pos;
+					pos = new Vector3(_selected.transform.position.x + gesture.DeltaMove.x*cu
+					                  ,_selected.transform.position.y + gesture.DeltaMove.y*cu
+					                  ,_selected.transform.position.z);
+					_selected.transform.position = pos;
+
+					_selected.rotateHandler = false;
+					_selected.translateHandler = true;
 				}
 			}
 			break;
 		case ContinuousGesturePhase.Ended:
-			if(selected != null)
+			if(_selected != null)
 			{
-				selected.sortingLayer = normalLayerName;
-				selected.sortingOrder = nextSort;
+				_selected.sortingLayer = normalLayerName;
+				_selected.sortingOrder = nextSort;
+				_selected.rotateHandler = true;
+				_selected.translateHandler = true;
 			}
 			onDragFinish();
 			ignoreNextRotation = false;
-			selected = null;
+			//_selected = null;
 			break;
 			
 		}
@@ -236,11 +314,26 @@ public class TangramInput : MonoBehaviour {
 				{
 					if(hit.collider.gameObject.name.Equals("move"))
 					{
-						hit.collider.gameObject.transform.parent.gameObject.GetComponent<BaseShape>().sortingOrder = nextSort;
+						if(_selected != null)
+						{
+							_selected.translateHandler = false;
+							_selected.rotateHandler = false;
+						}
+						
+						_selected = hit.collider.gameObject.transform.parent.gameObject.GetComponent<BaseShape>();
+						_selected.sortingOrder = nextSort;
+						_selected.translateHandler = true;
+						_selected.rotateHandler = true;
 						break;
 					}
 				}
 			}
+		}
+		else if(_selected != null)
+		{
+			_selected.translateHandler = false;
+			_selected.rotateHandler = false;
+			_selected = null;
 		}
 	}
 }
