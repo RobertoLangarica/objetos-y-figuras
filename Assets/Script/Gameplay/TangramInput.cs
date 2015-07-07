@@ -139,7 +139,7 @@ public class TangramInput : MonoBehaviour {
 				BaseShape firstMove = null;
 				BaseShape firstRotate = null;
 				bool move = false;//Indica si el movimiento fue primero que la rotacion
-				rotating = true;
+				rotating = allowRotation;
 				
 				foreach(RaycastHit2D hit in gesture.Raycast.Hits2D)
 				{
@@ -251,6 +251,12 @@ public class TangramInput : MonoBehaviour {
 						_selected.sortingLayer = selectedLayerName;
 					}
 				}
+				else if(_selected != null)
+				{
+					_selected.translateHandler = false;
+					_selected.rotateHandler = false;
+					_selected = null;
+				}
 			}
 			else if(_selected != null)
 			{
@@ -283,7 +289,7 @@ public class TangramInput : MonoBehaviour {
 						_selected.transform.eulerAngles = new Vector3(0,0
 						                                             ,initialRotation.z + angle);
 
-						_selected.rotateHandler = true;
+						_selected.rotateHandler = allowRotation;
 						_selected.translateHandler = false;
 					}
 					else
@@ -310,7 +316,7 @@ public class TangramInput : MonoBehaviour {
 			{
 				_selected.sortingLayer = normalLayerName;
 				_selected.sortingOrder = nextSort;
-				_selected.rotateHandler = true;
+				_selected.rotateHandler = allowRotation;
 				_selected.translateHandler = true;
 			}
 			onDragFinish();
@@ -397,7 +403,7 @@ public class TangramInput : MonoBehaviour {
 						_selected = hit.collider.gameObject.transform.parent.gameObject.GetComponent<BaseShape>();
 						_selected.sortingOrder = nextSort;
 						_selected.translateHandler = true;
-						_selected.rotateHandler = true;
+						_selected.rotateHandler = allowRotation;
 						break;
 					}
 				}
