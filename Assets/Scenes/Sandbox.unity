@@ -1043,8 +1043,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedLayerName: SelectedShape
   normalLayerName: Shapes
+  rotateOnlyWhenSelected: 1
   allowRotation: 1
-  dragAudio: {fileID: 1021770816}
+  dragSound: {fileID: 1021770816}
   ignoreNextRotation: 0
 --- !u!82 &1021770816
 AudioSource:
@@ -1056,9 +1057,9 @@ AudioSource:
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: 99ce4bcdcb23746d6813039b8c9b3485, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: .800000012
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Priority: 128
   DopplerLevel: 1

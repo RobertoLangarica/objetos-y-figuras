@@ -6,8 +6,9 @@ public class TangramInput : MonoBehaviour {
 
 	public string selectedLayerName;
 	public string normalLayerName;
+	public bool rotateOnlyWhenSelected = false;
 	public bool allowRotation = true;
-	public AudioSource dragAudio;
+	public AudioSource dragSound;
 
 	[HideInInspector]
 	protected BaseShape _selected;
@@ -29,6 +30,9 @@ public class TangramInput : MonoBehaviour {
 	[HideInInspector]
 	public DOnDrag onAnyDrag;
 
+	//Para el audio
+	protected float elapsedDragTime;
+	protected float dragSpeed;
 
 	void Awake()
 	{
@@ -37,10 +41,20 @@ public class TangramInput : MonoBehaviour {
 
 		onDragFinish = foo;
 		onAnyDrag = foo;
+
+
+	}
+
+	void Start()
+	{
+		if(dragSound)
+		{
+			dragSound.pitch = 0;
+		}
 	}
 
 	protected void foo(){}
-
+	
 	public int nextSort
 	{
 		get
@@ -77,6 +91,12 @@ public class TangramInput : MonoBehaviour {
 		case ContinuousGesturePhase.Started:
 			if(gesture.Raycast.Hits2D != null && gesture.Raycast.Hits2D.Length > 0)
 			{
+				if(dragSound)
+				{
+					dragSound.Play();
+					elapsedDragTime = 0;
+				}
+
 				Array.Sort(gesture.Raycast.Hits2D,delegate(RaycastHit2D hit1, 
 				                                           RaycastHit2D hit2) {
 					if(hit1.collider)
@@ -118,7 +138,7 @@ public class TangramInput : MonoBehaviour {
 				
 				BaseShape firstMove = null;
 				BaseShape firstRotate = null;
-				bool move = false;
+				bool move = false;//Indica si el movimiento fue primero que la rotacion
 				rotating = true;
 				
 				foreach(RaycastHit2D hit in gesture.Raycast.Hits2D)
@@ -145,13 +165,16 @@ public class TangramInput : MonoBehaviour {
 						break;
 					}
 				}
-				
+
+				//Alguien se mueve o se rota
 				if(firstMove != null || firstRotate != null)
 				{
+					BaseShape oldSelected = null;
+
 					if(_selected != null)
 					{
-						_selected.translateHandler = false;
-						_selected.rotateHandler = false;
+						oldSelected = _selected;
+						_selected = null;
 					}
 					else
 					{
@@ -167,20 +190,25 @@ public class TangramInput : MonoBehaviour {
 					else if(firstRotate != null && firstMove == null)
 					{
 						//Se rota
-						rotating = true;
-						_selected = firstRotate;
-						if(!ignoreNextRotation)
+						if(ignoreNextRotation)
 						{
-							initVector = Camera.main.ScreenToWorldPoint(new Vector3(gesture.StartPosition.x,gesture.StartPosition.y))
-								- _selected.transform.position;
-							initVector.z = 0;
-							initialRotation = _selected.transform.eulerAngles;
-						}
-						else
-						{
+							_selected = firstRotate;
 							rotating = false;
 						}
-						
+						else 
+						{
+							if((rotateOnlyWhenSelected && firstRotate.rotateHandler) || !rotateOnlyWhenSelected)
+							{
+								_selected = firstRotate;
+								rotating = true;
+								initVector = Camera.main.ScreenToWorldPoint(new Vector3(gesture.StartPosition.x,gesture.StartPosition.y))
+									- _selected.transform.position;
+								initVector.z = 0;
+								initialRotation = _selected.transform.eulerAngles;
+
+
+							}
+						}
 					}
 					else if(firstMove.name.Equals(firstRotate.name) || move)
 					{
@@ -191,23 +219,37 @@ public class TangramInput : MonoBehaviour {
 					else
 					{
 						//Se rota
-						rotating = true;
-						_selected = firstRotate;
-						if(!ignoreNextRotation)
+						if(ignoreNextRotation)
 						{
-							initVector = Camera.main.ScreenToWorldPoint(new Vector3(gesture.StartPosition.x,gesture.StartPosition.y))
-								- _selected.transform.position;
-							initVector.z = 0;
-							initialRotation = _selected.transform.eulerAngles;
-						}
-						else
-						{
+							_selected = firstRotate;
 							rotating = false;
 						}
-						
+						else 
+						{
+							if((rotateOnlyWhenSelected && firstRotate.rotateHandler) || !rotateOnlyWhenSelected)
+							{
+								_selected = firstRotate;
+								rotating = true;
+								initVector = Camera.main.ScreenToWorldPoint(new Vector3(gesture.StartPosition.x,gesture.StartPosition.y))
+									- _selected.transform.position;
+								initVector.z = 0;
+								initialRotation = _selected.transform.eulerAngles;
+								
+								
+							}
+						}
 					}
-					
-					_selected.sortingLayer = selectedLayerName;
+
+					if(oldSelected != null)
+					{
+						oldSelected.translateHandler = false;
+						oldSelected.rotateHandler = false;
+					}
+
+					if(_selected != null)
+					{
+						_selected.sortingLayer = selectedLayerName;
+					}
 				}
 			}
 			else if(_selected != null)
@@ -219,41 +261,51 @@ public class TangramInput : MonoBehaviour {
 			break;
 			
 		case ContinuousGesturePhase.Updated:
-
-			if(dragAudio)
+			if(_selected != null )
 			{
-				Debug.Log("playing");
-				dragAudio.Play();
-			}
-
-			if(_selected != null && gesture.DeltaMove != Vector2.zero)
-			{
-				if(rotating)
+				if(dragSound)
 				{
-					currentVector = Camera.main.ScreenToWorldPoint(new Vector3(gesture.Position.x,gesture.Position.y))
-						- _selected.transform.position;
-					currentVector.z = initVector.z;
-					float angle = Vector3.Angle(initVector,currentVector)*(Vector3.Cross(initVector,currentVector).z > 0 ? 1:-1);
-					
-					_selected.transform.eulerAngles = new Vector3(0,0
-					                                             ,initialRotation.z + angle);
-
-					_selected.rotateHandler = true;
-					_selected.translateHandler = false;
+					dragSpeed = gesture.DeltaMove.sqrMagnitude/((gesture.ElapsedTime-elapsedDragTime)*(gesture.ElapsedTime-elapsedDragTime));
+					dragSound.pitch = percent(0,9000000,dragSpeed)*3;
+					elapsedDragTime = gesture.ElapsedTime;
+					//Debug.Log(dragSpeed);
 				}
-				else
-				{
-					pos = new Vector3(_selected.transform.position.x + gesture.DeltaMove.x*cu
-					                  ,_selected.transform.position.y + gesture.DeltaMove.y*cu
-					                  ,_selected.transform.position.z);
-					_selected.transform.position = pos;
 
-					_selected.rotateHandler = false;
-					_selected.translateHandler = true;
+				if(gesture.DeltaMove != Vector2.zero)
+				{
+					if(rotating)
+					{
+						currentVector = Camera.main.ScreenToWorldPoint(new Vector3(gesture.Position.x,gesture.Position.y))
+							- _selected.transform.position;
+						currentVector.z = initVector.z;
+						float angle = Vector3.Angle(initVector,currentVector)*(Vector3.Cross(initVector,currentVector).z > 0 ? 1:-1);
+						
+						_selected.transform.eulerAngles = new Vector3(0,0
+						                                             ,initialRotation.z + angle);
+
+						_selected.rotateHandler = true;
+						_selected.translateHandler = false;
+					}
+					else
+					{
+						pos = new Vector3(_selected.transform.position.x + gesture.DeltaMove.x*cu
+						                  ,_selected.transform.position.y + gesture.DeltaMove.y*cu
+						                  ,_selected.transform.position.z);
+						_selected.transform.position = pos;
+
+						_selected.rotateHandler = false;
+						_selected.translateHandler = true;
+					}
 				}
 			}
 			break;
 		case ContinuousGesturePhase.Ended:
+			if(dragSound)
+			{
+				dragSound.Stop();
+				dragSound.pitch = 0;
+			}
+
 			if(_selected != null)
 			{
 				_selected.sortingLayer = normalLayerName;
@@ -267,6 +319,21 @@ public class TangramInput : MonoBehaviour {
 			break;
 			
 		}
+	}
+
+	float percent(float min, float max, float value)
+	{
+		if(value >= max)
+		{
+			return 1;
+		}
+
+		if(value <= min)
+		{
+			return 0;
+		}
+
+		return (value-min)/(max-min);
 	}
 
 	void OnTap(TapGesture gesture) 

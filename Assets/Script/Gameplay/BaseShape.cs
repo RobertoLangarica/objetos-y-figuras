@@ -7,6 +7,7 @@ public class BaseShape : MonoBehaviour {
 	public SpriteRenderer spriteRenderer;
 	public GameObject _rotateHandler = null;
 	public GameObject _translateHandler = null;
+	protected bool rotateH,translateH;
 	
 	public string sortingLayer
 	{
@@ -28,37 +29,34 @@ public class BaseShape : MonoBehaviour {
 
 	void Awake()
 	{
-		if(_rotateHandler != null)
-		{
-			_rotateHandler.SetActive(false);
-		}
-		
-		if(_translateHandler != null)
-		{
-			_translateHandler.SetActive(false);
-		}
+		rotateHandler = false;
+		translateHandler = false;
 	}
 	
 	public bool rotateHandler
 	{
 		set
 		{
+			rotateH = value;
 			if(_rotateHandler != null)
 			{
 				_rotateHandler.SetActive(value);
 			}
 		}
+		get{return rotateH;}
 	}
 	
 	public bool translateHandler
 	{
 		set
 		{
+			translateH = value;
 			if(_translateHandler != null)
 			{
 				_translateHandler.SetActive(value);
 			}
 		}
+		get{return translateH;}
 	}
 	
 	/*void Update()
