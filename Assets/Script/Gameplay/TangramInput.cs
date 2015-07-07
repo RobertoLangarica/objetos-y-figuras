@@ -7,6 +7,7 @@ public class TangramInput : MonoBehaviour {
 	public string selectedLayerName;
 	public string normalLayerName;
 	public bool allowRotation = true;
+	public AudioSource dragAudio;
 
 	[HideInInspector]
 	protected BaseShape _selected;
@@ -74,7 +75,6 @@ public class TangramInput : MonoBehaviour {
 		switch(gesture.Phase)
 		{
 		case ContinuousGesturePhase.Started:
-			Debug.Log ("START");
 			if(gesture.Raycast.Hits2D != null && gesture.Raycast.Hits2D.Length > 0)
 			{
 				Array.Sort(gesture.Raycast.Hits2D,delegate(RaycastHit2D hit1, 
@@ -219,6 +219,13 @@ public class TangramInput : MonoBehaviour {
 			break;
 			
 		case ContinuousGesturePhase.Updated:
+
+			if(dragAudio)
+			{
+				Debug.Log("playing");
+				dragAudio.Play();
+			}
+
 			if(_selected != null && gesture.DeltaMove != Vector2.zero)
 			{
 				if(rotating)

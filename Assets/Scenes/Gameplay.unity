@@ -976,7 +976,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22439492, guid: ce7485f26c69f4b1faa6053e337e1964, type: 2}
       propertyPath: m_SizeDelta.y
-      value: -59.3999939
+      value: -25.7999878
       objectReference: {fileID: 0}
     - target: {fileID: 22439496, guid: ce7485f26c69f4b1faa6053e337e1964, type: 2}
       propertyPath: m_SizeDelta.y
@@ -1004,7 +1004,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22478778, guid: ce7485f26c69f4b1faa6053e337e1964, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 30.0115356
+      value: 59.8674316
       objectReference: {fileID: 0}
     - target: {fileID: 139498, guid: ce7485f26c69f4b1faa6053e337e1964, type: 2}
       propertyPath: m_IsActive
@@ -1755,6 +1755,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1367747839}
   - 114: {fileID: 1367747842}
+  - 114: {fileID: 1367747843}
   - 114: {fileID: 1367747841}
   - 114: {fileID: 1367747840}
   m_Layer: 0
@@ -1790,7 +1791,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedLayerName: SelectedShape
   normalLayerName: Shapes
-  selected: {fileID: 0}
+  allowRotation: 1
   ignoreNextRotation: 0
 --- !u!114 &1367747841
 MonoBehaviour:
@@ -1835,6 +1836,33 @@ MonoBehaviour:
   IsExclusive: 0
   MoveTolerance: .100000001
   ApplySameDirectionConstraint: 0
+--- !u!114 &1367747843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1367747838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 407289a35f3c592419f607d117d413c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requiredFingerCount: 1
+  DistanceUnit: 2
+  MaxSimultaneousGestures: 1
+  ResetMode: 0
+  Raycaster: {fileID: 0}
+  ClusterManager: {fileID: 0}
+  Delegate: {fileID: 0}
+  UseSendMessage: 1
+  EventMessageName: OnTap
+  EventMessageTarget: {fileID: 1367747838}
+  SendMessageToSelection: 0
+  IsExclusive: 0
+  RequiredTaps: 1
+  MoveTolerance: .5
+  MaxDuration: 0
+  MaxDelayBetweenTaps: .5
 --- !u!1 &1462639584
 GameObject:
   m_ObjectHideFlags: 0

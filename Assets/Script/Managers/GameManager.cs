@@ -230,6 +230,8 @@ public class GameManager : MonoBehaviour
 			continueBtn.gameObject.SetActive(true);
 			sendBtn.gameObject.SetActive(true);
 			GameObject.FindObjectOfType<DragRecognizer>().enabled = false;
+			input.selected = null;
+			input.gameObject.SetActive(false);
 
 			//Mandamos la nave
 			if(client)
@@ -258,7 +260,8 @@ public class GameManager : MonoBehaviour
 			initializeReferenceImage();
 			continueBtn.gameObject.SetActive(true);
 			sendBtn.gameObject.SetActive(true);
-
+			input.selected = null;
+			input.gameObject.SetActive(false);
 
 			//Mandamos la nave
 			if(client)
