@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using DG.Tweening.Core;
+using DG.Tweening;
 
 [RequireComponent(typeof(SpriteRenderer))]
 public class BaseShape : MonoBehaviour {

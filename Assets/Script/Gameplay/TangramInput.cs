@@ -22,6 +22,7 @@ public class TangramInput : MonoBehaviour {
 	protected Vector3 initVector;
 	protected Vector3 currentVector;
 	protected Vector3 initialRotation;
+	protected int lastDragFrame;
 	
 	public delegate void DOnDragFinish();
 	public delegate void DOnDrag();
@@ -47,6 +48,7 @@ public class TangramInput : MonoBehaviour {
 
 	void Start()
 	{
+		lastDragFrame = -1;
 		if(dragSound)
 		{
 			dragSound.pitch = 0;
@@ -84,6 +86,14 @@ public class TangramInput : MonoBehaviour {
 
 	void OnDrag(DragGesture gesture) 
 	{
+		//Solo se ejecuta una vez por frame (para que el multifinger funcione sin encimarse)
+		if(lastDragFrame == Time.frameCount)
+		{
+			return;
+		}
+
+		lastDragFrame = Time.frameCount;
+
 		onAnyDrag();
 
 		switch(gesture.Phase)
@@ -271,10 +281,18 @@ public class TangramInput : MonoBehaviour {
 			{
 				if(dragSound)
 				{
-					dragSpeed = gesture.DeltaMove.sqrMagnitude/((gesture.ElapsedTime-elapsedDragTime)*(gesture.ElapsedTime-elapsedDragTime));
-					dragSound.pitch = percent(0,9000000,dragSpeed)*3;
-					elapsedDragTime = gesture.ElapsedTime;
-					//Debug.Log(dragSpeed);
+					if((gesture.ElapsedTime-elapsedDragTime) == 0)
+					{
+						dragSpeed = gesture.DeltaMove.sqrMagnitude;
+						dragSound.pitch = percent(0,9000000,dragSpeed)*3;
+						elapsedDragTime = gesture.ElapsedTime;
+					}
+					else
+					{
+						dragSpeed = gesture.DeltaMove.sqrMagnitude/((gesture.ElapsedTime-elapsedDragTime)*(gesture.ElapsedTime-elapsedDragTime));
+						dragSound.pitch = percent(0,9000000,dragSpeed)*3;
+						elapsedDragTime = gesture.ElapsedTime;
+					}
 				}
 
 				if(gesture.DeltaMove != Vector2.zero)

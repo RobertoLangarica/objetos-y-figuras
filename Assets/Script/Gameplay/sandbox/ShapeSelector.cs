@@ -5,6 +5,8 @@ using System.Collections;
 
 public class ShapeSelector : MonoBehaviour {
 
+	public float rotateAmount = 15;
+
 	public GameObject square;
 	public GameObject rectangle;
 	public GameObject triangle;
@@ -68,6 +70,7 @@ public class ShapeSelector : MonoBehaviour {
 		shape.transform.localScale = new Vector3(s,s,1);
 		size = Camera.main.ScreenToWorldPoint(reference.transform.position);
 		size.z = 0;
+		input.onDragFinish += shape.GetComponent<SandboxShape>().onDragFinish;
 		shape.transform.position = size;
 	}
 
@@ -79,6 +82,7 @@ public class ShapeSelector : MonoBehaviour {
 			
 			if(pos.x < Screen.width*.2f)
 			{
+				input.onDragFinish -= input.selected.gameObject.GetComponent<SandboxShape>().onDragFinish;
 				GameObject.Destroy(input.selected.gameObject);
 			}
 			else
