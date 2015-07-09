@@ -22,6 +22,8 @@ public class ShapeSelector : MonoBehaviour {
 	public ColorSelector colorSelector;
 	public TangramInput input;
 
+	protected bool waitingForCompleteDragOnCreated = false;
+
 	void Start()
 	{
 		input.onDragFinish+=onDragFinish;
@@ -29,8 +31,16 @@ public class ShapeSelector : MonoBehaviour {
 
 	public void instantiateShape(string name)
 	{
+
+		if(waitingForCompleteDragOnCreated)
+		{
+			return;
+		}
+
 		GameObject shape = null;
 		Image reference = null;
+
+		waitingForCompleteDragOnCreated = true;
 
 		switch(name)
 		{
@@ -76,6 +86,8 @@ public class ShapeSelector : MonoBehaviour {
 
 	public void onDragFinish()
 	{
+		waitingForCompleteDragOnCreated = false;
+
 		if(input.selected != null)
 		{
 			Vector3 pos = Camera.main.WorldToScreenPoint(input.selected.transform.position);

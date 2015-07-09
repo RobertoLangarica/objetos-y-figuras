@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using System;
 
 public class TangramInput : MonoBehaviour {
@@ -15,6 +16,7 @@ public class TangramInput : MonoBehaviour {
 	[HideInInspector]
 	public bool ignoreNextRotation = false;
 
+	//Control de propiedades visuales como posicionamiento, rotacion y profundidad
 	protected Vector3 pos;
 	protected float cu;
 	protected int _sort;
@@ -22,8 +24,15 @@ public class TangramInput : MonoBehaviour {
 	protected Vector3 initVector;
 	protected Vector3 currentVector;
 	protected Vector3 initialRotation;
+
+	//Para controlar cuando el gesto viene de mas de un dedo
+	protected bool isDragging = false;
 	protected int lastDragFrame;
-	
+	protected int fingerCount = 0;
+	protected Dictionary<int,BaseShape> multipleFingersSelection;
+	protected Dictionary<int,BaseShape> multipleFingersRotateSelection;
+
+	//Para notificar estados del drag a otros objetos
 	public delegate void DOnDragFinish();
 	public delegate void DOnDrag();
 	[HideInInspector]
@@ -34,6 +43,7 @@ public class TangramInput : MonoBehaviour {
 	//Para el audio
 	protected float elapsedDragTime;
 	protected float dragSpeed;
+	
 
 	void Awake()
 	{
@@ -42,12 +52,12 @@ public class TangramInput : MonoBehaviour {
 
 		onDragFinish = foo;
 		onAnyDrag = foo;
-
-
 	}
 
 	void Start()
 	{
+		multipleFingersSelection = new Dictionary<int, BaseShape>();
+		multipleFingersRotateSelection = new Dictionary<int, BaseShape>();
 		lastDragFrame = -1;
 		if(dragSound)
 		{
@@ -99,12 +109,36 @@ public class TangramInput : MonoBehaviour {
 		switch(gesture.Phase)
 		{
 		case ContinuousGesturePhase.Started:
+			isDragging = true;
+			bool checkMultiFinger = false;
+
 			if(gesture.Raycast.Hits2D != null && gesture.Raycast.Hits2D.Length > 0)
 			{
 				if(dragSound)
 				{
 					dragSound.Play();
 					elapsedDragTime = 0;
+				}
+
+				//Tiene mas prioridad la seleccion por multidedo
+				if(fingerCount > 1)
+				{
+					BaseShape forMove;
+					forMove = getSelectedFromFingers();
+
+					if(forMove != null)
+					{
+						//Por si se deselecciona
+						if(_selected != null)
+						{
+							_selected.translateHandler = false;
+							_selected.rotateHandler = false;
+						}
+
+						_selected = forMove;
+						rotating = false;
+						return;
+					}
 				}
 
 				Array.Sort(gesture.Raycast.Hits2D,delegate(RaycastHit2D hit1, 
@@ -179,22 +213,18 @@ public class TangramInput : MonoBehaviour {
 				//Alguien se mueve o se rota
 				if(firstMove != null || firstRotate != null)
 				{
-					BaseShape oldSelected = null;
+					BaseShape newSelected = null;
 
-					if(_selected != null)
+					if(_selected == null)
 					{
-						oldSelected = _selected;
-						_selected = null;
-					}
-					else
-					{
+						//si no hay nada seleccionado el movimiento tiene prioridad
 						move = true;
 					}
 					
 					if(firstMove != null && firstRotate == null)
 					{
 						//Se mueve
-						_selected = firstMove;
+						newSelected = firstMove;
 						rotating = false;
 					}
 					else if(firstRotate != null && firstMove == null)
@@ -202,28 +232,26 @@ public class TangramInput : MonoBehaviour {
 						//Se rota
 						if(ignoreNextRotation)
 						{
-							_selected = firstRotate;
+							newSelected = firstRotate;
 							rotating = false;
 						}
 						else 
 						{
 							if((rotateOnlyWhenSelected && firstRotate.rotateHandler) || !rotateOnlyWhenSelected)
 							{
-								_selected = firstRotate;
+								newSelected = firstRotate;
 								rotating = true;
 								initVector = Camera.main.ScreenToWorldPoint(new Vector3(gesture.StartPosition.x,gesture.StartPosition.y))
-									- _selected.transform.position;
+									- newSelected.transform.position;
 								initVector.z = 0;
-								initialRotation = _selected.transform.eulerAngles;
-
-
+								initialRotation = newSelected.transform.eulerAngles;
 							}
 						}
 					}
-					else if(firstMove.name.Equals(firstRotate.name) || move)
+					else if(firstMove.GetInstanceID() == firstRotate.GetInstanceID() || move)
 					{
 						//Se mueve
-						_selected = firstMove;
+						newSelected = firstMove;
 						rotating = false;
 					}
 					else
@@ -231,48 +259,86 @@ public class TangramInput : MonoBehaviour {
 						//Se rota
 						if(ignoreNextRotation)
 						{
-							_selected = firstRotate;
+							newSelected = firstRotate;
 							rotating = false;
 						}
 						else 
 						{
 							if((rotateOnlyWhenSelected && firstRotate.rotateHandler) || !rotateOnlyWhenSelected)
 							{
-								_selected = firstRotate;
+								newSelected = firstRotate;
 								rotating = true;
 								initVector = Camera.main.ScreenToWorldPoint(new Vector3(gesture.StartPosition.x,gesture.StartPosition.y))
-									- _selected.transform.position;
+									- newSelected.transform.position;
 								initVector.z = 0;
-								initialRotation = _selected.transform.eulerAngles;
+								initialRotation = newSelected.transform.eulerAngles;
 								
 								
 							}
 						}
 					}
 
-					if(oldSelected != null)
+					if(newSelected != null)
 					{
-						oldSelected.translateHandler = false;
-						oldSelected.rotateHandler = false;
-					}
+						//quitamos el selected anterior
+						//Por si se deselecciona
+						if(_selected != null)
+						{
+							_selected.translateHandler = false;
+							_selected.rotateHandler = false;
+						}
 
-					if(_selected != null)
-					{
+						_selected = newSelected;
 						_selected.sortingLayer = selectedLayerName;
 					}
+					else if(_selected != null)
+					{
+						//Esta seleccionado con mas dedos?
+						checkMultiFinger = true;
+					}
+
 				}
 				else if(_selected != null)
 				{
-					_selected.translateHandler = false;
-					_selected.rotateHandler = false;
-					_selected = null;
+					//Esta seleccionado con mas dedos?
+					checkMultiFinger = true;
 				}
 			}
 			else if(_selected != null)
 			{
-				_selected.translateHandler = false;
-				_selected.rotateHandler = false;
-				_selected = null;
+				//Esta seleccionado con mas dedos?
+				checkMultiFinger = true;
+			}
+
+			//Si no hay nadie seleccionado quiza el multifinger lo tenga
+			if(checkMultiFinger || _selected == null)
+			{
+				rotating = false;
+				BaseShape forMove;
+				forMove = getSelectedFromFingers();
+
+				//Por si se deselecciona
+				if(_selected != null)
+				{
+					_selected.translateHandler = false;
+					_selected.rotateHandler = false;
+				}
+
+				if(forMove != null)
+				{
+					_selected = forMove;
+				}
+				else if(allowRotation)
+				{
+					//Rotando?
+					_selected = getSelectedFromRotatingFingers();
+					rotating = _selected != null;
+				}
+				else
+				{
+					//Nada seleccionado
+					_selected = null;
+				}
 			}
 			break;
 			
@@ -324,6 +390,7 @@ public class TangramInput : MonoBehaviour {
 			}
 			break;
 		case ContinuousGesturePhase.Ended:
+			isDragging = false;
 			if(dragSound)
 			{
 				dragSound.Stop();
@@ -342,6 +409,28 @@ public class TangramInput : MonoBehaviour {
 			//_selected = null;
 			break;
 			
+		}
+	}
+
+	void OnTwist(TwistGesture gesture) 
+	{
+		if(lastDragFrame == Time.frameCount)
+		{
+			return;
+		}
+		
+		lastDragFrame = Time.frameCount;
+
+
+		switch(gesture.Phase)
+		{
+			case ContinuousGesturePhase.Updated:
+				if(_selected != null)
+				{
+					_selected.transform.eulerAngles = new Vector3(0,0
+					                                              ,_selected.transform.eulerAngles.z + gesture.DeltaRotation);
+				}
+				break;
 		}
 	}
 
@@ -422,16 +511,133 @@ public class TangramInput : MonoBehaviour {
 						_selected.sortingOrder = nextSort;
 						_selected.translateHandler = true;
 						_selected.rotateHandler = allowRotation;
-						break;
+						return;
 					}
 				}
 			}
 		}
-		else if(_selected != null)
+
+		//Cuenta como vacio el presionar en el area de rotar de otro
+		if(_selected != null)
 		{
 			_selected.translateHandler = false;
 			_selected.rotateHandler = false;
 			_selected = null;
 		}
+	}
+
+	void OnFingerDown(FingerDownEvent e) 
+	{
+		fingerCount++;
+		if(e.Raycast.Hits2D != null && e.Raycast.Hits2D.Length > 0)
+		{
+			Array.Sort(e.Raycast.Hits2D,delegate(RaycastHit2D hit1, 
+			                                           RaycastHit2D hit2) {
+				if(hit1.collider)
+				{
+					if(hit2.collider)
+					{
+						BaseShape obj1;
+						BaseShape obj2;
+						
+						if(hit1.collider.gameObject.name.Equals("move"))
+						{
+							obj1 = hit1.collider.gameObject.transform.parent.gameObject.GetComponent<BaseShape>();
+						}
+						else
+						{
+							obj1 = hit1.collider.gameObject.GetComponent<BaseShape>();
+						}
+						
+						if(hit2.collider.gameObject.name.Equals("move"))
+						{
+							obj2 = hit2.collider.gameObject.transform.parent.gameObject.GetComponent<BaseShape>();
+						}
+						else
+						{
+							obj2 = hit2.collider.gameObject.GetComponent<BaseShape>();
+						}
+						
+						return -obj1.spriteRenderer.sortingOrder.CompareTo(obj2.spriteRenderer.sortingOrder);
+					}
+					else
+					{
+						return -1;
+					}
+				}
+				
+				return 1;
+				
+			});
+
+			BaseShape first = null;
+			bool addeRotator = false;
+			foreach(RaycastHit2D hit in e.Raycast.Hits2D)
+			{
+				if(hit.collider)
+				{
+					if(hit.collider.gameObject.name.Equals("move"))
+					{
+						multipleFingersSelection.Add(e.Finger.Index,hit.collider.gameObject.transform.parent.gameObject.GetComponent<BaseShape>());
+						break;
+					}
+					else if(!addeRotator)
+					{
+						addeRotator = true;
+						multipleFingersRotateSelection.Add(e.Finger.Index,hit.collider.gameObject.GetComponent<BaseShape>());
+					}
+				}
+			}
+
+
+		}
+	}
+
+	void OnFingerUp(FingerUpEvent e) 
+	{
+		fingerCount--;
+		multipleFingersRotateSelection.Remove(e.Finger.Index);
+		multipleFingersSelection.Remove(e.Finger.Index);
+	}
+
+	protected BaseShape getSelectedFromFingers()
+	{
+		if(_selected != null)
+		{
+			//El seleccionado tiene prioridad
+			foreach(BaseShape s in multipleFingersSelection.Values)
+			{
+				if(s.GetInstanceID() == _selected.GetInstanceID())
+				{
+					return _selected;
+				}
+			}
+		}
+
+		//no supe de que otra forma acceder al primero
+		foreach(BaseShape s in multipleFingersSelection.Values)
+		{
+			return s;
+		}
+
+		return null;
+	}
+
+	protected BaseShape getSelectedFromRotatingFingers()
+	{
+		//solo se rota el seleccionado
+		if(_selected != null)
+		{
+			//El seleccionado tiene prioridad
+			foreach(BaseShape s in multipleFingersRotateSelection.Values)
+			{
+				if(s.GetInstanceID() == _selected.GetInstanceID())
+				{
+					return _selected;
+				}
+			}
+		}
+
+		return null;
 	}
 }
