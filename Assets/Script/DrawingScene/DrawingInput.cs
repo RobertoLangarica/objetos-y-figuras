@@ -24,7 +24,7 @@ public class DrawingInput : MonoBehaviour
 		erraser = transform.FindChild ("Erraser").gameObject;
 		erraser.SetActive (false);
 
-		input.GetComponent<DragRecognizer>().OnGesture += OnDrag;
+		//input.GetComponent<DragRecognizer>().OnGesture += OnDrag;
 	}
 
 	// Update is called once per frame
