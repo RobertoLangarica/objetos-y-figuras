@@ -114,7 +114,6 @@ public class DrawingInput : MonoBehaviour
 		{
 			if(!isErrasing)
 			{
-				Debug.Log (newLine);
 				spawnNewPoint(Camera.main.ScreenToWorldPoint(gesture.Position));
 				newLine = false;
 			}

@@ -8,8 +8,10 @@ public class SoundShapeManager : MonoBehaviour {
 	public Text txt;
 	public GameObject popUp;
 	protected Teacher data;
-	protected bool isDrawing;
+
 	public GameObject DrawTool;
+	public GameObject shapes;
+	public Button[] shapeBtn;
 
 	void Start()
 	{
@@ -17,6 +19,9 @@ public class SoundShapeManager : MonoBehaviour {
 		
 		//Ya eixste el archivo y solo checamos la version
 		data = Teacher.LoadFromText(tempTxt.text);//Levels.Load(path);
+
+		shapes = GameObject.Find("Shapes");
+		shapeBtn = shapes.gameObject.GetComponentsInChildren<Button>();
 	}
 
 	void Update()
@@ -24,6 +29,21 @@ public class SoundShapeManager : MonoBehaviour {
 		if(Input.GetMouseButtonDown(0))
 		{
 			popUp.SetActive(false);
+		}
+
+		if(DrawTool.GetComponent<DrawingInput>().canDraw)
+		{
+			foreach(Button b in shapeBtn)
+			{
+				b.transition = Selectable.Transition.None;
+			}
+		}
+		else
+		{
+			foreach(Button b in shapeBtn)
+			{
+				b.transition = Selectable.Transition.ColorTint;
+			}
 		}
 	}
 
