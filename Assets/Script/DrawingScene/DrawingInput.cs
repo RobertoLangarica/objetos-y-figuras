@@ -10,7 +10,7 @@ public class DrawingInput : MonoBehaviour
 	public GameObject input;
 
 	protected float bWidth;
-	protected bool paintStarted = false;
+	protected bool paintStarted = true;
 	protected bool newLine = true;
 	protected bool isErrasing = false;
 	protected GameObject paintedFather;
@@ -128,9 +128,10 @@ public class DrawingInput : MonoBehaviour
 		case (ContinuousGesturePhase.Ended):
 		{
 			erraser.SetActive(false);
-			paintStarted = false;
+			//paintStarted = false;
 			newLine = true;
 		}
+			break;
 		}
 	}
 
@@ -145,11 +146,21 @@ public class DrawingInput : MonoBehaviour
 		go.transform.SetParent(paintedFather.transform);
 		if(!newLine)
 		{
-			tempMag = (allPainted[allPainted.Count-1].transform.position - nVec3).magnitude;
+			Vector3 prevVec = allPainted[allPainted.Count-1].transform.position;
+			tempMag = (prevVec - nVec3).magnitude;
 			if(tempMag > bWidth)
 			{
+				Vector3 difVec = prevVec - nVec3;
+				Vector3 defaultVec = new Vector3(1,0,0);
+				float rotZ = Vector3.Angle(difVec,defaultVec);
+				if(prevVec.y < nVec3.y)
+				{
+					rotZ *= -1;
+				}
+
 				Vector3 nScale = new Vector3(tempMag/bWidth,1,1);
 				go.transform.localScale = nScale;
+				go.transform.localRotation = Quaternion.Euler(new Vector3(0,0,rotZ));
 			}
 		}
 		allPainted.Add (go);

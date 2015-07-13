@@ -20,7 +20,7 @@ public class DrawObject : MonoBehaviour
 
 		if (HUD != null) 
 		{
-			addDrawButtons();
+			//addDrawButtons();
 		}
 	}
 
