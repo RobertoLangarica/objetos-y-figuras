@@ -7,6 +7,7 @@ public class DrawingInput : MonoBehaviour
 	public GameObject brushType;
 	[HideInInspector]
 	public bool canDraw = true;
+	public GameObject input;
 
 	protected bool paintStarted = false;
 	protected bool isErrasing = false;
@@ -23,7 +24,7 @@ public class DrawingInput : MonoBehaviour
 		erraser = transform.FindChild ("Erraser").gameObject;
 		erraser.SetActive (false);
 
-		GetComponent<DragRecognizer>().OnGesture += OnDrag;
+		input.GetComponent<DragRecognizer>().OnGesture += OnDrag;
 	}
 
 	// Update is called once per frame
@@ -38,7 +39,7 @@ public class DrawingInput : MonoBehaviour
 			switchBetweenEraseAndPaint();
 		}
 		
-		#if UNITY_STANDALONE_WIN || UNITY_EDITOR
+		/*#if UNITY_STANDALONE_WIN || UNITY_EDITOR
 		if (Input.GetMouseButtonDown (0) && !paintStarted) 
 		{
 			paintStarted = true;
@@ -79,33 +80,34 @@ public class DrawingInput : MonoBehaviour
 			erraser.SetActive(false);
 			paintStarted = false;
 		}
-		#endif
+		#endif*/
+
 	}
 
 	void OnDrag(DragGesture gesture)
 	{
-		if (!paintStarted)return;
-
 		switch(gesture.Phase)
-		{			
-		case (ContinuousGesturePhase.Updated):
-		{
-			if(!isErrasing)
-			{
-				spawnNewPoint(Camera.main.ScreenToWorldPoint(gesture.Position));
-			}
-			else
-			{
-				moveErraser(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-			}
-		}
+		{	
+			case ContinuousGesturePhase.Started:
+				if(isErrasing)
+				{
+					erraser.SetActive(true);
+				}
 			break;
-			
-		case (ContinuousGesturePhase.Ended):
-		{
-			erraser.SetActive(false);
-			paintStarted = false;
-		}
+
+			case ContinuousGesturePhase.Updated:
+				if(!isErrasing)
+				{
+					spawnNewPoint(Camera.main.ScreenToWorldPoint(gesture.Position));
+				}
+				else
+				{
+					moveErraser(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+				}
+			break;
+				
+			case ContinuousGesturePhase.Ended:
+				erraser.SetActive(false);
 			break;
 		}
 	}
