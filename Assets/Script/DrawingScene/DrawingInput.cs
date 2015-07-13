@@ -8,7 +8,9 @@ public class DrawingInput : MonoBehaviour
 	[HideInInspector]
 	public bool canDraw = true;
 
+	protected float bWidth;
 	protected bool paintStarted = false;
+	protected bool newLine = true;
 	protected bool isErrasing = false;
 	protected GameObject paintedFather;
 	protected GameObject erraser;
@@ -24,20 +26,13 @@ public class DrawingInput : MonoBehaviour
 		erraser.SetActive (false);
 
 		GetComponent<DragRecognizer>().OnGesture += OnDrag;
+
+		bWidth = brushType.renderer.bounds.size.x;
 	}
 
 	// Update is called once per frame
 	void Update () 
-	{
-		if (Input.GetKeyDown (KeyCode.B)) 
-		{
-			erraseAll();
-		}
-		if (Input.GetKeyDown (KeyCode.E)) 
-		{
-			switchBetweenEraseAndPaint();
-		}
-		
+	{		
 		#if UNITY_STANDALONE_WIN || UNITY_EDITOR
 		if (Input.GetMouseButtonDown (0) && !paintStarted) 
 		{
@@ -86,13 +81,22 @@ public class DrawingInput : MonoBehaviour
 	{
 		if (!paintStarted)return;
 
+		float tempMag = 0;
+
 		switch(gesture.Phase)
 		{			
+		case (ContinuousGesturePhase.Started):
+		{
+			newLine = true;
+		}
+			break;
 		case (ContinuousGesturePhase.Updated):
 		{
 			if(!isErrasing)
 			{
+				Debug.Log (newLine);
 				spawnNewPoint(Camera.main.ScreenToWorldPoint(gesture.Position));
+				newLine = false;
 			}
 			else
 			{
@@ -105,19 +109,30 @@ public class DrawingInput : MonoBehaviour
 		{
 			erraser.SetActive(false);
 			paintStarted = false;
+			newLine = true;
 		}
 			break;
 		}
 	}
 
-	protected void spawnNewPoint(Vector3 nVec3)
+	protected void spawnNewPoint(Vector3 nVec3,float disDif = -1)
 	{
 		if(!canDraw) return;
 		GameObject go;
+		float tempMag = 0;
 
 		nVec3.z = 0;
 		go = GameObject.Instantiate(brushType,nVec3,Quaternion.identity) as GameObject;
 		go.transform.SetParent(paintedFather.transform);
+		if(!newLine)
+		{
+			tempMag = (allPainted[allPainted.Count-1].transform.position - nVec3).magnitude;
+			if(tempMag > bWidth)
+			{
+				Vector3 nScale = new Vector3(tempMag/bWidth,1,1);
+				go.transform.localScale = nScale;
+			}
+		}
 		allPainted.Add (go);
 	}
 
