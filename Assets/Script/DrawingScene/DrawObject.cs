@@ -9,7 +9,7 @@ public class DrawObject : MonoBehaviour
 	public bool withPencil = false;
 	[HideInInspector]
 	public DrawingInput dInput;
-
+	public GameObject pencil;
 	protected GameObject HUD;
 
 	void Start()
@@ -26,6 +26,11 @@ public class DrawObject : MonoBehaviour
 		if(withPencil)
 		{
 			dInput.canDraw = false;
+		}
+		else
+		{
+			pencil.SetActive(false);
+			pencil.GetComponent<Pencil>().activateDrawing();
 		}
 	}
 
