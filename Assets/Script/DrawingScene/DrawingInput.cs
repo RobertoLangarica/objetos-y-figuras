@@ -7,6 +7,7 @@ public class DrawingInput : MonoBehaviour
 	public GameObject brushType;
 	[HideInInspector]
 	public bool canDraw = true;
+	public GameObject input;
 
 	protected float bWidth;
 	protected bool paintStarted = false;
@@ -25,14 +26,24 @@ public class DrawingInput : MonoBehaviour
 		erraser = transform.FindChild ("Erraser").gameObject;
 		erraser.SetActive (false);
 
-		GetComponent<DragRecognizer>().OnGesture += OnDrag;
-
 		bWidth = brushType.renderer.bounds.size.x;
+		input.GetComponent<DragRecognizer>().OnGesture += OnDrag;
 	}
 
 	// Update is called once per frame
 	void Update () 
 	{		
+		/*#if UNITY_STANDALONE_WIN || UNITY_EDITOR
+		{
+		if (Input.GetKeyDown (KeyCode.B)) 
+		{
+			erraseAll();
+		}
+		if (Input.GetKeyDown (KeyCode.E)) 
+		{
+			switchBetweenEraseAndPaint();
+		}
+		
 		#if UNITY_STANDALONE_WIN || UNITY_EDITOR
 		if (Input.GetMouseButtonDown (0) && !paintStarted) 
 		{
@@ -74,7 +85,8 @@ public class DrawingInput : MonoBehaviour
 			erraser.SetActive(false);
 			paintStarted = false;
 		}
-		#endif
+		#endif*/
+
 	}
 
 	void OnDrag(DragGesture gesture)
@@ -88,6 +100,14 @@ public class DrawingInput : MonoBehaviour
 		case (ContinuousGesturePhase.Started):
 		{
 			newLine = true;
+			if(isErrasing)
+			{
+				erraser.SetActive(true);
+			}
+			else
+			{
+				spawnNewPoint(Camera.main.ScreenToWorldPoint(gesture.Position));
+			}
 		}
 			break;
 		case (ContinuousGesturePhase.Updated):
@@ -111,11 +131,10 @@ public class DrawingInput : MonoBehaviour
 			paintStarted = false;
 			newLine = true;
 		}
-			break;
 		}
 	}
 
-	protected void spawnNewPoint(Vector3 nVec3,float disDif = -1)
+	protected void spawnNewPoint(Vector3 nVec3)
 	{
 		if(!canDraw) return;
 		GameObject go;
