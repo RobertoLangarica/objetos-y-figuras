@@ -20,7 +20,12 @@ public class DrawObject : MonoBehaviour
 
 		if (HUD != null) 
 		{
-			addDrawButtons();
+			//addDrawButtons();
+		}
+
+		if(withPencil)
+		{
+			dInput.canDraw = false;
 		}
 	}
 
