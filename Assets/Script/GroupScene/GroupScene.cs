@@ -2,35 +2,37 @@
 using System.Collections;
 using System.Collections.Generic;
 
+public enum EGroups
+{
+	SHAPE,
+	COLOR,
+	SIZE,
+	FREE
+}
+
 public class GroupScene : MonoBehaviour 
 {
-	public enum EGroups
-	{
-		SHAPE,
-		COLOR,
-		SIZE
-	}
-
-	public static string typeOfGroup;
+	public static EGroups typeOfGroup;
 
 	public int groupSize = 3;
 	public List<GameObject> kindsOfShapes = new List<GameObject>();
-	public EGroups type;
+	//public EGroups type;
 
 	protected int totalGroups = 2;
+	protected int currentLevel = 0;
+	protected int maxLevel = 0;
+	protected XMLLoader loader = GameObject.FindObjectOfType<XMLLoader>();
 	protected GameObject[] currentShapes;
-	protected Color[] availableColors;
+	protected int[] availableColors;
 	protected float[] availableScales;
 
 	void Start()
 	{
-		availableColors = new Color[3]{
-			new Color(255,0,0),
-			new Color(0,255,0),
-			new Color(0,0,255)
-		};
+		loader = GameObject.FindObjectOfType<XMLLoader>();
 
-		availableScales = new float[]{0.5f,1,1.5f,2,2.5f,3};
+		availableColors = new int[9]{0,1,2,3,4,5,6,7,8};
+
+		availableScales = new float[]{0.1f,0.3f,0.5f,0.7f,1};
 
 		currentShapes = new GameObject[groupSize*totalGroups];
 
@@ -47,7 +49,7 @@ public class GroupScene : MonoBehaviour
 			ndxs.Add(i);
 		}
 
-		switch (type) 
+		switch (typeOfGroup) 
 		{
 		case(EGroups.SHAPE):
 		{
@@ -93,7 +95,7 @@ public class GroupScene : MonoBehaviour
 		int rmdIdx = 0;
 		int rmdIdx2 = 0;
 
-		switch (type) 
+		switch (typeOfGroup) 
 		{
 		case(EGroups.SHAPE):
 		{}
@@ -133,11 +135,11 @@ public class GroupScene : MonoBehaviour
 			{
 				if(i < groupSize)
 				{
-					currentShapes[i].transform.renderer.material.color = availableColors[rmdIdx];
+					//currentShapes[i].transform.renderer.material.color = availableColors[rmdIdx];
 				}
 				else
 				{
-					currentShapes[i].transform.renderer.material.color = availableColors[rmdIdx2];
+					//currentShapes[i].transform.renderer.material.color = availableColors[rmdIdx2];
 				}
 			}
 		}
