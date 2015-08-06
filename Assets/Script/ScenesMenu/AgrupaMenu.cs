@@ -3,18 +3,19 @@ using System.Collections;
 
 public class AgrupaMenu : MonoBehaviour 
 {
-	public void selectFigura()
+	public void selectGroupType(string type)
 	{
-		ScreenManager.instance.GoToScene("FiguraScene");
-	}
-	
-	public void selectTamaño()
-	{
-		ScreenManager.instance.GoToScene("TamañoScene");
-	}
-
-	public void selectColor()
-	{
-		ScreenManager.instance.GoToScene("ColorScene");
+		switch(type)
+		{
+		case("color"):
+		{GroupScene.typeOfGroup = EGroups.COLOR;}break;
+		case("shape"):
+		{GroupScene.typeOfGroup = EGroups.SHAPE;}break;
+		case("size"):
+		{GroupScene.typeOfGroup = EGroups.SIZE;}break;
+		case("free"):
+		{GroupScene.typeOfGroup = EGroups.FREE;}break;
+		}
+		ScreenManager.instance.GoToScene("GroupsScene");
 	}
 }
