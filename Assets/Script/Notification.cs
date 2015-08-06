@@ -3,10 +3,9 @@ using System.Collections;
 using UnityEngine.UI;
 using DG.Tweening;
 
-public class Question : MonoBehaviour {
-
+public class Notification : MonoBehaviour {
+	
 	protected AudioSource audioSource;
-	protected int soundtoGo =0;
 	protected Teacher data;
 	protected GameObject toast;
 	protected string currentToast;
@@ -18,62 +17,48 @@ public class Question : MonoBehaviour {
 			GameObject.Find("Main Camera").AddComponent<AudioSource>();
 			audioSource = GameObject.FindObjectOfType<AudioSource>();
 		}
-
+		
 		TextAsset tempTxt = (TextAsset)Resources.Load ("Levels/soundShapes");
 		data = Teacher.LoadFromText(tempTxt.text);
-		toast = GameObject.Find("Toast");
+		toast = GameObject.Find("Notify");
+
+		questionText("0");
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+		
 	}
-
+	
 	public void questionSound(string soundToPlay)
 	{
-		AudioClip aC = (AudioClip)Resources.Load("Sounds/"+soundToPlay+"_"+soundtoGo);
-		showToast(true,0);
+		AudioClip aC = (AudioClip)Resources.Load("Sounds/"+soundToPlay);
+		
 
 		audioSource.clip = aC;
 		audioSource.Play();
-		currentToast = soundToPlay+"_"+soundtoGo;
-		if(audioSource.clip!=null)
-		{
-			StartCoroutine("hideToastWhenSoundEnd",new object[2]{audioSource.clip.length,soundToPlay+"_"+soundtoGo});
-		}
-		else
-		{
-			StartCoroutine("hideToastWhenSoundEnd",new object[2]{3f,soundToPlay+"_"+soundtoGo});
-		}
-		questionText(soundToPlay+"_"+soundtoGo);
-		soundtoGo++;
+		currentToast = soundToPlay;
+		StartCoroutine("hideToastWhenSoundEnd",new object[2]{audioSource.clip.length,soundToPlay});
+		questionText(soundToPlay);
 
-		if(soundtoGo>=data.getFigureByName(soundToPlay).infos.Length)
-		{
-
-			soundtoGo=0;
-		}
 	}
-
+	
 	protected void questionText(string textToPlay)
 	{
 		string number = "";
 		string shape = "";
-		Info infTemp = new Info();
+		notify infTemp = new notify();
 
-		number = textToPlay.Substring(textToPlay.IndexOf('_')+1);
-		shape = textToPlay.Substring(0,textToPlay.IndexOf('_'));
-		infTemp = data.getFigureByName(shape).getInfoByName(number);
-		Figures[] figure = data.figure;
+		infTemp = data.getNotifyByName(textToPlay);
 
 		showToast(false);
 		toast.GetComponentInChildren<Text>().text = infTemp.text;
 	}
-
+	
 	protected void showToast(bool hide,float delay = .5f)
 	{
 		float val = Screen.height*0.2f;
-
+		
 		if(hide)
 		{
 			toast.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0,-val ),delay);
@@ -83,7 +68,7 @@ public class Question : MonoBehaviour {
 			toast.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0,0) ,delay);
 		}
 	}
-
+	
 	IEnumerator hideToastWhenSoundEnd(object[] parms)
 	{
 		yield return new WaitForSeconds((float)parms[0]+3f);
