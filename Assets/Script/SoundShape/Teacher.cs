@@ -9,7 +9,7 @@ public class Teacher
 {
 	//Niveles (se serializan como arreglo normal Level[] mas abajo)
 	protected List<Figures> _figure = new List<Figures>();
-	
+	protected List<notify> _notify = new List<notify>();
 	//Constructor existente para evitar problemas con XMLSerializer
 	public Teacher(){}
 	
@@ -47,9 +47,29 @@ public class Teacher
 		get{return _figure.ToArray();}
 	}
 
+	[XmlArray("notification"),XmlArrayItem("notify")]
+	public notify[] notify
+	{
+		set{_notify = new List<notify>(value);}
+		get{return _notify.ToArray();}
+	}
+
 	public Figures getFigureByName(string Name)
 	{
 		foreach(Figures l in _figure)
+		{
+			if(l.name == Name)
+			{
+				return l;
+			}
+		}
+		
+		return null;
+	}
+
+	public notify getNotifyByName(string Name)
+	{
+		foreach(notify l in _notify)
 		{
 			if(l.name == Name)
 			{

@@ -10,6 +10,10 @@ public class Levels
 	//Niveles (se serializan como arreglo normal Level[] mas abajo)
 	protected List<Level> _levels = new List<Level>();
 
+	protected List<DrawingImage> _dImages = new List<DrawingImage>();
+
+	protected GroupLevel _gLevel;
+
 	//Constructor existente para evitar problemas con XMLSerializer
 	public Levels(){}
 
@@ -45,6 +49,20 @@ public class Levels
 	{
 		set{_levels = new List<Level>(value);}
 		get{return _levels.ToArray();}
+	}
+
+	[XmlArray("drawingImages"),XmlArrayItem("image")]
+	public DrawingImage[] dImages
+	{
+		set{_dImages = new List<DrawingImage>(value);}
+		get{return _dImages.ToArray();}
+	}
+	
+	[XmlElement("groupLevels")]
+	public GroupLevel gLevel
+	{
+		set{_gLevel = value;}
+		get{return _gLevel;}
 	}
 
 	/**

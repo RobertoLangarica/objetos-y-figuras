@@ -2,29 +2,60 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class SoundShapeManager2 : MonoBehaviour {
-
-	public AudioSource audioSource;
+public class SoundShapeManager : MonoBehaviour {
+	
 	public Text txt;
 	public GameObject popUp;
 	protected Teacher data;
-	protected bool isDrawing;
-	public GameObject DrawTool;
 
+	public GameObject DrawTool;
+	public GameObject shapes;
+	public string startSoundName;
+	protected Button[] shapeBtn;
+	protected AudioSource audioSource;
 	void Start()
 	{
 		TextAsset tempTxt = (TextAsset)Resources.Load ("Levels/soundShapes");
 		
 		//Ya eixste el archivo y solo checamos la version
 		data = Teacher.LoadFromText(tempTxt.text);//Levels.Load(path);
+
+		shapes = GameObject.Find("Shapes");
+		shapeBtn = shapes.gameObject.GetComponentsInChildren<Button>();
+		audioSource = GameObject.FindObjectOfType<AudioSource>();
+		if(audioSource==null)
+		{
+			GameObject.Find("Main Camera").AddComponent<AudioSource>();
+			audioSource = GameObject.FindObjectOfType<AudioSource>();
+		}
+		startSound(startSoundName);
 	}
 
 	void Update()
 	{
+		#if TEACHER_MODE
 		if(Input.GetMouseButtonDown(0))
 		{
 			popUp.SetActive(false);
 		}
+		
+		if(DrawTool.GetComponent<DrawingInput>().canDraw)
+		{
+			foreach(Button b in shapeBtn)
+			{
+				b.transition = Selectable.Transition.None;
+			}
+		}
+		else
+		{
+			foreach(Button b in shapeBtn)
+			{
+				b.transition = Selectable.Transition.ColorTint;
+			}
+		}
+		#else
+
+		#endif
 	}
 
 	public void selectSound(string soundToPlay)
@@ -33,15 +64,22 @@ public class SoundShapeManager2 : MonoBehaviour {
 		#if TEACHER_MODE
 			//PopUp
 			question(soundToPlay);
+			//if(!DrawTool.GetComponent<DrawingInput>().canDraw)
+			//{
+			//	AudioClip aC = (AudioClip)Resources.Load("Sounds/"+soundToPlay);
+			//	audioSource.clip = aC;
+			//	audioSource.Play();
+			//}
 		#else
-		if(!DrawTool.GetComponent<DrawingInput>().canDraw)
-		{
 			AudioClip aC = (AudioClip)Resources.Load("Sounds/"+soundToPlay);
-			audioSource.clip = aC;
-			audioSource.Play();
-		}
+			if(!audioSource.isPlaying)
+			{
+				audioSource.clip = aC;
+				audioSource.Play();
+			}
 		#endif
 	}
+
 	protected void question(string textToPlay)
 	{
 		string number = "";
@@ -60,5 +98,24 @@ public class SoundShapeManager2 : MonoBehaviour {
 		popUp.SetActive(true);
 	}
 
+	public void overSound(string soundToPlay)
+	{
+		AudioClip aC = (AudioClip)Resources.Load("Sounds/"+soundToPlay);
+		
+		if(!audioSource.isPlaying)
+		{
+			audioSource.clip = aC;
+			audioSource.Play();
+		}
+	}
 
+	public void startSound(string startSound)
+	{
+		AudioClip aC = (AudioClip)Resources.Load("Sounds/"+startSound);
+		if(!audioSource.isPlaying)
+		{
+			audioSource.clip = aC;
+			audioSource.Play();
+		}
+	}
 }
