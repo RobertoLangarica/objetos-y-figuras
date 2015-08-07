@@ -60,12 +60,4 @@ public class BaseShape : MonoBehaviour {
 		}
 		get{return translateH;}
 	}
-	
-	/*void Update()
-	{
-		if(_rotateHandler != null)
-		{
-			_rotateHandler.transform.eulerAngles = Vector3.zero;
-		}
-	}*/
 }

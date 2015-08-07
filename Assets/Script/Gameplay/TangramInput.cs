@@ -5,11 +5,13 @@ using System;
 
 public class TangramInput : MonoBehaviour {
 
-	public string selectedLayerName;
-	public string normalLayerName;
-	public bool rotateOnlyWhenSelected = false;
-	public bool allowRotation = true;
-	public AudioSource dragSound;
+	//Propiedades configurables
+	public string selectedLayerName; //Layer en el que se ponen las piezas al seleccionarse
+	public string normalLayerName;//Layer normal cuando no estan seleccionadas
+	public bool rotateOnlyWhenSelected = false;//Indica si las piezas solo se pueden rotar una vez que se seleccionan
+	public bool allowRotation = true;//Indica si se permite la rotacion de las piezas (sobreescribe a rotateOnlyWhenSelected)
+	public AudioSource dragSound;//sonido para el drag
+	public bool preventOutOfScreen = false;
 
 	[HideInInspector]
 	protected BaseShape _selected;
@@ -35,15 +37,21 @@ public class TangramInput : MonoBehaviour {
 	//Para notificar estados del drag a otros objetos
 	public delegate void DOnDragFinish();
 	public delegate void DOnDrag();
+	public delegate void DOnDragStart();
 	[HideInInspector]
 	public DOnDragFinish onDragFinish;
 	[HideInInspector]
 	public DOnDrag onAnyDrag;
+	[HideInInspector]
+	public DOnDragStart onDragStart;
 
 	//Para el audio
 	protected float elapsedDragTime;
 	protected float dragSpeed;
-	
+
+	//Boundaries de la pantalla
+	protected Vector3 minPosition;
+	protected Vector3 maxPosition;
 
 	void Awake()
 	{
@@ -51,14 +59,19 @@ public class TangramInput : MonoBehaviour {
 		_sort = -1;
 
 		onDragFinish = foo;
-		onAnyDrag = foo;
+		onAnyDrag	 = foo;
+		onDragStart	 = foo;
 	}
 
 	void Start()
 	{
+		minPosition = Camera.main.ScreenToWorldPoint(new Vector3(0,0,0));
+		maxPosition = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width,Screen.height,0));
+
 		multipleFingersSelection = new Dictionary<int, BaseShape>();
 		multipleFingersRotateSelection = new Dictionary<int, BaseShape>();
 		lastDragFrame = -1;
+
 		if(dragSound)
 		{
 			dragSound.pitch = 0;
@@ -137,6 +150,7 @@ public class TangramInput : MonoBehaviour {
 
 						_selected = forMove;
 						rotating = false;
+						onDragStart();
 						return;
 					}
 				}
@@ -340,6 +354,9 @@ public class TangramInput : MonoBehaviour {
 					_selected = null;
 				}
 			}
+
+			onDragStart();
+
 			break;
 			
 		case ContinuousGesturePhase.Updated:
@@ -381,6 +398,16 @@ public class TangramInput : MonoBehaviour {
 						pos = new Vector3(_selected.transform.position.x + gesture.DeltaMove.x*cu
 						                  ,_selected.transform.position.y + gesture.DeltaMove.y*cu
 						                  ,_selected.transform.position.z);
+
+						if(preventOutOfScreen)
+						{
+							if(pos.x < minPosition.x){pos.x = minPosition.x;}
+							if(pos.y < minPosition.y){pos.y = minPosition.y;}
+
+							if(pos.x > maxPosition.x){pos.x = maxPosition.x;}
+							if(pos.y > maxPosition.y){pos.y = maxPosition.y;}
+						}
+
 						_selected.transform.position = pos;
 
 						_selected.rotateHandler = false;
