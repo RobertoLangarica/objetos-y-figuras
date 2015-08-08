@@ -44,6 +44,7 @@ public class GroupInput : MonoBehaviour
 			
 			if(selected)
 			{
+				selected.opnTouchEnded();
 				selected = null;
 			}
 			break;

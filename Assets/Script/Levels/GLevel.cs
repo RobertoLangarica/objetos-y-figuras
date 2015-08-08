@@ -5,10 +5,16 @@ using System.Collections.Generic;
 public class GLevel
 {
 	[XmlAttribute("colorNum")]
-	public string colorNum;
+	public int colorNum;
 	
 	[XmlAttribute("shapeNum")]
-	public string shapeNum;
+	public int shapeNum;
+	
+	[XmlAttribute("sizeNum")]
+	public int sizeNum;
+	
+	[XmlAttribute("totalGroups")]
+	public int totalGroups;
 	
 	public GLevel()
 	{}
