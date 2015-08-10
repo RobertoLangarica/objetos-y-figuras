@@ -25,6 +25,7 @@ public class GroupScene : MonoBehaviour
 	protected int maxLevel = 0;
 	protected Rect containerRect;
 	protected XMLLoader loader;
+	protected GameObject buttonGo;
 	protected GameObject[] currentShapes;
 	protected int[] availableColors;
 	protected float[] availableScales;
@@ -33,6 +34,8 @@ public class GroupScene : MonoBehaviour
 	void Start()
 	{
 		loader = GameObject.FindObjectOfType<XMLLoader>();
+		buttonGo = GameObject.Find("Calificar");
+		buttonGo.SetActive (false);
 
 		availableColors = new int[9]{0,1,2,3,4,5,6,7,8};
 
@@ -47,7 +50,7 @@ public class GroupScene : MonoBehaviour
 		readFromLoader();
 
 		generateShapes (totalGroups);
-		totalGroups = 6;
+		//totalGroups = 6;
 		generateContainers();
 
 		//modifyShapes ();
@@ -326,6 +329,11 @@ public class GroupScene : MonoBehaviour
 				shapeFeedback(false);
 			}
 		}
+		if (wasLastPiece ()) 
+		{
+			buttonGo.SetActive(true);
+			Debug.Log ("Show Button");
+		}
 	}
 
 	protected void shapeFeedback(bool isCorrect)
@@ -338,5 +346,50 @@ public class GroupScene : MonoBehaviour
 		{
 			Debug.Log ("Incorrecto");
 		}
+	}
+
+	protected bool wasLastPiece()
+	{
+		Vector2 currPos = Vector2.zero;
+		for (int i = 0; i < currentShapes.Length; i++) 
+		{
+			currPos = new Vector2(currentShapes[i].transform.localPosition.x,currentShapes[i].transform.localPosition.y);
+			if(!containerRect.Contains(currPos))
+			{
+				Debug.Log ("Faltan Piezas");
+				return false;
+			}
+		}
+		Debug.Log ("Todas las Piezas");
+		return true;
+	}
+
+	public void verifyExcersice()
+	{
+		int contGroup = -1;
+		Vector2 currPos = Vector2.zero;
+
+		for (int i = 0;i < containersInRect.Length;i++) 
+		{
+			for(int j = 0;j < currentShapes.Length;j++)
+			{
+				currPos = new Vector2(currentShapes[j].transform.localPosition.x,currentShapes[j].transform.localPosition.y);
+				if(containersInRect[i].Contains(currPos))
+				{
+					if(contGroup == -1)
+					{
+						contGroup = currentShapes[j].GetComponent<GroupFigure>().group;
+					}
+					else if(currentShapes[j].GetComponent<GroupFigure>().group != contGroup)
+					{
+						Debug.Log ("Ejercicio mal");
+						//return false;
+					}
+				}
+			}
+			contGroup = -1;
+		}
+		Debug.Log ("Ejercicio bien");
+		//return true;
 	}
 }
