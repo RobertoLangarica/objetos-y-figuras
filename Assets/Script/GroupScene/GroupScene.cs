@@ -56,6 +56,10 @@ public class GroupScene : MonoBehaviour
 		//modifyShapes ();
 	}
 
+	protected void startLevel()
+	{
+	}
+
 	protected void readFromLoader()
 	{
 		switch(typeOfGroup)
@@ -391,5 +395,17 @@ public class GroupScene : MonoBehaviour
 		}
 		Debug.Log ("Ejercicio bien");
 		//return true;
+	}
+
+	protected void nextLevel()
+	{
+		if (currentLevel < maxLevel) 
+		{
+			currentLevel++;
+		}
+		else 
+		{
+			Debug.Log ("Go back");
+		}
 	}
 }
