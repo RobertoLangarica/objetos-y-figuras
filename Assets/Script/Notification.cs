@@ -22,7 +22,7 @@ public class Notification : MonoBehaviour {
 		data = Teacher.LoadFromText(tempTxt.text);
 		toast = GameObject.Find("Notify");
 
-		questionText("0");
+		//questionText("0");
 	}
 	
 	// Update is called once per frame
@@ -38,7 +38,12 @@ public class Notification : MonoBehaviour {
 		audioSource.clip = aC;
 		audioSource.Play();
 		currentToast = soundToPlay;
-		StartCoroutine("hideToastWhenSoundEnd",new object[2]{audioSource.clip.length,soundToPlay});
+		if(audioSource.clip)
+		{
+			StartCoroutine("hideToastWhenSoundEnd",new object[2]{audioSource.clip.length,soundToPlay});
+		}
+		else
+			StartCoroutine("hideToastWhenSoundEnd",new object[2]{3f,soundToPlay});
 		questionText(soundToPlay);
 
 	}
