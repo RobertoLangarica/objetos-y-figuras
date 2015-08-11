@@ -1,14 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GroupFigure : MonoBehaviour 
+public class GroupFigure : BaseShape 
 {
-	protected int sort; 
+	public delegate void onMovementFinish(GameObject go);
 
-	public bool groupAorB;
+	protected int sort; 
+	
+	//[HideInInspector]
+	public int group;
 	[HideInInspector]
 	public SpriteRenderer sprite;
-	
+	[HideInInspector]
+	public onMovementFinish finishAction;
+
 	protected int gSort; 
 	protected float boundaryTop;
 	protected float boundaryBottom;
@@ -22,15 +27,6 @@ public class GroupFigure : MonoBehaviour
 		boundaryBottom = -Camera.main.orthographicSize;
 		boundaryLeft = -Camera.main.aspect * Camera.main.orthographicSize;
 		boundaryRight = Camera.main.aspect * Camera.main.orthographicSize;
-
-		float min = Screen.width * .05f;
-		float max = Screen.width - Screen.width * .05f;
-		gSort = -32767;
-
-		Vector3 randPos = Camera.main.ScreenToWorldPoint(new Vector3(Random.Range(min,max),Random.Range(Screen.height*0.2f,Screen.height*0.8f),0));
-		randPos.z = 0;
-
-		transform.position = randPos;
 
 		sprite = GetComponent<SpriteRenderer>();
 	}
@@ -89,5 +85,13 @@ public class GroupFigure : MonoBehaviour
 		//z no varia
 		position.z = transform.position.z;
 		transform.position = (position-positionDifference);
+	}
+
+	public void opnTouchEnded()
+	{
+		if(finishAction != null)
+		{
+			finishAction(gameObject);
+		}
 	}
 }
