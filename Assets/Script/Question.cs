@@ -10,6 +10,7 @@ public class Question : MonoBehaviour {
 	protected Teacher data;
 	protected GameObject toast;
 	protected string currentToast;
+	protected GameObject QuestionBtn;
 	// Use this for initialization
 	void Start () {
 		audioSource = GameObject.FindObjectOfType<AudioSource>();
@@ -22,11 +23,12 @@ public class Question : MonoBehaviour {
 		TextAsset tempTxt = (TextAsset)Resources.Load ("Levels/soundShapes");
 		data = Teacher.LoadFromText(tempTxt.text);
 		toast = GameObject.Find("Toast");
+		QuestionBtn = GameObject.Find("ClueBtn");
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+
 	}
 
 	public void questionSound(string soundToPlay)
@@ -35,6 +37,7 @@ public class Question : MonoBehaviour {
 		showToast(true,0);
 
 		audioSource.clip = aC;
+
 		audioSource.Play();
 		currentToast = soundToPlay+"_"+soundtoGo;
 		if(audioSource.clip!=null)
@@ -89,5 +92,10 @@ public class Question : MonoBehaviour {
 		yield return new WaitForSeconds((float)parms[0]+3f);
 		if(string.Compare(currentToast,(string)parms[1])==0)
 			showToast(true);
+	}
+
+	public void avtivateQuestion()
+	{
+		QuestionBtn.GetComponent<Button>().interactable = QuestionBtn.GetComponent<Button>().interactable == true ? false: true;
 	}
 }

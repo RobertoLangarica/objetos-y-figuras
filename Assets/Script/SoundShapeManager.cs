@@ -3,13 +3,10 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class SoundShapeManager : MonoBehaviour {
-	
-	public Text txt;
-	public GameObject popUp;
+
 	protected Teacher data;
 
-	public GameObject DrawTool;
-	public GameObject shapes;
+	protected GameObject shapes;
 	public string startSoundName;
 	protected Button[] shapeBtn;
 	protected AudioSource audioSource;
@@ -28,7 +25,7 @@ public class SoundShapeManager : MonoBehaviour {
 			GameObject.Find("Main Camera").AddComponent<AudioSource>();
 			audioSource = GameObject.FindObjectOfType<AudioSource>();
 		}
-		startSound(startSoundName);
+		overSound(startSoundName);
 	}
 
 	void Update()
@@ -58,46 +55,6 @@ public class SoundShapeManager : MonoBehaviour {
 		#endif
 	}
 
-	public void selectSound(string soundToPlay)
-	{
-
-		#if TEACHER_MODE
-			//PopUp
-			question(soundToPlay);
-			//if(!DrawTool.GetComponent<DrawingInput>().canDraw)
-			//{
-			//	AudioClip aC = (AudioClip)Resources.Load("Sounds/"+soundToPlay);
-			//	audioSource.clip = aC;
-			//	audioSource.Play();
-			//}
-		#else
-			AudioClip aC = (AudioClip)Resources.Load("Sounds/"+soundToPlay);
-			if(!audioSource.isPlaying)
-			{
-				audioSource.clip = aC;
-				audioSource.Play();
-			}
-		#endif
-	}
-
-	protected void question(string textToPlay)
-	{
-		string number = "";
-		string shape = "";
-		Info infTemp = new Info();
-
-		number = textToPlay.Substring(textToPlay.IndexOf('_')+1);
-		shape = textToPlay.Substring(0,textToPlay.IndexOf('_'));
-
-		infTemp = data.getFigureByName(shape).getInfoByName(number);
-		Figures[] figure = data.figure;
-
-		Debug.Log(infTemp.text);
-
-		txt.text = infTemp.text;
-		popUp.SetActive(true);
-	}
-
 	public void overSound(string soundToPlay)
 	{
 		AudioClip aC = (AudioClip)Resources.Load("Sounds/"+soundToPlay);
@@ -105,17 +62,9 @@ public class SoundShapeManager : MonoBehaviour {
 		if(!audioSource.isPlaying)
 		{
 			audioSource.clip = aC;
-			audioSource.Play();
+			if(!GameObject.FindObjectOfType<DrawingInput>().canDraw)
+				audioSource.Play();
 		}
 	}
 
-	public void startSound(string startSound)
-	{
-		AudioClip aC = (AudioClip)Resources.Load("Sounds/"+startSound);
-		if(!audioSource.isPlaying)
-		{
-			audioSource.clip = aC;
-			audioSource.Play();
-		}
-	}
 }
