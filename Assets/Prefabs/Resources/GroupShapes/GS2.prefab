@@ -57,9 +57,10 @@ PolygonCollider2D:
   m_IsTrigger: 1
   m_Poly:
     m_Paths:
-    - - {x: -1.33168745, y: .661409974}
-      - {x: .00388562679, y: -.681176007}
-      - {x: 1.31840801, y: .654027283}
+    - - {x: -1.49268723, y: 1.29768705}
+      - {x: -2.98805428, y: -1.29264498}
+      - {x: 3.00366402, y: -1.31471586}
+      - {x: 1.48719406, y: 1.30052757}
 --- !u!114 &11475580
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -71,7 +72,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23c07d0c84b3cd14c80cc494a6f1674d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groupAorB: 0
+  spriteRenderer: {fileID: 0}
+  _rotateHandler: {fileID: 0}
+  _translateHandler: {fileID: 0}
+  group: 0
   sprite: {fileID: 0}
 --- !u!212 &21201674
 SpriteRenderer:
@@ -93,7 +97,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 446442361
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300002, guid: 6f013ca7d17c74c85821c408c74d373c, type: 3}
+  m_Sprite: {fileID: 21300022, guid: e9ccf014ac38e455c9c03116e51e3213, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:
