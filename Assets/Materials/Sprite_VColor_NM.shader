@@ -4,7 +4,7 @@
 		_NormalMap ("Normal Map", 2D) = "bump" {}
 	}
 	SubShader {
-		Tags { "RenderType"="Opaque" }
+		Tags { "RenderType"="Opaque" "Queue"="Transparent"}
 		LOD 200
 		
 		CGPROGRAM

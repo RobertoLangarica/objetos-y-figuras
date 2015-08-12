@@ -7,7 +7,7 @@
 		_RampColorsCount("Ramp colors Count", Int) = 16
 	}
 	SubShader {
-		Tags { "RenderType"="Opaque" }
+		Tags { "RenderType"="Opaque" "Queue"="Transparent"}
 		LOD 200
 		
 		CGPROGRAM
