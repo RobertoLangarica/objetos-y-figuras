@@ -23,6 +23,7 @@ public class GroupScene : MonoBehaviour
 	protected int totalGroups = 0;
 	protected int currentLevel = 0;
 	protected int maxLevel = 0;
+	protected int shapesCount = 0;
 	protected Rect containerRect;
 	protected XMLLoader loader;
 	protected GameObject buttonGo;
@@ -64,15 +65,14 @@ public class GroupScene : MonoBehaviour
 			{
 				Destroy(containerImg[i]);
 			}
-			Debug.Log("Destruido");
 		}
 		readFromLoader();
 
-		generateShapes (totalGroups);
+		generateShapes (shapesCount);
 		//totalGroups = 6;
 		generateContainers();
 
-		//modifyShapes ();
+		modifyShapes ();
 	}
 
 	protected void readFromLoader()
@@ -83,28 +83,35 @@ public class GroupScene : MonoBehaviour
 		{
 			maxLevel = loader.data.gLevel.byColor.Length;
 			totalGroups = loader.data.gLevel.byColor[currentLevel].totalGroups;
+			shapesCount = loader.data.gLevel.byColor[currentLevel].shapeNum;
+			currentShapes = new GameObject[groupSize*totalGroups];
 		}
 			break;
 		case(EGroups.SHAPE):
 		{
 			maxLevel = loader.data.gLevel.byShape.Length;
 			totalGroups = loader.data.gLevel.byShape[currentLevel].totalGroups;
+			shapesCount = loader.data.gLevel.byShape[currentLevel].shapeNum;
+			currentShapes = new GameObject[groupSize*totalGroups];
 		}
 			break;
 		case(EGroups.SIZE):
 		{
 			maxLevel = loader.data.gLevel.bySize.Length;
 			totalGroups = loader.data.gLevel.bySize[currentLevel].totalGroups;
+			shapesCount = loader.data.gLevel.bySize[currentLevel].shapeNum;
+			currentShapes = new GameObject[groupSize*totalGroups];
 		}
 			break;
 		case(EGroups.FREE):
 		{
 			maxLevel = loader.data.gLevel.freeStyle.Length;
 			totalGroups = loader.data.gLevel.freeStyle[currentLevel].totalGroups;
+			shapesCount = loader.data.gLevel.freeStyle[currentLevel].shapeNum;
+			currentShapes = new GameObject[groupSize*shapesCount];
 		}
 			break;
 		}
-		currentShapes = new GameObject[groupSize*totalGroups];
 	}
 
 	protected void generateShapes(int quantity)
@@ -124,6 +131,7 @@ public class GroupScene : MonoBehaviour
 		{
 			for(int i = 0;i < previousShapes.Length;i++)
 			{
+
 				ndxs.RemoveAt(ndxs.IndexOf(previousShapes[i]));
 			}
 		}
@@ -138,7 +146,7 @@ public class GroupScene : MonoBehaviour
 		float aThird = ((tempV3[2].x - tempV3[0].x)*0.333f);
 		float yDif = (tempV3[2].y - tempV3[0].y)/(currentShapes.Length+1);
 		float yPos = tempV3[0].y;
-		previousShapes = new int[totalGroups];
+		previousShapes = new int[quantity];
 
 		for(int i = 0;i < currentShapes.Length;i++)
 		{
@@ -148,14 +156,7 @@ public class GroupScene : MonoBehaviour
 				if(count < quantity)
 				{
 					rmdIdx = ndxs[Random.Range(0,ndxs.Count-1)];
-					Debug.Log (rmdIdx + " ******* " + ndxs.Count);
 					ndxs.RemoveAt(ndxs.IndexOf(rmdIdx));
-					string debug = "";
-					for(int p = 0;p < ndxs.Count;p++)
-					{
-						debug = debug + " , " + ndxs[p];
-					}
-					Debug.Log(debug);
 					previousShapes[count] = rmdIdx;
 					count++;
 				}
@@ -174,60 +175,87 @@ public class GroupScene : MonoBehaviour
 
 	protected void modifyShapes()
 	{
-		List<int> ndxs = new List<int>();
-		int rmdIdx = 0;
-		int quantity = 0;
-		int rmdIdx2 = 0;
-
 		switch (typeOfGroup) 
 		{
 		case(EGroups.SHAPE):
-		{}
+		{
+			int rdmColor = Random.Range(0,7);
+			for(int i = 0;i < currentShapes.Length;i++)
+			{
+				currentShapes[i].GetComponent<GroupFigure>().color = (BaseShape.EShapeColor)rdmColor;
+				currentShapes[i].GetComponent<GroupFigure>().size = BaseShape.EShapeSize.SIZE2;
+			}
+		}
 			break;
 		case(EGroups.SIZE):
 		{
-			for (int i = 0; i < availableScales.Length; i++) 
-			{
-				ndxs.Add(i);
-			}
-			int count = 0;
-			quantity = loader.data.gLevel.byColor[currentLevel].sizeNum;
-			
+			int group = -1;
+			int rdmColor = Random.Range(0,7);
+			int currSize = 0;
+			List<int> sizeArr = new List<int>(){0,1,2,3,4};
 			for(int i = 0;i < currentShapes.Length;i++)
 			{
-				if((i%groupSize) == 0 && count < quantity)
+				currentShapes[i].GetComponent<GroupFigure>().color = (BaseShape.EShapeColor)rdmColor;
+				if(group == -1 || group != currentShapes[i].GetComponent<GroupFigure>().group)
 				{
-					rmdIdx = ndxs[Random.Range(0,ndxs.Count)];
-					ndxs.RemoveAt(rmdIdx);
-					count++;
+					currSize = sizeArr[Random.Range(0,sizeArr.Count-1)];
+					sizeArr.RemoveAt(sizeArr.IndexOf(currSize));
+					group = currentShapes[i].GetComponent<GroupFigure>().group;
 				}
-				currentShapes[i].transform.localScale = new Vector3(availableScales[rmdIdx],availableScales[rmdIdx],1);
+				currentShapes[i].GetComponent<GroupFigure>().size = (BaseShape.EShapeSize)currSize;
 			}
 		}
 			break;
 		case(EGroups.COLOR):
 		{
-			for (int i = 0; i < availableColors.Length; i++) 
-			{
-				ndxs.Add(i);
-			}
-			int count = 0;
-			quantity = loader.data.gLevel.byColor[currentLevel].colorNum;
-			
+			int group = -1;
+			int rdmColor = 0;
+			List<int> sizeArr = new List<int>(){0,1,2,3,4,5,6,7,8};
 			for(int i = 0;i < currentShapes.Length;i++)
 			{
-				if((i%groupSize) == 0 && count < quantity)
+				if(group == -1 || group != currentShapes[i].GetComponent<GroupFigure>().group)
 				{
-					rmdIdx = ndxs[Random.Range(0,ndxs.Count)];
-					ndxs.RemoveAt(rmdIdx);
-					count++;
+					rdmColor = sizeArr[Random.Range(0,sizeArr.Count-1)];
+					sizeArr.RemoveAt(sizeArr.IndexOf(rdmColor));
+					group = currentShapes[i].GetComponent<GroupFigure>().group;
 				}
-				//currentShapes[i] = GameObject.Instantiate(kindsOfShapes[rmdIdx]) as GameObject;
+				currentShapes[i].GetComponent<GroupFigure>().size = BaseShape.EShapeSize.SIZE2;
+				currentShapes[i].GetComponent<GroupFigure>().color = (BaseShape.EShapeColor)rdmColor;
 			}
 		}
 			break;
 		case(EGroups.FREE):
-		{}
+		{
+			int askedColors = loader.data.gLevel.freeStyle[currentLevel].colorNum;
+			int askedSizes = loader.data.gLevel.freeStyle[currentLevel].sizeNum;
+			int tempInt = 0;
+			int[] selectColor = new int[askedColors];
+			int[] selectSize = new int[askedSizes];
+			List<int> sizeArr = new List<int>(){0,1,2,3,4};
+			List<int> colorArr = new List<int>(){0,1,2,3,4,5,6,7,8};
+
+			for(int i = 0;i < selectColor.Length;i++)
+			{
+				tempInt = colorArr[Random.Range(0,colorArr.Count-1)];
+				colorArr.RemoveAt(colorArr.IndexOf(tempInt));
+				selectColor[i] = tempInt;
+			}
+
+			for(int i = 0;i < selectSize.Length;i++)
+			{
+				tempInt = sizeArr[Random.Range(0,sizeArr.Count-1)];
+				sizeArr.RemoveAt(sizeArr.IndexOf(tempInt));
+				selectSize[i] = tempInt;
+			}
+
+			for(int i = 0,j = 0,k = 0;i < currentShapes.Length;i++,j++,k++)
+			{
+				currentShapes[i].GetComponent<GroupFigure>().size = (BaseShape.EShapeSize)selectSize[j];
+				currentShapes[i].GetComponent<GroupFigure>().color = (BaseShape.EShapeColor)selectColor[k];
+				if(j == (askedSizes-1))j = -1;
+				if(k == (askedColors-1))k = -1;
+			}
+		}
 			break;
 		}
 	}
