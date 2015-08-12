@@ -71,7 +71,7 @@ public class ShapeSelector : MonoBehaviour {
 		Sprite sprite = input.selected.spriteRenderer.sprite;
 
 		input.selected.sortingLayer = "SelectedShape";
-		input.selected.color = colorSelector.selectedColor;
+		//input.selected.color = colorSelector.selectedColor;
 
 		float u = (Camera.main.orthographicSize*2*sprite.pixelsPerUnit)/Screen.height;
 		Vector3 size = sprite.bounds.size * sprite.pixelsPerUnit;
