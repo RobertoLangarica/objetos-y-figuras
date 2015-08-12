@@ -15,6 +15,7 @@ public class Shape400 : BaseShape {
 	// Use this for initialization
 	void Start () {
 		container = null;
+		baseStart();
 	}
 	
 	// Update is called once per frame
