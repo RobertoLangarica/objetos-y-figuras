@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using DG.Tweening.Core;
 using DG.Tweening;
 
-[RequireComponent(typeof(SpriteRenderer))]
 public class BaseShape : MonoBehaviour {
 
 	public enum EShapeColor
@@ -31,6 +31,7 @@ public class BaseShape : MonoBehaviour {
 	};
 
 	public SpriteRenderer spriteRenderer; 
+	public Image image;
 	public GameObject _rotateHandler = null;
 	public GameObject _translateHandler = null;
 	public EShapeColor initialColor = EShapeColor.NONE;
@@ -59,14 +60,41 @@ public class BaseShape : MonoBehaviour {
 
 	public string sortingLayer
 	{
-		get{return spriteRenderer.sortingLayerName;}
-		set{spriteRenderer.sortingLayerName = value;}
+		get{
+			if(spriteRenderer)
+			{
+				return spriteRenderer.sortingLayerName;
+			}
+
+			return "";
+		}
+		set
+		{
+			if(spriteRenderer)
+			{
+				spriteRenderer.sortingLayerName = value;
+			}
+		}
 	}
 	
 	public int sortingOrder
 	{
-		get{return spriteRenderer.sortingOrder;}
-		set{spriteRenderer.sortingOrder = value;}
+		get
+		{
+			if(spriteRenderer)
+			{
+				return spriteRenderer.sortingOrder;
+			}
+
+			return 0;
+		}
+		set
+		{
+			if(spriteRenderer)
+			{
+				spriteRenderer.sortingOrder = value;
+			}
+		}
 	}
 
 
@@ -83,31 +111,94 @@ public class BaseShape : MonoBehaviour {
 			switch(currentColor)
 			{
 			case EShapeColor.AQUA:
-				spriteRenderer.color = new Color(0.376f, 0.698f, 0.639f);
+				if(spriteRenderer)
+				{
+					spriteRenderer.color = new Color(0.376f, 0.698f, 0.639f);
+				}
+				else if(image)
+				{
+					image.color = new Color(0.376f, 0.698f, 0.639f);
+				}
 				break;
 			case EShapeColor.BLACK:
-				spriteRenderer.color = new Color(0.180f, 0.188f, 0.192f);
+				if(spriteRenderer)
+				{
+					spriteRenderer.color = new Color(0.180f, 0.188f, 0.192f);
+				}
+				else if(image)
+				{
+					image.color = new Color(0.180f, 0.188f, 0.192f);
+				}
 				break;
 			case EShapeColor.BLUE:
-				spriteRenderer.color = new Color(0.133f, 0.565f, 0.945f);
+				if(spriteRenderer)
+				{
+					spriteRenderer.color = new Color(0.133f, 0.565f, 0.945f);
+				}
+				else if(image)
+				{
+					image.color = new Color(0.133f, 0.565f, 0.945f);
+				}
 				break;
 			case EShapeColor.GREEN:
-				spriteRenderer.color = new Color(0.192f, 0.545f, 0.263f);
+				if(spriteRenderer)
+				{
+					spriteRenderer.color = new Color(0.192f, 0.545f, 0.263f);
+				}
+				else if(image)
+				{
+					image.color = new Color(0.192f, 0.545f, 0.263f);
+				}
 				break;
 			case EShapeColor.GREY:
-				spriteRenderer.color = new Color(0.392f, 0.514f, 0.584f);
+				if(spriteRenderer)
+				{
+					spriteRenderer.color = new Color(0.392f, 0.514f, 0.584f);
+				}
+				else if(image)
+				{
+					image.color = new Color(0.392f, 0.514f, 0.584f);
+				}
 				break;
 			case EShapeColor.MAGENTA:
-				spriteRenderer.color = new Color(0.643f, 0.059f, 0.482f);
+				if(spriteRenderer)
+				{
+					spriteRenderer.color = new Color(0.643f, 0.059f, 0.482f);
+				}
+				else if(image)
+				{
+					image.color = new Color(0.643f, 0.059f, 0.482f);
+				}
 				break;
 			case EShapeColor.RED:
-				spriteRenderer.color = new Color(0.965f, 0.282f, 0.427f);
+				if(spriteRenderer)
+				{
+					spriteRenderer.color = new Color(0.965f, 0.282f, 0.427f);
+				}
+				else if(image)
+				{
+					image.color = new Color(0.965f, 0.282f, 0.427f);
+				}
 				break;
 			case EShapeColor.WHITE:
-				spriteRenderer.color = new Color(0.910f, 0.937f, 0.957f);
+				if(spriteRenderer)
+				{
+					spriteRenderer.color = new Color(0.910f, 0.937f, 0.957f);
+				}
+				else if(image)
+				{
+					image.color = new Color(0.910f, 0.937f, 0.957f);
+				}
 				break;
 			case EShapeColor.YELLOW:
-				spriteRenderer.color = new Color(0.976f, 0.627f, 0.000f);
+				if(spriteRenderer)
+				{
+					spriteRenderer.color = new Color(0.976f, 0.627f, 0.000f);
+				}
+				else if(image)
+				{
+					image.color = new Color(0.976f, 0.627f, 0.000f);
+				}
 				break;
 			}
 		}
@@ -120,23 +211,26 @@ public class BaseShape : MonoBehaviour {
 		{
 			currentSize = value;
 
-			switch(currentSize)
+			if(spriteRenderer)
 			{
-			case EShapeSize.SIZE1:
-				transform.localScale = new Vector3(0.33333f,0.33333f,1);
-				break;
-			case EShapeSize.SIZE2:
-				transform.localScale = new Vector3(0.50000f,0.50000f,1);
-				break;
-			case EShapeSize.SIZE3:
-				transform.localScale = new Vector3(0.66666f,0.66666f,1);
-				break;
-			case EShapeSize.SIZE4:
-				transform.localScale = new Vector3(0.83333f,0.83333f,1);
-				break;
-			case EShapeSize.SIZE5:
-				transform.localScale = new Vector3(1,1,1);
-				break;
+				switch(currentSize)
+				{
+				case EShapeSize.SIZE1:
+					transform.localScale = new Vector3(0.33333f,0.33333f,1);
+					break;
+				case EShapeSize.SIZE2:
+					transform.localScale = new Vector3(0.50000f,0.50000f,1);
+					break;
+				case EShapeSize.SIZE3:
+					transform.localScale = new Vector3(0.66666f,0.66666f,1);
+					break;
+				case EShapeSize.SIZE4:
+					transform.localScale = new Vector3(0.83333f,0.83333f,1);
+					break;
+				case EShapeSize.SIZE5:
+					transform.localScale = new Vector3(1,1,1);
+					break;
+				}
 			}
 		}
 		

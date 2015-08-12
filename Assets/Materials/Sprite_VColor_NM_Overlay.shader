@@ -1,10 +1,10 @@
-﻿Shader "VV/Sprite_VColor_NM" {
+﻿Shader "VV/Sprite_VColor_NM_Overlay" {
 	Properties {
 		_MainTex ("Base (RGB)", 2D) = "white" {}
 		_NormalMap ("Normal Map", 2D) = "bump" {}
 	}
 	SubShader {
-		Tags { "RenderType"="Opaque" "Queue"="Transparent"}
+		Tags { "RenderType"="Opaque" "Queue"="Transparent" "LightMode"="Always"}
 		LOD 200
 		
 		CGPROGRAM
