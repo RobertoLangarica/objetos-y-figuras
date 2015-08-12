@@ -45,7 +45,7 @@
 			fixed4 c = tex2D (_MainTex, IN.uv_MainTex);
 			o.Albedo = IN.vertexColor.rgb;
 			o.Normal = UnpackNormal(tex2D(_NormalMap, IN.uv_MainTex));
-			o.Alpha = c.a;
+			o.Alpha = c.a*IN.vertexColor.a;
 		}
 		ENDCG
 	} 
