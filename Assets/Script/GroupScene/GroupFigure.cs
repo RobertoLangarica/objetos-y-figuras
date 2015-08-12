@@ -7,7 +7,7 @@ public class GroupFigure : BaseShape
 
 	protected int sort; 
 	
-	//[HideInInspector]
+	[HideInInspector]
 	public int group;
 	[HideInInspector]
 	public SpriteRenderer sprite;

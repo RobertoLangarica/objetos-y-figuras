@@ -1,13 +1,13 @@
-﻿Shader "VV/GeometricShape" {
+﻿Shader "VV/Sprite_RampColor_NM" {
 	Properties {
 		_MainTex ("Base (RGB)", 2D) = "white" {}
 		_RampageTex("Rampage",2D) = "white" {}
 		_ColorIndex("Color index", Int) = 0
-		_RampColorsCount("Ramp colors Count", Int) = 16
 		_NormalMap ("NormalMap", 2D) = "bump" {}
+		_RampColorsCount("Ramp colors Count", Int) = 16
 	}
 	SubShader {
-		Tags { "RenderType"="Opaque" }
+		Tags { "RenderType"="Opaque" "Queue"="Transparent"}
 		LOD 200
 		
 		CGPROGRAM
@@ -36,17 +36,18 @@
 			float yRampcoordenate = 1 - (_ColorIndex*colorSize + (colorSize*0.5));
 			
 			col.rgb = tex2D(_RampageTex,float2(difLight,yRampcoordenate)).rgb;
-			//col.rgb = tex2D(_RampageTex,float2(difLight,0.53)).rgb;
 			col.a = s.Alpha;
 			return col;
 		}
-
+		
 		void surf (Input IN, inout SurfaceOutput o) {
 			half4 c = tex2D (_MainTex, IN.uv_MainTex);
-			o.Albedo = c.rgb;
+			
 			o.Normal = UnpackNormal(tex2D (_NormalMap, IN.uv_NormalMap));
+			o.Albedo = c.rgb;
 			o.Alpha = c.a;
 		}
+		
 		ENDCG
 	} 
 	FallBack "Diffuse"

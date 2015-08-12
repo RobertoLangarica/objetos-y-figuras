@@ -27,7 +27,9 @@ public class GroupScene : MonoBehaviour
 	protected XMLLoader loader;
 	protected GameObject buttonGo;
 	protected GameObject[] currentShapes;
+	protected GameObject[] containerImg;
 	protected int[] availableColors;
+	protected int[] previousShapes;
 	protected float[] availableScales;
 	protected Rect[] containersInRect;
 
@@ -47,6 +49,23 @@ public class GroupScene : MonoBehaviour
 		tempGo.GetComponent<RectTransform>().GetWorldCorners(tempV3);
 		containerRect = new Rect(tempV3[0].x,tempV3[0].y,(tempV3[2].x-tempV3[0].x),(tempV3[2].y-tempV3[0].y));
 
+		startLevel();
+	}
+
+	protected void startLevel()
+	{
+		if(currentShapes != null)
+		{
+			for(int i = 0;i < currentShapes.Length;i++)
+			{
+				Destroy(currentShapes[i]);
+			}
+			for(int i = 0;i < containerImg.Length;i++)
+			{
+				Destroy(containerImg[i]);
+			}
+			Debug.Log("Destruido");
+		}
 		readFromLoader();
 
 		generateShapes (totalGroups);
@@ -101,6 +120,14 @@ public class GroupScene : MonoBehaviour
 			yRnd.Add(i);
 		}
 
+		if(previousShapes != null)
+		{
+			for(int i = 0;i < previousShapes.Length;i++)
+			{
+				ndxs.RemoveAt(ndxs.IndexOf(previousShapes[i]));
+			}
+		}
+
 		int count = 0;
 		int rmdIdx = 0;
 		int group = 0;
@@ -111,6 +138,7 @@ public class GroupScene : MonoBehaviour
 		float aThird = ((tempV3[2].x - tempV3[0].x)*0.333f);
 		float yDif = (tempV3[2].y - tempV3[0].y)/(currentShapes.Length+1);
 		float yPos = tempV3[0].y;
+		previousShapes = new int[totalGroups];
 
 		for(int i = 0;i < currentShapes.Length;i++)
 		{
@@ -120,7 +148,15 @@ public class GroupScene : MonoBehaviour
 				if(count < quantity)
 				{
 					rmdIdx = ndxs[Random.Range(0,ndxs.Count-1)];
-					ndxs.RemoveAt(rmdIdx);
+					Debug.Log (rmdIdx + " ******* " + ndxs.Count);
+					ndxs.RemoveAt(ndxs.IndexOf(rmdIdx));
+					string debug = "";
+					for(int p = 0;p < ndxs.Count;p++)
+					{
+						debug = debug + " , " + ndxs[p];
+					}
+					Debug.Log(debug);
+					previousShapes[count] = rmdIdx;
 					count++;
 				}
 			}
@@ -261,6 +297,7 @@ public class GroupScene : MonoBehaviour
 			break;
 		}
 
+		containerImg = new GameObject[totalGroups];
 		for(int i = 0;i < totalGroups;i++)
 		{
 			GameObject tempGo = GameObject.Instantiate(containerGo.gameObject) as GameObject;
@@ -268,6 +305,7 @@ public class GroupScene : MonoBehaviour
 			tempGo.GetComponent<RectTransform>().localScale = new Vector3(nWidth,nHeight,1);
 			tempGo.GetComponent<RectTransform>().position = nPos[i];
 			tempGo.GetComponent<RectTransform>().SetParent(GameObject.Find("Containers").transform);
+			containerImg[i] = tempGo;
 		}
 	}
 	
@@ -277,7 +315,7 @@ public class GroupScene : MonoBehaviour
 		List<int> evaluation = new List<int>();
 		int ndx = 0;
 
-		if(containerRect.Contains(currPos))
+		if(containerRect.Contains(currPos) && typeOfGroup != EGroups.FREE)
 		{
 			for(int i = 0;i < containersInRect.Length;i++)
 			{
@@ -332,7 +370,6 @@ public class GroupScene : MonoBehaviour
 		if (wasLastPiece ()) 
 		{
 			buttonGo.SetActive(true);
-			Debug.Log ("Show Button");
 		}
 	}
 
@@ -340,11 +377,12 @@ public class GroupScene : MonoBehaviour
 	{
 		if(isCorrect)
 		{
-			Debug.Log ("Correcto");
+			//Debug.Log ("Correcto");
+			//GameObject.FindObjectOfType<Notification>().questionSound("0");
 		}
 		else
 		{
-			Debug.Log ("Incorrecto");
+			//Debug.Log ("Incorrecto");
 		}
 	}
 
@@ -356,11 +394,9 @@ public class GroupScene : MonoBehaviour
 			currPos = new Vector2(currentShapes[i].transform.localPosition.x,currentShapes[i].transform.localPosition.y);
 			if(!containerRect.Contains(currPos))
 			{
-				Debug.Log ("Faltan Piezas");
 				return false;
 			}
 		}
-		Debug.Log ("Todas las Piezas");
 		return true;
 	}
 
@@ -369,27 +405,44 @@ public class GroupScene : MonoBehaviour
 		int contGroup = -1;
 		Vector2 currPos = Vector2.zero;
 
-		for (int i = 0;i < containersInRect.Length;i++) 
+		if(typeOfGroup != EGroups.FREE)
 		{
-			for(int j = 0;j < currentShapes.Length;j++)
+			for (int i = 0;i < containersInRect.Length;i++) 
 			{
-				currPos = new Vector2(currentShapes[j].transform.localPosition.x,currentShapes[j].transform.localPosition.y);
-				if(containersInRect[i].Contains(currPos))
+				for(int j = 0;j < currentShapes.Length;j++)
 				{
-					if(contGroup == -1)
+					currPos = new Vector2(currentShapes[j].transform.localPosition.x,currentShapes[j].transform.localPosition.y);
+					if(containersInRect[i].Contains(currPos))
 					{
-						contGroup = currentShapes[j].GetComponent<GroupFigure>().group;
-					}
-					else if(currentShapes[j].GetComponent<GroupFigure>().group != contGroup)
-					{
-						Debug.Log ("Ejercicio mal");
-						//return false;
+						if(contGroup == -1)
+						{
+							contGroup = currentShapes[j].GetComponent<GroupFigure>().group;
+						}
+						else if(currentShapes[j].GetComponent<GroupFigure>().group != contGroup)
+						{
+							Debug.Log ("Ejercicio mal");
+							return;
+						}
 					}
 				}
+				contGroup = -1;
 			}
-			contGroup = -1;
 		}
-		Debug.Log ("Ejercicio bien");
-		//return true;
+		buttonGo.SetActive(false);
+		nextLevel();
+	}
+
+	protected void nextLevel()
+	{
+		if (currentLevel < (maxLevel-1)) 
+		{
+			currentLevel++;
+			startLevel();
+		}
+		else 
+		{
+			Debug.Log ("Go Bak");
+			ScreenManager.instance.GoToScene("Agrupa");
+		}
 	}
 }
