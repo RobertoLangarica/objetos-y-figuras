@@ -22,6 +22,9 @@ public class BaseShape : MonoBehaviour {
 
 	public enum EShapeSize
 	{
+		SIZE8,
+		SIZE7,
+		SIZE6,
 		SIZE5,
 		SIZE4,
 		SIZE3,
@@ -202,18 +205,27 @@ public class BaseShape : MonoBehaviour {
 				switch(currentSize)
 				{
 				case EShapeSize.SIZE1:
-					transform.localScale = new Vector3(0.33333f,0.33333f,1);
+					transform.localScale = new Vector3(0.16666f,0.16666f,1);
 					break;
 				case EShapeSize.SIZE2:
-					transform.localScale = new Vector3(0.50000f,0.50000f,1);
+					transform.localScale = new Vector3(0.25000f,0.25000f,1);
 					break;
 				case EShapeSize.SIZE3:
-					transform.localScale = new Vector3(0.66666f,0.66666f,1);
+					transform.localScale = new Vector3(0.33333f,0.33333f,1);
 					break;
 				case EShapeSize.SIZE4:
-					transform.localScale = new Vector3(0.83333f,0.83333f,1);
+					transform.localScale = new Vector3(0.41666f,0.41666f,1);
 					break;
 				case EShapeSize.SIZE5:
+					transform.localScale = new Vector3(0.50000f,0.50000f,1);
+					break;
+				case EShapeSize.SIZE6:
+					transform.localScale = new Vector3(0.66666f,0.66666f,1);
+					break;
+				case EShapeSize.SIZE7:
+					transform.localScale = new Vector3(0.83333f,0.83333f,1);
+					break;
+				case EShapeSize.SIZE8:
 					transform.localScale = new Vector3(1,1,1);
 					break;
 				}
