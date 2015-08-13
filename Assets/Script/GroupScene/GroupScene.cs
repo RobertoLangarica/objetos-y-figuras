@@ -269,6 +269,14 @@ public class GroupScene : MonoBehaviour
 
 		switch(totalGroups)
 		{
+		case(1):
+		{
+			nWidth = ((containerRect.width * 100)/(containerGo.rectTransform.rect.width))*0.01f;
+			nHeight = ((containerRect.height *100)/(containerGo.rectTransform.rect.height))*0.01f;
+			nPos[0] = new Vector3(containerRect.x+(containerRect.width * 0.5f),containerRect.y+(containerRect.height * 0.5f),0);
+			containersInRect[0] = new Rect(containerRect.x,containerRect.y,containerRect.width,containerRect.height);
+		}
+			break;
 		case(2):
 		{
 			nWidth = (((containerRect.width * 0.5f)*100)/(containerGo.rectTransform.rect.width))*0.01f;
