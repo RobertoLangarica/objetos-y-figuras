@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 using DG.Tweening;
 
 public class RotateButton : MonoBehaviour {
@@ -17,11 +18,11 @@ public class RotateButton : MonoBehaviour {
 		}
 		randvalue = Random.Range(0,360);
 		this.transform.eulerAngles = new Vector3(this.transform.eulerAngles.x,this.transform.eulerAngles.y,randvalue);
+
 	}
 
 	void Update()
 	{
 		this.transform.eulerAngles = new Vector3(this.transform.eulerAngles.x,this.transform.eulerAngles.y,this.transform.eulerAngles.z+random);
 	}
-
 }
