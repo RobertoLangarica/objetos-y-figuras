@@ -10,6 +10,7 @@ GameObject:
   - 4: {fileID: 482402}
   - 212: {fileID: 21282414}
   - 114: {fileID: 11482402}
+  - 114: {fileID: 11448294}
   m_Layer: 0
   m_Name: Fig_11_500
   m_TagString: Untagged
@@ -203,6 +204,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 482402}
   m_RootOrder: 5
+--- !u!114 &11448294
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 182402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b3c1f9b03e5f487cadf6bb7a4ffe433, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 21282414}
+  image: {fileID: 0}
+  _rotateHandler: {fileID: 0}
+  _translateHandler: {fileID: 0}
+  initialColor: 1
+  initialSize: 5
+  initialAlpha: .300000012
 --- !u!114 &11482402
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -329,7 +348,7 @@ SpriteRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 2100000, guid: b516f039f428612409704a116ffafd46, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
