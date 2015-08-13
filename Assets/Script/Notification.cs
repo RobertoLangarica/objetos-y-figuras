@@ -9,6 +9,7 @@ public class Notification : MonoBehaviour {
 	protected Teacher data;
 	protected GameObject toast;
 	protected string currentToast;
+	protected GameObject[] robots;
 	// Use this for initialization
 	void Start () {
 		audioSource = GameObject.FindObjectOfType<AudioSource>();
@@ -21,7 +22,7 @@ public class Notification : MonoBehaviour {
 		TextAsset tempTxt = (TextAsset)Resources.Load ("Levels/soundShapes");
 		data = Teacher.LoadFromText(tempTxt.text);
 		toast = GameObject.Find("Notify");
-
+		robots = GameObject.FindGameObjectsWithTag("Robot");
 		//questionText("0");
 	}
 	
@@ -73,7 +74,20 @@ public class Notification : MonoBehaviour {
 			toast.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0,0) ,delay);
 		}
 	}
-	
+
+	protected void choseRobot()
+	{
+		int rand = Random.Range(0,3);
+		for(int i =0; i<robots.Length; i++)
+		{
+			robots[i].SetActive(false);
+			if(i==rand)
+			{
+				robots[i].SetActive(true);
+			}
+		}
+	}
+
 	IEnumerator hideToastWhenSoundEnd(object[] parms)
 	{
 		yield return new WaitForSeconds((float)parms[0]+3f);
