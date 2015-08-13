@@ -10,7 +10,7 @@ public class Question : MonoBehaviour {
 	protected Teacher data;
 	protected GameObject toast;
 	protected string currentToast;
-	protected GameObject QuestionBtn;
+	protected GameObject[] robots;
 	// Use this for initialization
 	void Start () {
 		audioSource = GameObject.FindObjectOfType<AudioSource>();
@@ -23,7 +23,8 @@ public class Question : MonoBehaviour {
 		TextAsset tempTxt = (TextAsset)Resources.Load ("Levels/soundShapes");
 		data = Teacher.LoadFromText(tempTxt.text);
 		toast = GameObject.Find("Toast");
-		QuestionBtn = GameObject.Find("ClueBtn");
+		robots = GameObject.FindGameObjectsWithTag("Robot");
+		showToast(true);
 	}
 	
 	// Update is called once per frame
@@ -75,7 +76,7 @@ public class Question : MonoBehaviour {
 
 	protected void showToast(bool hide,float delay = .5f)
 	{
-		float val = Screen.height*0.2f;
+		float val = Screen.height*0.4f;
 
 		if(hide)
 		{
@@ -83,7 +84,21 @@ public class Question : MonoBehaviour {
 		}
 		else
 		{
+			choseRobot();
 			toast.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0,0) ,delay);
+		}
+	}
+
+	protected void choseRobot()
+	{
+		int rand = Random.Range(0,3);
+		for(int i =0; i<robots.Length; i++)
+		{
+			robots[i].SetActive(false);
+			if(i==rand)
+			{
+				robots[i].SetActive(true);
+			}
 		}
 	}
 
@@ -94,8 +109,4 @@ public class Question : MonoBehaviour {
 			showToast(true);
 	}
 
-	public void avtivateQuestion()
-	{
-		QuestionBtn.GetComponent<Button>().interactable = QuestionBtn.GetComponent<Button>().interactable == true ? false: true;
-	}
 }
