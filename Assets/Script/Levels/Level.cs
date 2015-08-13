@@ -19,6 +19,9 @@ public class Level
 	[XmlAttribute("purchaseID")]
 	public string purchaseID;//El idea de la nave a que paquete pertenece
 
+	[XmlAttribute("fType")]
+	public string fType;//El idea de la nave a que paquete pertenece
+
 	//Piezas (se serializan como arreglo normal Piece[]
 	protected List<Piece> _pieces = new List<Piece>();
 
