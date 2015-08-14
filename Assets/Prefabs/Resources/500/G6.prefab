@@ -2,7 +2,7 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!1 &107014
 GameObject:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
@@ -90,11 +90,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 107014}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .409999847, y: 1.10000002, z: 0}
+  m_LocalPosition: {x: .409999847, y: 1.10000014, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 491040}
-  m_RootOrder: 0
+  m_Father: {fileID: 415858}
+  m_RootOrder: 2
 --- !u!4 &415858
 Transform:
   m_ObjectHideFlags: 1
@@ -102,11 +102,12 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 115858}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.46258497, y: -.0781129226, z: 0}
+  m_LocalPosition: {x: 1.30632508, y: 2.45896268, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 491040}
   - {fileID: 477316}
+  - {fileID: 407014}
   - {fileID: 477318}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -133,7 +134,7 @@ Transform:
   m_LocalScale: {x: 1.04465115, y: 1.04465115, z: 1.04465115}
   m_Children: []
   m_Father: {fileID: 415858}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!4 &491040
 Transform:
   m_ObjectHideFlags: 1
@@ -143,8 +144,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 407014}
+  m_Children: []
   m_Father: {fileID: 415858}
   m_RootOrder: 0
 --- !u!58 &5891040
@@ -188,7 +188,7 @@ MonoBehaviour:
   _rotateHandler: {fileID: 177316}
   _translateHandler: {fileID: 177318}
   initialColor: 9
-  initialSize: 5
+  initialSize: 8
   initialAlpha: 1
   boundaryTop: 0
   boundaryBottom: 0
@@ -213,7 +213,7 @@ MonoBehaviour:
   _rotateHandler: {fileID: 0}
   _translateHandler: {fileID: 0}
   initialColor: 9
-  initialSize: 5
+  initialSize: 8
   initialAlpha: 1
 --- !u!212 &21207014
 SpriteRenderer:
