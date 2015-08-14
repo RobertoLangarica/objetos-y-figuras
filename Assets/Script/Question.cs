@@ -11,6 +11,7 @@ public class Question : MonoBehaviour {
 	protected GameObject toast;
 	protected string currentToast;
 	protected GameObject[] robots;
+	protected Vector2 initialAnchoredPos;
 	// Use this for initialization
 	void Start () {
 		audioSource = GameObject.FindObjectOfType<AudioSource>();
@@ -20,10 +21,12 @@ public class Question : MonoBehaviour {
 			audioSource = GameObject.FindObjectOfType<AudioSource>();
 		}
 
-		TextAsset tempTxt = (TextAsset)Resources.Load ("Levels/soundShapes");
+		TextAsset tempTxt = (TextAsset)Resources.Load ("Texts/toastTexts");
 		data = Teacher.LoadFromText(tempTxt.text);
-		toast = GameObject.Find("Toast");
+		toast = GameObject.Find("Question");
 		robots = GameObject.FindGameObjectsWithTag("Robot");
+
+		initialAnchoredPos = toast.GetComponent<RectTransform>().anchoredPosition;
 		showToast(true);
 	}
 	
@@ -43,10 +46,12 @@ public class Question : MonoBehaviour {
 		currentToast = soundToPlay+"_"+soundtoGo;
 		if(audioSource.clip!=null)
 		{
+			StopCoroutine("hideToastWhenSoundEnd");
 			StartCoroutine("hideToastWhenSoundEnd",new object[2]{audioSource.clip.length,soundToPlay+"_"+soundtoGo});
 		}
 		else
 		{
+			StopCoroutine("hideToastWhenSoundEnd");
 			StartCoroutine("hideToastWhenSoundEnd",new object[2]{3f,soundToPlay+"_"+soundtoGo});
 		}
 		questionText(soundToPlay+"_"+soundtoGo);
@@ -80,7 +85,8 @@ public class Question : MonoBehaviour {
 
 		if(hide)
 		{
-			toast.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0,-val ),delay);
+			toast.GetComponent<RectTransform>().DOAnchorPos(initialAnchoredPos,delay);
+			//toast.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0,-val ),delay);
 		}
 		else
 		{
@@ -106,7 +112,9 @@ public class Question : MonoBehaviour {
 	{
 		yield return new WaitForSeconds((float)parms[0]+3f);
 		if(string.Compare(currentToast,(string)parms[1])==0)
+		{
 			showToast(true);
+		}
 	}
 
 }
