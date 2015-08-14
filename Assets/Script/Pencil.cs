@@ -45,14 +45,12 @@ public class Pencil : MonoBehaviour {
 		float val = -Screen.height*0.1255f;
 		if(hide)
 		{
-			Debug.Log("hide");
 			Switch2PaintBtn.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0,-val ),delay);
 			Switch2EraseBtn.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0,-val-val ),delay);
 			EreaseAllBtn.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0,-val-val-val ),delay);
 		}
 		else
 		{
-			Debug.Log("nothiding");
 			Switch2EraseBtn.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0,0) ,delay);
 			Switch2PaintBtn.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0,0) ,delay);
 			EreaseAllBtn.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0,0) ,delay);

@@ -12,7 +12,7 @@ public class SoundShapeManager : MonoBehaviour {
 	protected AudioSource audioSource;
 	void Start()
 	{
-		TextAsset tempTxt = (TextAsset)Resources.Load ("Levels/soundShapes");
+		TextAsset tempTxt = (TextAsset)Resources.Load ("Texts/toastTexts");
 		
 		//Ya eixste el archivo y solo checamos la version
 		data = Teacher.LoadFromText(tempTxt.text);//Levels.Load(path);
