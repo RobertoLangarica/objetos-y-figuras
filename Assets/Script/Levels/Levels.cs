@@ -10,6 +10,8 @@ public class Levels
 	//Niveles (se serializan como arreglo normal Level[] mas abajo)
 	protected List<Level> _levels = new List<Level>();
 
+	protected List<Level> _levels500 = new List<Level>();
+
 	protected List<DrawingImage> _dImages = new List<DrawingImage>();
 
 	protected GroupLevel _gLevel;
@@ -49,6 +51,13 @@ public class Levels
 	{
 		set{_levels = new List<Level>(value);}
 		get{return _levels.ToArray();}
+	}
+
+	[XmlArray("exercise500"),XmlArrayItem("level")]
+	public Level[] levels500
+	{
+		set{_levels500 = new List<Level>(value);}
+		get{return _levels500.ToArray();}
 	}
 
 	[XmlArray("drawingImages"),XmlArrayItem("image")]

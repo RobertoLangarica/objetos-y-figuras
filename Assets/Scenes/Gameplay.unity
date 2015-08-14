@@ -1152,7 +1152,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22439492, guid: ce7485f26c69f4b1faa6053e337e1964, type: 2}
       propertyPath: m_SizeDelta.y
-      value: -27
+      value: -90.5999756
       objectReference: {fileID: 0}
     - target: {fileID: 22439496, guid: ce7485f26c69f4b1faa6053e337e1964, type: 2}
       propertyPath: m_SizeDelta.y
@@ -1180,7 +1180,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22478778, guid: ce7485f26c69f4b1faa6053e337e1964, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 58.8011475
+      value: -4.39770508
       objectReference: {fileID: 0}
     - target: {fileID: 139498, guid: ce7485f26c69f4b1faa6053e337e1964, type: 2}
       propertyPath: m_IsActive
@@ -1559,6 +1559,7 @@ GameObject:
   - 124: {fileID: 1169323141}
   - 81: {fileID: 1169323140}
   - 114: {fileID: 1169323139}
+  - 114: {fileID: 1169323145}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1646,6 +1647,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
+--- !u!114 &1169323145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1169323138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d6ea9bfcbcb9d14086312844dae79a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1186557635
 GameObject:
   m_ObjectHideFlags: 0
@@ -3002,6 +3014,7 @@ MonoBehaviour:
   rotateOnlyWhenSelected: 1
   allowRotation: 1
   dragSound: {fileID: 2116855885}
+  preventOutOfScreen: 0
   ignoreNextRotation: 0
 --- !u!114 &2116855887
 MonoBehaviour:
