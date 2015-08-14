@@ -16,38 +16,84 @@ public class Shape400 : BaseShape {
 
 	//Para la destruccion
 	protected bool destroying = false;
-	protected float currentScale = -1;
-	protected float destroyTime;
-	protected float destroyElapsed = 0;
+	protected float currentScale;
+	protected float inverseDestroyTime;
+	protected float destroyElapsed;
+
+
+	//Para el start
+	protected float initialScale;
+	protected bool starting;
+	protected float inverseStartTime;
+	protected float startElapsedTime;
+
+
+	//Para moverla
+	protected Vector2 movingTo;
+	protected float inverseMovingTime;
+	protected Vector3 actualPos;
+	protected float movingElapsedTime;
+	protected bool moving = false;
+	protected float percent;
 
 	// Use this for initialization
 	void Start () {
 		container = null;
 		baseStart();
+
+
+		inverseStartTime = 1.0f/0.5f;
+		startElapsedTime = 0;
+		initialScale = transform.localScale.x;
+		transform.localScale = Vector3.zero;
+		currentScale = 0;
+		starting = true;
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
 
-		if(destroying)
+		if(starting)
 		{
-			if(currentScale < 0)
-			{
-				currentScale = transform.localScale.x;
-			}
-			else
-			{
-				destroyElapsed += Time.deltaTime;
+			percent = startElapsedTime*inverseStartTime;
+			currentScale = Mathf.SmoothStep(currentScale,initialScale,percent);
 
-				currentScale = Mathf.SmoothStep(currentScale,0,destroyTime);
-
-				transform.localScale = new Vector3(currentScale,currentScale,1);
-				if(destroyElapsed > destroyTime)
-				{
-					GameObject.DestroyImmediate(this.gameObject);
-				}
+			if(currentScale == initialScale)
+			{
+				starting = false;
 			}
+
+			transform.localScale = new Vector3(currentScale,currentScale,1);
+			startElapsedTime += Time.deltaTime;
+		}
+		else if(moving)
+		{
+			percent = movingElapsedTime*inverseMovingTime;
+			actualPos.x = Mathf.SmoothStep(actualPos.x,movingTo.x,percent);
+			actualPos.y = Mathf.SmoothStep(actualPos.y,movingTo.y,percent);
+
+			if(actualPos.x == movingTo.x && actualPos.y == movingTo.y)
+			{
+				moving = false;
+			}
+
+			transform.position = actualPos;
+			movingElapsedTime += Time.deltaTime;
+		}
+		else if(destroying)
+		{
+			percent = destroyElapsed*inverseDestroyTime;
+			currentScale = Mathf.SmoothStep(currentScale,0,percent);
+
+			transform.localScale = new Vector3(currentScale,currentScale,1);
+
+			if(currentScale == 0)
+			{
+				GameObject.DestroyImmediate(this.gameObject);
+			}
+
+			destroyElapsed += Time.deltaTime;
 		}
 		else if(container)
 		{
@@ -71,7 +117,18 @@ public class Shape400 : BaseShape {
 
 	public void destroy(float delay)
 	{
-		destroyTime = delay;
+		currentScale = transform.localScale.x;
+		inverseDestroyTime = 1.0f/delay;
+		destroyElapsed = 0;
 		destroying = true;
+	}
+
+	public void moveTo(Vector2 pos,float delay = 0.2f)
+	{
+		inverseMovingTime = 1.0f/delay;
+		movingTo = pos;
+		actualPos = transform.position;
+		movingElapsedTime = 0;
+		moving = true;
 	}
 }
