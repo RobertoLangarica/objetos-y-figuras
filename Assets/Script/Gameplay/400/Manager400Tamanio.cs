@@ -28,6 +28,7 @@ public class Manager400Tamanio : MonoBehaviour {
 	protected List<Shape400> placeholders;
 	protected List<int> shapesShown;
 	protected List<int> figuresShown;
+	protected List<int> colorShown;
 	protected int currentStage = -1;
 	protected bool vertical;
 
@@ -82,6 +83,7 @@ public class Manager400Tamanio : MonoBehaviour {
 
 		shapesShown = new List<int>();
 		figuresShown = new List<int>();
+		colorShown = new List<int>();
 		shapes = new List<Shape400>();
 		placeholders = new List<Shape400>();
 
@@ -158,14 +160,22 @@ public class Manager400Tamanio : MonoBehaviour {
 		case 1:
 		case 2:
 			useGeometricShapes = true;
-			showPlaceHolders = false;
+			showPlaceHolders = forceSmaeHeight ? true:false;
 			break;
 		case 3:
 		case 4:
 			//Las naves usan un tamaño mas arriba porq son chiquitas
-			localMinSize = minSize+1;
-			useGeometricShapes = false;
-			showPlaceHolders = false;
+			if(forceSmaeHeight)
+			{
+				useGeometricShapes = true;
+				showPlaceHolders = false;
+			}
+			else
+			{
+				localMinSize = minSize+1;
+				useGeometricShapes = false;
+				showPlaceHolders = false;
+			}
 			break;
 		}
 
@@ -203,8 +213,33 @@ public class Manager400Tamanio : MonoBehaviour {
 			tmp = getRandomObject(allowedFigures,ref figuresShown);
 		}
 
-		//Color aleatorio de entre los 9 disponibles
-		int color = Random.Range(0,8);
+		//Color aleatorio de entre los 9 disponibles (evitando repetidos)
+		int color = -1;
+		int colorCount = 0;
+
+		while(color == -1)
+		{
+			color = Random.Range(0,8);
+
+			if(colorShown.Contains(color))
+			{
+				if(colorCount < 14)
+				{
+					color = -1;
+				}
+				else
+				{
+					//se va repetir
+					colorShown.Clear();
+				}
+
+			}
+
+			colorCount++;
+		}
+
+		colorShown.Add(color);
+
 
 		//Instanciamos las figuras arrastrables
 		for(int i = 0; i < containers.Length; i++)
