@@ -28,7 +28,10 @@ public class Placeholder : MonoBehaviour
 	{
 		DOTween.Kill("SnapMove");
 		GameObject[] tempshps = ((GameManager)FindObjectOfType (typeof(GameManager))).shapes;
-
+		if(tempshps.Length == 0)
+		{
+			tempshps = ((TangramManager)FindObjectOfType (typeof(TangramManager))).shapes;
+		}
 		for (int i = 0; i < internalShapes.Count; i++) 
 		{
 			internalShapes [i].correctPiece = false;
