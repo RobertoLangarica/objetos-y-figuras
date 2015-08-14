@@ -37,9 +37,10 @@ public class BaseShape : MonoBehaviour {
 	public Image image;
 	public GameObject _rotateHandler = null;
 	public GameObject _translateHandler = null;
-	public EShapeColor initialColor = EShapeColor.NONE;
-	public EShapeSize initialSize = EShapeSize.NONE;
-	public float initialAlpha = 1;
+	public EShapeColor initialColor = EShapeColor.NONE;//Color inicial
+	public EShapeSize initialSize = EShapeSize.NONE;//Tamaño inicial
+	public float initialAlpha = 1;//Alfa con el que inicia la figura
+	public Vector3 scaleMultiplier = Vector3.one;//Se multiplica por las escalas predefinidas en size
 
 	protected EShapeColor currentColor;
 	protected EShapeSize currentSize;
@@ -209,35 +210,75 @@ public class BaseShape : MonoBehaviour {
 				switch(currentSize)
 				{
 				case EShapeSize.SIZE1:
-					transform.localScale = new Vector3(0.16666f,0.16666f,1);
+					transform.localScale = new Vector3(0.16666f*scaleMultiplier.x,0.16666f*scaleMultiplier.y,1);
 					break;
 				case EShapeSize.SIZE2:
-					transform.localScale = new Vector3(0.25000f,0.25000f,1);
+					transform.localScale = new Vector3(0.25000f*scaleMultiplier.x,0.25000f*scaleMultiplier.y,1);
 					break;
 				case EShapeSize.SIZE3:
-					transform.localScale = new Vector3(0.33333f,0.33333f,1);
+					transform.localScale = new Vector3(0.33333f*scaleMultiplier.x,0.33333f*scaleMultiplier.y,1);
 					break;
 				case EShapeSize.SIZE4:
-					transform.localScale = new Vector3(0.41666f,0.41666f,1);
+					transform.localScale = new Vector3(0.41666f*scaleMultiplier.x,0.41666f*scaleMultiplier.y,1);
 					break;
 				case EShapeSize.SIZE5:
-					transform.localScale = new Vector3(0.50000f,0.50000f,1);
+					transform.localScale = new Vector3(0.50000f*scaleMultiplier.x,0.50000f*scaleMultiplier.y,1);
 					break;
 				case EShapeSize.SIZE6:
-					transform.localScale = new Vector3(0.66666f,0.66666f,1);
+					transform.localScale = new Vector3(0.66666f*scaleMultiplier.x,0.66666f*scaleMultiplier.y,1);
 					break;
 				case EShapeSize.SIZE7:
-					transform.localScale = new Vector3(0.83333f,0.83333f,1);
+					transform.localScale = new Vector3(0.83333f*scaleMultiplier.x,0.83333f*scaleMultiplier.y,1);
 					break;
 				case EShapeSize.SIZE8:
-					transform.localScale = new Vector3(1,1,1);
+					transform.localScale = new Vector3(1*scaleMultiplier.x,1*scaleMultiplier.y,1);
 					break;
 				}
+
+				//Debug.Log (transform.localScale.y+"___"+scaleMultiplier);
 			}
 		}
 		
 	}
 
+	public Vector3 getScaleFromSizeWithoutMultiplicator(int sizeIndex)
+	{
+		return getScaleFromSizeWithoutMultiplicator((EShapeSize)sizeIndex);
+	}
+
+	public Vector3 getScaleFromSizeWithoutMultiplicator(EShapeSize size)
+	{
+		switch(size)
+		{
+		case EShapeSize.SIZE1:
+			return new Vector3(0.16666f,0.16666f,1);
+			break;
+		case EShapeSize.SIZE2:
+			return new Vector3(0.25000f,0.25000f,1);
+			break;
+		case EShapeSize.SIZE3:
+			return new Vector3(0.33333f,0.33333f,1);
+			break;
+		case EShapeSize.SIZE4:
+			return new Vector3(0.41666f,0.41666f,1);
+			break;
+		case EShapeSize.SIZE5:
+			return new Vector3(0.50000f,0.50000f,1);
+			break;
+		case EShapeSize.SIZE6:
+			return new Vector3(0.66666f,0.66666f,1);
+			break;
+		case EShapeSize.SIZE7:
+			return new Vector3(0.83333f,0.83333f,1);
+			break;
+		case EShapeSize.SIZE8:
+			return new Vector3(1,1,1);
+			break;
+		}
+
+		return Vector3.zero;
+	}
+	
 	public void setSizeByInt(int value)
 	{
 		size = (EShapeSize)value;
