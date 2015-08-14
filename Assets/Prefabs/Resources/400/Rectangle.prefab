@@ -26,6 +26,7 @@ GameObject:
   - 4: {fileID: 473324}
   - 212: {fileID: 21273322}
   - 114: {fileID: 11473318}
+  - 114: {fileID: 11449652}
   m_Layer: 8
   m_Name: Rectangle
   m_TagString: Untagged
@@ -73,6 +74,18 @@ PolygonCollider2D:
       - {x: -3.01236773, y: -1.49930668}
       - {x: 3.01145554, y: -1.48562634}
       - {x: 3.02234554, y: 1.49334657}
+--- !u!114 &11449652
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 173324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 969b3f25d2df44dcfbbe1be2bb970325, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shakeAmount: .200000003
 --- !u!114 &11473318
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -93,6 +106,7 @@ MonoBehaviour:
   initialAlpha: 1
   snapDelay: .100000001
   container: {fileID: 0}
+  value: 0
 --- !u!212 &21273322
 SpriteRenderer:
   m_ObjectHideFlags: 1

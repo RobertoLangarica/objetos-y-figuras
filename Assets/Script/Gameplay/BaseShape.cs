@@ -22,14 +22,14 @@ public class BaseShape : MonoBehaviour {
 
 	public enum EShapeSize
 	{
-		SIZE8,
-		SIZE7,
-		SIZE6,
-		SIZE5,
-		SIZE4,
-		SIZE3,
-		SIZE2,
 		SIZE1,
+		SIZE2,
+		SIZE3,
+		SIZE4,
+		SIZE5,
+		SIZE6,
+		SIZE7,
+		SIZE8,
 		NONE
 	};
 
@@ -75,6 +75,7 @@ public class BaseShape : MonoBehaviour {
 
 		rendererColor.a = initialAlpha;
 		currentAlpha = initialAlpha;
+
 		//No ejecutamos el alpha ya que alpha modifica el color al igual que el setter de color
 		color = initialColor;
 		size = initialSize;
@@ -128,6 +129,7 @@ public class BaseShape : MonoBehaviour {
 		get{return currentColor;}
 		set
 		{
+			initialColor = value;
 			currentColor = value;
 
 			switch(currentColor)
@@ -179,6 +181,7 @@ public class BaseShape : MonoBehaviour {
 		get{return currentAlpha;}
 		set
 		{
+			initialAlpha = value;
 			currentAlpha = value;
 			rendererColor.a = value;
 
@@ -198,6 +201,7 @@ public class BaseShape : MonoBehaviour {
 		get{return currentSize;}
 		set
 		{
+			initialSize = value;
 			currentSize = value;
 
 			if(spriteRenderer)
@@ -232,6 +236,16 @@ public class BaseShape : MonoBehaviour {
 			}
 		}
 		
+	}
+
+	public void setSizeByInt(int value)
+	{
+		size = (EShapeSize)value;
+	}
+
+	public void setColorByInt(int value)
+	{
+		color = (EShapeColor)value;
 	}
 
 	public bool rotateHandler

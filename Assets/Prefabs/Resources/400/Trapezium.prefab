@@ -10,6 +10,7 @@ GameObject:
   - 4: {fileID: 413850}
   - 212: {fileID: 21213852}
   - 114: {fileID: 11413856}
+  - 114: {fileID: 11407872}
   m_Layer: 8
   m_Name: Trapezium
   m_TagString: Untagged
@@ -73,6 +74,18 @@ PolygonCollider2D:
       - {x: -1.50329149, y: 1.2842648}
       - {x: -2.97504282, y: -1.28284192}
       - {x: 3.01984358, y: -1.28438783}
+--- !u!114 &11407872
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 113850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 969b3f25d2df44dcfbbe1be2bb970325, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shakeAmount: .200000003
 --- !u!114 &11413856
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -93,6 +106,7 @@ MonoBehaviour:
   initialAlpha: 1
   snapDelay: .100000001
   container: {fileID: 0}
+  value: 0
 --- !u!212 &21213852
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -3,15 +3,26 @@ using System.Collections;
 using UnityEngine.UI;
 using DG.Tweening;
 
-public class Notification : MonoBehaviour {
+public class Notification : MonoBehaviour 
+{
+
+	[HideInInspector]
+	public delegate void OnClose();
+	[HideInInspector]
+	public OnClose onClose;
 	
 	protected AudioSource audioSource;
 	protected Teacher data;
 	protected GameObject toast;
 	protected string currentToast;
 	protected GameObject[] robots;
+	protected Vector2 initialAnchoredPos;
+
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
+		onClose = foo;
+
 		audioSource = GameObject.FindObjectOfType<AudioSource>();
 		if(audioSource==null)
 		{
@@ -19,60 +30,98 @@ public class Notification : MonoBehaviour {
 			audioSource = GameObject.FindObjectOfType<AudioSource>();
 		}
 		
-		TextAsset tempTxt = (TextAsset)Resources.Load ("Levels/soundShapes");
+		TextAsset tempTxt = (TextAsset)Resources.Load ("Texts/toastTexts");
 		data = Teacher.LoadFromText(tempTxt.text);
-		toast = GameObject.Find("Notify");
+		toast = GameObject.Find("Notification");
 		robots = GameObject.FindGameObjectsWithTag("Robot");
+
+		initialAnchoredPos = toast.GetComponent<RectTransform>().anchoredPosition;
 		//questionText("0");
 	}
+
+	void foo(){}
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
 	
-	public void questionSound(string soundToPlay)
+	public void showToast(string toastXMLName,float duration = -1)
 	{
-		AudioClip aC = (AudioClip)Resources.Load("Sounds/"+soundToPlay);
+		AudioClip aC = (AudioClip)Resources.Load("Sounds/"+toastXMLName);
 		
 
 		audioSource.clip = aC;
 		audioSource.Play();
-		currentToast = soundToPlay;
+		currentToast = toastXMLName;
+
+		if(duration < 0)
+		{
+			if(audioSource.clip)
+			{
+				duration = audioSource.clip.length;
+			}
+			else
+			{
+				duration = 3.0f;
+			}
+		}
+
 		if(audioSource.clip)
 		{
-			StartCoroutine("hideToastWhenSoundEnd",new object[2]{audioSource.clip.length,soundToPlay});
+			StartCoroutine("hideToastWhenSoundEnd",new object[2]{duration,toastXMLName});
 		}
 		else
-			StartCoroutine("hideToastWhenSoundEnd",new object[2]{3f,soundToPlay});
-		questionText(soundToPlay);
+		{
+			StartCoroutine("hideToastWhenSoundEnd",new object[2]{duration,toastXMLName});
+		}
+
+		changeText(toastXMLName);
 
 	}
-	
-	protected void questionText(string textToPlay)
+
+	public void showToast(string toastXMLName,AudioClip sound,float duration = -1)
 	{
-		string number = "";
-		string shape = "";
+		audioSource.clip = sound;
+		audioSource.Play();
+		currentToast = toastXMLName;
+
+		if(duration < 0)
+		{
+			duration = audioSource.clip.length;
+		}
+		
+		StartCoroutine("hideToastWhenSoundEnd",new object[2]{duration,toastXMLName});
+		
+		changeText(toastXMLName);
+		
+	}
+	
+	protected void changeText(string notifyXMLName)
+	{
 		notify infTemp = new notify();
 
-		infTemp = data.getNotifyByName(textToPlay);
+		infTemp = data.getNotifyByName(notifyXMLName);
 
-		showToast(false);
+		show(true);
 		toast.GetComponentInChildren<Text>().text = infTemp.text;
 	}
 	
-	protected void showToast(bool hide,float delay = .5f)
+	protected void show(bool hide,float delay = .5f)
 	{
-		float val = Screen.height*0.2f;
-		
-		if(hide)
+		if(!hide)
 		{
-			toast.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0,-val ),delay);
+			toast.GetComponent<RectTransform>().DOAnchorPos(initialAnchoredPos,delay).OnComplete(onToastClosed);
 		}
 		else
 		{
 			toast.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0,0) ,delay);
 		}
+	}
+
+	protected void onToastClosed()
+	{
+		onClose();
 	}
 
 	protected void choseRobot()
@@ -90,8 +139,10 @@ public class Notification : MonoBehaviour {
 
 	IEnumerator hideToastWhenSoundEnd(object[] parms)
 	{
-		yield return new WaitForSeconds((float)parms[0]+3f);
+		yield return new WaitForSeconds((float)parms[0]);
 		if(string.Compare(currentToast,(string)parms[1])==0)
-			showToast(true);
+		{
+			show(false);
+		}
 	}
 }
