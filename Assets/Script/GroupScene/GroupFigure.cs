@@ -29,6 +29,8 @@ public class GroupFigure : BaseShape
 		boundaryRight = Camera.main.aspect * Camera.main.orthographicSize;
 
 		sprite = GetComponent<SpriteRenderer>();
+
+		baseStart();
 	}
 
 	void Update () 
