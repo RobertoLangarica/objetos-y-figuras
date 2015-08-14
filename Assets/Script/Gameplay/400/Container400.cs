@@ -59,6 +59,16 @@ public class Container400 : MonoBehaviour {
 		return area.center;
 	}
 
+	public Vector2 max
+	{
+		get{return area.max;}
+	}
+
+	public Vector2 min
+	{
+		get{return area.min;}
+	}
+
 	public bool isEmpty
 	{
 		get{return _isEmpty;}

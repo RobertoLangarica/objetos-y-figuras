@@ -87,6 +87,9 @@ public class Manager400Tamanio : MonoBehaviour {
 		showNextExcercise();
 	}
 
+	/**
+	 * Muestra el siguienet ejercicio o la pantalla de final si es necesario
+	 * */
 	protected void showNextExcercise()
 	{
 		currentStage++;
@@ -97,10 +100,13 @@ public class Manager400Tamanio : MonoBehaviour {
 		}
 		else
 		{
-			nextStage();
+			buildNextStage();
 		}
 	}
 
+	/**
+	 * Limpia el ejercicio actual y despues de un delay manda mostrar el siguiente.
+	 * */
 	IEnumerator cleanCurrentExcercise()
 	{
 		foreach(Shape400 s in shapes)
@@ -127,12 +133,16 @@ public class Manager400Tamanio : MonoBehaviour {
 
 	}
 
-	protected void nextStage()
+	/**
+	 * Construye los ejercicios (currentStage debe de venir previamente validado)
+	 **/ 
+	protected void buildNextStage()
 	{
 		bool useGeometricShapes = false;
 		bool showPlaceHolders = false;
 		int minSize = 0;
 
+		//Configuración
 		switch(currentStage)
 		{
 		case 0:
@@ -156,6 +166,7 @@ public class Manager400Tamanio : MonoBehaviour {
 		GameObject tmp;
 		List<int> sizes = new List<int>();
 
+		//Randomizando los tamaños (evitando que se repita alguno)
 		while(sizes.Count < containers.Length)
 		{
 			int val = Random.Range(minSize,maxSize-1);
@@ -166,6 +177,7 @@ public class Manager400Tamanio : MonoBehaviour {
 			}
 		}
 
+		//Obtenemos la figura u objeto que se va instanciar
 		if(useGeometricShapes)
 		{
 			//Obtenemos la figura
@@ -177,22 +189,32 @@ public class Manager400Tamanio : MonoBehaviour {
 			tmp = getRandomObject(allowedFigures,ref figuresShown);
 		}
 
+		//Color aleatorio de entre los 9 disponibles
 		int color = Random.Range(0,8);
 
-		//Figuras para el ejercicio
+		//Instanciamos las figuras arrastrables
 		for(int i = 0; i < containers.Length; i++)
 		{
 			Vector3 pos = Vector3.zero;
 
+			float gap = 0;
 			if(vertical)
 			{
 				pos.x = shapesRect.center.x;
-				pos.y = Random.Range(shapesRect.yMin,shapesRect.yMax);
+				//pos.y = Random.Range(shapesRect.yMin,shapesRect.yMax);
+
+				//Contenido en el container
+				gap = (containers[i].max.y-containers[i].min.y)*0.25f;
+				pos.y = Random.Range(containers[i].min.y+gap,containers[i].max.y-gap);
 			}
 			else
 			{
 				pos.y = shapesRect.center.y;
-				pos.x = Random.Range(shapesRect.xMin,shapesRect.xMax);
+				//pos.x = Random.Range(shapesRect.xMin,shapesRect.xMax);
+
+				//Contenido en el container
+				gap = (containers[i].max.x-containers[i].min.x)*0.25f;
+				pos.x = Random.Range(containers[i].min.x+gap,containers[i].max.x-gap);
 			}
 
 			shapes.Add( (GameObject.Instantiate(tmp,pos,Quaternion.identity) as GameObject).GetComponent<Shape400>());
@@ -377,8 +399,32 @@ public class Manager400Tamanio : MonoBehaviour {
 			//Vemos dentro de cual contenedor está
 			for(int i = 0; i < containers.Length; i++)
 			{
-				if(containers[i].isEmpty && containers[i].Contains(input.selected.transform.position))
+				if(containers[i].Contains(input.selected.transform.position))
 				{
+					if(!containers[i].isEmpty)
+					{
+						foreach(Shape400 s in shapes)
+						{
+							if(s.container && s.container.GetInstanceID() == containers[i].GetInstanceID())
+							{
+								s.container = null;
+								Vector2 pos = shapesRect.center;
+
+								if(vertical)
+								{
+									pos.y = s.transform.position.y;
+								}
+								else
+								{
+									pos.x = s.transform.position.x;
+								}
+
+								s.moveTo(pos);
+								break;
+							}
+						}
+					}
+
 					containers[i].isEmpty = false;
 					((Shape400)input.selected).container = containers[i];
 					break;
