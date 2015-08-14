@@ -121,7 +121,20 @@ public class TangramManager : MonoBehaviour
 				tempV3.x = tempV3.y = float.Parse(pieces[i].scale);
 			}
 			//go.transform.FindChild("New Sprite").localScale = tempV3;
-			go.transform.FindChild("move").localScale = tempV3;
+			go.transform.localScale = tempV3;
+
+			if(pieces[i].scaleCiclre != null)
+			{
+				tempV3.x = float.Parse(pieces[i].scaleCiclre.Substring(0,pieces[i].scaleCiclre.IndexOf(',')));
+				tempV3.y = float.Parse(pieces[i].scaleCiclre.Substring(pieces[i].scaleCiclre.IndexOf(',')+1));
+			}
+			go.transform.FindChild("rotate").localScale = tempV3;
+
+			if(initLevel.radius > 0)
+			{
+				go.GetComponent<CircleCollider2D>().radius = initLevel.radius;
+			}
+
 			shapes[i] = go;
 			
 			//Que la figura no se ponga en una rotacion invalida
@@ -186,7 +199,7 @@ public class TangramManager : MonoBehaviour
 			}
 			ndx = Random.Range(0,selectable.Count-1);
 		}
-		return ndx;
+		return 4;
 	}
 
 	protected void initializePlaceholder()

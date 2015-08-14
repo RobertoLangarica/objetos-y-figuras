@@ -20,7 +20,10 @@ public class Level
 	public string purchaseID;//El idea de la nave a que paquete pertenece
 
 	[XmlAttribute("fType")]
-	public string fType;//El idea de la nave a que paquete pertenece
+	public string fType;
+
+	[XmlAttribute("radius")]
+	public float radius;
 
 	//Piezas (se serializan como arreglo normal Piece[]
 	protected List<Piece> _pieces = new List<Piece>();

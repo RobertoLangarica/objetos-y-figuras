@@ -8,7 +8,10 @@ public class Piece
 	public string name;//Nombre de la pieza
 
 	[XmlAttribute("scale")]
-	public string scale;//Nombre de la pieza
+	public string scale;
+	
+	[XmlAttribute("scaleCircle")]
+	public string scaleCiclre;
 
 	//Constructor existente para evitar problemas con XMLSerializer
 	public Piece()
