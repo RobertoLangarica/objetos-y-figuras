@@ -27,8 +27,12 @@ public class Placeholder : MonoBehaviour
 	public bool isCorrect()
 	{
 		DOTween.Kill("SnapMove");
-		GameObject[] tempshps = ((GameManager)FindObjectOfType (typeof(GameManager))).shapes;
-		if(tempshps.Length == 0)
+		GameObject[] tempshps = null;
+		if((GameManager)FindObjectOfType (typeof(GameManager)) != null)
+		{
+			tempshps = ((GameManager)FindObjectOfType (typeof(GameManager))).shapes;
+		}
+		else if((TangramManager)FindObjectOfType (typeof(TangramManager)) != null)
 		{
 			tempshps = ((TangramManager)FindObjectOfType (typeof(TangramManager))).shapes;
 		}
