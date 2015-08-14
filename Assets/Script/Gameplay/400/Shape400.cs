@@ -16,13 +16,13 @@ public class Shape400 : BaseShape {
 
 	//Para la destruccion
 	protected bool destroying = false;
-	protected float currentScale;
+	protected Vector3 currentScale;
 	protected float inverseDestroyTime;
 	protected float destroyElapsed;
 
 
 	//Para el start
-	protected float initialScale;
+	protected Vector3 initialScale;
 	protected bool starting;
 	protected float inverseStartTime;
 	protected float startElapsedTime;
@@ -44,27 +44,28 @@ public class Shape400 : BaseShape {
 
 		inverseStartTime = 1.0f/0.5f;
 		startElapsedTime = 0;
-		initialScale = transform.localScale.x;
+		initialScale = transform.localScale;
 		transform.localScale = Vector3.zero;
-		currentScale = 0;
+		currentScale = Vector3.zero;
+		currentScale.z = initialScale.z;
 		starting = true;
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-
 		if(starting)
 		{
 			percent = startElapsedTime*inverseStartTime;
-			currentScale = Mathf.SmoothStep(currentScale,initialScale,percent);
+			currentScale.x = Mathf.SmoothStep(currentScale.x,initialScale.x,percent);
+			currentScale.y = Mathf.SmoothStep(currentScale.y,initialScale.y,percent);
 
-			if(currentScale == initialScale)
+			if(currentScale.x == initialScale.x && currentScale.y == initialScale.y)
 			{
 				starting = false;
 			}
 
-			transform.localScale = new Vector3(currentScale,currentScale,1);
+			transform.localScale = currentScale;
 			startElapsedTime += Time.deltaTime;
 		}
 		else if(moving)
@@ -84,11 +85,12 @@ public class Shape400 : BaseShape {
 		else if(destroying)
 		{
 			percent = destroyElapsed*inverseDestroyTime;
-			currentScale = Mathf.SmoothStep(currentScale,0,percent);
+			currentScale.x = Mathf.SmoothStep(currentScale.x,0,percent);
+			currentScale.y = Mathf.SmoothStep(currentScale.y,0,percent);
 
-			transform.localScale = new Vector3(currentScale,currentScale,1);
+			transform.localScale = currentScale;
 
-			if(currentScale == 0)
+			if(currentScale.x == 0 && currentScale.y == 0)
 			{
 				GameObject.DestroyImmediate(this.gameObject);
 			}
@@ -117,7 +119,7 @@ public class Shape400 : BaseShape {
 
 	public void destroy(float delay)
 	{
-		currentScale = transform.localScale.x;
+		currentScale = transform.localScale;
 		inverseDestroyTime = 1.0f/delay;
 		destroyElapsed = 0;
 		destroying = true;

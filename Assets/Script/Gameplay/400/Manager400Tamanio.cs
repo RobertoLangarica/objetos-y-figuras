@@ -9,13 +9,18 @@ public class Manager400Tamanio : MonoBehaviour {
 	public RectTransform gameArea;
 	public RectTransform shapesArea;
 	public int maxSize = 6;
+	public int minSize = 0;
+	public bool greaterToLess = true;
+	public bool forceSmaeHeight = false;
 	public GameObject[] allowedGeometricShapes;
 	public GameObject[] allowedFigures;
 	public Button finishButton;
 	public AudioSource audioSource; 
 	public AudioClip audioWrong;
 	public AudioClip audioRight;
+	public AudioClip finalAudio;
 	public Notification notification;
+
 
 	protected Rect shapesRect;
 	protected Container400[] containers;
@@ -23,6 +28,7 @@ public class Manager400Tamanio : MonoBehaviour {
 	protected List<Shape400> placeholders;
 	protected List<int> shapesShown;
 	protected List<int> figuresShown;
+	protected List<int> colorShown;
 	protected int currentStage = -1;
 	protected bool vertical;
 
@@ -77,6 +83,7 @@ public class Manager400Tamanio : MonoBehaviour {
 
 		shapesShown = new List<int>();
 		figuresShown = new List<int>();
+		colorShown = new List<int>();
 		shapes = new List<Shape400>();
 		placeholders = new List<Shape400>();
 
@@ -140,7 +147,8 @@ public class Manager400Tamanio : MonoBehaviour {
 	{
 		bool useGeometricShapes = false;
 		bool showPlaceHolders = false;
-		int minSize = 0;
+		int localMinSize = minSize;
+		int localMaxSize = maxSize;
 
 		//Configuración
 		switch(currentStage)
@@ -152,29 +160,45 @@ public class Manager400Tamanio : MonoBehaviour {
 		case 1:
 		case 2:
 			useGeometricShapes = true;
-			showPlaceHolders = false;
+			showPlaceHolders = forceSmaeHeight ? true:false;
 			break;
 		case 3:
 		case 4:
-			minSize = 1;
-			useGeometricShapes = false;
-			showPlaceHolders = false;
+			//Las naves usan un tamaño mas arriba porq son chiquitas
+			if(forceSmaeHeight)
+			{
+				useGeometricShapes = true;
+				showPlaceHolders = false;
+			}
+			else
+			{
+				localMinSize = minSize+1;
+				useGeometricShapes = false;
+				showPlaceHolders = false;
+			}
 			break;
 		}
 
 
 		GameObject tmp;
 		List<int> sizes = new List<int>();
+		int sizeForAll = 1;
 
 		//Randomizando los tamaños (evitando que se repita alguno)
 		while(sizes.Count < containers.Length)
 		{
-			int val = Random.Range(minSize,maxSize-1);
-
+			int val = Random.Range(localMinSize,localMaxSize);
+			
 			if(!sizes.Contains(val))
 			{
 				sizes.Add(val);
 			}
+		}
+
+		if(forceSmaeHeight)
+		{
+			//Una sola altura para todos
+			sizeForAll = sizes[Random.Range(0,sizes.Count)];
 		}
 
 		//Obtenemos la figura u objeto que se va instanciar
@@ -189,8 +213,33 @@ public class Manager400Tamanio : MonoBehaviour {
 			tmp = getRandomObject(allowedFigures,ref figuresShown);
 		}
 
-		//Color aleatorio de entre los 9 disponibles
-		int color = Random.Range(0,8);
+		//Color aleatorio de entre los 9 disponibles (evitando repetidos)
+		int color = -1;
+		int colorCount = 0;
+
+		while(color == -1)
+		{
+			color = Random.Range(0,8);
+
+			if(colorShown.Contains(color))
+			{
+				if(colorCount < 14)
+				{
+					color = -1;
+				}
+				else
+				{
+					//se va repetir
+					colorShown.Clear();
+				}
+
+			}
+
+			colorCount++;
+		}
+
+		colorShown.Add(color);
+
 
 		//Instanciamos las figuras arrastrables
 		for(int i = 0; i < containers.Length; i++)
@@ -219,7 +268,21 @@ public class Manager400Tamanio : MonoBehaviour {
 
 			shapes.Add( (GameObject.Instantiate(tmp,pos,Quaternion.identity) as GameObject).GetComponent<Shape400>());
 			shapes[i].value = sizes[i];
-			shapes[i].setSizeByInt(sizes[i]);
+
+			if(!forceSmaeHeight)
+			{
+				shapes[i].setSizeByInt(sizes[i]);
+			}
+			else
+			{
+				Vector3 scale = shapes[i].getScaleFromSizeWithoutMultiplicator(sizeForAll);
+				Vector3 scale2 = shapes[i].getScaleFromSizeWithoutMultiplicator(sizes[i]);
+
+				shapes[i].scaleMultiplier.x = 2;
+				shapes[i].scaleMultiplier.y = scale.y/scale2.y;
+				shapes[i].setSizeByInt(sizes[i]);
+			}
+
 			if(useGeometricShapes)
 			{shapes[i].setColorByInt(color);}
 		}
@@ -228,7 +291,9 @@ public class Manager400Tamanio : MonoBehaviour {
 
 		//Ordenamos los valores
 		sizes.Sort ();
-		sizes.Reverse();
+
+		if(greaterToLess)
+		{sizes.Reverse();}
 
 		for(int i = 0; i < containers.Length; i++)
 		{
@@ -241,7 +306,19 @@ public class Manager400Tamanio : MonoBehaviour {
 
 				placeholders.Add( (GameObject.Instantiate(tmp,pos,Quaternion.identity) as GameObject).GetComponent<Shape400>());
 				placeholders[i].value = sizes[i];
-				placeholders[i].setSizeByInt(sizes[i]);
+				if(!forceSmaeHeight)
+				{
+					placeholders[i].setSizeByInt(sizes[i]);
+				}
+				else
+				{
+					Vector3 scale = placeholders[i].getScaleFromSizeWithoutMultiplicator(sizeForAll);
+					Vector3 scale2 = placeholders[i].getScaleFromSizeWithoutMultiplicator(sizes[i]);
+					
+					placeholders[i].scaleMultiplier.x = 2;
+					placeholders[i].scaleMultiplier.y = scale.y/scale2.y;
+					placeholders[i].setSizeByInt(sizes[i]);
+				}
 				placeholders[i].setColorByInt(color);
 				placeholders[i].enabled(false);
 				placeholders[i].alpha = 0.4f;
@@ -271,7 +348,7 @@ public class Manager400Tamanio : MonoBehaviour {
 		{
 			count++;
 
-			index = Random.Range(0,source.Length-1);
+			index = Random.Range(0,source.Length);
 			//index = 1;
 			if(shown.Contains(index))
 			{
@@ -386,6 +463,44 @@ public class Manager400Tamanio : MonoBehaviour {
 		}
 	}
 
+	protected bool isCorrect()
+	{
+		foreach(Shape400 s in shapes)
+		{
+			if(!s.container)
+			{
+				return false;
+			}
+		}
+		
+		List<Shape400> first	= new List<Shape400>();
+		List<Shape400> second	= new List<Shape400>();
+		List<Shape400> refList;
+		
+		foreach(Shape400 s in shapes)
+		{
+			if(s.value == s.container.value)
+			{
+				first.Add(s);
+			}
+			else if(s.value == s.container.secondValue)
+			{
+				second.Add (s);
+			}
+			else
+			{
+				return false;
+			}
+		}
+		
+		if(first.Count != containers.Length && second.Count != containers.Length)
+		{
+			return false;
+		}
+
+		return true;
+	}
+
 	protected void onNotificationRightComplete()
 	{
 		notification.onClose -= onNotificationRightComplete;
@@ -427,6 +542,11 @@ public class Manager400Tamanio : MonoBehaviour {
 
 					containers[i].isEmpty = false;
 					((Shape400)input.selected).container = containers[i];
+
+					if(isCorrect())
+					{
+						onFinishExcercise();
+					}
 					break;
 				}
 			}

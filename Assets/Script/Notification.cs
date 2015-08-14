@@ -26,8 +26,7 @@ public class Notification : MonoBehaviour
 		audioSource = GameObject.FindObjectOfType<AudioSource>();
 		if(audioSource==null)
 		{
-			GameObject.Find("Main Camera").AddComponent<AudioSource>();
-			audioSource = GameObject.FindObjectOfType<AudioSource>();
+			audioSource = GameObject.Find("Main Camera").AddComponent<AudioSource>();
 		}
 		
 		TextAsset tempTxt = (TextAsset)Resources.Load ("Texts/toastTexts");
@@ -36,30 +35,21 @@ public class Notification : MonoBehaviour
 		robots = GameObject.FindGameObjectsWithTag("Robot");
 
 		initialAnchoredPos = toast.GetComponent<RectTransform>().anchoredPosition;
-		//questionText("0");
 	}
 
 	void foo(){}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-	
 	public void showToast(string toastXMLName,float duration = -1)
 	{
 		AudioClip aC = (AudioClip)Resources.Load("Sounds/"+toastXMLName);
-		
 
-		audioSource.clip = aC;
-		audioSource.Play();
 		currentToast = toastXMLName;
 
 		if(duration < 0)
 		{
-			if(audioSource.clip)
+			if(aC)
 			{
-				duration = audioSource.clip.length;
+				duration = aC.length;
 			}
 			else
 			{
@@ -67,14 +57,12 @@ public class Notification : MonoBehaviour
 			}
 		}
 
-		if(audioSource.clip)
+		if(aC)
 		{
-			StartCoroutine("hideToastWhenSoundEnd",new object[2]{duration,toastXMLName});
+			audioSource.PlayOneShot(aC);
 		}
-		else
-		{
-			StartCoroutine("hideToastWhenSoundEnd",new object[2]{duration,toastXMLName});
-		}
+
+		StartCoroutine("hideToastWhenSoundEnd",new object[2]{duration,toastXMLName});
 
 		changeText(toastXMLName);
 
@@ -82,15 +70,14 @@ public class Notification : MonoBehaviour
 
 	public void showToast(string toastXMLName,AudioClip sound,float duration = -1)
 	{
-		audioSource.clip = sound;
-		audioSource.Play();
 		currentToast = toastXMLName;
 
 		if(duration < 0)
 		{
-			duration = audioSource.clip.length;
+			duration = sound.length;
 		}
-		
+
+		audioSource.PlayOneShot(sound);
 		StartCoroutine("hideToastWhenSoundEnd",new object[2]{duration,toastXMLName});
 		
 		changeText(toastXMLName);
