@@ -10,8 +10,9 @@ public class Manager400Tamanio : MonoBehaviour {
 	public RectTransform shapesArea;
 	public int maxSize = 6;
 	public int minSize = 0;
+	public bool useFullRangeForPositionate = false;
 	public bool greaterToLess = true;
-	public bool forceSmaeHeight = false;
+	public bool forceSameHeightOrWidth = false;
 	public GameObject[] allowedGeometricShapes;
 	public GameObject[] allowedFigures;
 	public Button finishButton;
@@ -160,13 +161,14 @@ public class Manager400Tamanio : MonoBehaviour {
 		case 1:
 		case 2:
 			useGeometricShapes = true;
-			showPlaceHolders = forceSmaeHeight ? true:false;
+			showPlaceHolders = forceSameHeightOrWidth ? true:false;
 			break;
 		case 3:
 		case 4:
 			//Las naves usan un tamaño mas arriba porq son chiquitas
-			if(forceSmaeHeight)
+			if(forceSameHeightOrWidth)
 			{
+				//Este modo solo admite rectangulos
 				useGeometricShapes = true;
 				showPlaceHolders = false;
 			}
@@ -195,7 +197,7 @@ public class Manager400Tamanio : MonoBehaviour {
 			}
 		}
 
-		if(forceSmaeHeight)
+		if(forceSameHeightOrWidth)
 		{
 			//Una sola altura para todos
 			sizeForAll = sizes[Random.Range(0,sizes.Count)];
@@ -247,7 +249,13 @@ public class Manager400Tamanio : MonoBehaviour {
 			Vector3 pos = Vector3.zero;
 
 			float gap = 0;
-			if(vertical)
+
+			if(useFullRangeForPositionate)
+			{
+				pos.y = Random.Range(shapesRect.yMin,shapesRect.yMax);
+				pos.x = Random.Range(shapesRect.xMin,shapesRect.xMax);
+			}
+			else if(vertical)
 			{
 				pos.x = shapesRect.center.x;
 				//pos.y = Random.Range(shapesRect.yMin,shapesRect.yMax);
@@ -269,7 +277,7 @@ public class Manager400Tamanio : MonoBehaviour {
 			shapes.Add( (GameObject.Instantiate(tmp,pos,Quaternion.identity) as GameObject).GetComponent<Shape400>());
 			shapes[i].value = sizes[i];
 
-			if(!forceSmaeHeight)
+			if(!forceSameHeightOrWidth)
 			{
 				shapes[i].setSizeByInt(sizes[i]);
 			}
@@ -278,8 +286,17 @@ public class Manager400Tamanio : MonoBehaviour {
 				Vector3 scale = shapes[i].getScaleFromSizeWithoutMultiplicator(sizeForAll);
 				Vector3 scale2 = shapes[i].getScaleFromSizeWithoutMultiplicator(sizes[i]);
 
-				shapes[i].scaleMultiplier.x = 2;
-				shapes[i].scaleMultiplier.y = scale.y/scale2.y;
+				if(vertical)
+				{
+					shapes[i].scaleMultiplier.x = 2;
+					shapes[i].scaleMultiplier.y = scale.y/scale2.y;
+				}
+				else
+				{
+					shapes[i].scaleMultiplier.y = 2;
+					shapes[i].scaleMultiplier.x = scale.x/scale2.x;
+				}
+
 				shapes[i].setSizeByInt(sizes[i]);
 			}
 
@@ -306,7 +323,7 @@ public class Manager400Tamanio : MonoBehaviour {
 
 				placeholders.Add( (GameObject.Instantiate(tmp,pos,Quaternion.identity) as GameObject).GetComponent<Shape400>());
 				placeholders[i].value = sizes[i];
-				if(!forceSmaeHeight)
+				if(!forceSameHeightOrWidth)
 				{
 					placeholders[i].setSizeByInt(sizes[i]);
 				}
@@ -315,8 +332,17 @@ public class Manager400Tamanio : MonoBehaviour {
 					Vector3 scale = placeholders[i].getScaleFromSizeWithoutMultiplicator(sizeForAll);
 					Vector3 scale2 = placeholders[i].getScaleFromSizeWithoutMultiplicator(sizes[i]);
 					
-					placeholders[i].scaleMultiplier.x = 2;
-					placeholders[i].scaleMultiplier.y = scale.y/scale2.y;
+					if(vertical)
+					{
+						placeholders[i].scaleMultiplier.x = 2;
+						placeholders[i].scaleMultiplier.y = scale.y/scale2.y;
+					}
+					else
+					{
+						placeholders[i].scaleMultiplier.y = 2;
+						placeholders[i].scaleMultiplier.x = scale.x/scale2.x;
+					}
+
 					placeholders[i].setSizeByInt(sizes[i]);
 				}
 				placeholders[i].setColorByInt(color);
@@ -525,7 +551,7 @@ public class Manager400Tamanio : MonoBehaviour {
 								s.container = null;
 								Vector2 pos = shapesRect.center;
 
-								if(vertical)
+								if(vertical || useFullRangeForPositionate)
 								{
 									pos.y = s.transform.position.y;
 								}
