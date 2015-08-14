@@ -26,7 +26,7 @@ public class Placeholder : MonoBehaviour
 
 	public bool isCorrect()
 	{
-		DOTween.Kill("SnapMove");
+		//DOTween.Kill("SnapMove");
 		GameObject[] tempshps = null;
 		if((GameManager)FindObjectOfType (typeof(GameManager)) != null)
 		{
@@ -34,8 +34,9 @@ public class Placeholder : MonoBehaviour
 		}
 		else if((TangramManager)FindObjectOfType (typeof(TangramManager)) != null)
 		{
-			tempshps = ((TangramManager)FindObjectOfType (typeof(TangramManager))).shapes;
+			tempshps = ((TangramManager)FindObjectOfType (typeof(TangramManager))).shapes.ToArray();
 		}
+
 		for (int i = 0; i < internalShapes.Count; i++) 
 		{
 			internalShapes [i].correctPiece = false;
