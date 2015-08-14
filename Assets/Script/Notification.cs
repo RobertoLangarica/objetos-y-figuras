@@ -115,6 +115,7 @@ public class Notification : MonoBehaviour
 		}
 		else
 		{
+			choseRobot();
 			toast.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0,0) ,delay);
 		}
 	}
