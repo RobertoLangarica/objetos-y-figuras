@@ -319,7 +319,7 @@ RectTransform:
   m_AnchorMax: {x: .981299996, y: .975000024}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: .5, y: .5}
+  m_Pivot: {x: 1, y: 1}
 --- !u!114 &312110584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1030,8 +1030,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1350380815}
   m_RootOrder: 0
-  m_AnchorMin: {x: .046322193, y: .068316415}
-  m_AnchorMax: {x: .949045479, y: .314935267}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: .360815078, y: .77295655}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
@@ -1435,7 +1435,7 @@ GameObject:
   - 224: {fileID: 884269866}
   - 222: {fileID: 884269868}
   - 114: {fileID: 884269867}
-  - 114: {fileID: 884269870}
+  - 114: {fileID: 884269869}
   m_Layer: 9
   m_Name: GameArea
   m_TagString: Untagged
@@ -1459,8 +1459,8 @@ RectTransform:
   - {fileID: 211139361}
   m_Father: {fileID: 1350380815}
   m_RootOrder: 1
-  m_AnchorMin: {x: 0, y: .269391}
-  m_AnchorMax: {x: 1, y: .803459466}
+  m_AnchorMin: {x: .360815078, y: .0250000004}
+  m_AnchorMax: {x: .981299996, y: .77295655}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
@@ -1491,7 +1491,7 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 884269865}
---- !u!114 &884269870
+--- !u!114 &884269869
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -1499,7 +1499,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 884269865}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -405508275, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Script: {fileID: 1297475563, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
@@ -2055,8 +2055,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1203044811}
   m_RootOrder: 1
-  m_AnchorMin: {x: 0, y: .76390928}
-  m_AnchorMax: {x: 1, y: .852545977}
+  m_AnchorMin: {x: 0, y: .776149273}
+  m_AnchorMax: {x: 1, y: .870357633}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
@@ -2085,7 +2085,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\"Grande-Peque\xF1o\""
+  m_Text: '"Corto-Largo"'
 --- !u!222 &1531449644
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2300,11 +2300,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22439824, guid: e7bccb3f588f54258b99f4bf6a39fb74, type: 2}
       propertyPath: m_Pivot.x
-      value: .5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22439824, guid: e7bccb3f588f54258b99f4bf6a39fb74, type: 2}
       propertyPath: m_Pivot.y
-      value: .5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11439824, guid: e7bccb3f588f54258b99f4bf6a39fb74, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -2430,15 +2430,14 @@ MonoBehaviour:
   input: {fileID: 331474847}
   gameArea: {fileID: 884269866}
   shapesArea: {fileID: 422347233}
-  maxSize: 6
+  maxSize: 5
   minSize: 0
-  greaterToLess: 1
-  forceSmaeHeight: 0
+  greaterToLess: 0
+  forceSmaeHeight: 1
   allowedGeometricShapes:
-  - {fileID: 158468, guid: 504ae633da9a54a37b964db49b6606a3, type: 2}
-  - {fileID: 114602, guid: 6951c2defa18f40dcb50cc2c79dc5b5e, type: 2}
-  - {fileID: 197234, guid: 6d33fb07f1e6343bc945756dd3d2123d, type: 2}
-  - {fileID: 144866, guid: 4680ab69370844c939155d115979330e, type: 2}
+  - {fileID: 173324, guid: 44bdd6adfc6824a01a09f672d6871cba, type: 2}
+  - {fileID: 113850, guid: 1293d6f7ac11a41fab119f22f05bc68b, type: 2}
+  - {fileID: 146504, guid: 8d5b7487135d14c448ad77feefa86273, type: 2}
   allowedFigures:
   - {fileID: 144742, guid: a2738d2e4ff52464b8f87a6c57490d3f, type: 2}
   - {fileID: 103142, guid: b7c2e92b6534949afafb9e8311185516, type: 2}
@@ -2465,7 +2464,7 @@ MonoBehaviour:
   audioSource: {fileID: 2041651943}
   audioWrong: {fileID: 8300000, guid: bc3e42b1cfd814c7ca8c47f06f5f34f6, type: 3}
   audioRight: {fileID: 8300000, guid: 318359f5b273647359c865c1f8588657, type: 3}
-  finalAudio: {fileID: 0}
+  finalAudio: {fileID: 8300000, guid: f1d6c93bed72e4e78bb5008a628b0f1f, type: 3}
   notification: {fileID: 454059389}
 --- !u!4 &2041651942
 Transform:
