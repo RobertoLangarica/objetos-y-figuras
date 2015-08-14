@@ -9,11 +9,11 @@ public class TangramManager : MonoBehaviour
 	public static bool cannotRotate = false;
 
 	public Button continueBtn;
-	public GameObject[] shapes;
+	public List<GameObject> shapes = new List<GameObject>();
 	public TangramInput input;
 	
 	protected Level currentLevel;
-	protected Level previousLevel;
+	protected List<string> previousLevel = new List<string>();
 	protected int currLevel = 1;
 	protected List<Placeholder> placeholder = new List<Placeholder>();
 	protected XMLLoader loader;
@@ -42,16 +42,12 @@ public class TangramManager : MonoBehaviour
 
 	void levelStart()
 	{
-		if(currentLevel != null)
-		{
-			previousLevel = currentLevel;
-		}
-
-		currentLevel = loader.data.levels500[selectLevel()];
+		currentLevel = selectLevel();
 		
 		initializeShapes(currentLevel);
 		
 		GameObject tmp = (GameObject)Resources.Load("500/"+currentLevel.name);
+		previousLevel.Add(currentLevel.name);
 		placeholder.Add(((GameObject)GameObject.Instantiate(tmp,Vector3.zero,Quaternion.identity)).GetComponent<Placeholder>());
 		
 		initializePlaceholder();
@@ -68,12 +64,11 @@ public class TangramManager : MonoBehaviour
 		Piece[] pieces = initLevel.pieces;
 		Pair[] pairs = initLevel.pairs;
 		
-		shapes = new GameObject[pieces.Length];
-		
 		float min;
 		float max;
 		float posTemp = -0.03f;
 		int rdmColor = 0;
+		List<int> colorArr = new List<int>(){0,1,2,3,4,5,6,7,8};
 		for(int i = 0; i < pieces.Length; i++)
 		{
 			if(Random.value < 0.5f)
@@ -135,7 +130,7 @@ public class TangramManager : MonoBehaviour
 				go.GetComponent<CircleCollider2D>().radius = initLevel.radius;
 			}
 
-			shapes[i] = go;
+			shapes.Add(go);
 			
 			//Que la figura no se ponga en una rotacion invalida
 			Shape sp = go.GetComponent<Shape>();
@@ -148,20 +143,33 @@ public class TangramManager : MonoBehaviour
 			go.transform.localPosition = new Vector3 (go.transform.localPosition.x,go.transform.localPosition.y,posTemp);
 			posTemp -= .01f;
 
-			rdmColor = Random.Range(0,8);
+			rdmColor = colorArr[Random.Range(0,colorArr.Count-1)];
+			colorArr.RemoveAt(colorArr.IndexOf(rdmColor));
 			go.GetComponent<BaseShape>().color = (BaseShape.EShapeColor)rdmColor;
 		}
 	}
 
-	protected int selectLevel()
+	protected Level selectLevel()
 	{
-		int ndx = -1;
+		Level ndx = null;
 		List<Level> selectable = new List<Level>(loader.data.levels500);
 
-		if(previousLevel != null)
+		if(previousLevel.Count > 0)
 		{
-			selectable.Remove(previousLevel);
+			for(int i = 0;i < previousLevel.Count;i++)
+			{
+				for(int j = 0;j < selectable.Count;j++)
+				{
+					if(selectable[j].name == previousLevel[i])
+					{
+						selectable.RemoveAt(j);
+						break;
+					}
+				}
+			}
 		}
+		previousLevel.Clear();
+		previousLevel = new List<string>();
 
 		if(currLevel < 3)
 		{
@@ -173,7 +181,7 @@ public class TangramManager : MonoBehaviour
 					i--;
 				}
 			}
-			ndx = Random.Range(0,selectable.Count-1);
+			ndx = selectable[Random.Range(0,selectable.Count-1)];
 		}
 		else if(currLevel < 5)
 		{
@@ -185,7 +193,7 @@ public class TangramManager : MonoBehaviour
 					i--;
 				}
 			}
-			ndx = Random.Range(0,selectable.Count-1);
+			ndx = selectable[Random.Range(0,selectable.Count-1)];
 		}
 		else
 		{
@@ -197,14 +205,13 @@ public class TangramManager : MonoBehaviour
 					i--;
 				}
 			}
-			ndx = Random.Range(0,selectable.Count-1);
+			ndx = selectable[Random.Range(0,selectable.Count-1)];
 		}
-		return 4;
+		return ndx;
 	}
 
 	protected void initializePlaceholder()
 	{
-		Pair[] pairs = currentLevel.pairs;
 		GameObject tmp = null;
 		int count = 1;
 		Level otherPieces = null;
@@ -218,6 +225,7 @@ public class TangramManager : MonoBehaviour
 					if(currLevel < 3 && currentLevel.pieces[0].name == val.pieces[0].name)
 					{
 						tmp = (GameObject)Resources.Load("500/"+val.name);
+						previousLevel.Add(val.name);
 						placeholder.Add(((GameObject)GameObject.Instantiate(tmp,Vector3.zero,Quaternion.identity)).GetComponent<Placeholder>());
 						placeholder[count].gameObject.GetComponent<SpriteRenderer>().enabled = false;
 						count++;
@@ -225,6 +233,7 @@ public class TangramManager : MonoBehaviour
 					if(currLevel > 2 && val.difficulty == 2)
 					{
 						tmp = (GameObject)Resources.Load("500/"+val.name);
+						previousLevel.Add(val.name);
 						placeholder.Add(((GameObject)GameObject.Instantiate(tmp,Vector3.zero,Quaternion.identity)).GetComponent<Placeholder>());
 						placeholder[count].gameObject.GetComponent<SpriteRenderer>().enabled = false;
 						count++;
@@ -236,20 +245,26 @@ public class TangramManager : MonoBehaviour
 				}
 			}
 		}
-
-		for(int i = 0; i < pairs.Length; i++)
-		{
-			GameObject[] sps = getShapes(pairs[i].shapes);
-			int[] angles = getAngles(pairs[i].angles);
-			for(int j = 0;j < placeholder.Count;j++)
-			{
-				placeholder[j].fillChildInfo(pairs[i].piece,sps,angles,pairs[i].range);
-			}
-		}
-
+		
 		if(otherPieces != null)
 		{
 			initializeShapes(otherPieces);
+		}
+		
+		for(int j = 0;j < placeholder.Count;j++)
+		{
+			foreach(Level val in loader.data.levels500)
+			{
+				if(placeholder[j].gameObject.name == (val.name+"(Clone)"))
+				{
+					for(int i = 0; i < val.pairs.Length; i++)
+					{
+						GameObject[] sps = getShapes(val.pairs[i].shapes);
+						int[] angles = getAngles(val.pairs[i].angles);
+						placeholder[j].fillChildInfo(val.pairs[i].piece,sps,angles,val.pairs[i].range);
+					}
+				}
+			}
 		}
 	}
 	
@@ -294,17 +309,13 @@ public class TangramManager : MonoBehaviour
 			{
 				if(currLevel > 2 && currLevel < 5)
 				{
-					for(int j = 0;j < placeholder.Count;j++)
+					Shape[] temp = FindObjectsOfType<Shape>() as Shape[];
+					for(int j = 0;j < temp.Length;j++)
 					{
-						if(j != i && placeholder[j].internalShapes[0].possibleAnswers[0] != null)
+						if(temp[j].gameObject.name != placeholder[i].internalShapes[0].possibleAnswers[0].transform.parent.name)
 						{
-							if(!placeholder[j].internalShapes[0].possibleAnswers[0].Equals(placeholder[i].internalShapes[0].possibleAnswers[0]))
-							{
-								for(int k = placeholder[j].internalShapes[0].possibleAnswers.Count-1;k > -1 ;k--)
-								{
-									Destroy(placeholder[i]);
-								}
-							}
+							//temp[j].transform.Find("New Sprite").gameObject.renderer.material.DOFade(0,0.5f);
+							temp[j].transform.Find("New Sprite").GetComponent<SpriteRenderer>().enabled = false;
 						}
 					}
 				}
@@ -321,14 +332,20 @@ public class TangramManager : MonoBehaviour
 		if(currLevel < 5)
 		{
 			currLevel++;
-			for(int i = 0;i < shapes.Length;i++)
+			for(int i = shapes.Count-1;i > -1 ;i--)
 			{
+				input.onDragFinish -= shapes[i].GetComponent<Shape>().onRotationComplete;
 				Destroy(shapes[i]);
 			}
 			for(int i = placeholder.Count-1;i > -1 ;i--)
 			{
-				Destroy(placeholder[i]);
+				if(placeholder[i] != null)
+				{
+					Destroy(placeholder[i].gameObject);
+				}
 			}
+			shapes = new List<GameObject>();
+			placeholder = new List<Placeholder>();
 			levelStart();
 		}
 		else
@@ -339,6 +356,6 @@ public class TangramManager : MonoBehaviour
 
 	public void exitGame()
 	{
-		ScreenManager.instance.GoToScene("MainMenu");
+		ScreenManager.instance.GoToScene("Construye");
 	}
 }
