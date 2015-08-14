@@ -10,6 +10,7 @@ GameObject:
   - 4: {fileID: 408724}
   - 212: {fileID: 21208726}
   - 114: {fileID: 11408730}
+  - 114: {fileID: 11408302}
   m_Layer: 8
   m_Name: ScaleneB
   m_TagString: Untagged
@@ -72,6 +73,18 @@ PolygonCollider2D:
     - - {x: -2.98094702, y: 2.99281645}
       - {x: -1.00524974, y: -2.97561646}
       - {x: 2.93940735, y: -2.98534679}
+--- !u!114 &11408302
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 108724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 969b3f25d2df44dcfbbe1be2bb970325, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shakeAmount: .200000003
 --- !u!114 &11408730
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -92,6 +105,7 @@ MonoBehaviour:
   initialAlpha: 1
   snapDelay: .100000001
   container: {fileID: 0}
+  value: 0
 --- !u!212 &21208726
 SpriteRenderer:
   m_ObjectHideFlags: 1

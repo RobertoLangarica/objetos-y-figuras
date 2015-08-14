@@ -9,6 +9,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 455096}
   - 114: {fileID: 11455098}
+  - 114: {fileID: 11451598}
   m_Layer: 8
   m_Name: Ship12
   m_TagString: Untagged
@@ -79,6 +80,18 @@ PolygonCollider2D:
       - {x: 2.70581889, y: -.011460931}
       - {x: -.0145344967, y: 2.71606112}
       - {x: -2.66320062, y: .00161857426}
+--- !u!114 &11451598
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 155096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 969b3f25d2df44dcfbbe1be2bb970325, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shakeAmount: .200000003
 --- !u!114 &11455098
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -99,6 +112,7 @@ MonoBehaviour:
   initialAlpha: 1
   snapDelay: .100000001
   container: {fileID: 0}
+  value: 0
 --- !u!212 &21255098
 SpriteRenderer:
   m_ObjectHideFlags: 1

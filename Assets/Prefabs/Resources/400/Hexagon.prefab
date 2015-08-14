@@ -10,6 +10,7 @@ GameObject:
   - 4: {fileID: 497234}
   - 212: {fileID: 21297236}
   - 114: {fileID: 11497240}
+  - 114: {fileID: 11459402}
   m_Layer: 8
   m_Name: Hexagon
   m_TagString: Untagged
@@ -75,6 +76,18 @@ PolygonCollider2D:
       - {x: -2.99652529, y: .0248608738}
       - {x: -1.50288236, y: -2.57751036}
       - {x: 1.49627197, y: -2.57065296}
+--- !u!114 &11459402
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 197234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 969b3f25d2df44dcfbbe1be2bb970325, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shakeAmount: .200000003
 --- !u!114 &11497240
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -95,6 +108,7 @@ MonoBehaviour:
   initialAlpha: 1
   snapDelay: .100000001
   container: {fileID: 0}
+  value: 0
 --- !u!212 &21297236
 SpriteRenderer:
   m_ObjectHideFlags: 1
