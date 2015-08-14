@@ -386,6 +386,44 @@ public class Manager400Tamanio : MonoBehaviour {
 		}
 	}
 
+	protected bool isCorrect()
+	{
+		foreach(Shape400 s in shapes)
+		{
+			if(!s.container)
+			{
+				return false;
+			}
+		}
+		
+		List<Shape400> first	= new List<Shape400>();
+		List<Shape400> second	= new List<Shape400>();
+		List<Shape400> refList;
+		
+		foreach(Shape400 s in shapes)
+		{
+			if(s.value == s.container.value)
+			{
+				first.Add(s);
+			}
+			else if(s.value == s.container.secondValue)
+			{
+				second.Add (s);
+			}
+			else
+			{
+				return false;
+			}
+		}
+		
+		if(first.Count != containers.Length && second.Count != containers.Length)
+		{
+			return false;
+		}
+
+		return true;
+	}
+
 	protected void onNotificationRightComplete()
 	{
 		notification.onClose -= onNotificationRightComplete;
@@ -427,6 +465,11 @@ public class Manager400Tamanio : MonoBehaviour {
 
 					containers[i].isEmpty = false;
 					((Shape400)input.selected).container = containers[i];
+
+					if(isCorrect())
+					{
+						onFinishExcercise();
+					}
 					break;
 				}
 			}
