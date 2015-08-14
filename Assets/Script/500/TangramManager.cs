@@ -23,7 +23,13 @@ public class TangramManager : MonoBehaviour
 
 		currentLevel = loader.data.levels500[selectLevel()];
 
-		initializeShapes();
+		initializeShapes(currentLevel);
+
+		GameObject tmp = (GameObject)Resources.Load("500/"+currentLevel.name);
+		placeholder.Add(((GameObject)GameObject.Instantiate(tmp,Vector3.zero,Quaternion.identity)).GetComponent<Placeholder>());
+
+		initializePlaceholder();
+
 		continueBtn.gameObject.SetActive(false);
 
 		
@@ -43,13 +49,13 @@ public class TangramManager : MonoBehaviour
 		DOTween.Play("SnapMove");
 	}
 
-	void initializeShapes()
+	void initializeShapes(Level initLevel)
 	{
 		GameObject go;
 		//AnalyticManager.instance.startGame();
 		//Imagenes
-		Piece[] pieces = currentLevel.pieces;
-		Pair[] pairs = currentLevel.pairs;
+		Piece[] pieces = initLevel.pieces;
+		Pair[] pairs = initLevel.pairs;
 		
 		shapes = new GameObject[pieces.Length];
 		
@@ -103,7 +109,7 @@ public class TangramManager : MonoBehaviour
 			{
 				tempV3.x = tempV3.y = float.Parse(pieces[i].scale);
 			}
-			go.transform.localScale = tempV3;
+			go.transform.FindChild("New Sprite").localScale = tempV3;
 			shapes[i] = go;
 			
 			//Que la figura no se ponga en una rotacion invalida
@@ -120,24 +126,30 @@ public class TangramManager : MonoBehaviour
 			rdmColor = Random.Range(0,8);
 			go.GetComponent<BaseShape>().color = (BaseShape.EShapeColor)rdmColor;
 		}
-		
-		//placeholder
-		GameObject tmp = (GameObject)Resources.Load("500/"+currentLevel.name);
-		placeholder.Add(((GameObject)GameObject.Instantiate(tmp,Vector3.zero,Quaternion.identity)).GetComponent<Placeholder>());
-		
-		//Inicializamos los valores para el placeholder
-		initializePlaceholder();
 	}
 
 	protected int selectLevel()
 	{
 		int ndx = -1;
-		if(currLevel < 5)
+		if(currLevel < 3)
 		{
 			List<Level> selectable = new List<Level>(loader.data.levels500);
 			for(int i = 0;i < selectable.Count;i++)
 			{
-				if(selectable[i].difficulty == 2)
+				if(selectable[i].difficulty == 3)
+				{
+					selectable.RemoveAt(i);
+					i--;
+				}
+			}
+			ndx = Random.Range(0,selectable.Count-1);
+		}
+		else if(currLevel < 5)
+		{
+			List<Level> selectable = new List<Level>(loader.data.levels500);
+			for(int i = 0;i < selectable.Count;i++)
+			{
+				if(selectable[i].difficulty != 2)
 				{
 					selectable.RemoveAt(i);
 					i--;
@@ -150,7 +162,7 @@ public class TangramManager : MonoBehaviour
 			List<Level> selectable = new List<Level>(loader.data.levels500);
 			for(int i = 0;i < selectable.Count;i++)
 			{
-				if(selectable[i].difficulty == 1)
+				if(selectable[i].difficulty != 3)
 				{
 					selectable.RemoveAt(i);
 					i--;
@@ -166,27 +178,49 @@ public class TangramManager : MonoBehaviour
 		Pair[] pairs = currentLevel.pairs;
 		GameObject tmp = null;
 		int count = 1;
-		
-		for(int i = 0; i < pairs.Length; i++)
-		{
-			GameObject[] sps = getShapes(pairs[i].shapes);
-			int[] angles = getAngles(pairs[i].angles);
+		Level otherPieces = null;
 
-			if(currLevel > 2 && currLevel < 5)
+		if(currLevel < 5)
+		{
+			foreach(Level val in loader.data.levels500)
 			{
-				foreach(Level val in loader.data.levels500)
+				if(val.fType == currentLevel.fType && !val.Equals(currentLevel))
 				{
-					if(val.fType == currentLevel.fType && !val.Equals(currentLevel))
+					if(currLevel < 3 && currentLevel.pieces[0].name == val.pieces[0].name)
 					{
 						tmp = (GameObject)Resources.Load("500/"+val.name);
 						placeholder.Add(((GameObject)GameObject.Instantiate(tmp,Vector3.zero,Quaternion.identity)).GetComponent<Placeholder>());
 						placeholder[count].gameObject.GetComponent<SpriteRenderer>().enabled = false;
-						placeholder[count].fillChildInfo(pairs[i].piece,sps,angles,pairs[i].range);
 						count++;
+					}
+					if(currLevel > 2 && val.difficulty == 2)
+					{
+						tmp = (GameObject)Resources.Load("500/"+val.name);
+						placeholder.Add(((GameObject)GameObject.Instantiate(tmp,Vector3.zero,Quaternion.identity)).GetComponent<Placeholder>());
+						placeholder[count].gameObject.GetComponent<SpriteRenderer>().enabled = false;
+						count++;
+						if(otherPieces == null && currentLevel.pieces[0].name != val.pieces[0].name)
+						{
+							otherPieces = val;
+						}
 					}
 				}
 			}
-			placeholder[0].fillChildInfo(pairs[i].piece,sps,angles,pairs[i].range);
+		}
+
+		for(int i = 0; i < pairs.Length; i++)
+		{
+			GameObject[] sps = getShapes(pairs[i].shapes);
+			int[] angles = getAngles(pairs[i].angles);
+			for(int j = 0;j < placeholder.Count;j++)
+			{
+				placeholder[j].fillChildInfo(pairs[i].piece,sps,angles,pairs[i].range);
+			}
+		}
+
+		if(otherPieces != null)
+		{
+			initializeShapes(otherPieces);
 		}
 	}
 	
@@ -229,7 +263,7 @@ public class TangramManager : MonoBehaviour
 		{
 			if(placeholder[i].isCorrect())
 			{
-				if(currLevel > 2 && currLevel < 5)
+				if(currLevel < 5)
 				{
 				}
 				continueBtn.gameObject.SetActive(true);
@@ -239,6 +273,14 @@ public class TangramManager : MonoBehaviour
 	
 	public void onContinue()
 	{
+		if(currLevel < 5)
+		{
+			currLevel++;
+		}
+		else
+		{
+			exitGame();
+		}
 	}
 
 	public void exitGame()
