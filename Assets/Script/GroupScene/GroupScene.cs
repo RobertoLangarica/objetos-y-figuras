@@ -17,6 +17,10 @@ public class GroupScene : MonoBehaviour
 
 	public int groupSize = 3;
 	public Image containerGo;
+	public AudioSource audioSource; 
+	public AudioClip audioWrong;
+	public AudioClip audioRight;
+	public AudioClip finalAudio;
 	public List<GameObject> kindsOfShapes = new List<GameObject>();
 	//public EGroups type;
 
@@ -26,7 +30,6 @@ public class GroupScene : MonoBehaviour
 	protected int shapesCount = 0;
 	protected Rect containerRect;
 	protected XMLLoader loader;
-	protected GameObject buttonGo;
 	protected GameObject[] currentShapes;
 	protected GameObject[] containerImg;
 	protected int[] availableColors;
@@ -37,8 +40,6 @@ public class GroupScene : MonoBehaviour
 	void Start()
 	{
 		loader = GameObject.FindObjectOfType<XMLLoader>();
-		buttonGo = GameObject.Find("Calificar");
-		buttonGo.SetActive (false);
 
 		availableColors = new int[9]{0,1,2,3,4,5,6,7,8};
 
@@ -59,7 +60,7 @@ public class GroupScene : MonoBehaviour
 		{
 			for(int i = 0;i < currentShapes.Length;i++)
 			{
-				Destroy(currentShapes[i]);
+				currentShapes[i].GetComponent<GroupFigure>().destroy(0.5f);
 			}
 			for(int i = 0;i < containerImg.Length;i++)
 			{
@@ -394,18 +395,17 @@ public class GroupScene : MonoBehaviour
 					ndx = evaluation[i-1];
 				}
 			}
-			if(shape.GetComponent<GroupFigure>().group == ndx && tie == false)
+			/*if(shape.GetComponent<GroupFigure>().group == ndx && tie == false)
 			{
 				shapeFeedback(true);
 			}
 			else
 			{
 				shapeFeedback(false);
-			}
+			}*/
 		}
 		if (wasLastPiece ()) 
 		{
-			buttonGo.SetActive(true);
 		}
 	}
 
@@ -413,12 +413,15 @@ public class GroupScene : MonoBehaviour
 	{
 		if(isCorrect)
 		{
-			//Debug.Log ("Correcto");
-			//GameObject.FindObjectOfType<Notification>().questionSound("0");
+			Debug.Log ("Correcto");
 		}
 		else
 		{
-			//Debug.Log ("Incorrecto");
+			if(audioSource && audioWrong)
+			{
+				Debug.Log ("Incorrecto");
+				audioSource.PlayOneShot(audioWrong);
+			}
 		}
 	}
 
@@ -438,8 +441,10 @@ public class GroupScene : MonoBehaviour
 
 	public void verifyExcersice()
 	{
-		int contGroup = -1;
+		bool lose = false;
+		int tempIndx = -2;
 		Vector2 currPos = Vector2.zero;
+		List<int> calif = new List<int>();
 
 		if(typeOfGroup != EGroups.FREE)
 		{
@@ -450,21 +455,32 @@ public class GroupScene : MonoBehaviour
 					currPos = new Vector2(currentShapes[j].transform.localPosition.x,currentShapes[j].transform.localPosition.y);
 					if(containersInRect[i].Contains(currPos))
 					{
-						if(contGroup == -1)
+						if(calif.IndexOf(currentShapes[j].GetComponent<GroupFigure>().group) == -1)
 						{
-							contGroup = currentShapes[j].GetComponent<GroupFigure>().group;
+							calif.Add(currentShapes[j].GetComponent<GroupFigure>().group);
+							calif.Add(10);
 						}
-						else if(currentShapes[j].GetComponent<GroupFigure>().group != contGroup)
+						else
 						{
-							Debug.Log ("Ejercicio mal");
-							return;
+							currentShapes[j].GetComponent<ShakeTransform>().startAction(0.5f);
 						}
+					}
+					if(!containerRect.Contains(currPos))
+					{
+						currentShapes[j].GetComponent<ShakeTransform>().startAction(0.5f);
+						lose = true;
 					}
 				}
 				contGroup = -1;
 			}
+			if(lose)
+			{
+				shapeFeedback(false);
+				Debug.Log ("Ejercicio mal");
+				return;
+			}
 		}
-		buttonGo.SetActive(false);
+		shapeFeedback(true);
 		nextLevel();
 	}
 
