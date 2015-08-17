@@ -12,8 +12,9 @@ GameObject:
   - 60: {fileID: 6074282}
   - 50: {fileID: 5074280}
   - 114: {fileID: 11442388}
+  - 114: {fileID: 11411240}
   m_Layer: 8
-  m_Name: GS8
+  m_Name: GS12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57,10 +58,24 @@ PolygonCollider2D:
   m_IsTrigger: 1
   m_Poly:
     m_Paths:
-    - - {x: -.00651597977, y: 2.56511402}
-      - {x: -1.47772169, y: -.00197887421}
-      - {x: -.00670909882, y: -2.61612606}
-      - {x: 1.48969269, y: .00776767731}
+    - - {x: 1.5036974, y: 2.61082792}
+      - {x: -1.48462033, y: 2.60526991}
+      - {x: -2.96943259, y: .0151500702}
+      - {x: -1.46676683, y: -2.60274887}
+      - {x: 1.47861624, y: -2.61480331}
+      - {x: 2.99853086, y: .03211689}
+--- !u!114 &11411240
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 174280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 969b3f25d2df44dcfbbe1be2bb970325, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shakeAmount: .200000003
 --- !u!114 &11442388
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -73,10 +88,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 21274282}
+  image: {fileID: 0}
   _rotateHandler: {fileID: 0}
   _translateHandler: {fileID: 0}
   initialColor: 9
   initialSize: 5
+  initialAlpha: 1
+  scaleMultiplier: {x: 1, y: 1, z: 1}
   group: 0
   sprite: {fileID: 0}
 --- !u!212 &21274282
@@ -99,7 +117,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 446442361
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300010, guid: e9ccf014ac38e455c9c03116e51e3213, type: 3}
+  m_Sprite: {fileID: 21300002, guid: e9ccf014ac38e455c9c03116e51e3213, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:

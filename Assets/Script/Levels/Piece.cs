@@ -13,6 +13,9 @@ public class Piece
 	[XmlAttribute("scaleCircle")]
 	public string scaleCiclre;
 
+	[XmlAttribute("scaleSquare")]
+	public string scaleSquare;
+
 	//Constructor existente para evitar problemas con XMLSerializer
 	public Piece()
 	{}

@@ -125,6 +125,13 @@ public class TangramManager : MonoBehaviour
 			}
 			go.transform.FindChild("rotate").localScale = tempV3;
 
+			if(pieces[i].scaleSquare != null)
+			{
+				tempV3.x = float.Parse(pieces[i].scaleSquare.Substring(0,pieces[i].scaleSquare.IndexOf(',')));
+				tempV3.y = float.Parse(pieces[i].scaleSquare.Substring(pieces[i].scaleSquare.IndexOf(',')+1));
+			}
+			go.transform.FindChild("translate").localScale = tempV3;
+
 			if(initLevel.radius > 0)
 			{
 				go.GetComponent<CircleCollider2D>().radius = initLevel.radius;
