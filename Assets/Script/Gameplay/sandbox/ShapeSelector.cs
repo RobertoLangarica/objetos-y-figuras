@@ -12,12 +12,16 @@ public class ShapeSelector : MonoBehaviour {
 	public GameObject triangle;
 	public GameObject rhomboid;
 	public GameObject trapezium;
+	public GameObject hexagon;
+	public GameObject pentagon;
 
 	public Image img_square;
 	public Image img_rectangle;
 	public Image img_triangle;
 	public Image img_rhomboid;
-	public Image img_trapezium; 
+	public Image img_trapezium;
+	public Image img_hexagon;
+	public Image img_pentagon; 
 
 	public ColorSelector colorSelector;
 	public TangramInput input;
@@ -64,6 +68,14 @@ public class ShapeSelector : MonoBehaviour {
 			shape = (GameObject.Instantiate(trapezium) as GameObject);
 			reference = img_trapezium;
 			break;
+		case "hexagon":
+			shape = (GameObject.Instantiate(hexagon) as GameObject);
+			reference = img_hexagon;
+			break;
+		case "pentagon":
+			shape = (GameObject.Instantiate(pentagon) as GameObject);
+			reference = img_pentagon;
+			break;
 		}
 		input.ignoreNextRotation = true;
 
@@ -75,9 +87,9 @@ public class ShapeSelector : MonoBehaviour {
 
 		float u = (Camera.main.orthographicSize*2*sprite.pixelsPerUnit)/Screen.height;
 		Vector3 size = sprite.bounds.size * sprite.pixelsPerUnit;
-		float s = Mathf.Min((reference.rectTransform.sizeDelta.y*u)/size.y
-		                    ,(reference.rectTransform.sizeDelta.x*u)/size.x);
-		shape.transform.localScale = new Vector3(s,s,1);
+		//float s = Mathf.Min((reference.rectTransform.sizeDelta.y*u)/size.y
+		//                    ,(reference.rectTransform.sizeDelta.x*u)/size.x);
+		//shape.transform.localScale = new Vector3(s,s,1);
 		size = Camera.main.ScreenToWorldPoint(reference.transform.position);
 		size.z = 0;
 		input.onDragFinish += shape.GetComponent<SandboxShape>().onDragFinish;

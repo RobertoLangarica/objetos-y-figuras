@@ -45,7 +45,7 @@ GameObject:
   - 114: {fileID: 11456752}
   - 114: {fileID: 11402552}
   m_Layer: 0
-  m_Name: Triangle
+  m_Name: Hexagon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,7 +59,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 468104}
-  - 60: {fileID: 6005916}
+  - 60: {fileID: 6044672}
   m_Layer: 0
   m_Name: move
   m_TagString: Untagged
@@ -86,7 +86,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 134858}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -.800000012, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.42688954, y: 1.42689061, z: 1.42689061}
   m_Children: []
   m_Father: {fileID: 473526}
@@ -127,9 +127,9 @@ CircleCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Radius: 3.50999999
-  m_Center: {x: 0, y: -.790000021}
---- !u!60 &6005916
+  m_Radius: 3.6099999
+  m_Center: {x: 0, y: 0}
+--- !u!60 &6044672
 PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -140,9 +140,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: .367325783, y: -.319545835}
-      - {x: -.366756916, y: -.31913051}
-      - {x: .00269109756, y: .316081673}
+    - - {x: .178171307, y: .31700924}
+      - {x: .369435579, y: -.00125976431}
+      - {x: .179224342, y: -.320941597}
+      - {x: -.180716425, y: -.318139583}
+      - {x: -.368322283, y: -.0027366241}
+      - {x: -.185473695, y: .317648768}
 --- !u!114 &11402552
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -246,7 +249,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 446442361
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300024, guid: e9ccf014ac38e455c9c03116e51e3213, type: 3}
+  m_Sprite: {fileID: 21300002, guid: e9ccf014ac38e455c9c03116e51e3213, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:
