@@ -12,7 +12,7 @@ public class DrawObject : MonoBehaviour
 	public GameObject pencil;
 	protected GameObject HUD;
 
-	void Start()
+	void Awake()
 	{
 		HUD = GetWhereToPutButtons(FindGameObjectsWithLayer(5)); // 5 es UI
 

@@ -10,6 +10,17 @@ public class SoundShapeManager : MonoBehaviour {
 	public string startSoundName;
 	protected Button[] shapeBtn;
 	protected AudioSource audioSource;
+
+	void Awake()
+	{
+		audioSource = GameObject.FindObjectOfType<AudioSource>();
+		if(audioSource==null)
+		{
+			GameObject.Find("Main Camera").AddComponent<AudioSource>();
+			audioSource = GameObject.FindObjectOfType<AudioSource>();
+		}
+	}
+
 	void Start()
 	{
 		TextAsset tempTxt = (TextAsset)Resources.Load ("Texts/toastTexts");
@@ -19,12 +30,8 @@ public class SoundShapeManager : MonoBehaviour {
 
 		shapes = GameObject.Find("Shapes");
 		shapeBtn = shapes.gameObject.GetComponentsInChildren<Button>();
-		audioSource = GameObject.FindObjectOfType<AudioSource>();
-		if(audioSource==null)
-		{
-			GameObject.Find("Main Camera").AddComponent<AudioSource>();
-			audioSource = GameObject.FindObjectOfType<AudioSource>();
-		}
+
+
 		overSound(startSoundName);
 	}
 
@@ -58,12 +65,15 @@ public class SoundShapeManager : MonoBehaviour {
 	public void overSound(string soundToPlay)
 	{
 		AudioClip aC = (AudioClip)Resources.Load("Sounds/"+soundToPlay);
-		
+
 		if(!audioSource.isPlaying)
-		{
+		{Debug.Log(GameObject.FindObjectOfType<DrawingInput>().canDraw);
 			audioSource.clip = aC;
 			if(!GameObject.FindObjectOfType<DrawingInput>().canDraw)
+			{
+
 				audioSource.Play();
+			}
 		}
 	}
 
