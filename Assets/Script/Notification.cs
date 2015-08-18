@@ -94,16 +94,16 @@ public class Notification : MonoBehaviour
 		toast.GetComponentInChildren<Text>().text = infTemp.text;
 	}
 	
-	protected void show(bool hide,float delay = .5f)
+	protected void show(bool show,float delay = .5f)
 	{
-		if(!hide)
+		if(!show)
 		{
-			toast.GetComponent<RectTransform>().DOAnchorPos(initialAnchoredPos,delay).OnComplete(onToastClosed);
+			toast.GetComponent<RectTransform>().DOAnchorPos(initialAnchoredPos,delay).OnComplete(onToastClosed).SetEase(Ease.InBack);
 		}
 		else
 		{
 			choseRobot();
-			toast.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0,0) ,delay);
+			toast.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0,0) ,delay).SetEase(Ease.OutBack);
 		}
 	}
 
