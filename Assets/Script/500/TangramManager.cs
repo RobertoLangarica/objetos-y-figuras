@@ -20,7 +20,7 @@ public class TangramManager : MonoBehaviour
 	protected List<string> previousLevel = new List<string>();
 	protected int currLevel = 1;
 	protected List<Placeholder> placeholder = new List<Placeholder>();
-	protected List<int> colorArr = new List<int>(){0,1,2,3,4,5,6,7,8};
+	protected List<int> colorArr = new List<int>(){1,2,3,4,5,6,7,8};
 	protected XMLLoader loader;
 	protected Notification notification;
 	
@@ -48,10 +48,29 @@ public class TangramManager : MonoBehaviour
 		DOTween.Play("SnapMove");
 	}
 
-	void levelStart()
+	protected void levelStart()
 	{
+		Debug.Log ("Entr");
+		for(int i = 0;i < shapes.Count;i++)
+		{
+			if(shapes[i] != null)
+			{
+				input.onDragFinish -= shapes[i].GetComponent<Shape>().onRotationComplete;
+				shapes[i].GetComponent<Shape>().destroy(0.5f);
+			}
+		}
+		for(int i = placeholder.Count-1;i > -1 ;i--)
+		{
+			if(placeholder[i] != null)
+			{
+				Destroy(placeholder[i].gameObject);
+			}
+		}
+		shapes = new List<GameObject>();
+		placeholder = new List<Placeholder>();
+
 		continueBtn.GetComponent<Button>().interactable = true;
-		colorArr = new List<int>(){0,1,2,3,4,5,6,7,8};
+		colorArr = new List<int>(){1,2,3,4,5,6,7,8};
 
 		currentLevel = selectLevel();
 		
@@ -368,9 +387,12 @@ public class TangramManager : MonoBehaviour
 			{
 				shapes[0].GetComponent<ShakeTransform>().startAction(0.5f);
 			}
+			if(audioSource && audioWrong)
+			{
+				audioSource.PlayOneShot(audioWrong);
+			}
 			return;
 		}
-		nextLevel();
 	}
 
 	protected void nextLevel()
@@ -378,25 +400,9 @@ public class TangramManager : MonoBehaviour
 		if(currLevel < 5)
 		{
 			currLevel++;
-			for(int i = 0;i < shapes.Count;i++)
-			{
-				if(shapes[i] != null)
-				{
-					input.onDragFinish -= shapes[i].GetComponent<Shape>().onRotationComplete;
-					shapes[i].GetComponent<Shape>().destroy(0.5f);
-				}
-			}
-			for(int i = placeholder.Count-1;i > -1 ;i--)
-			{
-				if(placeholder[i] != null)
-				{
-					Destroy(placeholder[i].gameObject);
-				}
-			}
-			shapes = new List<GameObject>();
-			placeholder = new List<Placeholder>();
 			notification.showToast("correcto",audioRight,2);
 			continueBtn.GetComponent<Button>().interactable = false;
+			Debug.Log ("Aqui");
 		}
 		else
 		{
