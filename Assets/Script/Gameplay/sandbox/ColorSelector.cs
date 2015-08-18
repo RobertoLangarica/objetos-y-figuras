@@ -3,42 +3,60 @@ using System.Collections;
 
 public class ColorSelector : MonoBehaviour {
 
+	public enum EShapeColor
+	{
+		AQUA,
+		BLACK,
+		BLUE,
+		GREEN,
+		GREY,
+		MAGENTA,
+		RED,
+		WHITE,
+		YELLOW
+	};
+
 	[HideInInspector]
-	public Color selectedColor;
+	public int selectedColor;
 
 	void Awake()
 	{
-		selectedColor = new Color(1,0,0);
+		selectedColor = 0;
 	}
-
-	public void selectColor(int index)
+	
+	public EShapeColor selectColor(int index)
 	{
+		Debug.Log(index);
 		switch(index)
 		{
 		case 1:
-			//RED
-			selectedColor.r = 1;
-			selectedColor.g = 0;
-			selectedColor.b = 0;
+			return EShapeColor.AQUA;
 			break;
 		case 2:
-			//GREEN
-			selectedColor.r = .4f;
-			selectedColor.g = 1;
-			selectedColor.b = .70f;
+			return EShapeColor.BLACK;
 			break;
 		case 3:
-			//BLUE
-			selectedColor.r = 0.56f;
-			selectedColor.g = 0.82f;
-			selectedColor.b = 1;
+			return EShapeColor.BLUE;
 			break;
 		case 4:
-			//PINK
-			selectedColor.r = 1;
-			selectedColor.g = 0.6f;
-			selectedColor.b = 0.93f;
+			return EShapeColor.GREEN;
+			break;
+		case 5:
+			return EShapeColor.GREY;
+			break;
+		case 6:
+			return EShapeColor.MAGENTA;
+			break;
+		case 7:
+			return EShapeColor.RED;
+			break;
+		case 8:
+			return EShapeColor.WHITE;
+			break;
+		case 9:
+			return EShapeColor.YELLOW;
 			break;
 		}
+		return EShapeColor.AQUA;
 	}
 }

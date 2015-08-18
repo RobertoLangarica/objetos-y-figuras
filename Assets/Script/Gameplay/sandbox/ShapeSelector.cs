@@ -27,7 +27,7 @@ public class ShapeSelector : MonoBehaviour {
 	public TangramInput input;
 
 	protected bool waitingForCompleteDragOnCreated = false;
-
+	protected int selectedColor;
 	void Start()
 	{
 		input.onDragFinish+=onDragFinish;
@@ -94,6 +94,8 @@ public class ShapeSelector : MonoBehaviour {
 		size.z = 0;
 		input.onDragFinish += shape.GetComponent<SandboxShape>().onDragFinish;
 		shape.transform.position = size;
+		shape.GetComponent<BaseShape>().color = (BaseShape.EShapeColor)colorSelector.selectColor(selectedColor);
+
 	}
 
 	public void onDragFinish()
@@ -119,5 +121,10 @@ public class ShapeSelector : MonoBehaviour {
 				input.selected.transform.position = pos;
 			}
 		}
+	}
+
+	public void selectColorToSelectedColor(int index)
+	{
+		selectedColor = index;
 	}
 }
