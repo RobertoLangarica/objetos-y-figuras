@@ -28,6 +28,7 @@ GameObject:
   - 114: {fileID: 11415858}
   - 58: {fileID: 5891040}
   - 212: {fileID: 21228596}
+  - 114: {fileID: 11411866}
   m_Layer: 8
   m_Name: G6
   m_TagString: MenuShape
@@ -172,6 +173,18 @@ PolygonCollider2D:
     - - {x: -.599051237, y: -1.91316259}
       - {x: 3.37686086, y: -1.88180745}
       - {x: -2.54338884, y: 4.0703125}
+--- !u!114 &11411866
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 115858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 969b3f25d2df44dcfbbe1be2bb970325, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shakeAmount: .150000006
 --- !u!114 &11415858
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -190,6 +203,7 @@ MonoBehaviour:
   initialColor: 9
   initialSize: 8
   initialAlpha: 1
+  scaleMultiplier: {x: 1, y: 1, z: 1}
   boundaryTop: 0
   boundaryBottom: 0
   boundaryLeft: 0
@@ -215,6 +229,7 @@ MonoBehaviour:
   initialColor: 9
   initialSize: 8
   initialAlpha: 1
+  scaleMultiplier: {x: 1, y: 1, z: 1}
 --- !u!212 &21207014
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -21,9 +21,12 @@ public class InternalShape : MonoBehaviour
 	{
 		for(int i = 0;i < possibleAnswers.Count;i++)
 		{
-			if(possibleAnswers[i].transform.parent.gameObject.Equals(go))
+			if(possibleAnswers[i] != null)
 			{
-				return true;
+				if(possibleAnswers[i].transform.parent.gameObject.Equals(go))
+				{
+					return true;
+				}
 			}
 		}
 		return false;
@@ -75,6 +78,7 @@ public class InternalShape : MonoBehaviour
 		int rotAngle = 0;
 
 		correctPiece = true;
+		go.GetComponent<Shape>().isPositionated = true;
 		DOTween.Kill("SnapMove",true);
 		go.transform.DOMove(transform.position,0.2f).SetEase(Ease.InOutSine).SetId("SnapMove");
 		rotAngle = getClosestAngle(go);

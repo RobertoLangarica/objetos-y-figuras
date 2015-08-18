@@ -11,12 +11,18 @@ public class TangramManager : MonoBehaviour
 	public Button continueBtn;
 	public List<GameObject> shapes = new List<GameObject>();
 	public TangramInput input;
+	public AudioSource audioSource; 
+	public AudioClip audioWrong;
+	public AudioClip audioRight;
+	public AudioClip finalAudio;
 	
 	protected Level currentLevel;
 	protected List<string> previousLevel = new List<string>();
 	protected int currLevel = 1;
 	protected List<Placeholder> placeholder = new List<Placeholder>();
+	protected List<int> colorArr = new List<int>(){0,1,2,3,4,5,6,7,8};
 	protected XMLLoader loader;
+	protected Notification notification;
 	
 	void Start ()
 	{		
@@ -27,6 +33,8 @@ public class TangramManager : MonoBehaviour
 		input.allowRotation = !cannotRotate;
 
 		levelStart();
+		notification = GameObject.Find("Notification").GetComponent<Notification>();
+		notification.onClose += levelStart;
 	}
 	
 	void onDrag()
@@ -42,6 +50,9 @@ public class TangramManager : MonoBehaviour
 
 	void levelStart()
 	{
+		continueBtn.GetComponent<Button>().interactable = true;
+		colorArr = new List<int>(){0,1,2,3,4,5,6,7,8};
+
 		currentLevel = selectLevel();
 		
 		initializeShapes(currentLevel);
@@ -51,8 +62,7 @@ public class TangramManager : MonoBehaviour
 		placeholder.Add(((GameObject)GameObject.Instantiate(tmp,Vector3.zero,Quaternion.identity)).GetComponent<Placeholder>());
 		
 		initializePlaceholder();
-		
-		continueBtn.gameObject.SetActive(false);
+
 		input.gameObject.SetActive(true);
 	}
 
@@ -68,7 +78,6 @@ public class TangramManager : MonoBehaviour
 		float max;
 		float posTemp = -0.03f;
 		int rdmColor = 0;
-		List<int> colorArr = new List<int>(){0,1,2,3,4,5,6,7,8};
 		for(int i = 0; i < pieces.Length; i++)
 		{
 			if(Random.value < 0.5f)
@@ -308,8 +317,15 @@ public class TangramManager : MonoBehaviour
 		return result.ToArray();
 	}
 	
-	public void checkForLevelComplete()
+	public bool checkForLevelComplete()
 	{
+		foreach(GameObject val in shapes)
+		{
+			if(val != null)
+			{
+				val.GetComponent<Shape>().isPositionated = false;
+			}
+		}
 		for(int i = 0;i < placeholder.Count;i++)
 		{
 			if(placeholder[i].isCorrect())
@@ -321,28 +337,54 @@ public class TangramManager : MonoBehaviour
 					{
 						if(temp[j].gameObject.name != placeholder[i].internalShapes[0].possibleAnswers[0].transform.parent.name)
 						{
-							//temp[j].transform.Find("New Sprite").gameObject.renderer.material.DOFade(0,0.5f);
-							temp[j].transform.Find("New Sprite").GetComponent<SpriteRenderer>().enabled = false;
+							input.onDragFinish -= temp[j].onRotationComplete;
+							temp[j].destroy(0.5f);
 						}
 					}
 				}
-				continueBtn.gameObject.SetActive(true);
 				input.selected = null;
 				input.gameObject.SetActive(false);
-				break;
+				nextLevel();
+				return true;
 			}
 		}
+		return false;
 	}
 	
 	public void onContinue()
 	{
+		int count = 0;
+		if(!checkForLevelComplete())
+		{
+			for(int i = 0;i < shapes.Count;i++)
+			{
+				if(!shapes[i].GetComponent<Shape>().isPositionated)
+				{
+					shapes[i].GetComponent<ShakeTransform>().startAction(0.5f);
+					count++;
+				}
+			}
+			if(count == 0)
+			{
+				shapes[0].GetComponent<ShakeTransform>().startAction(0.5f);
+			}
+			return;
+		}
+		nextLevel();
+	}
+
+	protected void nextLevel()
+	{
 		if(currLevel < 5)
 		{
 			currLevel++;
-			for(int i = shapes.Count-1;i > -1 ;i--)
+			for(int i = 0;i < shapes.Count;i++)
 			{
-				input.onDragFinish -= shapes[i].GetComponent<Shape>().onRotationComplete;
-				Destroy(shapes[i]);
+				if(shapes[i] != null)
+				{
+					input.onDragFinish -= shapes[i].GetComponent<Shape>().onRotationComplete;
+					shapes[i].GetComponent<Shape>().destroy(0.5f);
+				}
 			}
 			for(int i = placeholder.Count-1;i > -1 ;i--)
 			{
@@ -353,7 +395,8 @@ public class TangramManager : MonoBehaviour
 			}
 			shapes = new List<GameObject>();
 			placeholder = new List<Placeholder>();
-			levelStart();
+			notification.showToast("correcto",audioRight,2);
+			continueBtn.GetComponent<Button>().interactable = false;
 		}
 		else
 		{

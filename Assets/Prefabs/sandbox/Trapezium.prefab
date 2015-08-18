@@ -11,6 +11,7 @@ GameObject:
   - 212: {fileID: 21258368}
   - 58: {fileID: 5858046}
   - 114: {fileID: 11445674}
+  - 114: {fileID: 11482638}
   m_Layer: 0
   m_Name: Trapezium
   m_TagString: Untagged
@@ -74,7 +75,7 @@ Transform:
   m_GameObject: {fileID: 158046}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 4.12074375, y: 4.12074423, z: 4.12074423}
   m_Children: []
   m_Father: {fileID: 458368}
   m_RootOrder: 0
@@ -101,7 +102,7 @@ Transform:
   m_GameObject: {fileID: 177910}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: .899999976, y: .899999976, z: .899999976}
+  m_LocalScale: {x: 3.95763588, y: 3.95763612, z: 3.95763612}
   m_Children: []
   m_Father: {fileID: 458368}
   m_RootOrder: 2
@@ -113,7 +114,7 @@ Transform:
   m_GameObject: {fileID: 177912}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: .377916396, y: .377916455, z: .377916455}
+  m_LocalScale: {x: 1.33248627, y: 1.33248627, z: 1.33248627}
   m_Children: []
   m_Father: {fileID: 458368}
   m_RootOrder: 1
@@ -126,7 +127,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Radius: 1
+  m_Radius: 3.44000006
   m_Center: {x: 0, y: 0}
 --- !u!60 &6040090
 PolygonCollider2D:
@@ -149,14 +150,39 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 121540}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee348bf97c3c3485887371eb9fa4e6f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 21258368}
+  image: {fileID: 0}
   _rotateHandler: {fileID: 177912}
   _translateHandler: {fileID: 177910}
+  initialColor: 9
+  initialSize: 8
+  initialAlpha: 1
+  scaleMultiplier: {x: 1, y: 1, z: 1}
+  rotateAmount: 15
+--- !u!114 &11482638
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 121540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b3c1f9b03e5f487cadf6bb7a4ffe433, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 21258368}
+  image: {fileID: 0}
+  _rotateHandler: {fileID: 0}
+  _translateHandler: {fileID: 0}
+  initialColor: 9
+  initialSize: 2
+  initialAlpha: 1
+  scaleMultiplier: {x: 1, y: 1, z: 1}
 --- !u!212 &21258368
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -169,7 +195,7 @@ SpriteRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 2100000, guid: 241a561096ffc4981a468708573cf4f7, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -177,7 +203,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 446442361
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300012, guid: 218ada95848ac4fe3bcf669de19f92a4, type: 3}
+  m_Sprite: {fileID: 21300022, guid: e9ccf014ac38e455c9c03116e51e3213, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!212 &21277910
 SpriteRenderer:

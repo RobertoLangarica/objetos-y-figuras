@@ -28,8 +28,10 @@ public class GroupScene : MonoBehaviour
 	protected int currentLevel = 0;
 	protected int maxLevel = 0;
 	protected int shapesCount = 0;
+	protected GameObject continueBtn;
 	protected Rect containerRect;
 	protected XMLLoader loader;
+	protected Notification notification;
 	protected GameObject[] currentShapes;
 	protected GameObject[] containerImg;
 	protected int[] availableColors;
@@ -45,17 +47,22 @@ public class GroupScene : MonoBehaviour
 
 		availableScales = new float[]{0.1f,0.3f,0.5f,0.7f,1};
 
-		
 		GameObject tempGo = GameObject.Find("Containers");
 		Vector3[] tempV3 = new Vector3[4];
 		tempGo.GetComponent<RectTransform>().GetWorldCorners(tempV3);
 		containerRect = new Rect(tempV3[0].x,tempV3[0].y,(tempV3[2].x-tempV3[0].x),(tempV3[2].y-tempV3[0].y));
+
+		continueBtn = GameObject.Find("BtnCalificar");
+
+		notification = GameObject.Find("Notification").GetComponent<Notification>();
+		notification.onClose += nextLevel;
 
 		startLevel();
 	}
 
 	protected void startLevel()
 	{
+		continueBtn.GetComponent<Button>().interactable = true;
 		if(currentShapes != null)
 		{
 			for(int i = 0;i < currentShapes.Length;i++)
@@ -413,13 +420,13 @@ public class GroupScene : MonoBehaviour
 	{
 		if(isCorrect)
 		{
-			Debug.Log ("Correcto");
+			notification.showToast("correcto",audioRight,2);
+			continueBtn.GetComponent<Button>().interactable = false;
 		}
 		else
 		{
 			if(audioSource && audioWrong)
 			{
-				Debug.Log ("Incorrecto");
 				audioSource.PlayOneShot(audioWrong);
 			}
 		}
@@ -442,7 +449,9 @@ public class GroupScene : MonoBehaviour
 	public void verifyExcersice()
 	{
 		bool lose = false;
+		bool firstCheck = true;
 		int tempIndx = -2;
+		int bigGroup = 0;
 		Vector2 currPos = Vector2.zero;
 		List<int> calif = new List<int>();
 
@@ -450,19 +459,34 @@ public class GroupScene : MonoBehaviour
 		{
 			for (int i = 0;i < containersInRect.Length;i++) 
 			{
+				calif.Clear();
+				firstCheck = true;
 				for(int j = 0;j < currentShapes.Length;j++)
 				{
 					currPos = new Vector2(currentShapes[j].transform.localPosition.x,currentShapes[j].transform.localPosition.y);
 					if(containersInRect[i].Contains(currPos))
 					{
-						if(calif.IndexOf(currentShapes[j].GetComponent<GroupFigure>().group) == -1)
+						if(firstCheck)
 						{
-							calif.Add(currentShapes[j].GetComponent<GroupFigure>().group);
-							calif.Add(10);
+							tempIndx = calif.IndexOf(currentShapes[j].GetComponent<GroupFigure>().group);
+							if(tempIndx == -1)
+							{
+								calif.Add(currentShapes[j].GetComponent<GroupFigure>().group);
+								calif.Add(10);
+								if(calif.Count > 2)lose = true;
+							}
+							else
+							{
+								calif[tempIndx+1] = calif[tempIndx+1] +10;
+							}
 						}
 						else
 						{
-							currentShapes[j].GetComponent<ShakeTransform>().startAction(0.5f);
+							if(currentShapes[j].GetComponent<GroupFigure>().group != bigGroup)
+							{
+								currentShapes[j].GetComponent<ShakeTransform>().startAction(0.5f);
+								lose = true;
+							}
 						}
 					}
 					if(!containerRect.Contains(currPos))
@@ -470,17 +494,29 @@ public class GroupScene : MonoBehaviour
 						currentShapes[j].GetComponent<ShakeTransform>().startAction(0.5f);
 						lose = true;
 					}
+					if(j == currentShapes.Length-1 && firstCheck)
+					{
+						firstCheck = false;
+						j = -1;
+						for(int k = 1;k < calif.Count;k += 2)
+						{
+							if(calif[k] > bigGroup)bigGroup = calif[k];
+						}
+						if(calif.Count > 0)
+						{
+							bigGroup = calif[calif.IndexOf(bigGroup)-1];
+						}
+					}
 				}
 			}
 			if(lose)
 			{
 				shapeFeedback(false);
-				Debug.Log ("Ejercicio mal");
+				//Debug.Log ("Ejercicio mal");
 				return;
 			}
 		}
 		shapeFeedback(true);
-		nextLevel();
 	}
 
 	protected void nextLevel()
