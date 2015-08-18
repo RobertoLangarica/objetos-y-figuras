@@ -42,13 +42,16 @@ public class Placeholder : MonoBehaviour
 			internalShapes [i].correctPiece = false;
 			for(int j = 0;j < tempshps.Length;j++)
 			{
-				if(internalShapes[i].isOption(tempshps[j]))
+				if(tempshps[j] != null)
 				{
-					if(internalShapes[i].isWithinRange(tempshps[j]))
+					if(internalShapes[i].isOption(tempshps[j]))
 					{
-						if(internalShapes[i].calculateAngle(tempshps[j]))
+						if(internalShapes[i].isWithinRange(tempshps[j]))
 						{
-							internalShapes[i].setPiece(tempshps[j]);
+							if(internalShapes[i].calculateAngle(tempshps[j]))
+							{
+								internalShapes[i].setPiece(tempshps[j]);
+							}
 						}
 					}
 				}

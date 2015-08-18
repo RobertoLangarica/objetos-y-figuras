@@ -66,6 +66,7 @@ public class Question : MonoBehaviour {
 
 	protected void questionText(string textToPlay)
 	{
+		Debug.Log (textToPlay + "*************");
 		string number = "";
 		string shape = "";
 		Info infTemp = new Info();

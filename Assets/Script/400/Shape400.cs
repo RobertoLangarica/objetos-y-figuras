@@ -9,6 +9,8 @@ public class Shape400 : BaseShape {
 	public Container400 container;
 	[HideInInspector]
 	public int value;
+	[HideInInspector]
+	public int secondValue;
 
 	protected float velX;
 	protected float velY;
