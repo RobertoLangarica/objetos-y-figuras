@@ -57,6 +57,9 @@ public class GroupScene : MonoBehaviour
 		notification = GameObject.Find("Notification").GetComponent<Notification>();
 		notification.onClose += nextLevel;
 
+		Question tempQ = FindObjectOfType<Question>() as Question;
+		GameObject.Find("ClueBtn").GetComponent<Button>().onClick.AddListener(() => tempQ.questionSound(typeOfGroup.ToString()));
+
 		startLevel();
 	}
 
