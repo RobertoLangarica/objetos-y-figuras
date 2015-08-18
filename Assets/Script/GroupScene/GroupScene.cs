@@ -471,7 +471,6 @@ public class GroupScene : MonoBehaviour
 						lose = true;
 					}
 				}
-				contGroup = -1;
 			}
 			if(lose)
 			{

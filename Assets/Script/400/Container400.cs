@@ -3,19 +3,22 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class Container400 : MonoBehaviour {
-
-	public bool active = true;
-
+		
 	protected Rect area;
 	[HideInInspector]
 	public int value;
 	[HideInInspector]
 	public int secondValue;
+	[HideInInspector]
+	public bool active = true;
+	[HideInInspector]
+	public int next = -1;
 
 	protected Image image;
 	protected Color startColor;
 	protected Color secondaryColor;
 	protected bool _isEmpty;
+	protected bool isHidden = false;
 
 	// Use this for initialization
 	void Start () 
@@ -78,8 +81,59 @@ public class Container400 : MonoBehaviour {
 
 			if(image)
 			{
-				image.color = _isEmpty ? startColor:secondaryColor;
+				Color c = _isEmpty ? startColor:secondaryColor;
+				c.a = isHidden ? 0 : c.a;
+				image.color = c;
 			}
+		}
+	}
+
+	protected Color currentColor;
+	protected float finalAlpha;
+	protected float elapsedTime;
+	protected float alphaInverseDuration = 0.2f;
+	protected bool hiding = false;
+	protected float percent;
+
+	public void hide(bool shouldHide,bool animate = true)
+	{
+		if(image)
+		{
+			Color color = _isEmpty ? startColor:secondaryColor;
+
+			if(animate)
+			{
+				currentColor = image.color;
+				elapsedTime = 0;
+				alphaInverseDuration = 1/0.2f;
+				finalAlpha = shouldHide ? 0:color.a;
+				percent = 0;
+				hiding = true;
+
+				isHidden = shouldHide;
+			}
+			else
+			{
+				color.a = shouldHide ? 0:color.a;
+				image.color = color;
+			}
+		}
+	}
+
+	void Update()
+	{
+		if(hiding)
+		{
+			percent = elapsedTime*alphaInverseDuration;
+			currentColor.a = Mathf.SmoothStep(currentColor.a,finalAlpha,percent);
+			
+			if(currentColor.a == finalAlpha)
+			{
+				hiding = false;
+			}
+			
+			image.color = currentColor;
+			elapsedTime += Time.deltaTime;
 		}
 	}
 }

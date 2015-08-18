@@ -9,11 +9,11 @@ public class Manager400Sequence : MonoBehaviour {
 	public Notification notification;
 	public RectTransform gameArea;
 	public RectTransform shapesArea;
+	public Button finishButton;
 	public int maxSize = 6;
 	public int minSize = 0;
 	public bool useFullRangeForPositionate = false;
 	public GameObject[] allowedGeometricShapes;
-	public Button finishButton;
 	public AudioSource audioSource;
 	public AudioClip audioWrong;
 	public AudioClip audioRight;
@@ -23,8 +23,6 @@ public class Manager400Sequence : MonoBehaviour {
 	protected Container400[] containers;
 	protected List<Shape400> shapes;
 	protected List<Shape400> placeholders;
-	protected List<int> shapesShown;
-	protected List<int> colorShown;
 	protected int currentStage = -1;
 	protected bool vertical;
 	
@@ -46,15 +44,29 @@ public class Manager400Sequence : MonoBehaviour {
 		
 		//Inicializamos las areas de los contenedores
 		vertical = gameArea.GetComponent<VerticalLayoutGroup>() != null;
+
+		shapes = new List<Shape400>();
+		placeholders = new List<Shape400>();
 		
+		input.onDragFinish+=onDragFinish;
+		input.onDragStart+=onDragStart;
+		
+		//Inicializamos el ejercicio
+		showNextExcercise();
+	}
+
+	protected void setContainersAreas(int containersCount)
+	{
+		Vector3[] corners = new Vector3[4];
+
 		gameArea.GetWorldCorners(corners);
 		
 		Vector2 min = Vector2.zero;
 		Vector2 max = Vector2.zero;
 		float size	= vertical ? (corners[1].y - corners[0].y) : (corners[2].x - corners[0].x);
-		size/=containers.Length;
+		size/=containersCount;
 		
-		for(int i= 0; i < containers.Length; i++)
+		for(int i= 0; i < containersCount; i++)
 		{
 			if(vertical)
 			{
@@ -75,18 +87,6 @@ public class Manager400Sequence : MonoBehaviour {
 			
 			containers[i].setArea(min,max);
 		}
-		
-		
-		shapesShown = new List<int>();
-		colorShown = new List<int>();
-		shapes = new List<Shape400>();
-		placeholders = new List<Shape400>();
-		
-		input.onDragFinish+=onDragFinish;
-		input.onDragStart+=onDragStart;
-		
-		//Inicializamos el ejercicio
-		showNextExcercise();
 	}
 	
 	/**
@@ -120,19 +120,19 @@ public class Manager400Sequence : MonoBehaviour {
 		{
 			s.destroy(0.5f);
 		}
-		
-		foreach(Container400 c in containers)
+
+
+		foreach(Container400 s in containers)
 		{
-			c.isEmpty = true;
+			s.hide(true,true);
 		}
-		
+
 		shapes.Clear();
 		placeholders.Clear();
 		
 		yield return new WaitForSeconds(0.5f);
 		finishButton.interactable = true;
 		showNextExcercise();
-		
 	}
 	
 	/**
@@ -140,11 +140,16 @@ public class Manager400Sequence : MonoBehaviour {
 	 **/ 
 	protected void buildNextStage()
 	{
-		int shapesCount;
-		int colorsCount;
-		int localMinSize = minSize;
-		int localMaxSize = maxSize;
-		
+		int shapesCount = 0;
+		int colorsCount = 0;
+		int containersCount = 0;
+		int optionsCount = 0;
+		int size = Random.Range(minSize,maxSize);
+		List<int> tmpFigures = new List<int>();
+		List<int> prevIndex = new List<int>();
+		int refsCount = 0;
+		bool cloneFirstShape = false;
+
 		//Configuración
 		switch(currentStage)
 		{
@@ -152,80 +157,199 @@ public class Manager400Sequence : MonoBehaviour {
 		case 1:
 			shapesCount = 1;
 			colorsCount = 2;
+			refsCount	= 3;
+			containersCount = 6;
+			optionsCount = 5;
 			break;
 		case 2:
 		case 3:
 			shapesCount = 2;
 			colorsCount = 1;
+			refsCount	= 4;
+			containersCount = 7;
+			optionsCount = 4;
+			break;
 		case 4:
 		case 5:
 			shapesCount = 1;
 			colorsCount = 3;
+			refsCount	= 5;
+			containersCount = 8;
+			optionsCount = 6;
+
+			size = minSize;
 			break;
 		case 6:
 		case 7:
 			shapesCount = 3;
 			colorsCount = 1;
+			refsCount	= 5;
+			containersCount = 8;
+			optionsCount = 6;
+
+			size = minSize;
 			break;
 		case 8:
 		case 9:
-			shapesCount = 3;
-			colorsCount = 1;
+			shapesCount = 2;
+			colorsCount = 3;
+			refsCount	= 5;
+			containersCount = 8;
+			optionsCount = 6;
+			cloneFirstShape = true;//La primera se repite 2 veces
+
+			size = minSize;
+			break;
+		case 10:
+		case 11:
+			shapesCount = 4;
+			colorsCount = 4;
+			refsCount	= 5;
+			containersCount = 8;
+			optionsCount = 6;
+
+			size = minSize;
 			break;
 		}
-		
-		
-		GameObject tmp;
-		List<int> sizes = new List<int>();
-		
-		//Randomizando los tamaños (evitando que se repita alguno)
-		while(sizes.Count < containers.Length)
+
+		//Obtenemos las figuras
+		while(tmpFigures.Count < shapesCount)
 		{
-			int val = Random.Range(localMinSize,localMaxSize);
-			
-			if(!sizes.Contains(val))
+			int index = Random.Range(0,allowedGeometricShapes.Length);
+
+			if(!tmpFigures.Contains(index))
 			{
-				sizes.Add(val);
+				tmpFigures.Add (index);
 			}
 		}
 
-		//Obtenemos la figura
-		tmp = getRandomObject(allowedGeometricShapes,ref shapesShown);
-		
-		//Color aleatorio de entre los 9 disponibles (evitando repetidos)
-		int color = -1;
-		int colorCount = 0;
-		
-		while(color == -1)
+		if(cloneFirstShape)
 		{
-			color = Random.Range(0,8);
+			tmpFigures.Add (tmpFigures[0]);
+		}
+		
+		//Obtenemos los colores
+		List<int> colors = new List<int>();
+		
+		while(colors.Count < colorsCount)
+		{
+			int color = Random.Range(0,8);
 			
-			if(colorShown.Contains(color))
+			if(!colors.Contains(color))
 			{
-				if(colorCount < 14)
+				colors.Add(color);
+			}
+		}
+
+
+		//Areas para los contenedores
+		setContainersAreas(containersCount);
+
+		int count = 0;
+		int currentColor;
+		int currentShape;
+
+		//Placeholders y contenedores
+		for(int i = 0; i < containers.Length; i++)
+		{
+			containers[i].gameObject.SetActive((i < containersCount) ? true:false);
+			containers[i].next = -1;
+			containers[i].isEmpty = true;
+
+			if(i < containersCount)
+			{
+				Vector3 pos = new Vector3(containers[i].getCenter().x,
+				                          containers[i].getCenter().y,0);
+
+				currentColor = count < colors.Count ? colors[count]:colors[count%colors.Count];
+				currentShape = count < tmpFigures.Count ? tmpFigures[count]:tmpFigures[count%tmpFigures.Count];
+
+				containers[i].value = currentShape;
+				containers[i].secondValue = currentColor;
+				containers[i].hide(true);
+				containers[i].active = true;
+
+				if(i < refsCount)
 				{
-					color = -1;
+					placeholders.Add( (GameObject.Instantiate(
+						allowedGeometricShapes[currentShape],pos,Quaternion.identity) as GameObject).GetComponent<Shape400>());
+					placeholders[i].setSizeByInt(size);
+					placeholders[i].setColorByInt(currentColor);
+					placeholders[i].enabled(false);
+
+					//Los quito de la capa arrastrable
+					placeholders[i].gameObject.layer = LayerMask.NameToLayer("Background");
+					for(int ii = 0; ii < placeholders[i].transform.childCount; ii++)
+					{
+						placeholders[i].transform.GetChild(ii).gameObject.layer = LayerMask.NameToLayer("Background");
+					}
+
+					containers[i].active = false;
+
 				}
 				else
 				{
-					//se va repetir
-					colorShown.Clear();
+					//Solo los que esperan respuesta tienen next valido
+					containers[i].next = i == containersCount-1? -1:i+1;
+
+					shapes.Add( (GameObject.Instantiate(
+						allowedGeometricShapes[currentShape],pos,Quaternion.identity) as GameObject).GetComponent<Shape400>());
+
+					shapes[shapes.Count-1].setSizeByInt(size);
+					shapes[shapes.Count-1].setColorByInt(currentColor);
+					shapes[shapes.Count-1].value = currentShape;
+					shapes[shapes.Count-1].secondValue = currentColor;
+
+					if(i == refsCount)
+					{
+						containers[i].hide(false);
+					}
+					else
+					{
+						containers[i].active = false;
+					}
 				}
-				
+
+				count++;
 			}
-			
-			colorCount++;
 		}
-		
-		colorShown.Add(color);
-		
-		
+
+
 		//Instanciamos las figuras arrastrables
-		for(int i = 0; i < containers.Length; i++)
+		while(shapes.Count < optionsCount)
+		{
+			currentColor = count < colors.Count ? colors[count]:colors[count%colors.Count];
+			currentShape = count < tmpFigures.Count ? tmpFigures[count]:tmpFigures[count%tmpFigures.Count];
+
+			shapes.Add( (GameObject.Instantiate(
+				allowedGeometricShapes[currentShape]) as GameObject).GetComponent<Shape400>());
+
+			shapes[shapes.Count-1].value = currentShape;
+			shapes[shapes.Count-1].secondValue = currentColor;
+			shapes[shapes.Count-1].setSizeByInt(size);
+			shapes[shapes.Count-1].setColorByInt(currentColor);
+
+			count++;
+		}
+
+		//Las posicionamos
+		List<int> positions = new List<int>();
+
+		for(int i = 1; i < containersCount; i++)
+		{
+			positions.Add(i);
+		}
+
+		int idx;
+		int c = 0;
+		while(c < shapes.Count)
 		{
 			Vector3 pos = Vector3.zero;
-			
 			float gap = 0;
+			int i;
+			idx = Random.Range(0,positions.Count);
+			i = positions[idx];
+			positions.RemoveAt(idx);
 			
 			if(useFullRangeForPositionate)
 			{
@@ -238,8 +362,9 @@ public class Manager400Sequence : MonoBehaviour {
 				//pos.y = Random.Range(shapesRect.yMin,shapesRect.yMax);
 				
 				//Contenido en el container
-				gap = (containers[i].max.y-containers[i].min.y)*0.25f;
-				pos.y = Random.Range(containers[i].min.y+gap,containers[i].max.y-gap);
+				//gap = (containers[i].max.y-containers[i].min.y)*0.25f;
+				//pos.y = Random.Range(containers[i].min.y+gap,containers[i].max.y-gap);
+				pos.y = containers[i].getCenter().y;
 			}
 			else
 			{
@@ -247,43 +372,15 @@ public class Manager400Sequence : MonoBehaviour {
 				//pos.x = Random.Range(shapesRect.xMin,shapesRect.xMax);
 				
 				//Contenido en el container
-				gap = (containers[i].max.x-containers[i].min.x)*0.25f;
-				pos.x = Random.Range(containers[i].min.x+gap,containers[i].max.x-gap);
+				//gap = (containers[i].max.x-containers[i].min.x)*0.25f;
+				//pos.x = Random.Range(containers[i].min.x+gap,containers[i].max.x-gap);
+				pos.x = containers[i].getCenter().x;
 			}
-			
-			shapes.Add( (GameObject.Instantiate(tmp,pos,Quaternion.identity) as GameObject).GetComponent<Shape400>());
-			shapes[i].value = sizes[i];
-			shapes[i].setSizeByInt(sizes[i]);
-			shapes[i].setColorByInt(color);
-		}
-		
-		//Placeholders y contenedores
-		
-		//Ordenamos los valores
-		sizes.Sort ();
-		
-		for(int i = 0; i < containers.Length; i++)
-		{
-			Vector3 pos = new Vector3(containers[i].getCenter().x,
-			                          containers[i].getCenter().y,0);
-			
-			containers[i].secondValue = sizes[i];
-			
-			placeholders.Add( (GameObject.Instantiate(tmp,pos,Quaternion.identity) as GameObject).GetComponent<Shape400>());
-			placeholders[i].value = sizes[i];
-			placeholders[i].setSizeByInt(sizes[i]);
-			placeholders[i].setColorByInt(color);
-			placeholders[i].enabled(false);
-			placeholders[i].alpha = 0.4f;
-			
-			//Los quito de la capa arrastrable
-			placeholders[i].gameObject.layer = LayerMask.NameToLayer("Background");
-			for(int ii = 0; ii < placeholders[i].transform.childCount; ii++)
-			{
-				placeholders[i].transform.GetChild(ii).gameObject.layer = LayerMask.NameToLayer("Background");
-			}
-			
-			containers[i].value = sizes[i];
+
+			shapes[c].transform.position = pos;
+
+			c++;
+
 		}
 	}
 	
@@ -297,7 +394,7 @@ public class Manager400Sequence : MonoBehaviour {
 			count++;
 			
 			index = Random.Range(0,source.Length);
-			//index = 1;
+
 			if(shown.Contains(index))
 			{
 				//Que no se repita por siempre
@@ -330,21 +427,33 @@ public class Manager400Sequence : MonoBehaviour {
 	protected void checkAndShowIfExcerciseIsCorrect()
 	{
 		List<Shape400> badShapes = new List<Shape400>();
-		
+
+		int shapesInContainer = 0;
+		int containersForShapes = 1;
+
 		foreach(Shape400 s in shapes)
 		{
-			if(!s.container)
+			if(s.container)
 			{
-				badShapes.Add(s);
+				shapesInContainer++;
 			}
 		}
-		
-		if(badShapes.Count > 0)
+
+		foreach(Container400 c in containers)
+		{
+			if(c.next != -1)
+			{
+				containersForShapes++;
+			}
+		}
+
+		if(shapesInContainer < containersForShapes)
 		{
 			//Figuras fuera de lugar
-			foreach(Shape400 s in badShapes)
+			foreach(Shape400 s in shapes)
 			{
-				s.GetComponent<ShakeTransform>().startAction(0.5f);
+				if(!s.container)
+				{s.GetComponent<ShakeTransform>().startAction(0.5f);}
 			}
 			
 			if(audioSource && audioWrong)
@@ -356,36 +465,16 @@ public class Manager400Sequence : MonoBehaviour {
 		}
 		else
 		{
-			List<Shape400> first	= new List<Shape400>();
-			List<Shape400> second	= new List<Shape400>();
-			List<Shape400> refList;
-			
 			foreach(Shape400 s in shapes)
 			{
-				if(s.value == s.container.value)
+				if(s.container)
 				{
-					first.Add(s);
-				}
-				else if(s.value == s.container.secondValue)
-				{
-					second.Add (s);
-				}
-				else
-				{
-					badShapes.Add(s);
+					if(s.value != s.container.value || s.secondValue != s.container.secondValue)
+					{
+						badShapes.Add(s);
+					}
 				}
 			}
-			
-			if(first.Count > second.Count)
-			{
-				refList = second;
-			}
-			else
-			{
-				refList = first;
-			}
-			
-			badShapes.AddRange(refList);
 			
 			if(badShapes.Count > 0)
 			{
@@ -413,39 +502,43 @@ public class Manager400Sequence : MonoBehaviour {
 	
 	protected bool isCorrect()
 	{
-		foreach(Shape400 s in shapes)
-		{
-			if(!s.container)
-			{
-				return false;
-			}
-		}
-		
-		List<Shape400> first	= new List<Shape400>();
-		List<Shape400> second	= new List<Shape400>();
-		List<Shape400> refList;
+		int shapesInContainer = 0;
+		int containersForShapes = 1;
 		
 		foreach(Shape400 s in shapes)
 		{
-			if(s.value == s.container.value)
+			if(s.container)
 			{
-				first.Add(s);
-			}
-			else if(s.value == s.container.secondValue)
-			{
-				second.Add (s);
-			}
-			else
-			{
-				return false;
+				shapesInContainer++;
 			}
 		}
 		
-		if(first.Count != containers.Length && second.Count != containers.Length)
+		foreach(Container400 c in containers)
+		{
+			if(c.next != -1)
+			{
+				containersForShapes++;
+			}
+		}
+		
+		if(shapesInContainer < containersForShapes)
 		{
 			return false;
 		}
-		
+		else
+		{
+			foreach(Shape400 s in shapes)
+			{
+				if(s.container)
+				{
+					if(s.value != s.container.value || s.secondValue != s.container.secondValue)
+					{
+						return false;
+					}
+				}
+			}
+		}
+
 		return true;
 	}
 	
@@ -462,7 +555,7 @@ public class Manager400Sequence : MonoBehaviour {
 			//Vemos dentro de cual contenedor está
 			for(int i = 0; i < containers.Length; i++)
 			{
-				if(containers[i].Contains(input.selected.transform.position))
+				if(containers[i].active && containers[i].Contains(input.selected.transform.position))
 				{
 					if(!containers[i].isEmpty)
 					{
@@ -487,7 +580,13 @@ public class Manager400Sequence : MonoBehaviour {
 							}
 						}
 					}
-					
+
+					if(containers[i].next != -1)
+					{
+						containers[containers[i].next].active = true;
+						containers[containers[i].next].hide(false);
+					}
+
 					containers[i].isEmpty = false;
 					((Shape400)input.selected).container = containers[i];
 					
