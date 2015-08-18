@@ -24,10 +24,10 @@ public class Question : MonoBehaviour {
 		TextAsset tempTxt = (TextAsset)Resources.Load ("Texts/toastTexts");
 		data = Teacher.LoadFromText(tempTxt.text);
 		toast = GameObject.Find("Question");
-		robots = GameObject.FindGameObjectsWithTag("Robot");
+		robots = GameObject.FindGameObjectsWithTag("RobotQuestion");
 
 		initialAnchoredPos = toast.GetComponent<RectTransform>().anchoredPosition;
-		showToast(true);
+		showToast(false);
 	}
 	
 	// Update is called once per frame
@@ -38,7 +38,7 @@ public class Question : MonoBehaviour {
 	public void questionSound(string soundToPlay)
 	{
 		AudioClip aC = (AudioClip)Resources.Load("Sounds/"+soundToPlay+"_"+soundtoGo);
-		showToast(true,0);
+		showToast(false,0);
 
 		audioSource.clip = aC;
 
@@ -66,7 +66,6 @@ public class Question : MonoBehaviour {
 
 	protected void questionText(string textToPlay)
 	{
-		Debug.Log (textToPlay + "*************");
 		string number = "";
 		string shape = "";
 		Info infTemp = new Info();
@@ -76,23 +75,22 @@ public class Question : MonoBehaviour {
 		infTemp = data.getFigureByName(shape).getInfoByName(number);
 		Figures[] figure = data.figure;
 
-		showToast(false);
+		showToast(true);
 		toast.GetComponentInChildren<Text>().text = infTemp.text;
 	}
 
-	protected void showToast(bool hide,float delay = .5f)
+	protected void showToast(bool show,float delay = .5f)
 	{
 		float val = Screen.height*0.4f;
 
-		if(hide)
+		if(!show)
 		{
-			toast.GetComponent<RectTransform>().DOAnchorPos(initialAnchoredPos,delay);
-			//toast.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0,-val ),delay);
+			toast.GetComponent<RectTransform>().DOAnchorPos(initialAnchoredPos,delay).SetEase(Ease.InBack);
 		}
 		else
 		{
 			choseRobot();
-			toast.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0,0) ,delay);
+			toast.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0,0) ,delay).SetEase(Ease.OutBack);
 		}
 	}
 
@@ -114,7 +112,7 @@ public class Question : MonoBehaviour {
 		yield return new WaitForSeconds((float)parms[0]+3f);
 		if(string.Compare(currentToast,(string)parms[1])==0)
 		{
-			showToast(true);
+			showToast(false);
 		}
 	}
 

@@ -2333,6 +2333,7 @@ MonoBehaviour:
   initialColor: 9
   initialSize: 5
   initialAlpha: 1
+  scaleMultiplier: {x: 1, y: 1, z: 1}
 --- !u!1 &1031491241
 GameObject:
   m_ObjectHideFlags: 0
@@ -2460,7 +2461,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75f53f3b6b4a0e24985cfe0a555c9e26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startSoundName: Hexagono
+  startSoundName: Hexagon
 --- !u!81 &1169323140
 AudioListener:
   m_ObjectHideFlags: 0
@@ -2752,7 +2753,7 @@ MonoBehaviour:
             Culture=neutral, PublicKeyToken=null
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Hexagono
+          m_StringArgument: Hexagon
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -3721,6 +3722,10 @@ Prefab:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1169323143}
+    - target: {fileID: 11481606, guid: 3dfb11f8ce87d5444b495aba7495d891, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Hexagon
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3dfb11f8ce87d5444b495aba7495d891, type: 2}
   m_RootGameObject: {fileID: 1031491241}
