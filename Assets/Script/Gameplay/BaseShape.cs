@@ -64,6 +64,7 @@ public class BaseShape : MonoBehaviour {
 		if(spriteRenderer)
 		{
 			rendererColor = spriteRenderer.color;
+			Debug.Log (rendererColor);
 		}
 		else if(image)
 		{
@@ -162,6 +163,9 @@ public class BaseShape : MonoBehaviour {
 			case EShapeColor.YELLOW:
 				rendererColor = new Color(0.976f, 0.627f, 0.000f);
 			break;
+			case EShapeColor.NONE:
+				return;
+				break;
 			}
 
 			rendererColor.a = currentAlpha;
