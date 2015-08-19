@@ -43,7 +43,6 @@ GameObject:
   - 212: {fileID: 21207836}
   - 58: {fileID: 5826434}
   - 114: {fileID: 11493262}
-  - 114: {fileID: 11404146}
   m_Layer: 0
   m_Name: Rectangle
   m_TagString: Untagged
@@ -73,7 +72,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 144616}
-  m_LocalRotation: {x: 0, y: 0, z: .707106829, w: .707106829}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -140,32 +139,13 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_Size: {x: .430000007, y: .879999995}
   m_Center: {x: 0, y: 0}
---- !u!114 &11404146
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 144616}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b3c1f9b03e5f487cadf6bb7a4ffe433, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 21207836}
-  image: {fileID: 0}
-  _rotateHandler: {fileID: 0}
-  _translateHandler: {fileID: 0}
-  initialColor: 9
-  initialSize: 2
-  initialAlpha: 1
-  scaleMultiplier: {x: 1, y: 1, z: 1}
 --- !u!114 &11493262
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 144616}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee348bf97c3c3485887371eb9fa4e6f4, type: 3}
   m_Name: 
@@ -175,7 +155,7 @@ MonoBehaviour:
   _rotateHandler: {fileID: 185596}
   _translateHandler: {fileID: 0}
   initialColor: 9
-  initialSize: 8
+  initialSize: 2
   initialAlpha: 1
   scaleMultiplier: {x: 1, y: 1, z: 1}
   rotateAmount: 15

@@ -83,19 +83,18 @@ public class ShapeSelector : MonoBehaviour {
 		Sprite sprite = input.selected.spriteRenderer.sprite;
 
 		input.selected.sortingLayer = "SelectedShape";
+		input.onDragFinish += shape.GetComponent<SandboxShape>().onDragFinish;
+		input.selected.color = (BaseShape.EShapeColor)colorSelector.selectColor(selectedColor);
 		//input.selected.color = colorSelector.selectedColor;
 
-		float u = (Camera.main.orthographicSize*2*sprite.pixelsPerUnit)/Screen.height;
+		/*float u = (Camera.main.orthographicSize*2*sprite.pixelsPerUnit)/Screen.height;
 		Vector3 size = sprite.bounds.size * sprite.pixelsPerUnit;
-		//float s = Mathf.Min((reference.rectTransform.sizeDelta.y*u)/size.y
-		//                    ,(reference.rectTransform.sizeDelta.x*u)/size.x);
-		//shape.transform.localScale = new Vector3(s,s,1);
-		size = Camera.main.ScreenToWorldPoint(reference.transform.position);
-		size.z = 0;
-		input.onDragFinish += shape.GetComponent<SandboxShape>().onDragFinish;
-		shape.transform.position = size;
-		shape.GetComponent<BaseShape>().color = (BaseShape.EShapeColor)colorSelector.selectColor(selectedColor);
-
+		float s = Mathf.Min((reference.rectTransform.sizeDelta.y*u)/size.y
+		                    ,(reference.rectTransform.sizeDelta.x*u)/size.x);
+		shape.transform.localScale = new Vector3(s,s,1);*/
+		Vector3 pos = Camera.main.ScreenToWorldPoint(reference.transform.position);
+		pos.z = 0;
+		shape.transform.position = pos;
 	}
 
 	public void onDragFinish()
