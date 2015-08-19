@@ -60,7 +60,9 @@ public class ScreenManager : MonoBehaviour {
 			//Mostramos la pantalla anterior
 			if(backScreens.ContainsKey(Application.loadedLevelName))
 			{
-				GoToScene(backScreens[Application.loadedLevelName]);
+				string name = Application.loadedLevelName;
+				GoToScene(backScreens[name]);
+				backScreens.Remove(name);
 			}
 		}
 	}
@@ -71,6 +73,7 @@ public class ScreenManager : MonoBehaviour {
 		{
 			return;
 		}
+
 		if (!isAudioPlaying && newScene == firstEditorScreen) 
 		{
 			isAudioPlaying = true;
@@ -80,11 +83,7 @@ public class ScreenManager : MonoBehaviour {
 		if(SceneFadeInOut.instance != null)
 			SceneFadeInOut.instance.Fade();
 
-		if(backScreens.ContainsKey(newScene))
-		{
-			backScreens[newScene] = Application.loadedLevelName;
-		}
-		else
+		if(!backScreens.ContainsKey(newScene))
 		{
 			backScreens.Add(newScene,Application.loadedLevelName);
 		}
