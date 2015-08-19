@@ -227,7 +227,7 @@ public class Manager400Tamanio : MonoBehaviour {
 
 		while(color == -1)
 		{
-			color = Random.Range(0,8);
+			color = Random.Range(0,System.Enum.GetValues(typeof(BaseShape.EShapeColor)).Length-1);
 
 			if(colorShown.Contains(color))
 			{

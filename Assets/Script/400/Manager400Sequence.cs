@@ -233,7 +233,7 @@ public class Manager400Sequence : MonoBehaviour {
 		
 		while(colors.Count < colorsCount)
 		{
-			int color = Random.Range(0,8);
+			int color = Random.Range(0,System.Enum.GetValues(typeof(BaseShape.EShapeColor)).Length-1);
 			
 			if(!colors.Contains(color))
 			{
