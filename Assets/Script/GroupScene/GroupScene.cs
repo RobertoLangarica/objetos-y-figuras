@@ -22,7 +22,6 @@ public class GroupScene : MonoBehaviour
 	public AudioClip audioRight;
 	public AudioClip finalAudio;
 	public List<GameObject> kindsOfShapes = new List<GameObject>();
-	//public EGroups type;
 
 	protected int totalGroups = 0;
 	protected int currentLevel = 0;
@@ -405,17 +404,10 @@ public class GroupScene : MonoBehaviour
 					ndx = evaluation[i-1];
 				}
 			}
-			/*if(shape.GetComponent<GroupFigure>().group == ndx && tie == false)
-			{
-				shapeFeedback(true);
-			}
-			else
-			{
-				shapeFeedback(false);
-			}*/
 		}
 		if (wasLastPiece ()) 
 		{
+			verifyExcersice();
 		}
 	}
 
@@ -492,11 +484,6 @@ public class GroupScene : MonoBehaviour
 							}
 						}
 					}
-					if(!containerRect.Contains(currPos))
-					{
-						currentShapes[j].GetComponent<ShakeTransform>().startAction(0.5f);
-						lose = true;
-					}
 					if(j == currentShapes.Length-1 && firstCheck)
 					{
 						firstCheck = false;
@@ -512,12 +499,20 @@ public class GroupScene : MonoBehaviour
 					}
 				}
 			}
-			if(lose)
+		}
+		for(int j = 0;j < currentShapes.Length;j++)
+		{
+			currPos = new Vector2(currentShapes[j].transform.localPosition.x,currentShapes[j].transform.localPosition.y);
+			if(!containerRect.Contains(currPos))
 			{
-				shapeFeedback(false);
-				//Debug.Log ("Ejercicio mal");
-				return;
+				currentShapes[j].GetComponent<ShakeTransform>().startAction(0.5f);
+				lose = true;
 			}
+		}
+		if(lose)
+		{
+			shapeFeedback(false);
+			return;
 		}
 		shapeFeedback(true);
 	}

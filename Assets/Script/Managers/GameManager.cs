@@ -10,10 +10,15 @@ public class GameManager : MonoBehaviour
 	public static string lvlToPrepare = "SN01_01";
 	public static bool cannotRotate = false;
 
-	public Button sendBtn;
+	//public Button sendBtn;
 	public Button continueBtn;
+	public Notification notification;
 	public GameObject[] shapes;
 	public TangramInput input;
+	public AudioSource audioSource; 
+	public AudioClip audioWrong;
+	public AudioClip audioRight;
+	public AudioClip finalAudio;
 
 	protected Level currentLevel;
 	protected Placeholder placeholder;
@@ -38,20 +43,22 @@ public class GameManager : MonoBehaviour
 			Debug.Log("GM-> Nivel completado previamente.");
 			//initializeReferenceImage();
 			initializeShapes();
-			continueBtn.gameObject.SetActive(false);
-			sendBtn.gameObject.SetActive(true);
+			//continueBtn.gameObject.SetActive(false);
+			//sendBtn.gameObject.SetActive(true);
 		}
 		else
 		{
 			Debug.Log("GM-> Inicializando nuevo nivel.");
 			initializeShapes();
-			sendBtn.gameObject.SetActive(false);
-			continueBtn.gameObject.SetActive(false);
+			//sendBtn.gameObject.SetActive(false);
+			//continueBtn.gameObject.SetActive(false);
 		}
 
 		input.onAnyDrag += onDrag;
 		input.onDragFinish += onDragFinish;
 		input.allowRotation = !cannotRotate;
+
+		notification.onClose += onContinue;
 	}	
 
 	void onDrag()
@@ -227,8 +234,8 @@ public class GameManager : MonoBehaviour
 			removeShapesAndPlaceHolder();
 			//Agregamos la imagen bonita de la nave y el boton de continue
 			initializeReferenceImage();
-			continueBtn.gameObject.SetActive(true);
-			sendBtn.gameObject.SetActive(true);
+			continueBtn.interactable = false;
+			//sendBtn.gameObject.SetActive(true);
 			GameObject.FindObjectOfType<DragRecognizer>().enabled = false;
 			input.selected = null;
 			input.gameObject.SetActive(false);
@@ -240,13 +247,14 @@ public class GameManager : MonoBehaviour
 				client.isShipReady = true;//Esto envia la nave
 			}
 
-			if((UserDataManager.instance.getCompletedLevels().Length%3) == 0 && UserDataManager.instance.premiumVersion == "premiumVersion")
+			if((UserDataManager.instance.getCompletedLevels().Length%3) == 0)
 			{
 				if(UserDataManager.instance.level < LevelManager.instance.maxLevel)
 				{
 					UserDataManager.instance.level = UserDataManager.instance.level+1;
 				}
 			}
+			notification.showToast("correcto",audioRight,2);
 		}
 	#else
 		if(placeholder.isCorrect())
@@ -258,7 +266,7 @@ public class GameManager : MonoBehaviour
 			removeShapesAndPlaceHolder();
 			//Agregamos la imagen bonita de la nave y el boton de continue
 			initializeReferenceImage();
-			continueBtn.gameObject.SetActive(true);
+			continueBtn.interactable = false;
 			sendBtn.gameObject.SetActive(true);
 			input.selected = null;
 			input.gameObject.SetActive(false);
@@ -277,9 +285,27 @@ public class GameManager : MonoBehaviour
 					UserDataManager.instance.level = UserDataManager.instance.level+1;
 				}
 			}
-
+			notification.showToast("correcto",audioRight,2);
 		}
 	#endif
+	}
+
+	public void verifyExcercise()
+	{
+		if(!placeholder.isCorrect())
+		{
+			for(int i = 0;i < shapes.Length;i++)
+			{
+				if(!shapes[i].GetComponent<Shape>().isPositionated)
+				{
+					shapes[i].GetComponent<ShakeTransform>().startAction(0.5f);
+				}
+			}
+			if(audioSource && audioWrong)
+			{
+				audioSource.PlayOneShot(audioWrong);
+			}
+		}
 	}
 
 	protected void removeShapesAndPlaceHolder()
