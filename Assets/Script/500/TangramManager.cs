@@ -158,7 +158,9 @@ public class TangramManager : MonoBehaviour
 				tempV3.x = float.Parse(pieces[i].scaleSquare.Substring(0,pieces[i].scaleSquare.IndexOf(',')));
 				tempV3.y = float.Parse(pieces[i].scaleSquare.Substring(pieces[i].scaleSquare.IndexOf(',')+1));
 			}
-			go.transform.FindChild("translate").localScale = tempV3;
+			Transform translateChild = go.transform.FindChild("translate");
+			if(translateChild)
+			{translateChild.localScale = tempV3;}
 
 			if(initLevel.radius > 0)
 			{
