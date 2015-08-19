@@ -64,7 +64,6 @@ public class BaseShape : MonoBehaviour {
 		if(spriteRenderer)
 		{
 			rendererColor = spriteRenderer.color;
-			Debug.Log (rendererColor);
 		}
 		else if(image)
 		{
@@ -186,6 +185,7 @@ public class BaseShape : MonoBehaviour {
 		get{return currentAlpha;}
 		set
 		{
+			Debug.Log (value);
 			initialAlpha = value;
 			currentAlpha = value;
 			rendererColor.a = value;

@@ -341,12 +341,18 @@ public class TangramInput : MonoBehaviour {
 				if(forMove != null)
 				{
 					_selected = forMove;
+					_selected.sortingLayer = selectedLayerName;
+
 				}
 				else if(allowRotation)
 				{
 					//Rotando?
 					_selected = getSelectedFromRotatingFingers();
 					rotating = _selected != null;
+					if(_selected)
+					{
+						_selected.sortingLayer = selectedLayerName;
+					}
 				}
 				else
 				{

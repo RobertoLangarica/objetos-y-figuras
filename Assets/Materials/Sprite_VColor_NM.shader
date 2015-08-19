@@ -4,8 +4,14 @@
 		_NormalMap ("Normal Map", 2D) = "bump" {}
 	}
 	SubShader {
-		Tags { "RenderType"="Opaque" "Queue"="Transparent"}
+		Tags { "RenderType"="Opaque" 
+				"Queue"="Transparent" 
+				"IgnoreProjector"="True"
+				
+            	"CanUseSpriteAtlas"="True"
+            	}
 		LOD 200
+		Cull Off
 		
 		CGPROGRAM
 		// Upgrade NOTE: excluded shader from OpenGL ES 2.0 because it does not contain a surface program or both vertex and fragment programs.
@@ -24,7 +30,6 @@
 		void vert(inout appdata_full v, out Input o)
 		{
 			UNITY_INITIALIZE_OUTPUT(Input, o);
-			//mul (UNITY_MATRIX_MVP, v);
 			o.vertexColor = v.color;
 		}
 		
