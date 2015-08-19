@@ -30,13 +30,15 @@ public class Pencil : MonoBehaviour {
 		{
 			moveBtn(true);
 			showing=false;
-			QuestionBtn.GetComponent<Button>().interactable = true;
+			if(QuestionBtn)
+				QuestionBtn.GetComponent<Button>().interactable = true;
 		}
 		else
 		{
 			showing=true;
 			moveBtn(false);
-			QuestionBtn.GetComponent<Button>().interactable = false;
+			if(QuestionBtn)
+				QuestionBtn.GetComponent<Button>().interactable = false;
 		}
 	}
 
