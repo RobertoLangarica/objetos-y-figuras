@@ -138,6 +138,10 @@ public class GameManager : MonoBehaviour
 			//Que la figura no se ponga en una rotacion invalida
 			Shape sp = go.GetComponent<Shape>();
 			sp.name = pieces[i].name;
+			//sp.color = (BaseShape.EShapeColor)Random.Range(0,System.Enum.GetValues(typeof(BaseShape.EShapeColor)).Length-1);
+			sp.color = (BaseShape.EShapeColor)System.Enum.GetValues(typeof(BaseShape.EShapeColor)).Length;
+
+
 			sp.onRotationComplete();
 			input.onDragFinish += sp.onRotationComplete;
 
