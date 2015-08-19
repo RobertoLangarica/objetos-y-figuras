@@ -4,7 +4,8 @@ using System.Collections;
 
 public class Container400 : MonoBehaviour {
 		
-	protected Rect area;
+	[HideInInspector]
+	public Rect area;
 	[HideInInspector]
 	public int value;
 	[HideInInspector]
@@ -19,6 +20,9 @@ public class Container400 : MonoBehaviour {
 	protected Color secondaryColor;
 	protected bool _isEmpty;
 	protected bool isHidden = false;
+	[HideInInspector]
+	public Vector2 alignedPos;
+
 
 	// Use this for initialization
 	void Start () 

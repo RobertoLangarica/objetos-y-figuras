@@ -212,10 +212,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 548757662dd3d4c39930ec77af812072, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  area:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
   value: 0
   secondValue: 0
   active: 1
   next: -1
+  alignedPos: {x: 0, y: 0}
 --- !u!1 &219908245
 GameObject:
   m_ObjectHideFlags: 0
@@ -348,10 +355,10 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: .100000001
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 21300004, guid: f46c2807590594f878a1886f3b6e912e,
+    m_HighlightedSprite: {fileID: 21300090, guid: f46c2807590594f878a1886f3b6e912e,
       type: 3}
-    m_PressedSprite: {fileID: 21300000, guid: f46c2807590594f878a1886f3b6e912e, type: 3}
-    m_DisabledSprite: {fileID: 21300002, guid: f46c2807590594f878a1886f3b6e912e, type: 3}
+    m_PressedSprite: {fileID: 21300086, guid: f46c2807590594f878a1886f3b6e912e, type: 3}
+    m_DisabledSprite: {fileID: 21300088, guid: f46c2807590594f878a1886f3b6e912e, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -390,7 +397,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Sprite: {fileID: 21300006, guid: f46c2807590594f878a1886f3b6e912e, type: 3}
+  m_Sprite: {fileID: 21300092, guid: f46c2807590594f878a1886f3b6e912e, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -729,10 +736,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 548757662dd3d4c39930ec77af812072, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  area:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
   value: 0
   secondValue: 0
   active: 1
   next: -1
+  alignedPos: {x: 0, y: 0}
 --- !u!1 &403633494
 GameObject:
   m_ObjectHideFlags: 0
@@ -1032,8 +1046,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1350380815}
   m_RootOrder: 1
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: .360815078, y: .77295655}
+  m_AnchorMin: {x: .102927946, y: .00403374434}
+  m_AnchorMax: {x: .394115269, y: .776990294}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
@@ -1137,10 +1151,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 548757662dd3d4c39930ec77af812072, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  area:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
   value: 0
   secondValue: 0
   active: 1
   next: -1
+  alignedPos: {x: 0, y: 0}
 --- !u!1001 &453519588
 Prefab:
   m_ObjectHideFlags: 0
@@ -1360,10 +1381,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 548757662dd3d4c39930ec77af812072, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  area:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
   value: 0
   secondValue: 0
   active: 1
   next: -1
+  alignedPos: {x: 0, y: 0}
 --- !u!1 &801820417
 GameObject:
   m_ObjectHideFlags: 0
@@ -1524,7 +1552,7 @@ RectTransform:
   - {fileID: 211139361}
   m_Father: {fileID: 1350380815}
   m_RootOrder: 2
-  m_AnchorMin: {x: .360815078, y: .0250000004}
+  m_AnchorMin: {x: .5, y: .0250000004}
   m_AnchorMax: {x: .981299996, y: .77295655}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
@@ -2746,6 +2774,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c1b92cd9e7994ee48e081983c654271, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  align: 0
   input: {fileID: 331474847}
   gameArea: {fileID: 884269866}
   shapesArea: {fileID: 422347233}
@@ -2753,7 +2782,7 @@ MonoBehaviour:
   minSize: 0
   useFullRangeForPositionate: 0
   greaterToLess: 0
-  forceSameHeightOrWidth: 0
+  forceSameHeightOrWidth: 1
   allowedGeometricShapes:
   - {fileID: 173324, guid: 44bdd6adfc6824a01a09f672d6871cba, type: 2}
   allowedFigures: []
