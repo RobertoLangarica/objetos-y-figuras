@@ -3,6 +3,11 @@ using System.Collections;
 
 public class Shape400 : BaseShape {
 
+	public enum EShapeAlign
+	{
+		LEFT,RIGHT,TOP,BOTTOM,NONE
+	};
+
 	public float snapDelay = 0.1f;
 
 	[HideInInspector]
@@ -37,6 +42,10 @@ public class Shape400 : BaseShape {
 	protected float movingElapsedTime;
 	protected bool moving = false;
 	protected float percent;
+	[HideInInspector]
+	public EShapeAlign align = EShapeAlign.NONE;
+	protected Vector2 spriteSize = Vector2.zero;
+	protected Vector2 finalPos = Vector2.zero;
 
 	// Use this for initialization
 	void Start () {
@@ -103,8 +112,38 @@ public class Shape400 : BaseShape {
 		{
 			pos = transform.position;
 
-			pos.x = Mathf.SmoothDamp(pos.x,container.getCenter().x,ref velX,snapDelay);
-			pos.y = Mathf.SmoothDamp(pos.y,container.getCenter().y,ref velY,snapDelay);
+			if(align != EShapeAlign.NONE)
+			{
+				spriteSize.x = spriteRenderer.sprite.rect.width*transform.localScale.x;
+				spriteSize.y = spriteRenderer.sprite.rect.height*transform.localScale.y;
+				spriteSize 	/= spriteRenderer.sprite.pixelsPerUnit;
+
+				finalPos = container.getCenter();
+
+				switch(align)
+				{
+				case EShapeAlign.BOTTOM:
+					finalPos.y = container.min.y + spriteSize.y*0.5f + container.area.height*0.1f;
+					break;
+				case EShapeAlign.TOP:
+					finalPos.y = container.max.y - spriteSize.y*0.5f - container.area.height*0.1f;
+					break;
+				case EShapeAlign.LEFT:
+					finalPos.x = container.min.x + spriteSize.x*0.5f + container.area.width*0.05f;
+					break;
+				case EShapeAlign.RIGHT:
+					finalPos.x = container.max.x - spriteSize.x*0.5f - container.area.width*0.05f;
+					break;
+				}
+
+				pos.x = Mathf.SmoothDamp(pos.x,finalPos.x,ref velX,snapDelay);
+				pos.y = Mathf.SmoothDamp(pos.y,finalPos.y,ref velY,snapDelay);
+			}
+			else
+			{
+				pos.x = Mathf.SmoothDamp(pos.x,container.getCenter().x,ref velX,snapDelay);
+				pos.y = Mathf.SmoothDamp(pos.y,container.getCenter().y,ref velY,snapDelay);
+			}
 
 			transform.position = pos;
 		}

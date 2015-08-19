@@ -4,7 +4,13 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Manager400Tamanio : MonoBehaviour {
-	
+
+	public enum EAlign
+	{
+		LEFT,RIGHT,TOP,BOTTOM,NONE
+	};
+
+	public EAlign align = EAlign.NONE;
 	public TangramInput input;
 	public RectTransform gameArea;
 	public RectTransform shapesArea;
@@ -242,6 +248,8 @@ public class Manager400Tamanio : MonoBehaviour {
 
 		colorShown.Add(color);
 
+		float u = (Camera.main.orthographicSize*2*100)/Screen.height;
+		Vector2 spriteSize = Vector2.zero;
 
 		//Instanciamos las figuras arrastrables
 		for(int i = 0; i < containers.Length; i++)
@@ -300,6 +308,8 @@ public class Manager400Tamanio : MonoBehaviour {
 				shapes[i].setSizeByInt(sizes[i]);
 			}
 
+			shapes[i].align = (Shape400.EShapeAlign)(int)align;
+
 			if(useGeometricShapes)
 			{shapes[i].setColorByInt(color);}
 		}
@@ -323,6 +333,7 @@ public class Manager400Tamanio : MonoBehaviour {
 
 				placeholders.Add( (GameObject.Instantiate(tmp,pos,Quaternion.identity) as GameObject).GetComponent<Shape400>());
 				placeholders[i].value = sizes[i];
+
 				if(!forceSameHeightOrWidth)
 				{
 					placeholders[i].setSizeByInt(sizes[i]);
@@ -345,6 +356,32 @@ public class Manager400Tamanio : MonoBehaviour {
 
 					placeholders[i].setSizeByInt(sizes[i]);
 				}
+
+				if(align != EAlign.NONE)
+				{
+					spriteSize.x = placeholders[i].spriteRenderer.sprite.rect.width*placeholders[i].transform.localScale.x;
+					spriteSize.y = placeholders[i].spriteRenderer.sprite.rect.height*placeholders[i].transform.localScale.y;
+					spriteSize /= placeholders[i].spriteRenderer.sprite.pixelsPerUnit;
+
+					switch(align)
+					{
+					case EAlign.BOTTOM:
+						pos.y = containers[i].min.y + spriteSize.y*0.5f + containers[i].area.height*0.1f;
+							break;
+					case EAlign.TOP:
+						pos.y = containers[i].max.y - spriteSize.y*0.5f - containers[i].area.height*0.1f;
+						break;
+					case EAlign.LEFT:
+						pos.x = containers[i].min.x + spriteSize.x*0.5f + containers[i].area.width*0.05f;
+						break;
+					case EAlign.RIGHT:
+						pos.x = containers[i].max.x - spriteSize.x*0.5f - containers[i].area.width*0.05f;
+						break;
+					}
+
+					placeholders[i].transform.position = pos;
+				}
+
 				placeholders[i].setColorByInt(color);
 				placeholders[i].enabled(false);
 				placeholders[i].alpha = 0.4f;
