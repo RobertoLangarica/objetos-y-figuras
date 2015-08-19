@@ -208,7 +208,7 @@ public class GameManager : MonoBehaviour
 		//Lo marcamos como completo
 		UserDataManager.instance.markLevelAsComplete(currentLevel.name);
 		//Removemos las piezas y el placeholder
-		removeShapesAndPlaceHolder();
+		//removeShapesAndPlaceHolder();
 		//Agregamos la imagen bonita de la nave y el boton de continue
 		initializeReferenceImage();
 		continueBtn.gameObject.SetActive(true);
@@ -231,7 +231,7 @@ public class GameManager : MonoBehaviour
 			//Lo marcamos como completo
 			UserDataManager.instance.markLevelAsComplete(currentLevel.name);
 			//Removemos las piezas y el placeholder
-			removeShapesAndPlaceHolder();
+			//removeShapesAndPlaceHolder();
 			//Agregamos la imagen bonita de la nave y el boton de continue
 			initializeReferenceImage();
 			continueBtn.interactable = false;
@@ -263,7 +263,7 @@ public class GameManager : MonoBehaviour
 			//Lo marcamos como completo
 			UserDataManager.instance.markLevelAsComplete(currentLevel.name);
 			//Removemos las piezas y el placeholder
-			removeShapesAndPlaceHolder();
+			//removeShapesAndPlaceHolder();
 			//Agregamos la imagen bonita de la nave y el boton de continue
 			initializeReferenceImage();
 			continueBtn.interactable = false;
