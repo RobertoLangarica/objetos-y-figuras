@@ -7,8 +7,12 @@
 		_RampColorsCount("Ramp colors Count", Int) = 16
 	}
 	SubShader {
-		Tags { "RenderType"="Opaque" "Queue"="Transparent"}
+		Tags { "RenderType"="Opaque" 
+				"Queue"="Transparent" 
+				"IgnoreProjector"="True"
+            	}
 		LOD 200
+		Cull Off
 		
 		CGPROGRAM
 		#pragma surface surf BasicDiffuse alpha 

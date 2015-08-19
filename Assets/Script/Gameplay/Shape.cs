@@ -17,8 +17,6 @@ public class Shape : BaseShape {
 	public float currentRotation;
 	protected Vector3 positionDifference;//diferencia de posicon con el touch
 	[HideInInspector]
-	public SpriteRenderer sprite;
-	[HideInInspector]
 	public bool isPositionated = false;
 	protected float rot;
 	protected float mod;
@@ -43,8 +41,6 @@ public class Shape : BaseShape {
 		boundaryBottom = -Camera.main.orthographicSize;
 		boundaryLeft = -Camera.main.aspect * Camera.main.orthographicSize;
 		boundaryRight = Camera.main.aspect * Camera.main.orthographicSize;
-
-		sprite = GetComponent<SpriteRenderer>();
 		
 		inverseStartTime = 1.0f/0.5f;
 		startElapsedTime = 0;
@@ -88,7 +84,7 @@ public class Shape : BaseShape {
 			destroyElapsed += Time.deltaTime;
 		}
 		
-		if(!destroying)
+		/*if(!destroying)
 		{
 			Vector3 centerDif = transform.position - transform.collider2D.bounds.center;
 			Vector3 nVec3 = transform.position;
@@ -114,7 +110,7 @@ public class Shape : BaseShape {
 				nVec3.y += centerDif.y;
 			}
 			transform.position = nVec3;
-		}
+		}*/
 	}
 
 	public void onRotationComplete()

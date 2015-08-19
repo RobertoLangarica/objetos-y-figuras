@@ -162,6 +162,9 @@ public class BaseShape : MonoBehaviour {
 			case EShapeColor.YELLOW:
 				rendererColor = new Color(0.976f, 0.627f, 0.000f);
 			break;
+			case EShapeColor.NONE:
+				return;
+				break;
 			}
 
 			rendererColor.a = currentAlpha;
@@ -182,6 +185,7 @@ public class BaseShape : MonoBehaviour {
 		get{return currentAlpha;}
 		set
 		{
+			Debug.Log (value);
 			initialAlpha = value;
 			currentAlpha = value;
 			rendererColor.a = value;

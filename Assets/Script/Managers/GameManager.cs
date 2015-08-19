@@ -97,7 +97,6 @@ public class GameManager : MonoBehaviour
 
 		float min;
 		float max;
-		float posTemp = -0.03f;
 		for(int i = 0; i < pieces.Length; i++)
 		{
 			if(Random.value < 0.5f)
@@ -138,12 +137,14 @@ public class GameManager : MonoBehaviour
 			//Que la figura no se ponga en una rotacion invalida
 			Shape sp = go.GetComponent<Shape>();
 			sp.name = pieces[i].name;
+			sp.baseStart();//Forzamos un basestart
+			sp.color = (BaseShape.EShapeColor)Random.Range(0,System.Enum.GetValues(typeof(BaseShape.EShapeColor)).Length-1);
+			sp.sortingOrder = input.nextSort;
+
 			sp.onRotationComplete();
 			input.onDragFinish += sp.onRotationComplete;
 
-			go.transform.localPosition = new Vector3 (go.transform.localPosition.x,go.transform.localPosition.y,posTemp);
-			posTemp -= .01f;
-
+			go.transform.localPosition = new Vector3 (go.transform.localPosition.x,go.transform.localPosition.y,0);
 		}
 
 		//placeholder

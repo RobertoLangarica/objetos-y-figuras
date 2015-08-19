@@ -4,8 +4,13 @@
 		_NormalMap ("Normal Map", 2D) = "bump" {}
 	}
 	SubShader {
-		Tags { "RenderType"="Opaque" "Queue"="Transparent" "LightMode"="Always"}
+		Tags { "RenderType"="Opaque" 
+				"Queue"="Transparent" 
+				"LightMode"="Always" 
+				"IgnoreProjector"="True"
+            	}
 		LOD 200
+		Cull Off
 		
 		CGPROGRAM
 		// Upgrade NOTE: excluded shader from OpenGL ES 2.0 because it does not contain a surface program or both vertex and fragment programs.
