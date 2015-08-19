@@ -7,8 +7,6 @@
 		Tags { "RenderType"="Opaque" 
 				"Queue"="Transparent" 
 				"IgnoreProjector"="True"
-				
-            	"CanUseSpriteAtlas"="True"
             	}
 		LOD 200
 		Cull Off
