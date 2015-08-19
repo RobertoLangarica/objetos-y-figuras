@@ -40,7 +40,7 @@ public class Pencil : MonoBehaviour {
 		}
 	}
 
-	protected void moveBtn(bool hide,float delay = 1.25f)
+	protected void moveBtn(bool hide,float delay = 0.25f)
 	{
 		float val = -Screen.height*0.1255f;
 		if(hide)
