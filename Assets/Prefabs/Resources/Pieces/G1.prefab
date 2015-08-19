@@ -28,6 +28,7 @@ GameObject:
   - 114: {fileID: 11415858}
   - 58: {fileID: 5891040}
   - 212: {fileID: 21228596}
+  - 114: {fileID: 11447822}
   m_Layer: 8
   m_Name: G1
   m_TagString: MenuShape
@@ -188,8 +189,9 @@ MonoBehaviour:
   _rotateHandler: {fileID: 177316}
   _translateHandler: {fileID: 177318}
   initialColor: 9
-  initialSize: 5
+  initialSize: 8
   initialAlpha: 1
+  scaleMultiplier: {x: 1, y: 1, z: 1}
   boundaryTop: 0
   boundaryBottom: 0
   boundaryLeft: 0
@@ -197,6 +199,19 @@ MonoBehaviour:
   rotateAmount: 15
   currentRotation: 0
   sprite: {fileID: 0}
+  isPositionated: 0
+--- !u!114 &11447822
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 115858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 969b3f25d2df44dcfbbe1be2bb970325, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shakeAmount: .150000006
 --- !u!114 &11469184
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -213,8 +228,9 @@ MonoBehaviour:
   _rotateHandler: {fileID: 0}
   _translateHandler: {fileID: 0}
   initialColor: 9
-  initialSize: 5
+  initialSize: 8
   initialAlpha: 1
+  scaleMultiplier: {x: 1, y: 1, z: 1}
 --- !u!212 &21207014
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -233,7 +249,7 @@ SpriteRenderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayerID: 0
+  m_SortingLayerID: 446442361
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300020, guid: e9ccf014ac38e455c9c03116e51e3213, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -255,7 +271,7 @@ SpriteRenderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayerID: 0
+  m_SortingLayerID: 446442361
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

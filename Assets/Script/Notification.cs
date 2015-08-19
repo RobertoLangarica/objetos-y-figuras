@@ -37,7 +37,7 @@ public class Notification : MonoBehaviour
 		initialAnchoredPos = toast.GetComponent<RectTransform>().anchoredPosition;
 	}
 
-	void foo(){Debug.Log("Algo");}
+	void foo(){}
 	
 	public void showToast(string toastXMLName,float duration = -1)
 	{
@@ -109,14 +109,12 @@ public class Notification : MonoBehaviour
 
 	protected void onToastClosed()
 	{
-		Debug.Log ("Se cerro" + onClose);
 		onClose();
 	}
 
 	protected void choseRobot()
 	{
 		int rand = Random.Range(0,3);
-		Debug.Log("r "+rand);
 		for(int i =0; i<robots.Length; i++)
 		{
 			robots[i].SetActive(false);

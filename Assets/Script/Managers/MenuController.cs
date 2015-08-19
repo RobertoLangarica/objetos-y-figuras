@@ -44,12 +44,7 @@ public class MenuController : MonoBehaviour {
 			GameObject go = ((GameObject)GameObject.Instantiate(tmp));
 			go.transform.SetParent(content.transform);
 			go.GetComponent<MenuItems>().lvlName = level.name;
-			go.GetComponent<MenuItems>().lvlPurchseID = level.purchaseID;
 			go.GetComponent<LayoutElement>().minWidth = Screen.width/4.0f;
-			if(UserDataManager.instance.premiumVersion != "premiumVersion" && level.purchaseID == "spacegramShips062015")
-			{
-				go.GetComponent<Image>().color = new Color(255,0,0);
-			}
 			levelsPrefab.Add(go);
 		}
 
