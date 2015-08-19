@@ -10,8 +10,7 @@ public class Shape : BaseShape {
 	public float boundaryBottom;
 	public float boundaryLeft;
 	public float boundaryRight;
-
-	public static int sort; 
+	
 	public float rotateAmount = 15;
 
 	[HideInInspector]

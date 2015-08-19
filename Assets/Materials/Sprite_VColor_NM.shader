@@ -24,6 +24,7 @@
 		void vert(inout appdata_full v, out Input o)
 		{
 			UNITY_INITIALIZE_OUTPUT(Input, o);
+			//mul (UNITY_MATRIX_MVP, v);
 			o.vertexColor = v.color;
 		}
 		
