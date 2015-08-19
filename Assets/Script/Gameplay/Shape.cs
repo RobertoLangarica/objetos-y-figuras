@@ -49,6 +49,8 @@ public class Shape : BaseShape {
 		currentScale = Vector3.zero;
 		currentScale.z = initialScale.z;
 		starting = true;
+
+		baseStart();
 	}
 	
 	// Update is called once per frame
