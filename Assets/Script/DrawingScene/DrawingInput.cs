@@ -8,7 +8,7 @@ public class DrawingInput : MonoBehaviour
 	[HideInInspector]
 	public bool canDraw = true;
 	public GameObject input;
-
+	public bool hiding = false;
 	protected float bWidth;
 	protected bool paintStarted = true;
 	protected bool newLine = true;
@@ -222,7 +222,9 @@ public class DrawingInput : MonoBehaviour
 	}
 	public void drawingTrue()
 	{
-		switchToPaint();		
+		switchToPaint();
+		if(hiding)
+			return;
 		if(canDraw)
 		{
 			foreach (GameObject val in allPainted) 
