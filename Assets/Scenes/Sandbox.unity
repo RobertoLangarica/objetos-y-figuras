@@ -694,13 +694,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 628658894}
-        m_MethodName: selectColorToSelectedColor
+        m_MethodName: setColorToSelectedColor
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
-          m_IntArgument: 1
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1209,13 +1209,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 628658894}
-        m_MethodName: selectColorToSelectedColor
+        m_MethodName: setColorToSelectedColor
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
-          m_IntArgument: 3
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1481,13 +1481,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 628658894}
-        m_MethodName: selectColorToSelectedColor
+        m_MethodName: setColorToSelectedColor
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
-          m_IntArgument: 9
+          m_IntArgument: 8
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1752,7 +1752,6 @@ MonoBehaviour:
   img_hexagon: {fileID: 82056169}
   img_pentagon: {fileID: 1646686706}
   img_circle: {fileID: 1989878263}
-  colorSelector: {fileID: 800053936}
   input: {fileID: 1021770815}
   menuArea: {fileID: 1792013939}
 --- !u!1 &707166340
@@ -1807,6 +1806,7 @@ MonoBehaviour:
   Switch2EraseBtn: {fileID: 162494529}
   Switch2PaintBtn: {fileID: 0}
   EreaseAllBtn: {fileID: 621516077}
+  showing: 0
   startOpen: 0
 --- !u!114 &707166343
 MonoBehaviour:
@@ -2039,7 +2039,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c91dc4a31c1dc4bc6bc4e7cc9112a4ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedColor: 0
 --- !u!1001 &846515010
 Prefab:
   m_ObjectHideFlags: 0
@@ -2082,6 +2081,10 @@ Prefab:
     - target: {fileID: 148792, guid: 60a9b1e414a4943a3bf311bab0a69bd0, type: 2}
       propertyPath: m_Name
       value: InputSandbox
+      objectReference: {fileID: 0}
+    - target: {fileID: 11448790, guid: 60a9b1e414a4943a3bf311bab0a69bd0, type: 2}
+      propertyPath: IgnoreLayerMask.m_Bits
+      value: 2048
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 60a9b1e414a4943a3bf311bab0a69bd0, type: 2}
@@ -2356,13 +2359,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 628658894}
-        m_MethodName: selectColorToSelectedColor
+        m_MethodName: setColorToSelectedColor
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
-          m_IntArgument: 2
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2591,7 +2594,7 @@ MonoBehaviour:
   Cameras: []
   IgnoreLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   RayThickness: 0
   VisualizeRaycasts: 1
   UsePhysics2D: 1
@@ -2875,6 +2878,7 @@ MonoBehaviour:
   Switch2EraseBtn: {fileID: 1605424999}
   Switch2PaintBtn: {fileID: 174114828}
   EreaseAllBtn: {fileID: 897091047}
+  showing: 0
   startOpen: 0
 --- !u!114 &1283298154
 MonoBehaviour:
@@ -3619,13 +3623,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 628658894}
-        m_MethodName: selectColorToSelectedColor
+        m_MethodName: setColorToSelectedColor
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
-          m_IntArgument: 8
+          m_IntArgument: 7
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -3958,13 +3962,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 628658894}
-        m_MethodName: selectColorToSelectedColor
+        m_MethodName: setColorToSelectedColor
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
-          m_IntArgument: 4
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -4161,13 +4165,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 628658894}
-        m_MethodName: selectColorToSelectedColor
+        m_MethodName: setColorToSelectedColor
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
-          m_IntArgument: 6
+          m_IntArgument: 5
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -4688,13 +4692,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 628658894}
-        m_MethodName: selectColorToSelectedColor
+        m_MethodName: setColorToSelectedColor
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
-          m_IntArgument: 5
+          m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -5215,6 +5219,7 @@ MonoBehaviour:
   canDraw: 1
   input: {fileID: 2002655891}
   hiding: 1
+  currentColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &1921901246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5906,13 +5911,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 628658894}
-        m_MethodName: selectColorToSelectedColor
+        m_MethodName: setColorToSelectedColor
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
-          m_IntArgument: 7
+          m_IntArgument: 6
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0

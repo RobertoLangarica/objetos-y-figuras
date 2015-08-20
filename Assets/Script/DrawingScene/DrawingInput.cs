@@ -16,6 +16,9 @@ public class DrawingInput : MonoBehaviour
 	protected GameObject paintedFather;
 	protected GameObject erraser;
 	protected List<GameObject> allPainted = new List<GameObject>();
+
+	[HideInInspector]
+	public Color currentColor = new Color(0.133f, 0.565f, 0.945f);
 	
 	void Start ()
 	{
@@ -25,8 +28,8 @@ public class DrawingInput : MonoBehaviour
 
 		erraser = transform.FindChild ("Erraser").gameObject;
 		erraser.SetActive (false);
-
-		bWidth = brushType.renderer.bounds.size.x;
+	
+		bWidth = brushType.renderer.bounds.size.x*brushType.transform.localScale.x*0.5f;
 		input.GetComponent<DragRecognizer>().OnGesture += OnDrag;
 	}
 
@@ -143,6 +146,8 @@ public class DrawingInput : MonoBehaviour
 		nVec3.z = 0;
 		go = GameObject.Instantiate(brushType,nVec3,Quaternion.identity) as GameObject;
 		go.transform.SetParent(paintedFather.transform);
+		go.GetComponent<SpriteRenderer>().color = currentColor;
+
 		if(!newLine)
 		{
 			Vector3 prevVec = allPainted[allPainted.Count-1].transform.position;
@@ -157,7 +162,8 @@ public class DrawingInput : MonoBehaviour
 					rotZ *= -1;
 				}
 
-				Vector3 nScale = new Vector3(tempMag/bWidth,1,1);
+				Vector3 nScale = go.transform.localScale;
+				nScale.x *= (tempMag/bWidth)*0.5f;
 				go.transform.localScale = nScale;
 				go.transform.localRotation = Quaternion.Euler(new Vector3(0,0,rotZ));
 			}

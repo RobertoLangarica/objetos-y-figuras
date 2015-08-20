@@ -265,7 +265,6 @@ public class GameManager : MonoBehaviour
 			//Agregamos la imagen bonita de la nave y el boton de continue
 			initializeReferenceImage();
 			continueBtn.interactable = false;
-			sendBtn.gameObject.SetActive(true);
 			input.selected = null;
 			input.gameObject.SetActive(false);
 
