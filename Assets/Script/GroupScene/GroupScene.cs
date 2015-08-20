@@ -187,6 +187,7 @@ public class GroupScene : MonoBehaviour
 			currentShapes[i] = GameObject.Instantiate(kindsOfShapes[rmdIdx],randPos,Quaternion.identity) as GameObject;
 			currentShapes[i].GetComponent<GroupFigure>().group = group;
 			currentShapes[i].GetComponent<GroupFigure>().finishAction = evaluateShape;
+			Rotate(currentShapes[i]);
 		}
 	}
 
@@ -538,5 +539,13 @@ public class GroupScene : MonoBehaviour
 			Debug.Log ("Go Bak");
 			ScreenManager.instance.GoToScene("Agrupa");
 		}
+	}
+
+	protected void Rotate (GameObject toRotate) 
+	{
+		float randvalue = Random.Range(0,2);
+		randvalue = Random.Range(0,360);
+		toRotate.transform.eulerAngles = new Vector3(this.transform.eulerAngles.x,this.transform.eulerAngles.y,randvalue);
+		
 	}
 }
