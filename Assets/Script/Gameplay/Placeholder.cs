@@ -46,13 +46,10 @@ public class Placeholder : MonoBehaviour
 				{
 					if(internalShapes[i].isOption(tempshps[j]))
 					{
-						Debug.Log ("Es Opcion");
 						if(internalShapes[i].isWithinRange(tempshps[j]))
 						{
-							Debug.Log ("Es en rango");
 							if(internalShapes[i].calculateAngle(tempshps[j]))
 							{
-								Debug.Log ("Es el angulo");
 								internalShapes[i].setPiece(tempshps[j]);
 							}
 						}

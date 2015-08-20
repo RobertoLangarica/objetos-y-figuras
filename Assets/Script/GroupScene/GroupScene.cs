@@ -28,6 +28,7 @@ public class GroupScene : MonoBehaviour
 	protected int currentLevel = 0;
 	protected int maxLevel = 0;
 	protected int shapesCount = 0;
+	protected bool lastDetected = false;
 	protected GameObject continueBtn;
 	protected Rect containerRect;
 	protected XMLLoader loader;
@@ -279,85 +280,85 @@ public class GroupScene : MonoBehaviour
 
 	protected void generateContainers()
 	{
-		float nWidth = 0;
+		Vector2[] anchors = new Vector2[1];
+		/*float nWidth = 0;
 		float nHeight = 0;
 		Vector3[] nPos = new Vector3[totalGroups];
-		containersInRect = new Rect[totalGroups];
+		containersInRect = new Rect[totalGroups];*/
 
 		switch(totalGroups)
 		{
 		case(1):
 		{
-			nWidth = ((containerRect.width * 100)/(containerGo.rectTransform.rect.width))*0.01f;
-			nHeight = ((containerRect.height *100)/(containerGo.rectTransform.rect.height))*0.01f;
-			nPos[0] = new Vector3(containerRect.x+(containerRect.width * 0.5f),containerRect.y+(containerRect.height * 0.5f),0);
-			containersInRect[0] = new Rect(containerRect.x,containerRect.y,containerRect.width,containerRect.height);
+			anchors = new Vector2[2];
+			anchors[0] = new Vector2(0.05f,0.05f);
+			anchors[1] = new Vector2(0.95f,0.95f);
 		}
 			break;
 		case(2):
 		{
-			nWidth = (((containerRect.width * 0.5f)*100)/(containerGo.rectTransform.rect.width))*0.01f;
-			nHeight = ((containerRect.height *100)/(containerGo.rectTransform.rect.height))*0.01f;
-			nPos[0] = new Vector3(containerRect.x+(containerRect.width * 0.25f),containerRect.y+(containerRect.height * 0.5f),0);
-			nPos[1] = new Vector3(containerRect.x+(containerRect.width * 0.75f),containerRect.y+(containerRect.height * 0.5f),0);
-			containersInRect[0] = new Rect(containerRect.x,containerRect.y,containerRect.width*0.5f,containerRect.height);
-			containersInRect[1] = new Rect(containerRect.x+(containerRect.width*0.5f),containerRect.y,containerRect.width*0.5f,containerRect.height);
+			anchors = new Vector2[4];
+			anchors[0] = new Vector2(0.05f,0.05f);
+			anchors[1] = new Vector2(0.49f,0.95f);
+			anchors[2] = new Vector2(0.51f,0.05f);
+			anchors[3] = new Vector2(0.95f,0.95f);
 		}
 			break;
 		case(3):
 		{
-			nWidth = (((containerRect.width * 0.333f)*100)/(containerGo.rectTransform.rect.width))*0.01f;
-			nHeight = ((containerRect.height *100)/(containerGo.rectTransform.rect.height))*0.01f;
-			nPos[0] = new Vector3(containerRect.x+(containerRect.width * 0.1666f),containerRect.y+(containerRect.height * 0.5f),0);
-			nPos[1] = new Vector3(containerRect.x+(containerRect.width * 0.5f),containerRect.y+(containerRect.height * 0.5f),0);
-			nPos[2] = new Vector3(containerRect.x+(containerRect.width * 0.83333f),containerRect.y+(containerRect.height * 0.5f),0);
-			containersInRect[0] = new Rect(containerRect.x,containerRect.y,containerRect.width*0.3333f,containerRect.height);
-			containersInRect[1] = new Rect(containerRect.x+(containerRect.width*0.3333f),containerRect.y,containerRect.width*0.3333f,containerRect.height);
-			containersInRect[2] = new Rect(containerRect.x+(containerRect.width*0.6666f),containerRect.y,containerRect.width*0.3333f,containerRect.height);
+			anchors = new Vector2[6];
+			anchors[0] = new Vector2(0.01f,0.05f);
+			anchors[1] = new Vector2(0.3233f,0.95f);
+			anchors[2] = new Vector2(0.3433f,0.05f);
+			anchors[3] = new Vector2(0.6566f,0.95f);
+			anchors[4] = new Vector2(0.6766f,0.05f);
+			anchors[5] = new Vector2(0.9899f,0.95f);
 		}
 			break;
 		case(4):
 		{
-			nWidth = (((containerRect.width * 0.5f)*100)/(containerGo.rectTransform.rect.width))*0.01f;
-			nHeight = (((containerRect.height * 0.5f) *100)/(containerGo.rectTransform.rect.height))*0.01f;
-			nPos[0] = new Vector3(containerRect.x+(containerRect.width * 0.25f),containerRect.y+(containerRect.height * 0.25f),0);
-			nPos[1] = new Vector3(containerRect.x+(containerRect.width * 0.75f),containerRect.y+(containerRect.height * 0.25f),0);
-			nPos[2] = new Vector3(containerRect.x+(containerRect.width * 0.25f),containerRect.y+(containerRect.height * 0.75f),0);
-			nPos[3] = new Vector3(containerRect.x+(containerRect.width * 0.75f),containerRect.y+(containerRect.height * 0.75f),0);
-			containersInRect[0] = new Rect(containerRect.x,containerRect.y,containerRect.width*0.5f,containerRect.height*0.5f);
-			containersInRect[1] = new Rect(containerRect.x+(containerRect.width*0.5f),containerRect.y,containerRect.width*0.5f,containerRect.height*0.5f);
-			containersInRect[2] = new Rect(containerRect.x,containerRect.y+(containerRect.height*0.5f),containerRect.width*0.5f,containerRect.height*0.5f);
-			containersInRect[3] = new Rect(containerRect.x+(containerRect.width*0.5f),containerRect.y+(containerRect.height*0.5f),containerRect.width*0.5f,containerRect.height*0.5f);
+			anchors = new Vector2[8];
+			anchors[0] = new Vector2(0.05f,0.05f);
+			anchors[1] = new Vector2(0.49f,0.48f);
+			anchors[2] = new Vector2(0.51f,0.05f);
+			anchors[3] = new Vector2(0.95f,0.48f);
+			anchors[4] = new Vector2(0.05f,0.52f);
+			anchors[5] = new Vector2(0.49f,0.95f);
+			anchors[6] = new Vector2(0.51f,0.52f);
+			anchors[7] = new Vector2(0.95f,0.95f);
 		}
 			break;
 		case(6):
 		{
-			nWidth = (((containerRect.width * 0.333f)*100)/(containerGo.rectTransform.rect.width))*0.01f;
-			nHeight = (((containerRect.height * 0.5f) *100)/(containerGo.rectTransform.rect.height))*0.01f;
-			nPos[0] = new Vector3(containerRect.x+(containerRect.width * 0.1666f),containerRect.y+(containerRect.height * 0.25f),0);
-			nPos[1] = new Vector3(containerRect.x+(containerRect.width * 0.5f),containerRect.y+(containerRect.height * 0.25f),0);
-			nPos[2] = new Vector3(containerRect.x+(containerRect.width * 0.83333f),containerRect.y+(containerRect.height * 0.25f),0);
-			nPos[3] = new Vector3(containerRect.x+(containerRect.width * 0.1666f),containerRect.y+(containerRect.height * 0.75f),0);
-			nPos[4] = new Vector3(containerRect.x+(containerRect.width * 0.5f),containerRect.y+(containerRect.height * 0.75f),0);
-			nPos[5] = new Vector3(containerRect.x+(containerRect.width * 0.83333f),containerRect.y+(containerRect.height * 0.75f),0);
-			containersInRect[0] = new Rect(containerRect.x,containerRect.y,containerRect.width*0.3333f,containerRect.height*0.5f);
-			containersInRect[1] = new Rect(containerRect.x+(containerRect.width*0.3333f),containerRect.y,containerRect.width*0.3333f,containerRect.height*0.5f);
-			containersInRect[2] = new Rect(containerRect.x+(containerRect.width*0.6666f),containerRect.y,containerRect.width*0.3333f,containerRect.height*0.5f);
-			containersInRect[3] = new Rect(containerRect.x,containerRect.y+(containerRect.height*0.5f),containerRect.width*0.3333f,containerRect.height*0.5f);
-			containersInRect[4] = new Rect(containerRect.x+(containerRect.width*0.3333f),containerRect.y+(containerRect.height*0.5f),containerRect.width*0.3333f,containerRect.height*0.5f);
-			containersInRect[5] = new Rect(containerRect.x+(containerRect.width*0.6666f),containerRect.y+(containerRect.height*0.5f),containerRect.width*0.3333f,containerRect.height*0.5f);
+			anchors = new Vector2[12];
+			anchors[0] = new Vector2(0.01f,0.05f);
+			anchors[1] = new Vector2(0.3233f,0.48f);
+			anchors[2] = new Vector2(0.3433f,0.05f);
+			anchors[3] = new Vector2(0.6566f,0.48f);
+			anchors[4] = new Vector2(0.6766f,0.05f);
+			anchors[5] = new Vector2(0.9899f,0.48f);
+			anchors[6] = new Vector2(0.01f,0.52f);
+			anchors[7] = new Vector2(0.3233f,0.95f);
+			anchors[8] = new Vector2(0.3433f,0.52f);
+			anchors[9] = new Vector2(0.6566f,0.95f);
+			anchors[10] = new Vector2(0.6766f,0.52f);
+			anchors[11] = new Vector2(0.9899f,0.95f);
 		}
 			break;
 		}
 
+		containersInRect = new Rect[totalGroups];
 		containerImg = new GameObject[totalGroups];
-		for(int i = 0;i < totalGroups;i++)
+		for(int i = 0,j = 0;i < totalGroups;i++,j += 2)
 		{
 			GameObject tempGo = GameObject.Instantiate(containerGo.gameObject) as GameObject;
 			tempGo.name = i.ToString();
-			tempGo.GetComponent<RectTransform>().localScale = new Vector3(nWidth,nHeight,1);
-			tempGo.GetComponent<RectTransform>().position = nPos[i];
-			tempGo.GetComponent<RectTransform>().SetParent(GameObject.Find("Containers").transform);
+			tempGo.GetComponent<RectTransform>().anchorMin = anchors[j];
+			tempGo.GetComponent<RectTransform>().anchorMax = anchors[j+1];
+			tempGo.GetComponent<RectTransform>().SetParent(GameObject.Find("Containers").transform,false);
+			Vector3[] tempV3 = new Vector3[4];
+			tempGo.GetComponent<RectTransform>().GetWorldCorners(tempV3);
+			containersInRect[i] = new Rect(tempV3[0].x,tempV3[0].y,(tempV3[2].x-tempV3[0].x),(tempV3[2].y-tempV3[0].y));
 			containerImg[i] = tempGo;
 		}
 	}
@@ -414,6 +415,7 @@ public class GroupScene : MonoBehaviour
 		}
 		if (wasLastPiece ()) 
 		{
+			lastDetected = true;
 			verifyExcersice();
 		}
 	}
@@ -484,7 +486,7 @@ public class GroupScene : MonoBehaviour
 						}
 						else
 						{
-							if(currentShapes[j].GetComponent<GroupFigure>().group != bigGroup)
+							if(currentShapes[j].GetComponent<GroupFigure>().group != bigGroup && !lastDetected)
 							{
 								currentShapes[j].GetComponent<ShakeTransform>().startAction(0.5f);
 								lose = true;
@@ -510,12 +512,13 @@ public class GroupScene : MonoBehaviour
 		for(int j = 0;j < currentShapes.Length;j++)
 		{
 			currPos = new Vector2(currentShapes[j].transform.localPosition.x,currentShapes[j].transform.localPosition.y);
-			if(!containerRect.Contains(currPos))
+			if(!containerRect.Contains(currPos) && !lastDetected)
 			{
 				currentShapes[j].GetComponent<ShakeTransform>().startAction(0.5f);
 				lose = true;
 			}
 		}
+		lastDetected = false;
 		if(lose)
 		{
 			shapeFeedback(false);

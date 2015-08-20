@@ -14,6 +14,7 @@ public class ShapeSelector : MonoBehaviour {
 	public GameObject trapezium;
 	public GameObject hexagon;
 	public GameObject pentagon;
+	public GameObject circle;
 
 	public Image img_square;
 	public Image img_rectangle;
@@ -22,15 +23,29 @@ public class ShapeSelector : MonoBehaviour {
 	public Image img_trapezium;
 	public Image img_hexagon;
 	public Image img_pentagon; 
+	public Image img_circle; 
 
 	public ColorSelector colorSelector;
 	public TangramInput input;
+	public RectTransform menuArea;
 
+	protected Rect menuRect;
 	protected bool waitingForCompleteDragOnCreated = false;
 	protected int selectedColor;
+
 	void Start()
 	{
 		input.onDragFinish+=onDragFinish;
+
+		Vector3[] corners = new Vector3[4];
+
+		//Area para las figuras (aqui aparecen)
+		menuArea.GetWorldCorners(corners);
+		menuRect = new Rect();
+		menuRect.xMin = corners[0].x;
+		menuRect.xMax = corners[2].x;
+		menuRect.yMin = corners[0].y;
+		menuRect.yMax = corners[1].y;
 	}
 
 	public void instantiateShape(string name)
@@ -76,6 +91,10 @@ public class ShapeSelector : MonoBehaviour {
 			shape = (GameObject.Instantiate(pentagon) as GameObject);
 			reference = img_pentagon;
 			break;
+		case "circle":
+			shape = (GameObject.Instantiate(circle) as GameObject);
+			reference = img_circle;
+			break;
 		}
 		input.ignoreNextRotation = true;
 
@@ -85,7 +104,6 @@ public class ShapeSelector : MonoBehaviour {
 		input.selected.sortingLayer = "SelectedShape";
 		input.onDragFinish += shape.GetComponent<SandboxShape>().onDragFinish;
 		input.selected.color = (BaseShape.EShapeColor)colorSelector.selectColor(selectedColor);
-		//input.selected.color = colorSelector.selectedColor;
 
 		/*float u = (Camera.main.orthographicSize*2*sprite.pixelsPerUnit)/Screen.height;
 		Vector3 size = sprite.bounds.size * sprite.pixelsPerUnit;
@@ -104,8 +122,9 @@ public class ShapeSelector : MonoBehaviour {
 		if(input.selected != null)
 		{
 			Vector3 pos = Camera.main.WorldToScreenPoint(input.selected.transform.position);
-			
-			if(pos.x < Screen.width*.2f)
+
+			//if(pos.x < Screen.width*.2f)
+			if(pos.x < menuRect.xMax)
 			{
 				input.onDragFinish -= input.selected.gameObject.GetComponent<SandboxShape>().onDragFinish;
 				GameObject.Destroy(input.selected.gameObject);
