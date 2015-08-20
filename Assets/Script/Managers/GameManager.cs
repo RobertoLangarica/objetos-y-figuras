@@ -290,6 +290,13 @@ public class GameManager : MonoBehaviour
 
 	public void verifyExcercise()
 	{
+		foreach(GameObject val in shapes)
+		{
+			if(val != null)
+			{
+				val.GetComponent<Shape>().isPositionated = false;
+			}
+		}
 		if(!placeholder.isCorrect())
 		{
 			for(int i = 0;i < shapes.Length;i++)
