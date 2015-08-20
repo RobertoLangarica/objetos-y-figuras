@@ -47,6 +47,10 @@ public class InternalShape : MonoBehaviour
 	{
 		Shape shp = go.GetComponent<Shape>();
 		bool flag = false;
+		if(go.name == "GCircle")
+		{
+			return true;
+		}
 		for(int i = 0;i < requiredAngle.Length;i++)
 		{
 			if((shp.currentRotation >= (requiredAngle[i] - range)) && (shp.currentRotation <= (requiredAngle[i] + range)))

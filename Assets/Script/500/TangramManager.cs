@@ -302,8 +302,7 @@ public class TangramManager : MonoBehaviour
 			}
 		}
 	}
-	
-	
+
 	protected GameObject[] getShapes(string target)
 	{
 		List<GameObject> result = new List<GameObject>();
