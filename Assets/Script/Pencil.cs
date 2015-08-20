@@ -5,16 +5,25 @@ using DG.Tweening;
 
 public class Pencil : MonoBehaviour {
 
+	public delegate void OnClose();
+	public delegate void OnOpen();
+
+	public OnClose onClose;
+	public OnOpen onOpen;
+
 	public GameObject Switch2EraseBtn;
 	public GameObject Switch2PaintBtn;
 	public GameObject EreaseAllBtn;
 	
 	protected GameObject QuestionBtn;
-	protected bool showing;
+	[HideInInspector]
+	public bool showing;
 
 	public bool startOpen = false;
 	// Use this for initialization
-	void Start () {
+
+	void Start () 
+	{
 		//activateDrawing();
 		QuestionBtn = GameObject.Find("ClueBtn");
 		Switch2EraseBtn.SetActive(false);
@@ -26,7 +35,12 @@ public class Pencil : MonoBehaviour {
 		{
 			StartCoroutine("startOpening");
 		}
+
+		onClose += foo;
+		onOpen += foo;
 	}
+
+	void foo(){}
 
 	public void activateDrawing()
 	{
@@ -35,6 +49,7 @@ public class Pencil : MonoBehaviour {
 		EreaseAllBtn.SetActive(true);
 		if(showing)
 		{
+			onClose();
 			moveBtn(true);
 			showing=false;
 			if(QuestionBtn&&!startOpen)
@@ -42,6 +57,7 @@ public class Pencil : MonoBehaviour {
 		}
 		else
 		{
+			onOpen();
 			showing=true;
 			moveBtn(false);
 			if(QuestionBtn&&!startOpen)
@@ -74,6 +90,14 @@ public class Pencil : MonoBehaviour {
 	IEnumerator startOpening()
 	{
 		yield return new WaitForSeconds(.2f);
+		activateDrawing();
+		DrawingInput a = FindObjectOfType<DrawingInput>();
+		a.GetComponent<DrawingInput>().change2Draw();
+		a.GetComponent<DrawingInput>().drawingTrue();
+	}
+
+	public void onButtonClickSimulate()
+	{
 		activateDrawing();
 		DrawingInput a = FindObjectOfType<DrawingInput>();
 		a.GetComponent<DrawingInput>().change2Draw();

@@ -24,14 +24,15 @@ public class ShapeSelector : MonoBehaviour {
 	public Image img_hexagon;
 	public Image img_pentagon; 
 	public Image img_circle; 
-
-	public ColorSelector colorSelector;
+	
 	public TangramInput input;
 	public RectTransform menuArea;
 
 	protected Rect menuRect;
 	protected bool waitingForCompleteDragOnCreated = false;
 	protected int selectedColor;
+	protected DrawingInput drawInput;
+	protected Pencil pencil;
 
 	void Start()
 	{
@@ -46,14 +47,30 @@ public class ShapeSelector : MonoBehaviour {
 		menuRect.xMax = corners[2].x;
 		menuRect.yMin = corners[0].y;
 		menuRect.yMax = corners[1].y;
+
+		drawInput = FindObjectOfType<DrawingInput>();
+		pencil = FindObjectOfType<Pencil>();
+
+		if(pencil)
+		{
+			pencil.onClose = onPencilClose;
+			pencil.onOpen = onPencilOpen;
+		}
+
+		setColorToSelectedColor(6);
 	}
 
 	public void instantiateShape(string name)
 	{
-
 		if(waitingForCompleteDragOnCreated)
 		{
 			return;
+		}
+
+		//Cerramos el lapiz
+		if(pencil && pencil.showing)
+		{
+			pencil.onButtonClickSimulate();
 		}
 
 		GameObject shape = null;
@@ -103,7 +120,7 @@ public class ShapeSelector : MonoBehaviour {
 
 		input.selected.sortingLayer = "SelectedShape";
 		input.onDragFinish += shape.GetComponent<SandboxShape>().onDragFinish;
-		input.selected.color = (BaseShape.EShapeColor)colorSelector.selectColor(selectedColor);
+		input.selected.color = (BaseShape.EShapeColor)selectedColor;
 
 		/*float u = (Camera.main.orthographicSize*2*sprite.pixelsPerUnit)/Screen.height;
 		Vector3 size = sprite.bounds.size * sprite.pixelsPerUnit;
@@ -141,8 +158,33 @@ public class ShapeSelector : MonoBehaviour {
 		}
 	}
 
-	public void selectColorToSelectedColor(int index)
+	public void setColorToSelectedColor(int index)
 	{
 		selectedColor = index;
+		Color color = BaseShape.getColorFromIndex(selectedColor);
+		img_square.color = color;
+		img_rectangle.color = color;
+		img_triangle.color = color;
+		img_rhomboid.color = color;
+		img_trapezium.color = color;
+		img_hexagon.color = color;
+		img_pentagon.color = color;
+		img_circle.color = color;
+
+		Debug.Log (drawInput);
+		if(drawInput)
+		{
+			drawInput.currentColor = color;
+		}
+	}
+
+	public void onPencilClose()
+	{
+		input.gameObject.SetActive(true);
+	}
+
+	public void onPencilOpen()
+	{
+		input.gameObject.SetActive(false);
 	}
 }
