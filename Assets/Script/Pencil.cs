@@ -11,6 +11,8 @@ public class Pencil : MonoBehaviour {
 	
 	protected GameObject QuestionBtn;
 	protected bool showing;
+
+	public bool startOpen = false;
 	// Use this for initialization
 	void Start () {
 		//activateDrawing();
@@ -19,6 +21,11 @@ public class Pencil : MonoBehaviour {
 		Switch2PaintBtn.SetActive(false);
 		EreaseAllBtn.SetActive(false);
 		moveBtn(true);
+
+		if(startOpen)
+		{
+			StartCoroutine("startOpening");
+		}
 	}
 
 	public void activateDrawing()
@@ -30,14 +37,14 @@ public class Pencil : MonoBehaviour {
 		{
 			moveBtn(true);
 			showing=false;
-			if(QuestionBtn)
+			if(QuestionBtn&&!startOpen)
 				QuestionBtn.GetComponent<Button>().interactable = true;
 		}
 		else
 		{
 			showing=true;
 			moveBtn(false);
-			if(QuestionBtn)
+			if(QuestionBtn&&!startOpen)
 				QuestionBtn.GetComponent<Button>().interactable = false;
 		}
 	}
@@ -53,14 +60,23 @@ public class Pencil : MonoBehaviour {
 		}
 		else
 		{
-			Switch2EraseBtn.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0,0) ,delay);
-			Switch2PaintBtn.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0,0) ,delay);
-			EreaseAllBtn.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0,0) ,delay);
+			Switch2EraseBtn.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0,0) ,delay).SetEase(Ease.OutBack);
+			Switch2PaintBtn.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0,0) ,delay).SetEase(Ease.OutBack);
+			EreaseAllBtn.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0,0) ,delay).SetEase(Ease.OutBack);
 		}
 	}
 
 	public void avtivateQuestion()
 	{
 		QuestionBtn.GetComponent<Button>().interactable = QuestionBtn.GetComponent<Button>().interactable == true ? false: true;
+	}
+
+	IEnumerator startOpening()
+	{
+		yield return new WaitForSeconds(.2f);
+		activateDrawing();
+		DrawingInput a = FindObjectOfType<DrawingInput>();
+		a.GetComponent<DrawingInput>().change2Draw();
+		a.GetComponent<DrawingInput>().drawingTrue();
 	}
 }

@@ -488,6 +488,14 @@ Prefab:
       propertyPath: m_PreserveAspect
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 22432460, guid: 3dfb11f8ce87d5444b495aba7495d891, type: 2}
+      propertyPath: m_AnchorMax.x
+      value: .98119998
+      objectReference: {fileID: 0}
+    - target: {fileID: 22432460, guid: 3dfb11f8ce87d5444b495aba7495d891, type: 2}
+      propertyPath: m_AnchorMax.y
+      value: .981249988
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3dfb11f8ce87d5444b495aba7495d891, type: 2}
   m_RootGameObject: {fileID: 1096789743}
@@ -788,6 +796,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6176febaa074ec54190f43c9ccd605b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firstTime: 0
+  firstTimeText: 
 --- !u!114 &481716687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1186,6 +1196,7 @@ MonoBehaviour:
   Switch2EraseBtn: {fileID: 1970695322}
   Switch2PaintBtn: {fileID: 0}
   EreaseAllBtn: {fileID: 1712212754}
+  startOpen: 0
 --- !u!114 &655721522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1824,7 +1835,7 @@ RectTransform:
   m_Father: {fileID: 1096789744}
   m_RootOrder: 1
   m_AnchorMin: {x: .0250000004, y: .0250000004}
-  m_AnchorMax: {x: .975000024, y: .975000024}
+  m_AnchorMax: {x: .98119998, y: .981249988}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
@@ -1909,6 +1920,7 @@ MonoBehaviour:
   Switch2EraseBtn: {fileID: 1601877117}
   Switch2PaintBtn: {fileID: 1493651266}
   EreaseAllBtn: {fileID: 2099577068}
+  startOpen: 0
 --- !u!114 &979117117
 MonoBehaviour:
   m_ObjectHideFlags: 0

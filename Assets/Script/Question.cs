@@ -12,6 +12,9 @@ public class Question : MonoBehaviour {
 	protected string currentToast;
 	protected GameObject[] robots;
 	protected Vector2 initialAnchoredPos;
+
+	public bool firstTime = false;
+	public string firstTimeText;
 	// Use this for initialization
 	void Start () {
 		audioSource = GameObject.FindObjectOfType<AudioSource>();
@@ -28,11 +31,11 @@ public class Question : MonoBehaviour {
 
 		initialAnchoredPos = toast.GetComponent<RectTransform>().anchoredPosition;
 		showToast(false);
-	}
-	
-	// Update is called once per frame
-	void Update () {
 
+		if(firstTime)
+		{
+			firstQuestionSound(firstTimeText);
+		}
 	}
 
 	public void questionSound(string soundToPlay)
@@ -64,6 +67,27 @@ public class Question : MonoBehaviour {
 		}
 	}
 
+	public void firstQuestionSound(string soundToPlay)
+	{
+		AudioClip aC = (AudioClip)Resources.Load("Sounds/"+soundToPlay+"_"+soundtoGo);
+		showToast(false,0);
+		
+		audioSource.clip = aC;
+		
+		audioSource.Play();
+		currentToast = soundToPlay+"_"+soundtoGo;
+		if(audioSource.clip!=null)
+		{
+			StopCoroutine("hideToastWhenSoundEnd");
+			StartCoroutine("hideToastWhenSoundEnd",new object[2]{audioSource.clip.length,soundToPlay+"_"+soundtoGo});
+		}
+		else
+		{
+			StopCoroutine("hideToastWhenSoundEnd");
+			StartCoroutine("hideToastWhenSoundEnd",new object[2]{3f,soundToPlay+"_"+soundtoGo});
+		}
+		questionText(soundToPlay+"_"+soundtoGo);
+	}
 	protected void questionText(string textToPlay)
 	{
 		string number = "";
