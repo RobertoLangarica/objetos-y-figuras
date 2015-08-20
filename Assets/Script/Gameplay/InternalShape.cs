@@ -6,6 +6,8 @@ using DG.Tweening.Core;
 
 public class InternalShape : MonoBehaviour 
 {
+	public bool checkScale = false;
+
 	[HideInInspector]
 	public List<GameObject> possibleAnswers = new List<GameObject>();
 	[HideInInspector]
@@ -75,6 +77,17 @@ public class InternalShape : MonoBehaviour
 			}
 		}
 		return result;
+	}
+
+	public bool havevSameScale(GameObject go)
+	{
+		Vector2 goScale = new Vector2(Mathf.Round(go.transform.localScale.x *1000)*0.001f,Mathf.Round(go.transform.localScale.y *1000)*0.001f);
+		Vector2 mScale = new Vector2(Mathf.Round(transform.localScale.x *1000)*0.001f,Mathf.Round(transform.localScale.y *1000)*0.001f);
+		if(goScale == mScale)
+		{
+			return true;
+		}
+		return false;
 	}
 
 	public void setPiece(GameObject go)

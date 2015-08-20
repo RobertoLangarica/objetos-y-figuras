@@ -50,7 +50,17 @@ public class Placeholder : MonoBehaviour
 						{
 							if(internalShapes[i].calculateAngle(tempshps[j]))
 							{
-								internalShapes[i].setPiece(tempshps[j]);
+								if(!internalShapes[i].checkScale)
+								{
+									internalShapes[i].setPiece(tempshps[j]);
+								}
+								else
+								{
+									if(internalShapes[i].havevSameScale(tempshps[j]))
+									{
+										internalShapes[i].setPiece(tempshps[j]);
+									}
+								}
 							}
 						}
 					}
