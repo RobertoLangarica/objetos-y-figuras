@@ -32,6 +32,9 @@ public class DrawObject : MonoBehaviour
 			pencil.SetActive(false);
 			pencil.GetComponent<Pencil>().activateDrawing();
 		}
+
+		
+
 	}
 
 	protected GameObject[] FindGameObjectsWithLayer (int layer) 
@@ -103,5 +106,12 @@ public class DrawObject : MonoBehaviour
 		go.GetComponent<RectTransform> ().offsetMin = Vector2.zero;
 		go.GetComponent<RectTransform> ().offsetMax = Vector2.zero;
 		if(withPencil) goP.GetComponent<Pencil>().Switch2EraseBtn = go;
+	}
+
+	IEnumerator startOpening()
+	{
+		yield return new WaitForSeconds(.21f);
+		dInput.change2Draw();
+		dInput.drawingTrue();
 	}
 }

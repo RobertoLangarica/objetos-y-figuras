@@ -101,7 +101,7 @@ RectTransform:
   m_GameObject: {fileID: 61510686}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.20479429, y: 1.20479429, z: 1.20479429}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1643538809}
   - {fileID: 683930328}
@@ -320,6 +320,14 @@ Prefab:
       propertyPath: m_Text
       value: "\xEDrculo"
       objectReference: {fileID: 0}
+    - target: {fileID: 22432460, guid: 3dfb11f8ce87d5444b495aba7495d891, type: 2}
+      propertyPath: m_AnchorMax.x
+      value: .98119998
+      objectReference: {fileID: 0}
+    - target: {fileID: 22432460, guid: 3dfb11f8ce87d5444b495aba7495d891, type: 2}
+      propertyPath: m_AnchorMax.y
+      value: .981249988
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3dfb11f8ce87d5444b495aba7495d891, type: 2}
   m_RootGameObject: {fileID: 686748892}
@@ -478,6 +486,7 @@ MonoBehaviour:
   brushType: {fileID: 121672, guid: e028cc08bef650d48970f7568a64b8f8, type: 2}
   canDraw: 1
   input: {fileID: 1470588527}
+  hiding: 0
 --- !u!114 &204385938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -873,6 +882,7 @@ MonoBehaviour:
   Switch2EraseBtn: {fileID: 1590875972}
   Switch2PaintBtn: {fileID: 1460503359}
   EreaseAllBtn: {fileID: 550571430}
+  startOpen: 0
 --- !u!114 &532146941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2210,7 +2220,7 @@ RectTransform:
   m_Father: {fileID: 686748893}
   m_RootOrder: 1
   m_AnchorMin: {x: .0250000004, y: .0250000004}
-  m_AnchorMax: {x: .975000024, y: .975000024}
+  m_AnchorMax: {x: .98119998, y: .981249988}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
@@ -2492,6 +2502,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6176febaa074ec54190f43c9ccd605b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firstTime: 0
+  firstTimeText: 
 --- !u!114 &1420680322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3219,7 +3231,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Sprite: {fileID: 21300184, guid: f46c2807590594f878a1886f3b6e912e, type: 3}
-  m_Type: 0
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -3414,6 +3426,7 @@ MonoBehaviour:
   Switch2EraseBtn: {fileID: 2137681035}
   Switch2PaintBtn: {fileID: 0}
   EreaseAllBtn: {fileID: 584254016}
+  startOpen: 0
 --- !u!114 &1976210122
 MonoBehaviour:
   m_ObjectHideFlags: 0

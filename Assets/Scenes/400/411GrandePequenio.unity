@@ -259,7 +259,7 @@ RectTransform:
   m_Father: {fileID: 1203044811}
   m_RootOrder: 4
   m_AnchorMin: {x: .0250000004, y: .0250000004}
-  m_AnchorMax: {x: .975000024, y: .975000024}
+  m_AnchorMax: {x: .98119998, y: .981249988}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
@@ -657,7 +657,7 @@ MonoBehaviour:
     m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 60
-    m_Alignment: 7
+    m_Alignment: 4
     m_RichText: 0
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
@@ -3357,6 +3357,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6176febaa074ec54190f43c9ccd605b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firstTime: 0
+  firstTimeText: 
 --- !u!114 &1528738756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3731,7 +3733,7 @@ RectTransform:
   m_GameObject: {fileID: 1626606118}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.20479429, y: 1.20479429, z: 1.20479429}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2117598623}
   - {fileID: 150090212}
@@ -4008,6 +4010,7 @@ MonoBehaviour:
   brushType: {fileID: 121672, guid: e028cc08bef650d48970f7568a64b8f8, type: 2}
   canDraw: 1
   input: {fileID: 643570567}
+  hiding: 0
 --- !u!4 &1741085153
 Transform:
   m_ObjectHideFlags: 0
@@ -4147,6 +4150,7 @@ MonoBehaviour:
   Switch2EraseBtn: {fileID: 746481281}
   Switch2PaintBtn: {fileID: 0}
   EreaseAllBtn: {fileID: 1728171247}
+  startOpen: 0
 --- !u!114 &2013376124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4433,7 +4437,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Sprite: {fileID: 21300184, guid: f46c2807590594f878a1886f3b6e912e, type: 3}
-  m_Type: 0
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
