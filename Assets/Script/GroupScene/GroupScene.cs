@@ -21,6 +21,7 @@ public class GroupScene : MonoBehaviour
 	public AudioClip audioWrong;
 	public AudioClip audioRight;
 	public AudioClip finalAudio;
+	public GameObject pencil;
 	public List<GameObject> kindsOfShapes = new List<GameObject>();
 
 	protected int totalGroups = 0;
@@ -58,6 +59,11 @@ public class GroupScene : MonoBehaviour
 
 		Question tempQ = FindObjectOfType<Question>() as Question;
 		GameObject.Find("ClueBtn").GetComponent<Button>().onClick.AddListener(() => tempQ.questionSound(typeOfGroup.ToString()));
+
+		if(typeOfGroup != EGroups.FREE)
+		{
+			pencil.SetActive(false);
+		}
 
 		startLevel();
 	}

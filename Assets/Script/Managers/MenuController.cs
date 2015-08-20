@@ -45,6 +45,7 @@ public class MenuController : MonoBehaviour {
 			go.transform.SetParent(content.transform);
 			go.GetComponent<MenuItems>().lvlName = level.name;
 			go.GetComponent<LayoutElement>().minWidth = Screen.width/4.0f;
+			go.transform.localPosition = new Vector3(go.transform.localPosition.x,go.transform.localPosition.y,0);
 			levelsPrefab.Add(go);
 		}
 
