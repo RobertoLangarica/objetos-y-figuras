@@ -4,9 +4,16 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 
+public enum ETangramTypes
+{
+	SAME_SHAPE,
+	ALL_SHAPES
+}
+
 public class TangramManager : MonoBehaviour 
 {
 	public static bool cannotRotate = false;
+	public static ETangramTypes tType;
 
 	public Button continueBtn;
 	public List<GameObject> shapes = new List<GameObject>();
@@ -20,7 +27,7 @@ public class TangramManager : MonoBehaviour
 	protected List<string> previousLevel = new List<string>();
 	protected int currLevel = 1;
 	protected List<Placeholder> placeholder = new List<Placeholder>();
-	protected List<int> colorArr = new List<int>(){1,2,3,4,5,6,7,8};
+	protected List<Level> fTypeAllShapes;
 	protected XMLLoader loader;
 	protected Notification notification;
 	
@@ -50,7 +57,6 @@ public class TangramManager : MonoBehaviour
 
 	protected void levelStart()
 	{
-		Debug.Log ("Entr");
 		for(int i = 0;i < shapes.Count;i++)
 		{
 			if(shapes[i] != null)
@@ -70,15 +76,29 @@ public class TangramManager : MonoBehaviour
 		placeholder = new List<Placeholder>();
 
 		continueBtn.GetComponent<Button>().interactable = true;
-		colorArr = new List<int>(){1,2,3,4,5,6,7,8};
 
-		currentLevel = selectLevel();
+		switch(tType)
+		{
+		case(ETangramTypes.SAME_SHAPE):
+		{
+			currentLevel = selectLevel();
+		}
+			break;
+		case(ETangramTypes.ALL_SHAPES):
+		{
+			currentLevel = takeLevel();
+		}
+			break;
+		}
 		
 		initializeShapes(currentLevel);
-		
+
+		SetColor();
+
 		GameObject tmp = (GameObject)Resources.Load("500/"+currentLevel.name);
 		previousLevel.Add(currentLevel.name);
 		placeholder.Add(((GameObject)GameObject.Instantiate(tmp,Vector3.zero,Quaternion.identity)).GetComponent<Placeholder>());
+		Debug.Log (currentLevel.name);
 		
 		initializePlaceholder();
 
@@ -96,7 +116,6 @@ public class TangramManager : MonoBehaviour
 		float min;
 		float max;
 		float posTemp = -0.03f;
-		int rdmColor = 0;
 		for(int i = 0; i < pieces.Length; i++)
 		{
 			if(Random.value < 0.5f)
@@ -146,10 +165,14 @@ public class TangramManager : MonoBehaviour
 			//go.transform.FindChild("New Sprite").localScale = tempV3;
 			go.transform.localScale = tempV3;
 
-			if(pieces[i].scaleCiclre != null)
+			if(pieces[i].scaleCiclre != null && pieces[i].scaleCiclre.Contains(","))
 			{
 				tempV3.x = float.Parse(pieces[i].scaleCiclre.Substring(0,pieces[i].scaleCiclre.IndexOf(',')));
 				tempV3.y = float.Parse(pieces[i].scaleCiclre.Substring(pieces[i].scaleCiclre.IndexOf(',')+1));
+			}
+			else
+			{
+				tempV3.x = tempV3.y = float.Parse(pieces[i].scaleCiclre);
 			}
 			go.transform.FindChild("rotate").localScale = tempV3;
 
@@ -177,10 +200,39 @@ public class TangramManager : MonoBehaviour
 			
 			go.transform.localPosition = new Vector3 (go.transform.localPosition.x,go.transform.localPosition.y,posTemp);
 			posTemp -= .01f;
-
-			rdmColor = colorArr[Random.Range(0,colorArr.Count-1)];
-			colorArr.RemoveAt(colorArr.IndexOf(rdmColor));
-			go.GetComponent<BaseShape>().color = (BaseShape.EShapeColor)rdmColor;
+		}
+	}
+	
+	protected void SetColor()
+	{
+		int rand; 
+		List<int> colorsShown = new List<int>();
+		int count = 0;
+		int repeatcount = 0;
+		
+		while(count < shapes.Count)
+		{
+			rand = Random.Range(1,System.Enum.GetValues(typeof(BaseShape.EShapeColor)).Length-1);
+			
+			if(colorsShown.Contains(rand))
+			{
+				if(repeatcount >(System.Enum.GetValues(typeof(BaseShape.EShapeColor)).Length-1)*1.5f )
+				{
+					//Se asigna un color repetido
+					colorsShown.Clear();
+					shapes[count].GetComponent<BaseShape>().color = (BaseShape.EShapeColor)rand;
+					count++;
+					repeatcount = 0;
+				}
+			}
+			else
+			{
+				colorsShown.Add(rand);
+				shapes[count].GetComponent<BaseShape>().color = (BaseShape.EShapeColor)rand;
+				count++;
+			}
+			
+			repeatcount++;
 		}
 	}
 
@@ -188,6 +240,8 @@ public class TangramManager : MonoBehaviour
 	{
 		Level ndx = null;
 		List<Level> selectable = new List<Level>(loader.data.levels500);
+
+		Debug.Log ("Select Lvl");
 
 		if(previousLevel.Count > 0)
 		{
@@ -210,7 +264,7 @@ public class TangramManager : MonoBehaviour
 		{
 			for(int i = 0;i < selectable.Count;i++)
 			{
-				if(selectable[i].difficulty == 3)
+				if(selectable[i].difficulty >= 3)
 				{
 					selectable.RemoveAt(i);
 					i--;
@@ -245,13 +299,35 @@ public class TangramManager : MonoBehaviour
 		return ndx;
 	}
 
+	protected Level takeLevel()
+	{
+		Level result = null;
+		if(fTypeAllShapes == null)
+		{
+			fTypeAllShapes = new List<Level>();
+			for(int i = 0;i < loader.data.levels500.Length;i++)
+			{
+				if(loader.data.levels500[i].fType == "allPieces")
+				{
+					fTypeAllShapes.Add(loader.data.levels500[i]);
+				}
+			}
+		}
+		if(fTypeAllShapes.Count != 0)
+		{
+			result = fTypeAllShapes[Random.Range(0,fTypeAllShapes.Count-1)];
+			fTypeAllShapes.Remove(result);
+		}
+		return result;
+	}
+
 	protected void initializePlaceholder()
 	{
 		GameObject tmp = null;
 		int count = 1;
 		Level otherPieces = null;
 
-		if(currLevel < 5)
+		if(currLevel < 5 && tType == ETangramTypes.SAME_SHAPE)
 		{
 			foreach(Level val in loader.data.levels500)
 			{
@@ -396,12 +472,16 @@ public class TangramManager : MonoBehaviour
 
 	protected void nextLevel()
 	{
-		if(currLevel < 5)
+		if(currLevel < 5 && tType == ETangramTypes.SAME_SHAPE)
 		{
 			currLevel++;
 			notification.showToast("correcto",audioRight,2);
 			continueBtn.GetComponent<Button>().interactable = false;
-			Debug.Log ("Aqui");
+		}
+		else if(fTypeAllShapes.Count > 0 && tType == ETangramTypes.ALL_SHAPES)
+		{
+			notification.showToast("correcto",audioRight,2);
+			continueBtn.GetComponent<Button>().interactable = false;
 		}
 		else
 		{
