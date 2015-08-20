@@ -266,11 +266,13 @@ public class Manager400Sequence : MonoBehaviour {
 
 				containers[i].value = currentShape;
 				containers[i].secondValue = currentColor;
-				containers[i].hide(true);
 				containers[i].active = true;
 
 				if(i < refsCount)
 				{
+					containers[i].isEmpty = false;
+					containers[i].hide(false);
+
 					placeholders.Add( (GameObject.Instantiate(
 						allowedGeometricShapes[currentShape],pos,Quaternion.identity) as GameObject).GetComponent<Shape400>());
 					placeholders[i].setSizeByInt(size);
@@ -300,13 +302,14 @@ public class Manager400Sequence : MonoBehaviour {
 					shapes[shapes.Count-1].value = currentShape;
 					shapes[shapes.Count-1].secondValue = currentColor;
 
-					if(i == refsCount)
+					if(i != refsCount)
 					{
-						containers[i].hide(false);
+						containers[i].active = false;
+						containers[i].hide(true);
 					}
 					else
 					{
-						containers[i].active = false;
+						containers[i].hide(false);
 					}
 				}
 
