@@ -170,7 +170,7 @@ public class TangramManager : MonoBehaviour
 				tempV3.x = float.Parse(pieces[i].scaleCiclre.Substring(0,pieces[i].scaleCiclre.IndexOf(',')));
 				tempV3.y = float.Parse(pieces[i].scaleCiclre.Substring(pieces[i].scaleCiclre.IndexOf(',')+1));
 			}
-			else
+			else if(pieces[i].scaleCiclre != null)
 			{
 				tempV3.x = tempV3.y = float.Parse(pieces[i].scaleCiclre);
 			}
@@ -188,6 +188,10 @@ public class TangramManager : MonoBehaviour
 			if(initLevel.radius > 0)
 			{
 				go.GetComponent<CircleCollider2D>().radius = initLevel.radius;
+			}
+			if(pieces[i].radius > 0)
+			{
+				go.GetComponent<CircleCollider2D>().radius = pieces[i].radius;
 			}
 
 			shapes.Add(go);
@@ -240,8 +244,6 @@ public class TangramManager : MonoBehaviour
 	{
 		Level ndx = null;
 		List<Level> selectable = new List<Level>(loader.data.levels500);
-
-		Debug.Log ("Select Lvl");
 
 		if(previousLevel.Count > 0)
 		{
