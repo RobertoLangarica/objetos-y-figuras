@@ -42,9 +42,11 @@ public class MenuController : MonoBehaviour {
 		{
 			GameObject tmp = (GameObject)Resources.Load("Menu/"+level.name+"_menu");
 			GameObject go = ((GameObject)GameObject.Instantiate(tmp));
+			float u = (Camera.main.orthographicSize*2*100)/Screen.height;
+
 			go.transform.SetParent(content.transform);
 			go.GetComponent<MenuItems>().lvlName = level.name;
-			go.GetComponent<LayoutElement>().minWidth = Screen.width/4.0f;
+			go.GetComponent<LayoutElement>().minWidth = (Screen.width/8.0f)*u;
 			go.transform.localPosition = new Vector3(go.transform.localPosition.x,go.transform.localPosition.y,0);
 			levelsPrefab.Add(go);
 		}
