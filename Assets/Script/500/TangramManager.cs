@@ -189,6 +189,10 @@ public class TangramManager : MonoBehaviour
 			{
 				go.GetComponent<CircleCollider2D>().radius = initLevel.radius;
 			}
+			if(pieces[i].radius > 0)
+			{
+				go.GetComponent<CircleCollider2D>().radius = pieces[i].radius;
+			}
 
 			shapes.Add(go);
 			
