@@ -413,7 +413,7 @@ public class GroupScene : MonoBehaviour
 				}
 			}
 		}
-		if (wasLastPiece ()) 
+		if (wasLastPiece () && typeOfGroup != EGroups.FREE) 
 		{
 			lastDetected = true;
 			verifyExcersice();
