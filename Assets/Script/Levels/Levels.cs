@@ -16,6 +16,8 @@ public class Levels
 
 	protected GroupLevel _gLevel;
 
+	protected List<Photo> _photos = new List<Photo>();
+
 	//Constructor existente para evitar problemas con XMLSerializer
 	public Levels(){}
 
@@ -74,6 +76,14 @@ public class Levels
 		get{return _gLevel;}
 	}
 
+	//Convertimos la lista a arreglo para evitar errores usando List<T> con iOS
+	[XmlArray("photos"),XmlArrayItem("photo")]
+	public Photo[] photos
+	{
+		set{_photos = new List<Photo>(value);}
+		get{return _photos.ToArray();}
+	}
+
 	/**
 	 * Devuelve un arreglo con los niveles que tengan la dificultad indicada
 	 * @param difficulty
@@ -115,6 +125,19 @@ public class Levels
 			if(l.name == lvlName)
 			{
 				return l;
+			}
+		}
+		
+		return null;
+	}
+
+	public Photo getPhotobyName(string photoName)
+	{
+		foreach(Photo p in _photos)
+		{
+			if(p.name == photoName)
+			{
+				return p;
 			}
 		}
 		
