@@ -100,8 +100,6 @@ public class Manager400Tamanio : MonoBehaviour {
 		//Inicializamos el ejercicio
 		showNextExcercise();
 
-		//Se llama starGame en el analytic para setear el tiempo = 0
-		AnalyticManager.instance.startGame();
 	}
 
 	/**
@@ -109,6 +107,7 @@ public class Manager400Tamanio : MonoBehaviour {
 	 * */
 	protected void showNextExcercise()
 	{
+
 		if(currentStage >= 0)
 		{
 			AnalyticManager.instance.finsh("Ordena",exerciseType ,currentStage.ToString());
@@ -124,6 +123,8 @@ public class Manager400Tamanio : MonoBehaviour {
 		{
 			buildNextStage();
 		}
+		//Se llama starGame en el analytic para setear el tiempo = 0
+		AnalyticManager.instance.startGame();
 	}
 
 	/**

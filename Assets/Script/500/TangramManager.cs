@@ -43,8 +43,6 @@ public class TangramManager : MonoBehaviour
 		levelStart();
 		notification = GameObject.Find("Notification").GetComponent<Notification>();
 		notification.onClose += levelStart;
-
-		AnalyticManager.instance.startGame();
 	}
 	
 	void onDrag()
@@ -60,6 +58,7 @@ public class TangramManager : MonoBehaviour
 
 	protected void levelStart()
 	{
+		AnalyticManager.instance.startGame();
 		excerciseFinished = false;
 		for(int i = 0;i < shapes.Count;i++)
 		{

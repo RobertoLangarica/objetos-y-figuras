@@ -54,8 +54,6 @@ public class Manager400Sequence : MonoBehaviour {
 		//Inicializamos el ejercicio
 		showNextExcercise();
 
-		//Se llama starGame en el analytic para setear el tiempo = 0
-		AnalyticManager.instance.startGame();
 	}
 
 	protected void setContainersAreas(int containersCount)
@@ -112,6 +110,8 @@ public class Manager400Sequence : MonoBehaviour {
 		{
 			buildNextStage();
 		}
+		//Se llama starGame en el analytic para setear el tiempo = 0
+		AnalyticManager.instance.startGame();
 	}
 	
 	/**

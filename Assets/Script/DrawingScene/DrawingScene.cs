@@ -34,7 +34,7 @@ public class DrawingScene : MonoBehaviour
 	protected bool imageIn = false;
 	protected float imageInElapsed;
 	protected float imageInInverseTime;
-
+	protected int pictureSeen = -1;
 
 	// Use this for initialization
 	void Start () 
@@ -62,10 +62,12 @@ public class DrawingScene : MonoBehaviour
 		pencilInput = FindObjectOfType<DrawingInput>();
 
 		changeTexture(true);
+		AnalyticManager.instance.startGame();
 	}
 
 	protected void changeTexture(bool load)
 	{	
+		pictureSeen++;
 		if(load)
 		{
 			advanceCurrent();
@@ -212,5 +214,9 @@ public class DrawingScene : MonoBehaviour
 		{
 			Resources.UnloadUnusedAssets();
 		}
+	}
+
+	void OnDisable() {
+		AnalyticManager.instance.finsh("Observa", "PicturesSeen",pictureSeen.ToString());
 	}
 }

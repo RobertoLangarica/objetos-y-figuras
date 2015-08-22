@@ -66,13 +66,13 @@ public class GroupScene : MonoBehaviour
 		{
 			pencil.SetActive(false);
 		}
-		AnalyticManager.instance.startGame();
 		startLevel();
 	}
 
 	protected void startLevel()
 	{
 		excerciseFinished = false;
+		AnalyticManager.instance.startGame();
 		continueBtn.GetComponent<Button>().interactable = true;
 		if(currentShapes != null)
 		{
