@@ -532,7 +532,7 @@ public class GroupScene : MonoBehaviour
 	protected void nextLevel()
 	{
 		excerciseFinished=true;
-		AnalyticManager.instance.finsh("Construye", typeOfGroup.ToString(),currentLevel);
+		AnalyticManager.instance.finsh("Construye", typeOfGroup.ToString(),currentLevel.ToString());
 		if (currentLevel < (maxLevel-1)) 
 		{
 			currentLevel++;
@@ -554,7 +554,7 @@ public class GroupScene : MonoBehaviour
 	void OnDisable() {
 		if(!excerciseFinished)
 		{
-			AnalyticManager.instance.finsh("Construye", typeOfGroup.ToString(),currentLevel,false);
+			AnalyticManager.instance.finsh("Construye", typeOfGroup.ToString(),currentLevel.ToString(),false);
 		}
 	}
 }
