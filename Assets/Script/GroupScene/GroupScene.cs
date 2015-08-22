@@ -540,8 +540,7 @@ public class GroupScene : MonoBehaviour
 		}
 		else 
 		{
-			Debug.Log ("Go Bak");
-			ScreenManager.instance.GoToScene("Agrupa");
+			GameObject.FindObjectOfType<FinishPopUp>().show();
 		}
 	}
 

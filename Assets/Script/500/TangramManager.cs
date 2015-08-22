@@ -493,7 +493,7 @@ public class TangramManager : MonoBehaviour
 		}
 		else
 		{
-			exitGame();
+			GameObject.FindObjectOfType<FinishPopUp>().show();
 		}
 	}
 

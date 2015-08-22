@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using DG.Tweening;
 
 public class FinishPopUp : MonoBehaviour 
 {
@@ -8,7 +9,7 @@ public class FinishPopUp : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		transform.localScale = Vector3.zero;
+		transform.GetChild(0).gameObject.GetComponent<RectTransform>().localScale = Vector3.zero;
 
 		robots = GameObject.FindGameObjectsWithTag("RobotPopUp");
 	}
@@ -19,7 +20,10 @@ public class FinishPopUp : MonoBehaviour
 	}
 
 	public void show()
-	{}
+	{
+		choseRobot();
+		transform.GetChild(0).gameObject.GetComponent<RectTransform>().DOScale(new Vector3(1,1,1) ,1).SetEase(Ease.OutBack);
+	}
 
 	protected void choseRobot()
 	{
