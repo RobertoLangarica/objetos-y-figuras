@@ -39,6 +39,8 @@ public class Manager400Tamanio : MonoBehaviour {
 	protected int currentStage = -1;
 	protected bool vertical;
 	protected bool excerciseFinished;
+
+	protected FinishPopUp finishPopUp;
 	// Use this for initialization
 	void Start () 
 	{
@@ -100,6 +102,10 @@ public class Manager400Tamanio : MonoBehaviour {
 		//Inicializamos el ejercicio
 		showNextExcercise();
 
+		//Se llama starGame en el analytic para setear el tiempo = 0
+		AnalyticManager.instance.startGame();
+
+		finishPopUp = FindObjectOfType<FinishPopUp>();
 	}
 
 	/**
@@ -443,6 +449,8 @@ public class Manager400Tamanio : MonoBehaviour {
 	protected void showFinalScreen()
 	{
 		Debug.Log("PANTALLA FINAL");
+
+		finishPopUp.show();
 	}
 
 	public void onFinishExcercise()

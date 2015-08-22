@@ -36,6 +36,9 @@ public class DrawingScene : MonoBehaviour
 	protected float imageInInverseTime;
 	protected int pictureSeen = -1;
 
+	protected FinishPopUp finishPopUp;
+
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -63,6 +66,8 @@ public class DrawingScene : MonoBehaviour
 
 		changeTexture(true);
 		AnalyticManager.instance.startGame();
+
+		finishPopUp = FindObjectOfType<FinishPopUp>();
 	}
 
 	protected void changeTexture(bool load)
@@ -151,6 +156,7 @@ public class DrawingScene : MonoBehaviour
 		{
 			//Pantalla final
 			Debug.Log("Pantalla final");
+			finishPopUp.show();
 		}
 		else
 		{
