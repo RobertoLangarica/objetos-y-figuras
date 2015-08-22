@@ -10,7 +10,7 @@ public class ScreenManager : MonoBehaviour {
 	public string screenBeforeClose;//Pantalla que no tiene back (cierra la app)
 	public AudioSource music;
 
-	protected bool isAudioPlaying = false;
+	protected bool isAudioPlaying = true;
 	protected Dictionary<string,string> backScreens;
 
 	void Awake()
@@ -77,7 +77,7 @@ public class ScreenManager : MonoBehaviour {
 		if (!isAudioPlaying && newScene == firstEditorScreen) 
 		{
 			isAudioPlaying = true;
-			music.Play();
+			//music.Play();
 		}
 
 		if(SceneFadeInOut.instance != null)

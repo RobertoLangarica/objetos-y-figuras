@@ -23,10 +23,13 @@ public class Notification : MonoBehaviour
 	{
 		onClose += foo;
 
-		audioSource = GameObject.FindObjectOfType<AudioSource>();
-		if(audioSource==null)
+		if(GameObject.Find("Main Camera").GetComponent<AudioSource>()==null)
 		{
 			audioSource = GameObject.Find("Main Camera").AddComponent<AudioSource>();
+		}
+		else
+		{
+			audioSource = GameObject.Find("Main Camera").GetComponent<AudioSource>();
 		}
 		
 		TextAsset tempTxt = (TextAsset)Resources.Load ("Texts/toastTexts");

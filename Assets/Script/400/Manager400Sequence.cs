@@ -25,7 +25,7 @@ public class Manager400Sequence : MonoBehaviour {
 	protected List<Shape400> placeholders;
 	protected int currentStage = -1;
 	protected bool vertical;
-	
+	protected bool excerciseFinished;
 	// Use this for initialization
 	void Start () 
 	{
@@ -53,6 +53,9 @@ public class Manager400Sequence : MonoBehaviour {
 		
 		//Inicializamos el ejercicio
 		showNextExcercise();
+
+		//Se llama starGame en el analytic para setear el tiempo = 0
+		AnalyticManager.instance.startGame();
 	}
 
 	protected void setContainersAreas(int containersCount)
@@ -94,10 +97,15 @@ public class Manager400Sequence : MonoBehaviour {
 	 * */
 	protected void showNextExcercise()
 	{
+		if(currentStage >= 0)
+		{
+			AnalyticManager.instance.finsh("Ordena","Secuencia" ,currentStage.ToString());
+		}
 		currentStage++;
 		
 		if(currentStage > 11)//12 pantallas
 		{
+			excerciseFinished=true;
 			showFinalScreen();	
 		}
 		else
@@ -499,6 +507,7 @@ public class Manager400Sequence : MonoBehaviour {
 				//Ejercicio correcto
 				notification.onClose += onNotificationRightComplete;
 				notification.showToast("correcto",audioRight,2);
+				excerciseFinished=true;
 			}
 		}
 	}

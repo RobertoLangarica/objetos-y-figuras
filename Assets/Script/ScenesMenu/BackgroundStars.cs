@@ -22,7 +22,7 @@ public class BackgroundStars : MonoBehaviour {
 			randomPos = new Vector2(Random.Range(0f,1f),(Random.Range(0f,1f)));
 			GameObject go;
 			go = (GameObject)GameObject.Instantiate(star);
-			go.transform.parent = starCarpet.transform;
+			go.transform.SetParent( starCarpet.transform);
 		
 			go.GetComponent<RectTransform>().anchorMax = new Vector2(randomPos.x+0.03f,randomPos.y+0.04f);
 			go.GetComponent<RectTransform>().anchorMin = new Vector2(randomPos.x,randomPos.y);

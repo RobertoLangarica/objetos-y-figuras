@@ -58,6 +58,7 @@ public class ShapeSelector : MonoBehaviour {
 		}
 
 		setColorToSelectedColor(6);
+		AnalyticManager.instance.startGame();
 	}
 
 	public void instantiateShape(string name)
@@ -186,5 +187,9 @@ public class ShapeSelector : MonoBehaviour {
 	public void onPencilOpen()
 	{
 		input.gameObject.SetActive(false);
+	}
+
+	void OnDisable() {
+		AnalyticManager.instance.finsh("Construye", "SandBox","SandBox");
 	}
 }

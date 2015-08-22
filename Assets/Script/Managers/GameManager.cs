@@ -225,7 +225,7 @@ public class GameManager : MonoBehaviour
 		if(placeholder.isCorrect())
 		{
 			Debug.Log("GM-> Ejercicio correcto");
-			AnalyticManager.instance.finishGame(currentLevel.name);
+			AnalyticManager.instance.finsh("Construye","SpaceGram",currentLevel.name);
 			//Lo marcamos como completo
 			UserDataManager.instance.markLevelAsComplete(currentLevel.name);
 			//Removemos las piezas y el placeholder

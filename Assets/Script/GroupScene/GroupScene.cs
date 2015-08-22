@@ -39,6 +39,7 @@ public class GroupScene : MonoBehaviour
 	protected int[] previousShapes;
 	protected float[] availableScales;
 	protected Rect[] containersInRect;
+	protected bool excerciseFinished;
 
 	void Start()
 	{
@@ -65,12 +66,13 @@ public class GroupScene : MonoBehaviour
 		{
 			pencil.SetActive(false);
 		}
-
+		AnalyticManager.instance.startGame();
 		startLevel();
 	}
 
 	protected void startLevel()
 	{
+		excerciseFinished = false;
 		continueBtn.GetComponent<Button>().interactable = true;
 		if(currentShapes != null)
 		{
@@ -529,6 +531,8 @@ public class GroupScene : MonoBehaviour
 
 	protected void nextLevel()
 	{
+		excerciseFinished=true;
+		AnalyticManager.instance.finsh("Construye", typeOfGroup.ToString(),currentLevel);
 		if (currentLevel < (maxLevel-1)) 
 		{
 			currentLevel++;
@@ -546,6 +550,11 @@ public class GroupScene : MonoBehaviour
 		float randvalue = Random.Range(0,2);
 		randvalue = Random.Range(0,360);
 		toRotate.transform.eulerAngles = new Vector3(this.transform.eulerAngles.x,this.transform.eulerAngles.y,randvalue);
-		
+	}
+	void OnDisable() {
+		if(!excerciseFinished)
+		{
+			AnalyticManager.instance.finsh("Construye", typeOfGroup.ToString(),currentLevel,false);
+		}
 	}
 }

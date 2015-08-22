@@ -24,7 +24,7 @@ public class AnalyticManager : MonoBehaviour {
 		gameTime =0;
 	}
 
-	public void finishGame(string lvlPass)
+	/*public void finishGame(string lvlPass)
 	{
 		Debug.Log(lvlPass);
 		Debug.Log(gameTime);
@@ -37,6 +37,39 @@ public class AnalyticManager : MonoBehaviour {
 		                           {
 			{"Time: ", gameTime }
 		});
+	}*/
+
+	public void finsh(string activityName,string exerciseType, string exerciseName, bool finish=true)
+	{
+		if(finish)
+		{
+			//UnityAnalytics.CustomEvent(activityName, new Dictionary<string, object>
+			//                           {
+			//	{ "Fiinished "+exerciseType, exerciseName },
+			//});
+			//UnityAnalytics.CustomEvent(exerciseType, new Dictionary<string, object>
+			//                           {
+			//	{ "Finish "+exerciseName, gameTime },
+			//});
+			Debug.Log("Termino: "+exerciseType+" time: "+gameTime);
+		}
+		else
+		{
+			//UnityAnalytics.CustomEvent(activityName, new Dictionary<string, object>
+			//                           {
+			//	{ "not Finished "+exerciseType, exerciseName },
+			//});
+			//UnityAnalytics.CustomEvent(exerciseType, new Dictionary<string, object>
+			//                           {
+			//	{ "not Finish"+exerciseName, gameTime },
+			//});
+			Debug.Log("NO termino "+"time: "+gameTime);
+		}
+
+	}
+
+	void OnApplicationQuit() {
+		Debug.Log("cerrando");
 	}
 
 }

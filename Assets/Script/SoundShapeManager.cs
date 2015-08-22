@@ -13,12 +13,16 @@ public class SoundShapeManager : MonoBehaviour {
 
 	void Awake()
 	{
-		audioSource = GameObject.FindObjectOfType<AudioSource>();
-		if(audioSource==null)
+		if(!GameObject.Find("Main Camera").GetComponent<AudioSource>())
 		{
-			GameObject.Find("Main Camera").AddComponent<AudioSource>();
-			audioSource = GameObject.FindObjectOfType<AudioSource>();
+			audioSource = GameObject.Find("Main Camera").AddComponent<AudioSource>();
 		}
+		else
+		{
+			audioSource = GameObject.Find("Main Camera").GetComponent<AudioSource>();
+		}
+		//Se llama starGame en el analytic para setear el tiempo = 0
+		AnalyticManager.instance.startGame();
 	}
 
 	void Start()
@@ -67,7 +71,7 @@ public class SoundShapeManager : MonoBehaviour {
 		AudioClip aC = (AudioClip)Resources.Load("Sounds/"+soundToPlay);
 
 		if(!audioSource.isPlaying)
-		{Debug.Log(GameObject.FindObjectOfType<DrawingInput>().canDraw);
+		{
 			audioSource.clip = aC;
 			if(!GameObject.FindObjectOfType<DrawingInput>().canDraw)
 			{
@@ -76,5 +80,7 @@ public class SoundShapeManager : MonoBehaviour {
 			}
 		}
 	}
-
+	void OnDisable() {
+		AnalyticManager.instance.finsh("Observa", startSoundName,startSoundName);
+	}
 }

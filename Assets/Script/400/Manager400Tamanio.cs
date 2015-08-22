@@ -27,7 +27,7 @@ public class Manager400Tamanio : MonoBehaviour {
 	public AudioClip audioRight;
 	public AudioClip finalAudio;
 	public Notification notification;
-
+	public string exerciseType;
 
 	protected Rect shapesRect;
 	protected Container400[] containers;
@@ -38,7 +38,7 @@ public class Manager400Tamanio : MonoBehaviour {
 	protected List<int> colorShown;
 	protected int currentStage = -1;
 	protected bool vertical;
-
+	protected bool excerciseFinished;
 	// Use this for initialization
 	void Start () 
 	{
@@ -99,6 +99,9 @@ public class Manager400Tamanio : MonoBehaviour {
 
 		//Inicializamos el ejercicio
 		showNextExcercise();
+
+		//Se llama starGame en el analytic para setear el tiempo = 0
+		AnalyticManager.instance.startGame();
 	}
 
 	/**
@@ -106,10 +109,15 @@ public class Manager400Tamanio : MonoBehaviour {
 	 * */
 	protected void showNextExcercise()
 	{
+		if(currentStage >= 0)
+		{
+			AnalyticManager.instance.finsh("Ordena",exerciseType ,currentStage.ToString());
+		}
 		currentStage++;
-		
+		excerciseFinished=false;
 		if(currentStage > 4)
 		{
+			excerciseFinished=true;
 			showFinalScreen();	
 		}
 		else
@@ -522,6 +530,7 @@ public class Manager400Tamanio : MonoBehaviour {
 				//Ejercicio correcto
 				notification.onClose += onNotificationRightComplete;
 				notification.showToast("correcto",audioRight,2);
+				excerciseFinished=true;
 			}
 		}
 	}
@@ -628,5 +637,12 @@ public class Manager400Tamanio : MonoBehaviour {
 				((Shape400)input.selected).container = null;
 			}
 		}
-	}	
+	}
+
+	void OnDisable() {
+		if(!excerciseFinished)
+		{
+			AnalyticManager.instance.finsh("Ordena",exerciseType ,currentStage.ToString(),false);
+		}
+	}
 }

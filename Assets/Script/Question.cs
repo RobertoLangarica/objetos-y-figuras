@@ -17,11 +17,14 @@ public class Question : MonoBehaviour {
 	public string firstTimeText;
 	// Use this for initialization
 	void Start () {
-		audioSource = GameObject.FindObjectOfType<AudioSource>();
-		if(audioSource==null)
+
+		if(GameObject.Find("Main Camera").GetComponent<AudioSource>()==null)
 		{
-			GameObject.Find("Main Camera").AddComponent<AudioSource>();
-			audioSource = GameObject.FindObjectOfType<AudioSource>();
+			audioSource = GameObject.Find("Main Camera").AddComponent<AudioSource>();
+		}
+		else
+		{
+			audioSource = GameObject.Find("Main Camera").GetComponent<AudioSource>();
 		}
 
 		TextAsset tempTxt = (TextAsset)Resources.Load ("Texts/toastTexts");

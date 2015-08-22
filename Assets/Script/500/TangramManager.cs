@@ -30,7 +30,8 @@ public class TangramManager : MonoBehaviour
 	protected List<Level> fTypeAllShapes;
 	protected XMLLoader loader;
 	protected Notification notification;
-	
+	protected bool excerciseFinished;
+
 	void Start ()
 	{		
 		loader = GameObject.FindObjectOfType<XMLLoader>();
@@ -42,6 +43,8 @@ public class TangramManager : MonoBehaviour
 		levelStart();
 		notification = GameObject.Find("Notification").GetComponent<Notification>();
 		notification.onClose += levelStart;
+
+		AnalyticManager.instance.startGame();
 	}
 	
 	void onDrag()
@@ -57,6 +60,7 @@ public class TangramManager : MonoBehaviour
 
 	protected void levelStart()
 	{
+		excerciseFinished = false;
 		for(int i = 0;i < shapes.Count;i++)
 		{
 			if(shapes[i] != null)
@@ -474,6 +478,8 @@ public class TangramManager : MonoBehaviour
 
 	protected void nextLevel()
 	{
+		excerciseFinished=true;
+		AnalyticManager.instance.finsh("Construye", tType.ToString(),currentLevel.name);
 		if(currLevel < 5 && tType == ETangramTypes.SAME_SHAPE)
 		{
 			currLevel++;
@@ -494,5 +500,12 @@ public class TangramManager : MonoBehaviour
 	public void exitGame()
 	{
 		ScreenManager.instance.GoToScene("Construye");
+	}
+
+	void OnDisable() {
+		if(!excerciseFinished)
+		{
+			AnalyticManager.instance.finsh("Construye", tType.ToString(),currentLevel.name,false);
+		}
 	}
 }
