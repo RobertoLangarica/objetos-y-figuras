@@ -35,6 +35,8 @@ public class DrawingScene : MonoBehaviour
 	protected float imageInElapsed;
 	protected float imageInInverseTime;
 
+	protected FinishPopUp finishPopUp;
+
 
 	// Use this for initialization
 	void Start () 
@@ -62,6 +64,8 @@ public class DrawingScene : MonoBehaviour
 		pencilInput = FindObjectOfType<DrawingInput>();
 
 		changeTexture(true);
+
+		finishPopUp = FindObjectOfType<FinishPopUp>();
 	}
 
 	protected void changeTexture(bool load)
@@ -149,6 +153,7 @@ public class DrawingScene : MonoBehaviour
 		{
 			//Pantalla final
 			Debug.Log("Pantalla final");
+			finishPopUp.show();
 		}
 		else
 		{
