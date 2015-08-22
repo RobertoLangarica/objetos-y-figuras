@@ -14,14 +14,6 @@ public class FinishPopUp : MonoBehaviour
 		robots = GameObject.FindGameObjectsWithTag("RobotPopUp");
 	}
 
-	void Update()
-	{
-		if(Input.GetKey(KeyCode.A))
-		{
-			show();
-		}
-	}
-
 	public void onExit()
 	{
 		ScreenManager.instance.showPrevScene();
