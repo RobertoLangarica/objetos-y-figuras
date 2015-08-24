@@ -185,6 +185,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 178805533}
   - 114: {fileID: 178805534}
+  - 82: {fileID: 178805535}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -220,9 +221,69 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MainMusic: {fileID: 1673658112}
   GameMusic: {fileID: 1777338729}
+  SoundsAS: {fileID: 178805535}
   MainAudio0: {fileID: 8300000, guid: 3b912f6c7ab988c4c9181460918aa23d, type: 3}
   MainAudio1: {fileID: 8300000, guid: 3b912f6c7ab988c4c9181460918aa23d, type: 3}
   GameAudio: {fileID: 8300000, guid: bf20f3f8d217dd44b934044d96ac693d, type: 3}
+  SoundsAC: {fileID: 8300000, guid: c3c54a5a0b9559148a6fa45ed961447b, type: 3}
+--- !u!82 &178805535
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 178805532}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 8300000, guid: 318359f5b273647359c865c1f8588657, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1 &670427439
 GameObject:
   m_ObjectHideFlags: 0
@@ -469,6 +530,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 11455432, guid: 4acba9751df4f4cabb1bca3f2e6000f2, type: 2}
+      propertyPath: SoundsAC
+      value: 
+      objectReference: {fileID: 8300000, guid: c3c54a5a0b9559148a6fa45ed961447b, type: 3}
+    - target: {fileID: 11455432, guid: 4acba9751df4f4cabb1bca3f2e6000f2, type: 2}
+      propertyPath: SoundsAS
+      value: 
+      objectReference: {fileID: 178805535}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4acba9751df4f4cabb1bca3f2e6000f2, type: 2}
   m_RootGameObject: {fileID: 670427439}
