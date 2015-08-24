@@ -7,7 +7,7 @@ public class UnityAnalyticsIntegration : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		
-		const string projectId = "043dc45a-1cfb-4669-83f7-4f0a00254c70";
+		const string projectId = "d9141f30-6b38-42cd-81af-1a663d78cc00";
 		UnityAnalytics.StartSDK (projectId);
 		
 	}
