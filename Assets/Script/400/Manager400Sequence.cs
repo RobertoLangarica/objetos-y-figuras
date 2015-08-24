@@ -56,8 +56,11 @@ public class Manager400Sequence : MonoBehaviour {
 		//Inicializamos el ejercicio
 		showNextExcercise();
 
-		//Se llama starGame en el analytic para setear el tiempo = 0
-		AnalyticManager.instance.startGame();
+		if(AnalyticManager.instance)
+		{
+			//Se llama starGame en el analytic para setear el tiempo = 0
+			AnalyticManager.instance.startGame();
+		}
 
 		finishPopUp = FindObjectOfType<FinishPopUp>();
 	}
@@ -101,10 +104,14 @@ public class Manager400Sequence : MonoBehaviour {
 	 * */
 	protected void showNextExcercise()
 	{
-		if(currentStage >= 0)
+		if(AnalyticManager.instance)
 		{
-			AnalyticManager.instance.finsh("Ordena","Secuencia" ,currentStage.ToString());
+			if(currentStage >= 0)
+			{
+				AnalyticManager.instance.finsh("Ordena","Secuencia" ,currentStage.ToString());
+			}
 		}
+
 		currentStage++;
 		
 		if(currentStage > 11)//12 pantallas
@@ -116,8 +123,12 @@ public class Manager400Sequence : MonoBehaviour {
 		{
 			buildNextStage();
 		}
-		//Se llama starGame en el analytic para setear el tiempo = 0
-		AnalyticManager.instance.startGame();
+
+		if(AnalyticManager.instance)
+		{
+			//Se llama starGame en el analytic para setear el tiempo = 0
+			AnalyticManager.instance.startGame();
+		}
 	}
 	
 	/**
