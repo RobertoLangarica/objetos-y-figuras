@@ -11,7 +11,6 @@ public class AudioManager : MonoBehaviour {
 	public AudioClip MainAudio1;
 	public AudioClip GameAudio;
 
-	public ScreenManager screenManager;
 	void Awake()
 	{
 		MainMusic.loop = true;
