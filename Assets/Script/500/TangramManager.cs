@@ -96,8 +96,6 @@ public class TangramManager : MonoBehaviour
 		
 		initializeShapes(currentLevel);
 
-		SetColor();
-
 		GameObject tmp = (GameObject)Resources.Load("500/"+currentLevel.name);
 		previousLevel.Add(currentLevel.name);
 		placeholder.Add(((GameObject)GameObject.Instantiate(tmp,Vector3.zero,Quaternion.identity)).GetComponent<Placeholder>());
@@ -106,6 +104,8 @@ public class TangramManager : MonoBehaviour
 		initializePlaceholder();
 
 		input.gameObject.SetActive(true);
+		
+		SetColor();
 	}
 
 	void initializeShapes(Level initLevel)
@@ -485,10 +485,13 @@ public class TangramManager : MonoBehaviour
 			notification.showToast("correcto",audioRight,2);
 			continueBtn.GetComponent<Button>().interactable = false;
 		}
-		else if(fTypeAllShapes.Count > 0 && tType == ETangramTypes.ALL_SHAPES)
+		else if(fTypeAllShapes != null&& tType == ETangramTypes.ALL_SHAPES)
 		{
-			notification.showToast("correcto",audioRight,2);
-			continueBtn.GetComponent<Button>().interactable = false;
+			if(fTypeAllShapes.Count > 0)
+			{
+				notification.showToast("correcto",audioRight,2);
+				continueBtn.GetComponent<Button>().interactable = false;
+			}
 		}
 		else
 		{
