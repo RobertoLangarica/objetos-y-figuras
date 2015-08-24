@@ -191,7 +191,7 @@ public class DrawingScene : MonoBehaviour
 
 	public Photo photo
 	{
-		get{return photos[current];}
+		get{return photos[positions[current]];}
 	}
 
 	protected void advanceCurrent()
