@@ -88,6 +88,7 @@ public class ScreenManager : MonoBehaviour {
 			backScreens.Add(newScene,Application.loadedLevelName);
 		}
 
+		Debug.Log (newScene);
 		Application.LoadLevel (newScene);
 	}
 }

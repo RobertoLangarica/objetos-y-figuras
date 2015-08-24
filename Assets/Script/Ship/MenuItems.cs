@@ -14,7 +14,7 @@ public class MenuItems : MonoBehaviour {
 			StoreInventory.BuyItem("premium_ver_ID");
 			return;
 		}
-		GameManager.lvlToPrepare = lvlName;
-		ScreenManager.instance.GoToScene ("Gameplay");
+		SpacegramManager.lvlToPrepare = lvlName;
+		ScreenManager.instance.GoToScene ("Spacegram");
 	}
 }

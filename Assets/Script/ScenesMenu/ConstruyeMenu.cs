@@ -21,6 +21,6 @@ public class ConstruyeMenu : MonoBehaviour {
 	}
 	public void selectSpacegram()
 	{
-		ScreenManager.instance.GoToScene("MainMenu");
+		ScreenManager.instance.GoToScene("SpacegramMenu");
 	}
 }

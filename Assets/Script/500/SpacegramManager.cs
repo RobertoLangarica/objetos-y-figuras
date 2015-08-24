@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 
-public class GameManager : MonoBehaviour
+public class SpacegramManager : MonoBehaviour
 {
 	//Nivel que se debe de preparar
 	public static string lvlToPrepare = "SN01_01";
@@ -329,7 +329,7 @@ public class GameManager : MonoBehaviour
 		{
 			UserDataManager.instance.level = UserDataManager.instance.level+1;
 		}*/
-		ScreenManager.instance.GoToScene("MainMenu");
+		ScreenManager.instance.GoToScene("SpacegramMenu");
 	}
 
 	public void onSendShip()
@@ -347,11 +347,11 @@ public class GameManager : MonoBehaviour
 			client.isShipReady = true;//Esto envia la nave
 		}
 
-		ScreenManager.instance.GoToScene("MainMenu");
+		ScreenManager.instance.GoToScene("SpacegramMenu");
 	}
 
 	public void exitGame()
 	{
-		ScreenManager.instance.GoToScene("MainMenu");
+		ScreenManager.instance.GoToScene("SpacegramMenu");
 	}
 }

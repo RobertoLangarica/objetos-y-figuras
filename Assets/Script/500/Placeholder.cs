@@ -28,9 +28,9 @@ public class Placeholder : MonoBehaviour
 	{
 		//DOTween.Kill("SnapMove");
 		GameObject[] tempshps = null;
-		if((GameManager)FindObjectOfType (typeof(GameManager)) != null)
+		if((SpacegramManager)FindObjectOfType (typeof(SpacegramManager)) != null)
 		{
-			tempshps = ((GameManager)FindObjectOfType (typeof(GameManager))).shapes;
+			tempshps = ((SpacegramManager)FindObjectOfType (typeof(SpacegramManager))).shapes;
 		}
 		else if((TangramManager)FindObjectOfType (typeof(TangramManager)) != null)
 		{

@@ -183,7 +183,7 @@ public class WebCamPhotoCamera : MonoBehaviour
 	public void next()
 	{
 		#if UNITY_EDITOR
-		ScreenManager.instance.GoToScene("MainMenu");
+		ScreenManager.instance.GoToScene("SpacegramMenu");
 		return;
 		#endif
 
@@ -195,7 +195,7 @@ public class WebCamPhotoCamera : MonoBehaviour
 				client.isNameReady = true;//Esto envia el nombre
 			}
 
-			ScreenManager.instance.GoToScene("MainMenu");
+			ScreenManager.instance.GoToScene("SpacegramMenu");
 		}
 		else if(webCamTexture && pictureTaken && nameSelected)
 		{
@@ -205,7 +205,7 @@ public class WebCamPhotoCamera : MonoBehaviour
 				client.isNameReady = true;//Esto envia el nombre
 			}
 
-			ScreenManager.instance.GoToScene("MainMenu");
+			ScreenManager.instance.GoToScene("SpacegramMenu");
 			webCamTexture.Stop();
 		}
 	}

@@ -23,6 +23,6 @@ public class ExitButton : MonoBehaviour
 	public void back()
 	{
 		Debug.Log("2");
-		ScreenManager.instance.GoToScene("MainMenu");
+		ScreenManager.instance.GoToScene("SpacegramMenu");
 	}
 }
