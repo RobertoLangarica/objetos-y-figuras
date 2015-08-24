@@ -216,7 +216,7 @@ public class TangramManager : MonoBehaviour
 		List<int> colorsShown = new List<int>();
 		int count = 0;
 		int repeatcount = 0;
-		
+		Debug.Log("S");
 		while(count < shapes.Count)
 		{
 			rand = Random.Range(1,System.Enum.GetValues(typeof(BaseShape.EShapeColor)).Length-1);
