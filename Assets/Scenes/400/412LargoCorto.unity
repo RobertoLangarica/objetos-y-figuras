@@ -152,8 +152,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5219158}
-        m_MethodName: 
+      - m_Target: {fileID: 1774534916}
+        m_MethodName: onExit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -416,10 +416,10 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 2000479974}
+  m_Father: {fileID: 1874510967}
   m_RootOrder: 1
-  m_AnchorMin: {x: .462356865, y: .624069214}
-  m_AnchorMax: {x: .666930795, y: .8737306}
+  m_AnchorMin: {x: .444788367, y: .629571974}
+  m_AnchorMax: {x: .690000057, y: .936808407}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
@@ -770,10 +770,10 @@ RectTransform:
   m_Father: {fileID: 1203044811}
   m_RootOrder: 1
   m_AnchorMin: {x: .883698523, y: .870357633}
-  m_AnchorMax: {x: .981299996, y: .975000024}
+  m_AnchorMax: {x: .981249988, y: .975000024}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 1, y: 1}
+  m_Pivot: {x: .5, y: .5}
 --- !u!114 &312110584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1205,7 +1205,7 @@ GameObject:
   - 114: {fileID: 368932157}
   m_Layer: 5
   m_Name: winIcon4
-  m_TagString: Robot
+  m_TagString: RobotPopUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1221,12 +1221,12 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: .921271026, y: .921271026, z: .921271026}
   m_Children: []
-  m_Father: {fileID: 2000479974}
+  m_Father: {fileID: 1874510967}
   m_RootOrder: 4
-  m_AnchorMin: {x: .648000002, y: .413309455}
-  m_AnchorMax: {x: .819788456, y: .748117805}
+  m_AnchorMin: {x: .688497901, y: .343000025}
+  m_AnchorMax: {x: .921784282, y: .769742131}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 3.05175781e-05}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &368932157
 MonoBehaviour:
@@ -3359,7 +3359,7 @@ GameObject:
   - 114: {fileID: 1392416557}
   m_Layer: 5
   m_Name: winIcon2
-  m_TagString: Robot
+  m_TagString: RobotPopUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3375,12 +3375,12 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: .921249986, y: .921249986, z: .921249986}
   m_Children: []
-  m_Father: {fileID: 2000479974}
+  m_Father: {fileID: 1874510967}
   m_RootOrder: 2
-  m_AnchorMin: {x: .648000002, y: .438550472}
-  m_AnchorMax: {x: .819788456, y: .773358822}
-  m_AnchoredPosition: {x: 0, y: 7.62939453e-06}
-  m_SizeDelta: {x: 0, y: -1.52587891e-05}
+  m_AnchorMin: {x: .688497901, y: .343000025}
+  m_AnchorMax: {x: .915000021, y: .769742131}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1392416557
 MonoBehaviour:
@@ -4201,6 +4201,52 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 2046119474}
   m_GameObject: {fileID: 1825375998}
+--- !u!1 &1874510966
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 167158, guid: f356cfc29c1936d459b3f0d2c2feb5cc, type: 2}
+  m_PrefabInternal: {fileID: 1418573955}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 1874510967}
+  - 222: {fileID: 1874510968}
+  m_Layer: 5
+  m_Name: Panel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1874510967
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 22467158, guid: f356cfc29c1936d459b3f0d2c2feb5cc,
+    type: 2}
+  m_PrefabInternal: {fileID: 1418573955}
+  m_GameObject: {fileID: 1874510966}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2044531847}
+  - {fileID: 146802981}
+  - {fileID: 1392416556}
+  - {fileID: 2120570127}
+  - {fileID: 368932156}
+  m_Father: {fileID: 2000479974}
+  m_RootOrder: 0
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: .5, y: .5}
+--- !u!222 &1874510968
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 22267158, guid: f356cfc29c1936d459b3f0d2c2feb5cc,
+    type: 2}
+  m_PrefabInternal: {fileID: 1418573955}
+  m_GameObject: {fileID: 1874510966}
 --- !u!1001 &1976886094
 Prefab:
   m_ObjectHideFlags: 0
@@ -4242,7 +4288,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22439824, guid: e7bccb3f588f54258b99f4bf6a39fb74, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22439824, guid: e7bccb3f588f54258b99f4bf6a39fb74, type: 2}
       propertyPath: m_AnchoredPosition.x
@@ -4270,7 +4316,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22439824, guid: e7bccb3f588f54258b99f4bf6a39fb74, type: 2}
       propertyPath: m_AnchorMax.x
-      value: .981299996
+      value: .981249988
       objectReference: {fileID: 0}
     - target: {fileID: 22439824, guid: e7bccb3f588f54258b99f4bf6a39fb74, type: 2}
       propertyPath: m_AnchorMax.y
@@ -4278,11 +4324,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22439824, guid: e7bccb3f588f54258b99f4bf6a39fb74, type: 2}
       propertyPath: m_Pivot.x
-      value: 1
+      value: .5
       objectReference: {fileID: 0}
     - target: {fileID: 22439824, guid: e7bccb3f588f54258b99f4bf6a39fb74, type: 2}
       propertyPath: m_Pivot.y
-      value: 1
+      value: .5
       objectReference: {fileID: 0}
     - target: {fileID: 11439824, guid: e7bccb3f588f54258b99f4bf6a39fb74, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -4349,11 +4395,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2044531847}
-  - {fileID: 146802981}
-  - {fileID: 1392416556}
-  - {fileID: 2120570127}
-  - {fileID: 368932156}
+  - {fileID: 1874510967}
   m_Father: {fileID: 1774534915}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
@@ -4599,7 +4641,7 @@ RectTransform:
   - {fileID: 37424125}
   - {fileID: 1349296234}
   - {fileID: 5219157}
-  m_Father: {fileID: 2000479974}
+  m_Father: {fileID: 1874510967}
   m_RootOrder: 0
   m_AnchorMin: {x: .0186999999, y: .170000002}
   m_AnchorMax: {x: .981249988, y: .870000005}
@@ -4731,7 +4773,7 @@ GameObject:
   - 114: {fileID: 2120570128}
   m_Layer: 5
   m_Name: winIcon3
-  m_TagString: Robot
+  m_TagString: RobotPopUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4747,12 +4789,12 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: .921271026, y: .921271026, z: .921271026}
   m_Children: []
-  m_Father: {fileID: 2000479974}
+  m_Father: {fileID: 1874510967}
   m_RootOrder: 3
-  m_AnchorMin: {x: .648000002, y: .416114032}
-  m_AnchorMax: {x: .819788456, y: .750922382}
+  m_AnchorMin: {x: .688497901, y: .343000025}
+  m_AnchorMax: {x: .915000021, y: .769742131}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 3.05175781e-05}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &2120570128
 MonoBehaviour:

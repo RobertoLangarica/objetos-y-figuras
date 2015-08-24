@@ -59,7 +59,6 @@ public class AudioManager : MonoBehaviour {
 			MainMusic.volume=0;
 			GameMusic.volume=1;
 			GameMusic.Play();
-			Debug.Log("gameAudio");
 		}
 	}
 }
