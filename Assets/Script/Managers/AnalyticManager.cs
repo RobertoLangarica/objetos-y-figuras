@@ -43,33 +43,33 @@ public class AnalyticManager : MonoBehaviour {
 	{
 		if(finish)
 		{
-			//UnityAnalytics.CustomEvent(activityName, new Dictionary<string, object>
-			//                           {
-			//	{ "Fiinished "+exerciseType, exerciseName },
-			//});
-			//UnityAnalytics.CustomEvent(exerciseType, new Dictionary<string, object>
-			//                           {
-			//	{ "Finish "+exerciseName, gameTime },
-			//});
+			UnityAnalytics.CustomEvent(activityName, new Dictionary<string, object>
+			                           {
+				{ "Fiinished "+exerciseType, exerciseName },
+			});
+			UnityAnalytics.CustomEvent(exerciseType, new Dictionary<string, object>
+			                           {
+				{ "Finish "+exerciseName, gameTime },
+			});
 			Debug.Log("Termino: "+exerciseType+" time: "+gameTime);
 		}
 		else
 		{
-			//UnityAnalytics.CustomEvent(activityName, new Dictionary<string, object>
-			//                           {
-			//	{ "not Finished "+exerciseType, exerciseName },
-			//});
-			//UnityAnalytics.CustomEvent(exerciseType, new Dictionary<string, object>
-			//                           {
-			//	{ "not Finish"+exerciseName, gameTime },
-			//});
+			UnityAnalytics.CustomEvent(activityName, new Dictionary<string, object>
+			                           {
+				{ "not Finished "+exerciseType, exerciseName },
+			});
+			UnityAnalytics.CustomEvent(exerciseType, new Dictionary<string, object>
+			                           {
+				{ "not Finish"+exerciseName, gameTime },
+			});
 			Debug.Log("NO termino "+"time: "+gameTime);
 		}
 
 	}
 
 	void OnApplicationQuit() {
-		Debug.Log("cerrando");
+		//Debug.Log("cerrando");
 	}
 
 }
