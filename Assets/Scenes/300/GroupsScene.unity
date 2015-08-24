@@ -223,7 +223,7 @@ Prefab:
     - target: {fileID: 11439824, guid: e7bccb3f588f54258b99f4bf6a39fb74, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 335680209}
+      objectReference: {fileID: 0}
     - target: {fileID: 11439824, guid: e7bccb3f588f54258b99f4bf6a39fb74, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: verifyExcersice
@@ -1355,10 +1355,6 @@ GameObject:
   - 92: {fileID: 335680217}
   - 124: {fileID: 335680216}
   - 81: {fileID: 335680215}
-  - 114: {fileID: 335680212}
-  - 114: {fileID: 335680213}
-  - 114: {fileID: 335680211}
-  - 114: {fileID: 335680209}
   - 82: {fileID: 335680214}
   m_Layer: 0
   m_Name: Main Camera
@@ -1399,39 +1395,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: .0219999999
---- !u!114 &335680209
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 335680207}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b568ed093dde7ec4f91d7349d4bb6da1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  groupSize: 3
-  containerGo: {fileID: 11429172, guid: d13b52af6dec8bb4682a862b91042b84, type: 2}
-  audioSource: {fileID: 335680214}
-  audioWrong: {fileID: 8300000, guid: bc3e42b1cfd814c7ca8c47f06f5f34f6, type: 3}
-  audioRight: {fileID: 8300000, guid: 318359f5b273647359c865c1f8588657, type: 3}
-  finalAudio: {fileID: 0}
-  pencil: {fileID: 949005498}
-  kindsOfShapes:
-  - {fileID: 174750, guid: 28c69b0c3d43d7f41813ed923d1f5ca2, type: 2}
-  - {fileID: 101676, guid: 692bc53bb1ac7914fae4e1b1de5c3839, type: 2}
-  - {fileID: 174280, guid: 57a86603e3b8db14e9b77ddb0fe0a084, type: 2}
-  - {fileID: 174280, guid: b725fd75f00da2b40b934b281aa53408, type: 2}
-  - {fileID: 174280, guid: db2465bf231f5da4eb6b2ece988a502d, type: 2}
-  - {fileID: 174280, guid: 42433215f8e261f43a164167726aaa21, type: 2}
-  - {fileID: 174280, guid: 9e0f3959c5b3e654fb170bc20e291f86, type: 2}
-  - {fileID: 174280, guid: 110ad1d75350a864591d6699e88a65f0, type: 2}
-  - {fileID: 174280, guid: 3c5964bc28b132e419e738344094b1f0, type: 2}
-  - {fileID: 174280, guid: 4cec402ae68e00e46906a6899334bb92, type: 2}
-  - {fileID: 174280, guid: 16553f53110ac8b4fa854f8aac36e5be, type: 2}
-  - {fileID: 174280, guid: a3d0c84869fb90b44805083341b2fd4c, type: 2}
-  - {fileID: 174280, guid: 27b4093dbd7a5d646a128f315c63fea1, type: 2}
-  - {fileID: 174280, guid: 92e1a7391d065eb4d8c301d3982eacc2, type: 2}
 --- !u!4 &335680210
 Transform:
   m_ObjectHideFlags: 0
@@ -1445,60 +1408,6 @@ Transform:
   - {fileID: 1205517624}
   m_Father: {fileID: 0}
   m_RootOrder: 3
---- !u!114 &335680211
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 335680207}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf945d278a7402a4cb9cd26aec5c0fe7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Cameras: []
-  IgnoreLayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967039
-  RayThickness: 0
-  VisualizeRaycasts: 1
-  UsePhysics2D: 1
---- !u!114 &335680212
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 335680207}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5f2d187e5d55604bbf79719648eaafc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &335680213
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 335680207}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29fe0f62e9c5bb14d98ea3ee7ce170a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  requiredFingerCount: 1
-  DistanceUnit: 2
-  MaxSimultaneousGestures: 1
-  ResetMode: 0
-  Raycaster: {fileID: 0}
-  ClusterManager: {fileID: 0}
-  Delegate: {fileID: 0}
-  UseSendMessage: 0
-  EventMessageName: OnDrag
-  EventMessageTarget: {fileID: 0}
-  SendMessageToSelection: 0
-  IsExclusive: 0
-  MoveTolerance: .100000001
-  ApplySameDirectionConstraint: 0
 --- !u!82 &335680214
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1795,7 +1704,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 335680209}
+      - m_Target: {fileID: 0}
         m_MethodName: verifyExcersice
         m_Mode: 1
         m_Arguments:
@@ -3675,6 +3584,184 @@ Prefab:
   m_RootGameObject: {fileID: 315164191}
   m_IsPrefabParent: 0
   m_IsExploded: 1
+--- !u!1 &1429981216
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1429981222}
+  - 114: {fileID: 1429981221}
+  - 114: {fileID: 1429981220}
+  - 114: {fileID: 1429981219}
+  - 114: {fileID: 1429981218}
+  - 82: {fileID: 1429981217}
+  m_Layer: 0
+  m_Name: Manager
+  m_TagString: MainCamera
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &1429981217
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1429981216}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 8300000, guid: 99ce4bcdcb23746d6813039b8c9b3485, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+--- !u!114 &1429981218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1429981216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b568ed093dde7ec4f91d7349d4bb6da1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groupSize: 3
+  containerGo: {fileID: 11429172, guid: d13b52af6dec8bb4682a862b91042b84, type: 2}
+  audioSource: {fileID: 1429981217}
+  audioWrong: {fileID: 8300000, guid: bc3e42b1cfd814c7ca8c47f06f5f34f6, type: 3}
+  audioRight: {fileID: 8300000, guid: 318359f5b273647359c865c1f8588657, type: 3}
+  finalAudio: {fileID: 0}
+  pencil: {fileID: 949005498}
+  kindsOfShapes:
+  - {fileID: 174750, guid: 28c69b0c3d43d7f41813ed923d1f5ca2, type: 2}
+  - {fileID: 101676, guid: 692bc53bb1ac7914fae4e1b1de5c3839, type: 2}
+  - {fileID: 174280, guid: 57a86603e3b8db14e9b77ddb0fe0a084, type: 2}
+  - {fileID: 174280, guid: b725fd75f00da2b40b934b281aa53408, type: 2}
+  - {fileID: 174280, guid: db2465bf231f5da4eb6b2ece988a502d, type: 2}
+  - {fileID: 174280, guid: 42433215f8e261f43a164167726aaa21, type: 2}
+  - {fileID: 174280, guid: 9e0f3959c5b3e654fb170bc20e291f86, type: 2}
+  - {fileID: 174280, guid: 110ad1d75350a864591d6699e88a65f0, type: 2}
+  - {fileID: 174280, guid: 3c5964bc28b132e419e738344094b1f0, type: 2}
+  - {fileID: 174280, guid: 4cec402ae68e00e46906a6899334bb92, type: 2}
+  - {fileID: 174280, guid: 16553f53110ac8b4fa854f8aac36e5be, type: 2}
+  - {fileID: 174280, guid: a3d0c84869fb90b44805083341b2fd4c, type: 2}
+  - {fileID: 174280, guid: 27b4093dbd7a5d646a128f315c63fea1, type: 2}
+  - {fileID: 174280, guid: 92e1a7391d065eb4d8c301d3982eacc2, type: 2}
+--- !u!114 &1429981219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1429981216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf945d278a7402a4cb9cd26aec5c0fe7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Cameras: []
+  IgnoreLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967039
+  RayThickness: 0
+  VisualizeRaycasts: 1
+  UsePhysics2D: 1
+--- !u!114 &1429981220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1429981216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29fe0f62e9c5bb14d98ea3ee7ce170a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requiredFingerCount: 1
+  DistanceUnit: 2
+  MaxSimultaneousGestures: 1
+  ResetMode: 0
+  Raycaster: {fileID: 1429981219}
+  ClusterManager: {fileID: 0}
+  Delegate: {fileID: 0}
+  UseSendMessage: 0
+  EventMessageName: OnDrag
+  EventMessageTarget: {fileID: 0}
+  SendMessageToSelection: 0
+  IsExclusive: 0
+  MoveTolerance: .100000001
+  ApplySameDirectionConstraint: 0
+--- !u!114 &1429981221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1429981216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5f2d187e5d55604bbf79719648eaafc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dragSound: {fileID: 1429981217}
+--- !u!4 &1429981222
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1429981216}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
 --- !u!1 &1479959807
 GameObject:
   m_ObjectHideFlags: 0
@@ -4673,7 +4760,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AspectMode: 0
-  m_AspectRatio: 1.92224228
+  m_AspectRatio: 1.82875609
 --- !u!114 &1946142816
 MonoBehaviour:
   m_ObjectHideFlags: 0
