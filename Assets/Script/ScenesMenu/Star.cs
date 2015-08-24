@@ -12,6 +12,10 @@ public class Star : MonoBehaviour {
 		boundaryBottom = -Screen.height;
 
 		randomSpeed = Random.Range(0.1f,0.5f);
+
+		transform.localScale = transform.localScale*Random.Range(1,2.0f);
+
+		this.transform.eulerAngles = new Vector3(this.transform.eulerAngles.x,this.transform.eulerAngles.y,Random.Range(0,360));
 	}
 	
 	// Update is called once per frame
