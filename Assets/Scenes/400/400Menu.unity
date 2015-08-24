@@ -677,6 +677,7 @@ MonoBehaviour:
   Switch2EraseBtn: {fileID: 1749393720}
   Switch2PaintBtn: {fileID: 0}
   EreaseAllBtn: {fileID: 771599689}
+  showing: 0
   startOpen: 0
 --- !u!114 &467754709
 MonoBehaviour:
@@ -786,7 +787,7 @@ GameObject:
   - 114: {fileID: 511275218}
   m_Layer: 5
   m_Name: Secuencia
-  m_TagString: Untagged
+  m_TagString: UIButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -941,6 +942,7 @@ MonoBehaviour:
   Switch2EraseBtn: {fileID: 1941376083}
   Switch2PaintBtn: {fileID: 252845921}
   EreaseAllBtn: {fileID: 1030213488}
+  showing: 0
   startOpen: 0
 --- !u!114 &565178720
 MonoBehaviour:
@@ -1298,6 +1300,10 @@ Prefab:
       propertyPath: m_AnchorMax.y
       value: .981249988
       objectReference: {fileID: 0}
+    - target: {fileID: 118754, guid: 608d9530780bb814bad01cb2657c889d, type: 2}
+      propertyPath: m_TagString
+      value: UIButton
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 608d9530780bb814bad01cb2657c889d, type: 2}
   m_RootGameObject: {fileID: 1934423402}
@@ -1505,7 +1511,7 @@ GameObject:
   - 114: {fileID: 857444775}
   m_Layer: 5
   m_Name: ExitBtn
-  m_TagString: Untagged
+  m_TagString: UIButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1983,7 +1989,7 @@ GameObject:
   - 114: {fileID: 1215720995}
   m_Layer: 5
   m_Name: BajoAlto
-  m_TagString: Untagged
+  m_TagString: UIButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2615,7 +2621,7 @@ GameObject:
   - 114: {fileID: 1454414678}
   m_Layer: 5
   m_Name: GrandePequenio
-  m_TagString: Untagged
+  m_TagString: UIButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2936,7 +2942,7 @@ GameObject:
   - 114: {fileID: 1554127611}
   m_Layer: 5
   m_Name: LargoCorto
-  m_TagString: Untagged
+  m_TagString: UIButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3722,6 +3728,7 @@ MonoBehaviour:
   canDraw: 1
   input: {fileID: 1568830358}
   hiding: 0
+  currentColor: {r: .133000001, g: .564999998, b: .944999993, a: 1}
 --- !u!114 &2028922248
 MonoBehaviour:
   m_ObjectHideFlags: 0
