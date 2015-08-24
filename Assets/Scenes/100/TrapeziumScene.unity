@@ -222,6 +222,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 658510640}
   - {fileID: 1082887994}
   m_Father: {fileID: 1333561920}
   m_RootOrder: 0
@@ -580,6 +581,7 @@ MonoBehaviour:
   canDraw: 1
   input: {fileID: 953061693}
   hiding: 0
+  currentColor: {r: .133000001, g: .564999998, b: .944999993, a: 1}
 --- !u!114 &229496717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1193,6 +1195,70 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 484616234}
   m_GameObject: {fileID: 596766184}
+--- !u!1 &658510639
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 103298, guid: 2cf9a816d96a60f429c3b50e1a3f540c, type: 2}
+  m_PrefabInternal: {fileID: 484616234}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 658510640}
+  - 222: {fileID: 658510642}
+  - 114: {fileID: 658510641}
+  m_Layer: 5
+  m_Name: border
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &658510640
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 22403298, guid: 2cf9a816d96a60f429c3b50e1a3f540c,
+    type: 2}
+  m_PrefabInternal: {fileID: 484616234}
+  m_GameObject: {fileID: 658510639}
+  m_LocalRotation: {x: 0, y: 0, z: .0221640076, w: .999754369}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 26398864}
+  m_RootOrder: 0
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: .5, y: .5}
+--- !u!114 &658510641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11403298, guid: 2cf9a816d96a60f429c3b50e1a3f540c,
+    type: 2}
+  m_PrefabInternal: {fileID: 484616234}
+  m_GameObject: {fileID: 658510639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300246, guid: f46c2807590594f878a1886f3b6e912e, type: 3}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &658510642
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 22203298, guid: 2cf9a816d96a60f429c3b50e1a3f540c,
+    type: 2}
+  m_PrefabInternal: {fileID: 484616234}
+  m_GameObject: {fileID: 658510639}
 --- !u!1 &738303753
 GameObject:
   m_ObjectHideFlags: 0
@@ -1207,7 +1273,7 @@ GameObject:
   - 114: {fileID: 738303755}
   m_Layer: 5
   m_Name: ExitBtn
-  m_TagString: Untagged
+  m_TagString: UIButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1413,7 +1479,7 @@ GameObject:
   - 114: {fileID: 805268020}
   m_Layer: 5
   m_Name: PeniclBtn
-  m_TagString: Untagged
+  m_TagString: UIButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1451,6 +1517,7 @@ MonoBehaviour:
   Switch2EraseBtn: {fileID: 1905932277}
   Switch2PaintBtn: {fileID: 1184310598}
   EreaseAllBtn: {fileID: 2019218992}
+  showing: 0
   startOpen: 0
 --- !u!114 &805268021
 MonoBehaviour:
@@ -1729,7 +1796,7 @@ GameObject:
   - 114: {fileID: 1020002224}
   m_Layer: 5
   m_Name: ClueBtn
-  m_TagString: Untagged
+  m_TagString: UIButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1943,7 +2010,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 26398864}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_AnchorMin: {x: .0518275574, y: 0}
   m_AnchorMax: {x: .616330802, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -2163,7 +2230,7 @@ GameObject:
   - 114: {fileID: 1184310600}
   m_Layer: 5
   m_Name: Switch2PaintBtn
-  m_TagString: Untagged
+  m_TagString: UIButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3001,7 +3068,7 @@ GameObject:
   - 114: {fileID: 1905932279}
   m_Layer: 5
   m_Name: Switch2EraseBtn
-  m_TagString: Untagged
+  m_TagString: UIButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3160,6 +3227,7 @@ MonoBehaviour:
   Switch2EraseBtn: {fileID: 1809851276}
   Switch2PaintBtn: {fileID: 0}
   EreaseAllBtn: {fileID: 9557566}
+  showing: 0
   startOpen: 0
 --- !u!114 &1960779144
 MonoBehaviour:
@@ -3269,7 +3337,7 @@ GameObject:
   - 114: {fileID: 2019218994}
   m_Layer: 5
   m_Name: EraseAllBtn
-  m_TagString: Untagged
+  m_TagString: UIButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3538,6 +3606,30 @@ Prefab:
     - target: {fileID: 22432460, guid: 3dfb11f8ce87d5444b495aba7495d891, type: 2}
       propertyPath: m_AnchorMax.y
       value: .981249988
+      objectReference: {fileID: 0}
+    - target: {fileID: 132464, guid: 3dfb11f8ce87d5444b495aba7495d891, type: 2}
+      propertyPath: m_TagString
+      value: UIButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 181608, guid: 3dfb11f8ce87d5444b495aba7495d891, type: 2}
+      propertyPath: m_TagString
+      value: UIButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 132458, guid: 3dfb11f8ce87d5444b495aba7495d891, type: 2}
+      propertyPath: m_TagString
+      value: UIButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 145560, guid: 3dfb11f8ce87d5444b495aba7495d891, type: 2}
+      propertyPath: m_TagString
+      value: UIButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 114230, guid: 3dfb11f8ce87d5444b495aba7495d891, type: 2}
+      propertyPath: m_TagString
+      value: UIButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 145562, guid: 3dfb11f8ce87d5444b495aba7495d891, type: 2}
+      propertyPath: m_TagString
+      value: UIButton
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11416644, guid: 3dfb11f8ce87d5444b495aba7495d891, type: 2}
