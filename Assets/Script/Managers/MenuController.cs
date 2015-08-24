@@ -3,7 +3,6 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
-using Soomla.Store;
 
 public class MenuController : MonoBehaviour {
 
@@ -32,8 +31,6 @@ public class MenuController : MonoBehaviour {
 	{
 		//Cargamos los niveles desde aqui
 		LevelManager.instance.getLevel("1");
-		
-		StoreEvents.OnMarketPurchase += onMarketPurchase;
 
 		//Todos los niveles
 		Level[] levels = LevelManager.instance.getAllLevels();
@@ -165,19 +162,6 @@ public class MenuController : MonoBehaviour {
 		else
 		{
 			moveLeft = false;
-		}
-	}
-
-	
-	public void onMarketPurchase(PurchasableVirtualItem pvi, string payload,Dictionary<string, string> extra) 
-	{
-		for (int i = 0; i < levelsPrefab.Count; i++) 
-		{
-			if(levelsPrefab[i].GetComponent<MenuItems>().lvlPurchseID == "spacegramShips062015")
-			{
-				levelsPrefab[i].GetComponent<Image>().color = new Color(255,255,255);
-			}
-
 		}
 	}
 }
