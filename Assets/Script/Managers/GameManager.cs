@@ -74,6 +74,11 @@ public class GameManager : MonoBehaviour
 
 	void initializeReferenceImage()
 	{
+		foreach(GameObject shape in shapes)
+		{
+			shape.transform.FindChild("New Sprite").GetComponent<SpriteRenderer>().enabled = false;
+		}
+
 		GameObject tmp = (GameObject)Resources.Load("References/"+currentLevel.name+"_reference");
 
 		reference = GameObject.Instantiate(tmp) as GameObject;
