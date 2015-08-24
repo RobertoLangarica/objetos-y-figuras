@@ -102,8 +102,11 @@ public class Manager400Tamanio : MonoBehaviour {
 		//Inicializamos el ejercicio
 		showNextExcercise();
 
-		//Se llama starGame en el analytic para setear el tiempo = 0
-		AnalyticManager.instance.startGame();
+		if(AnalyticManager.instance)
+		{
+			//Se llama starGame en el analytic para setear el tiempo = 0
+			AnalyticManager.instance.startGame();
+		}
 
 		finishPopUp = FindObjectOfType<FinishPopUp>();
 	}
@@ -113,10 +116,12 @@ public class Manager400Tamanio : MonoBehaviour {
 	 * */
 	protected void showNextExcercise()
 	{
-
-		if(currentStage >= 0)
+		if(AnalyticManager.instance)
 		{
-			AnalyticManager.instance.finsh("Ordena",exerciseType ,currentStage.ToString());
+			if(currentStage >= 0)
+			{
+				AnalyticManager.instance.finsh("Ordena",exerciseType ,currentStage.ToString());
+			}
 		}
 		currentStage++;
 		excerciseFinished=false;
@@ -129,8 +134,12 @@ public class Manager400Tamanio : MonoBehaviour {
 		{
 			buildNextStage();
 		}
-		//Se llama starGame en el analytic para setear el tiempo = 0
-		AnalyticManager.instance.startGame();
+
+		if(AnalyticManager.instance)
+		{
+			//Se llama starGame en el analytic para setear el tiempo = 0
+			AnalyticManager.instance.startGame();
+		}
 	}
 
 	/**
@@ -649,7 +658,7 @@ public class Manager400Tamanio : MonoBehaviour {
 	}
 
 	void OnDisable() {
-		if(!excerciseFinished)
+		if(!excerciseFinished && AnalyticManager.instance)
 		{
 			AnalyticManager.instance.finsh("Ordena",exerciseType ,currentStage.ToString(),false);
 		}

@@ -5,6 +5,7 @@ using DG.Tweening;
 
 public class FinishPopUp : MonoBehaviour 
 {
+	public AudioClip finalSound;
 	protected GameObject[] robots;
 
 	// Use this for initialization
@@ -26,6 +27,16 @@ public class FinishPopUp : MonoBehaviour
 		choseRobot();
 		transform.GetChild(0).GetComponent<Image>().enabled = true;
 		transform.GetChild(0).GetChild(0).gameObject.GetComponent<RectTransform>().DOScale(new Vector3(1,1,1) ,1).SetEase(Ease.OutBack);
+
+		if(finalSound)
+		{
+			AudioSource source = FindObjectOfType<AudioSource>();
+
+			if(source)
+			{
+				source.PlayOneShot(finalSound,0.5f);
+			}
+		}
 	}
 
 	protected void choseRobot()
