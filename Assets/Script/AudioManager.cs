@@ -1,16 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour {
 
 	public AudioSource MainMusic;
 	public AudioSource GameMusic;
+	public AudioSource SoundsAS;
 
 	public AudioClip MainAudio0;
 	public AudioClip MainAudio1;
 	public AudioClip GameAudio;
-
+	public AudioClip SoundsAC;
 	void Awake()
 	{
 		MainMusic.loop = true;
@@ -38,7 +40,7 @@ public class AudioManager : MonoBehaviour {
 
 			//Debug.Log("Sound1");
 		}
-		else if(Application.loadedLevel < 7)
+		else if(Application.loadedLevel < 8)
 		{
 			MainMusic.volume=0;
 			GameMusic.volume=1;
@@ -60,5 +62,23 @@ public class AudioManager : MonoBehaviour {
 			GameMusic.volume=1;
 			GameMusic.Play();
 		}
+
+		searchButtons();
+	}
+
+	protected void searchButtons()
+	{
+		GameObject[] buttons;
+		buttons = GameObject.FindGameObjectsWithTag("UIButton");
+		SoundsAS.audio.clip = SoundsAC;
+		foreach(GameObject button in buttons)
+		{
+			button.GetComponent<Button>().onClick.AddListener(() => { soundButton(); }); 
+		}
+	}
+
+	public void soundButton()
+	{
+		SoundsAS.Play();
 	}
 }
