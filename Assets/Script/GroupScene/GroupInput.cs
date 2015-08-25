@@ -23,11 +23,6 @@ public class GroupInput : MonoBehaviour
 			dragSound.pitch = 0;
 		}
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
 	void OnDrag(DragGesture gesture)
 	{
