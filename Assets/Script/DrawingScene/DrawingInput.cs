@@ -143,6 +143,7 @@ public class DrawingInput : MonoBehaviour
 		}
 	}
 
+	//protected int count = 0;
 	protected void spawnNewPoint(Vector3 nVec3)
 	{
 		if(!canDraw) return;
@@ -152,6 +153,12 @@ public class DrawingInput : MonoBehaviour
 		nVec3.z = 0;
 		go = GameObject.Instantiate(brushType,nVec3,Quaternion.identity) as GameObject;
 		go.transform.SetParent(paintedFather.transform);
+		/*count++;
+		if(count >= 50)
+		{
+			count = 0;
+			currentColor = BaseShape.getColorFromIndex(Random.Range(0,System.Enum.GetValues(typeof(BaseShape.EShapeColor)).Length-1));
+		}*/
 		go.GetComponent<SpriteRenderer>().color = currentColor;
 
 		if(!newLine)
