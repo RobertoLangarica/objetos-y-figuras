@@ -347,12 +347,6 @@ public class SpacegramManager : MonoBehaviour
 		ScreenManager.instance.GoToScene("SpacegramMenu");
 	}
 
-	public void onSendShip()
-	{
-		ShipTravelController.myCurrentShip = lvlToPrepare;
-		ScreenManager.instance.GoToScene("Space");
-	}
-
 	public void exitGame()
 	{
 		ScreenManager.instance.GoToScene("SpacegramMenu");

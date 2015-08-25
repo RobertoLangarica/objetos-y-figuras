@@ -12,8 +12,6 @@ public class Levels
 
 	protected List<Level> _levels500 = new List<Level>();
 
-	protected List<DrawingImage> _dImages = new List<DrawingImage>();
-
 	protected GroupLevel _gLevel;
 
 	protected List<Photo> _photos = new List<Photo>();
@@ -60,13 +58,6 @@ public class Levels
 	{
 		set{_levels500 = new List<Level>(value);}
 		get{return _levels500.ToArray();}
-	}
-
-	[XmlArray("drawingImages"),XmlArrayItem("image")]
-	public DrawingImage[] dImages
-	{
-		set{_dImages = new List<DrawingImage>(value);}
-		get{return _dImages.ToArray();}
 	}
 	
 	[XmlElement("groupLevels")]
