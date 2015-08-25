@@ -143,7 +143,6 @@ public class SpacegramManager : MonoBehaviour
 			Shape sp = go.GetComponent<Shape>();
 			sp.name = pieces[i].name;
 			sp.baseStart();//Forzamos un basestart
-			sp.color = (BaseShape.EShapeColor)Random.Range(0,System.Enum.GetValues(typeof(BaseShape.EShapeColor)).Length-1);
 			sp.sortingOrder = input.nextSort;
 
 			sp.onRotationComplete();
@@ -158,6 +157,41 @@ public class SpacegramManager : MonoBehaviour
 
 		//Inicializamos los valores para el placeholder
 		initializePlaceholder();
+
+		SetColor();
+	}
+	
+	protected void SetColor()
+	{
+		int rand; 
+		List<int> colorsShown = new List<int>();
+		int count = 0;
+		int repeatcount = 0;
+		Debug.Log("S");
+		while(count < shapes.Length)
+		{
+			rand = Random.Range(1,System.Enum.GetValues(typeof(BaseShape.EShapeColor)).Length-1);
+			
+			if(colorsShown.Contains(rand))
+			{
+				if(repeatcount >(System.Enum.GetValues(typeof(BaseShape.EShapeColor)).Length-1)*1.5f )
+				{
+					//Se asigna un color repetido
+					colorsShown.Clear();
+					shapes[count].GetComponent<BaseShape>().color = (BaseShape.EShapeColor)rand;
+					count++;
+					repeatcount = 0;
+				}
+			}
+			else
+			{
+				colorsShown.Add(rand);
+				shapes[count].GetComponent<BaseShape>().color = (BaseShape.EShapeColor)rand;
+				count++;
+			}
+			
+			repeatcount++;
+		}
 	}
 
 	protected void initializePlaceholder()
