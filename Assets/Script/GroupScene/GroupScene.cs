@@ -90,6 +90,10 @@ public class GroupScene : MonoBehaviour
 		excerciseFinished = false;
 		AnalyticManager.instance.startGame();
 		continueBtn.GetComponent<Button>().interactable = true;
+		if(typeOfGroup == EGroups.FREE)
+		{
+			FindObjectOfType<DrawingInput>().erraseAll();
+		}
 		if(currentShapes != null)
 		{
 			for(int i = 0;i < currentShapes.Length;i++)
@@ -548,7 +552,7 @@ public class GroupScene : MonoBehaviour
 	protected void nextLevel()
 	{
 		excerciseFinished=true;
-		AnalyticManager.instance.finsh("Construye", typeOfGroup.ToString(),currentLevel.ToString());
+		AnalyticManager.instance.finsh("Agrupa", typeOfGroup.ToString(),currentLevel.ToString());
 		if (currentLevel < (maxLevel-1)) 
 		{
 			currentLevel++;
@@ -566,10 +570,11 @@ public class GroupScene : MonoBehaviour
 		randvalue = Random.Range(0,360);
 		toRotate.transform.eulerAngles = new Vector3(this.transform.eulerAngles.x,this.transform.eulerAngles.y,randvalue);
 	}
+
 	void OnDisable() {
 		if(!excerciseFinished)
 		{
-			AnalyticManager.instance.finsh("Construye", typeOfGroup.ToString(),currentLevel.ToString(),false);
+			AnalyticManager.instance.finsh("Agrupa", typeOfGroup.ToString(),currentLevel.ToString(),false);
 		}
 	}
 }
