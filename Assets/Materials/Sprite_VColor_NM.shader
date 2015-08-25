@@ -12,7 +12,7 @@
 		Cull Off
 		
 		CGPROGRAM
-		#pragma surface surf BasicDiffuse vertex:vert alpha exclude_path:prepass noforwardadd
+		#pragma surface surf BasicDiffuse vertex:vert alpha exclude_path:prepass noforwardadd noambient halfasview
 
 		sampler2D _MainTex;
 		sampler2D _NormalMap;
