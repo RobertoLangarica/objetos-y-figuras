@@ -45,7 +45,8 @@ public class Question : MonoBehaviour {
 
 	public void questionSound(string soundToPlay)
 	{
-		AudioClip aC = (AudioClip)Resources.Load("Sounds/"+soundToPlay+"_"+soundtoGo);
+		Debug.Log(data.getFigureByName(soundToPlay).getInfoByName(soundtoGo.ToString()).idSound);
+		AudioClip aC = (AudioClip)Resources.Load("Sounds/"+data.getFigureByName(soundToPlay).getInfoByName(soundtoGo.ToString()).idSound);
 		showToast(false,0);
 
 		audioSource.clip = aC;
@@ -101,6 +102,7 @@ public class Question : MonoBehaviour {
 
 		number = textToPlay.Substring(textToPlay.IndexOf('_')+1);
 		shape = textToPlay.Substring(0,textToPlay.IndexOf('_'));
+
 		infTemp = data.getFigureByName(shape).getInfoByName(number);
 		Figures[] figure = data.figure;
 
