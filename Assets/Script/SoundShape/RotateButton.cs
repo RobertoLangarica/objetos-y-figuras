@@ -7,7 +7,7 @@ public class RotateButton : MonoBehaviour {
 
 	protected float random;
 	protected int randvalue;
-
+	protected bool rotate = true;
 	// Use this for initialization
 	void Start () {
 		random = Random.Range(0.1f,0.5f);
@@ -26,6 +26,14 @@ public class RotateButton : MonoBehaviour {
 
 	void Update()
 	{
-		this.transform.eulerAngles = new Vector3(this.transform.eulerAngles.x,this.transform.eulerAngles.y,this.transform.eulerAngles.z+random*Time.smoothDeltaTime);
+		if(rotate)
+		{
+			this.transform.eulerAngles = new Vector3(this.transform.eulerAngles.x,this.transform.eulerAngles.y,this.transform.eulerAngles.z+random*Time.smoothDeltaTime);
+		}
+	}
+
+	public void stopRotate()
+	{
+		rotate = rotate == true ? false: true;
 	}
 }
