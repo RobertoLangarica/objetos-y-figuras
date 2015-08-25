@@ -22,6 +22,7 @@ public class GroupScene : MonoBehaviour
 	public AudioClip audioRight;
 	public AudioClip finalAudio;
 	public GameObject pencil;
+	public DragRecognizer input;
 	public List<GameObject> kindsOfShapes = new List<GameObject>();
 
 	protected int totalGroups = 0;
@@ -63,10 +64,25 @@ public class GroupScene : MonoBehaviour
 		GameObject.Find("ClueBtn").GetComponent<Button>().onClick.AddListener(() => tempQ.questionSound(typeOfGroup.ToString()));
 
 		if(typeOfGroup != EGroups.FREE)
-		{
+		{		
 			pencil.SetActive(false);
 		}
+		else
+		{	
+			pencil.GetComponent<Pencil>().onClose = onPencilClose;
+			pencil.GetComponent<Pencil>().onOpen = onPencilOpen;
+		}
 		startLevel();
+	}
+	
+	public void onPencilClose()
+	{
+		input.enabled = true;
+	}
+	
+	public void onPencilOpen()
+	{
+		input.enabled = false;
 	}
 
 	protected void startLevel()
