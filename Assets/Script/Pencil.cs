@@ -53,7 +53,9 @@ public class Pencil : MonoBehaviour {
 			moveBtn(true);
 			showing=false;
 			if(QuestionBtn&&!startOpen)
-				QuestionBtn.GetComponent<Button>().interactable = true;
+			{
+				//QuestionBtn.GetComponent<Button>().interactable = true;
+			}
 		}
 		else
 		{
@@ -61,7 +63,9 @@ public class Pencil : MonoBehaviour {
 			showing=true;
 			moveBtn(false);
 			if(QuestionBtn&&!startOpen)
-				QuestionBtn.GetComponent<Button>().interactable = false;
+			{
+				//QuestionBtn.GetComponent<Button>().interactable = false;
+			}
 		}
 	}
 
