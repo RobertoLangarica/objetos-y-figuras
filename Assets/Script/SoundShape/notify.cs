@@ -12,7 +12,7 @@ public class notify
 	public string text;//info de la figura
 
 	[XmlAttribute("idSound")]
-	public int idSound;//id del sonido
+	public string idSound;//id del sonido
 
 	//Constructor existente para evitar problemas con XMLSerializer
 	public notify()
