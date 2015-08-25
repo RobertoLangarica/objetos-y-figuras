@@ -2,7 +2,6 @@
 	Properties {
 		_MainTex ("Base (RGB)", 2D) = "white" {}
 		_NormalMap ("Normal Map", 2D) = "bump" {}
-		_RampMap ("Normal Map", 2D) = "bump" {}
 	}
 	SubShader {
 		Tags { "RenderType"="Opaque" 
@@ -13,10 +12,7 @@
 		Cull Off
 		
 		CGPROGRAM
-		// Upgrade NOTE: excluded shader from OpenGL ES 2.0 because it does not contain a surface program or both vertex and fragment programs.
-		#pragma exclude_renderers gles
-		#pragma vertex vert
-		#pragma surface surf BasicDiffuse alpha exclude_path:prepass noforwardadd
+		#pragma surface surf BasicDiffuse vertex:vert alpha exclude_path:prepass noforwardadd
 
 		sampler2D _MainTex;
 		sampler2D _NormalMap;
