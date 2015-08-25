@@ -39,65 +39,6 @@ public class DrawingInput : MonoBehaviour
 		}
 	}
 
-	// Update is called once per frame
-	void Update () 
-	{		
-		/*#if UNITY_STANDALONE_WIN || UNITY_EDITOR
-		{
-		if (Input.GetKeyDown (KeyCode.B)) 
-		{
-			erraseAll();
-		}
-		if (Input.GetKeyDown (KeyCode.E)) 
-		{
-			switchBetweenEraseAndPaint();
-		}
-		
-		#if UNITY_STANDALONE_WIN || UNITY_EDITOR
-		if (Input.GetMouseButtonDown (0) && !paintStarted) 
-		{
-			paintStarted = true;
-			if(!isErrasing)
-			{
-				spawnNewPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-			}
-			else
-			{
-				erraser.SetActive(true);
-				moveErraser(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-			}
-		}
-		else if (Input.GetMouseButtonUp (0) && paintStarted) 
-		{
-			erraser.SetActive(false);
-			paintStarted = false;
-		}
-		#endif
-		
-		
-		#if UNITY_ANDROID || UNITY_IOS
-		if (Input.touchCount > 0 && !paintStarted) 
-		{
-			paintStarted = true;
-			if(!isErrasing)
-			{
-				spawnNewPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-			}
-			else
-			{
-				erraser.SetActive(true);
-				moveErraser(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-			}
-		}
-		else if (Input.touchCount == 0 && paintStarted) 
-		{
-			erraser.SetActive(false);
-			paintStarted = false;
-		}
-		#endif*/
-
-	}
-
 	void OnDrag(DragGesture gesture)
 	{
 		if (!paintStarted)return;

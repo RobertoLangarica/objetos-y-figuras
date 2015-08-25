@@ -23,13 +23,10 @@ public class SpacegramManager : MonoBehaviour
 	protected Level currentLevel;
 	protected Placeholder placeholder;
 	protected GameObject reference;
-	protected ClientManager client;
 
 	// Use this for initialization
 	void Start ()
 	{
-		client = GameObject.FindObjectOfType<ClientManager>();
-
 		currentLevel = LevelManager.instance.getLevel(lvlToPrepare);
 		
 		if(currentLevel == null)
@@ -252,13 +249,6 @@ public class SpacegramManager : MonoBehaviour
 		
 		GameObject.FindObjectOfType<ShipsPanel>().refresh();
 
-		//Mandamos la nave
-		if(client)
-		{
-			client.shipName = lvlToPrepare;
-			client.isShipReady = true;//Esto envia la nave
-		}
-
 		return;*/
 		#if UNITY_EDITOR
 		if(placeholder.isCorrect())
@@ -276,13 +266,6 @@ public class SpacegramManager : MonoBehaviour
 			GameObject.FindObjectOfType<DragRecognizer>().enabled = false;
 			input.selected = null;
 			input.gameObject.SetActive(false);
-
-			//Mandamos la nave
-			if(client)
-			{
-				client.shipName = lvlToPrepare;
-				client.isShipReady = true;//Esto envia la nave
-			}
 
 			if((UserDataManager.instance.getCompletedLevels().Length%3) == 0)
 			{
@@ -306,13 +289,6 @@ public class SpacegramManager : MonoBehaviour
 			continueBtn.interactable = false;
 			input.selected = null;
 			input.gameObject.SetActive(false);
-
-			//Mandamos la nave
-			if(client)
-			{
-				client.shipName = lvlToPrepare;
-				client.isShipReady = true;//Esto envia la nave
-			}
 			
 			if((UserDataManager.instance.getCompletedLevels().Length%3) == 0)
 			{
@@ -375,18 +351,6 @@ public class SpacegramManager : MonoBehaviour
 	{
 		ShipTravelController.myCurrentShip = lvlToPrepare;
 		ScreenManager.instance.GoToScene("Space");
-	}
-
-	public void sendShip()
-	{
-		//Mandamos la nave
-		if(client)
-		{
-			client.shipName = lvlToPrepare;
-			client.isShipReady = true;//Esto envia la nave
-		}
-
-		ScreenManager.instance.GoToScene("SpacegramMenu");
 	}
 
 	public void exitGame()
