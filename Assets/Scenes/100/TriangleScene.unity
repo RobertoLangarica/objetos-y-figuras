@@ -2101,6 +2101,18 @@ MonoBehaviour:
           m_StringArgument: Triangle_Equilatero
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 973218747}
+        m_MethodName: stopRotate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &973218749
@@ -2139,6 +2151,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1257634548}
     m_Modifications:
+    - target: {fileID: 11424676, guid: 12652bfe40477664bb1f89556c891a93, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 22424676, guid: 12652bfe40477664bb1f89556c891a93, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2226,6 +2242,26 @@ Prefab:
     - target: {fileID: 11486432, guid: 12652bfe40477664bb1f89556c891a93, type: 2}
       propertyPath: delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: overSound
+      objectReference: {fileID: 0}
+    - target: {fileID: 11424676, guid: 12652bfe40477664bb1f89556c891a93, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11424676, guid: 12652bfe40477664bb1f89556c891a93, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11424676, guid: 12652bfe40477664bb1f89556c891a93, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1904167908}
+    - target: {fileID: 11424676, guid: 12652bfe40477664bb1f89556c891a93, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: stopRotate
+      objectReference: {fileID: 0}
+    - target: {fileID: 11424676, guid: 12652bfe40477664bb1f89556c891a93, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 12652bfe40477664bb1f89556c891a93, type: 2}
@@ -3068,6 +3104,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1257634548}
     m_Modifications:
+    - target: {fileID: 11424676, guid: d5d8f7d261021914688da828b65556a6, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 22424676, guid: d5d8f7d261021914688da828b65556a6, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3148,6 +3188,26 @@ Prefab:
     - target: {fileID: 11424678, guid: d5d8f7d261021914688da828b65556a6, type: 2}
       propertyPath: m_PreserveAspect
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11424676, guid: d5d8f7d261021914688da828b65556a6, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11424676, guid: d5d8f7d261021914688da828b65556a6, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11424676, guid: d5d8f7d261021914688da828b65556a6, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 973218747}
+    - target: {fileID: 11424676, guid: d5d8f7d261021914688da828b65556a6, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: stopRotate
+      objectReference: {fileID: 0}
+    - target: {fileID: 11424676, guid: d5d8f7d261021914688da828b65556a6, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d5d8f7d261021914688da828b65556a6, type: 2}
@@ -3483,6 +3543,18 @@ MonoBehaviour:
           m_StringArgument: Triangle_Equilatero
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1458818942}
+        m_MethodName: stopRotate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1458818944
@@ -3679,6 +3751,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Triangle_Isoceles
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1607644562}
+        m_MethodName: stopRotate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -4183,6 +4267,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1257634548}
     m_Modifications:
+    - target: {fileID: 11424676, guid: 2dd5213e4dc4f6d41856eceaefba78d9, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 22424676, guid: 2dd5213e4dc4f6d41856eceaefba78d9, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -4268,6 +4356,26 @@ Prefab:
       value: 
       objectReference: {fileID: 21300006, guid: e9ccf014ac38e455c9c03116e51e3213,
         type: 3}
+    - target: {fileID: 11424676, guid: 2dd5213e4dc4f6d41856eceaefba78d9, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11424676, guid: 2dd5213e4dc4f6d41856eceaefba78d9, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11424676, guid: 2dd5213e4dc4f6d41856eceaefba78d9, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1607644562}
+    - target: {fileID: 11424676, guid: 2dd5213e4dc4f6d41856eceaefba78d9, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: stopRotate
+      objectReference: {fileID: 0}
+    - target: {fileID: 11424676, guid: 2dd5213e4dc4f6d41856eceaefba78d9, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2dd5213e4dc4f6d41856eceaefba78d9, type: 2}
   m_RootGameObject: {fileID: 1607644559}
@@ -4400,6 +4508,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 1257634548}
     m_Modifications:
+    - target: {fileID: 11424676, guid: 0525ff4a650275a4f82db62d309480b5, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 22424676, guid: 0525ff4a650275a4f82db62d309480b5, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -4493,6 +4605,26 @@ Prefab:
       value: 
       objectReference: {fileID: 21300024, guid: e9ccf014ac38e455c9c03116e51e3213,
         type: 3}
+    - target: {fileID: 11424676, guid: 0525ff4a650275a4f82db62d309480b5, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11424676, guid: 0525ff4a650275a4f82db62d309480b5, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11424676, guid: 0525ff4a650275a4f82db62d309480b5, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1458818942}
+    - target: {fileID: 11424676, guid: 0525ff4a650275a4f82db62d309480b5, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: stopRotate
+      objectReference: {fileID: 0}
+    - target: {fileID: 11424676, guid: 0525ff4a650275a4f82db62d309480b5, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0525ff4a650275a4f82db62d309480b5, type: 2}
   m_RootGameObject: {fileID: 1458818939}
@@ -4697,6 +4829,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Triangle_Escaleno
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1904167908}
+        m_MethodName: stopRotate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
