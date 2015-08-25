@@ -250,25 +250,25 @@ public class BaseShape : MonoBehaviour {
 				switch(currentSize)
 				{
 				case EShapeSize.SIZE1:
-					transform.localScale = new Vector3(0.16666f*scaleMultiplier.x,0.16666f*scaleMultiplier.y,1);
+					transform.localScale = new Vector3(0.16666f*scaleMultiplier.x,0.16666f*scaleMultiplier.y,0.16666f*scaleMultiplier.z);
 					break;
 				case EShapeSize.SIZE2:
-					transform.localScale = new Vector3(0.25000f*scaleMultiplier.x,0.25000f*scaleMultiplier.y,1);
+					transform.localScale = new Vector3(0.25000f*scaleMultiplier.x,0.25000f*scaleMultiplier.y,0.25000f*scaleMultiplier.z);
 					break;
 				case EShapeSize.SIZE3:
-					transform.localScale = new Vector3(0.33333f*scaleMultiplier.x,0.33333f*scaleMultiplier.y,1);
+					transform.localScale = new Vector3(0.33333f*scaleMultiplier.x,0.33333f*scaleMultiplier.y,0.33333f*scaleMultiplier.z);
 					break;
 				case EShapeSize.SIZE4:
-					transform.localScale = new Vector3(0.41666f*scaleMultiplier.x,0.41666f*scaleMultiplier.y,1);
+					transform.localScale = new Vector3(0.41666f*scaleMultiplier.x,0.41666f*scaleMultiplier.y,0.41666f*scaleMultiplier.z);
 					break;
 				case EShapeSize.SIZE5:
-					transform.localScale = new Vector3(0.50000f*scaleMultiplier.x,0.50000f*scaleMultiplier.y,1);
+					transform.localScale = new Vector3(0.50000f*scaleMultiplier.x,0.50000f*scaleMultiplier.y,0.50000f*scaleMultiplier.z);
 					break;
 				case EShapeSize.SIZE6:
-					transform.localScale = new Vector3(0.66666f*scaleMultiplier.x,0.66666f*scaleMultiplier.y,1);
+					transform.localScale = new Vector3(0.66666f*scaleMultiplier.x,0.66666f*scaleMultiplier.y,0.66666f*scaleMultiplier.z);
 					break;
 				case EShapeSize.SIZE7:
-					transform.localScale = new Vector3(0.83333f*scaleMultiplier.x,0.83333f*scaleMultiplier.y,1);
+					transform.localScale = new Vector3(0.83333f*scaleMultiplier.x,0.83333f*scaleMultiplier.y,0.83333f*scaleMultiplier.z);
 					break;
 				case EShapeSize.SIZE8:
 					transform.localScale = new Vector3(1*scaleMultiplier.x,1*scaleMultiplier.y,1);
@@ -291,25 +291,25 @@ public class BaseShape : MonoBehaviour {
 		switch(size)
 		{
 		case EShapeSize.SIZE1:
-			return new Vector3(0.16666f,0.16666f,1);
+			return new Vector3(0.16666f,0.16666f,16666f);
 			break;
 		case EShapeSize.SIZE2:
-			return new Vector3(0.25000f,0.25000f,1);
+			return new Vector3(0.25000f,0.25000f,16666f);
 			break;
 		case EShapeSize.SIZE3:
-			return new Vector3(0.33333f,0.33333f,1);
+			return new Vector3(0.33333f,0.33333f,16666f);
 			break;
 		case EShapeSize.SIZE4:
-			return new Vector3(0.41666f,0.41666f,1);
+			return new Vector3(0.41666f,0.41666f,16666f);
 			break;
 		case EShapeSize.SIZE5:
-			return new Vector3(0.50000f,0.50000f,1);
+			return new Vector3(0.50000f,0.50000f,16666f);
 			break;
 		case EShapeSize.SIZE6:
-			return new Vector3(0.66666f,0.66666f,1);
+			return new Vector3(0.66666f,0.66666f,16666f);
 			break;
 		case EShapeSize.SIZE7:
-			return new Vector3(0.83333f,0.83333f,1);
+			return new Vector3(0.83333f,0.83333f,16666f);
 			break;
 		case EShapeSize.SIZE8:
 			return new Vector3(1,1,1);

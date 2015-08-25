@@ -2,6 +2,7 @@
 	Properties {
 		_MainTex ("Base (RGB)", 2D) = "white" {}
 		_NormalMap ("Normal Map", 2D) = "bump" {}
+		_RampMap ("Normal Map", 2D) = "bump" {}
 	}
 	SubShader {
 		Tags { "RenderType"="Opaque" 
@@ -38,7 +39,6 @@
 			//Lerp
 			fixed difLight = max(0,dot (s.Normal, lightDir));
 			col.rgb = lerp(s.Albedo*0.75,s.Albedo*1.15,difLight);
-			
 			
 			col.a = s.Alpha;
 			return col;
