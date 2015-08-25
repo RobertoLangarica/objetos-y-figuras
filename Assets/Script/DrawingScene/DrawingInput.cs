@@ -9,6 +9,7 @@ public class DrawingInput : MonoBehaviour
 	public bool canDraw = true;
 	public GameObject input;
 	public bool hiding = false;
+	public bool randomizeColor = true;
 	protected float bWidth;
 	protected bool paintStarted = true;
 	protected bool newLine = true;
@@ -31,6 +32,11 @@ public class DrawingInput : MonoBehaviour
 	
 		bWidth = brushType.renderer.bounds.size.x*brushType.transform.localScale.x*0.5f;
 		input.GetComponent<DragRecognizer>().OnGesture += OnDrag;
+
+		if(randomizeColor)
+		{
+			currentColor = BaseShape.getColorFromIndex(Random.Range(0,System.Enum.GetValues(typeof(BaseShape.EShapeColor)).Length-1));
+		}
 	}
 
 	// Update is called once per frame
@@ -137,6 +143,7 @@ public class DrawingInput : MonoBehaviour
 		}
 	}
 
+	//protected int count = 0;
 	protected void spawnNewPoint(Vector3 nVec3)
 	{
 		if(!canDraw) return;
@@ -146,6 +153,12 @@ public class DrawingInput : MonoBehaviour
 		nVec3.z = 0;
 		go = GameObject.Instantiate(brushType,nVec3,Quaternion.identity) as GameObject;
 		go.transform.SetParent(paintedFather.transform);
+		/*count++;
+		if(count >= 50)
+		{
+			count = 0;
+			currentColor = BaseShape.getColorFromIndex(Random.Range(0,System.Enum.GetValues(typeof(BaseShape.EShapeColor)).Length-1));
+		}*/
 		go.GetComponent<SpriteRenderer>().color = currentColor;
 
 		if(!newLine)

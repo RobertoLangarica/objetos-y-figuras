@@ -158,12 +158,12 @@ public class TangramManager : MonoBehaviour
 			tempV3.z = 1;
 			if(pieces[i].scale.Contains(","))
 			{
-				tempV3.x = float.Parse(pieces[i].scale.Substring(0,pieces[i].scale.IndexOf(',')));
+				tempV3.x = tempV3.z = float.Parse(pieces[i].scale.Substring(0,pieces[i].scale.IndexOf(',')));
 				tempV3.y = float.Parse(pieces[i].scale.Substring(pieces[i].scale.IndexOf(',')+1));
 			}
 			else
 			{
-				tempV3.x = tempV3.y = float.Parse(pieces[i].scale);
+				tempV3.x = tempV3.y = tempV3.z = float.Parse(pieces[i].scale);
 			}
 			//go.transform.FindChild("New Sprite").localScale = tempV3;
 			go.transform.localScale = tempV3;

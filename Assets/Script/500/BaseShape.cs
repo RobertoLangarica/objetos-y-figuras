@@ -271,7 +271,7 @@ public class BaseShape : MonoBehaviour {
 					transform.localScale = new Vector3(0.83333f*scaleMultiplier.x,0.83333f*scaleMultiplier.y,0.83333f*scaleMultiplier.z);
 					break;
 				case EShapeSize.SIZE8:
-					transform.localScale = new Vector3(1*scaleMultiplier.x,1*scaleMultiplier.y,1);
+					transform.localScale = new Vector3(1*scaleMultiplier.x,1*scaleMultiplier.y,1*scaleMultiplier.z);
 					break;
 				}
 
