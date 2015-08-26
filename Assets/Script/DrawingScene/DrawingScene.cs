@@ -65,7 +65,11 @@ public class DrawingScene : MonoBehaviour
 		pencilInput = FindObjectOfType<DrawingInput>();
 
 		changeTexture(true);
-		AnalyticManager.instance.startGame();
+
+		if(AnalyticManager.instance)
+		{
+			AnalyticManager.instance.startGame();
+		}
 
 		finishPopUp = FindObjectOfType<FinishPopUp>();
 	}
@@ -191,7 +195,8 @@ public class DrawingScene : MonoBehaviour
 
 	public Photo photo
 	{
-		get{return photos[positions[current]];}
+		get
+		{return photos[positions[current]];}
 	}
 
 	protected void advanceCurrent()
@@ -202,6 +207,8 @@ public class DrawingScene : MonoBehaviour
 		{
 			current = 0;
 		}
+
+		Debug.Log ("Loading: "+photo.name.Split('.')[0]);
 	}
 
 
@@ -222,7 +229,11 @@ public class DrawingScene : MonoBehaviour
 		}
 	}
 
-	void OnDisable() {
-		AnalyticManager.instance.finsh("Observa", "PicturesSeen",pictureSeen.ToString());
+	void OnDisable() 
+	{
+		if(AnalyticManager.instance)
+		{
+			AnalyticManager.instance.finsh("Observa", "PicturesSeen",pictureSeen.ToString());
+		}
 	}
 }

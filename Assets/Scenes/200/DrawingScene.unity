@@ -962,7 +962,7 @@ RectTransform:
   m_Father: {fileID: 236304795}
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
@@ -998,7 +998,7 @@ MonoBehaviour:
   m_Script: {fileID: -1254083943, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AspectMode: 2
+  m_AspectMode: 4
   m_AspectRatio: 1.33333337
 --- !u!222 &424008676
 CanvasRenderer:
@@ -3025,6 +3025,10 @@ Prefab:
     - target: {fileID: 149332, guid: f356cfc29c1936d459b3f0d2c2feb5cc, type: 2}
       propertyPath: m_TagString
       value: UIButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 149362, guid: f356cfc29c1936d459b3f0d2c2feb5cc, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f356cfc29c1936d459b3f0d2c2feb5cc, type: 2}
