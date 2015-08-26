@@ -9,14 +9,6 @@ public class SplashScreen : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		timeBeforeNextScreen -= Time.deltaTime;
-		if(timeBeforeNextScreen <= 0)
-		{
-			ScreenManager.instance.GoToScene(nextScreen);
-		}
+		ScreenManager.instance.GoToSceneAsync(nextScreen,timeBeforeNextScreen);
 	}
 }

@@ -13,6 +13,10 @@ public class ScreenManager : MonoBehaviour {
 	protected bool isAudioPlaying = true;
 	protected Dictionary<string,string> backScreens;
 
+	protected float timeBeforeNextScreen;
+	protected AsyncOperation waitingScreen = null;
+	protected int framesBeforeSwitch;
+
 	void Awake()
 	{
 		DontDestroyOnLoad(this);
@@ -46,6 +50,27 @@ public class ScreenManager : MonoBehaviour {
 		{
 			showPrevScene();
 		}
+
+
+		if(waitingScreen != null)
+		{
+			timeBeforeNextScreen -= Time.deltaTime;
+
+			if(timeBeforeNextScreen <= 0)
+			{
+				//AsyncOperation no reporta 100% o isDone == true hasta que se permite activar
+				if(waitingScreen.progress >= 0.9f && --framesBeforeSwitch < 0)
+				{
+					if(SceneFadeInOut.instance != null)
+					{
+						SceneFadeInOut.instance.Fade();
+					}
+					
+					waitingScreen.allowSceneActivation = true;
+					waitingScreen = null;
+				}
+			}
+		}
 	}
 	
 	public void showPrevScene()	
@@ -69,12 +94,12 @@ public class ScreenManager : MonoBehaviour {
 
 	public void GoToScene(string newScene)
 	{
-		if (newScene == Application.loadedLevelName) 
+		if(waitingScreen != null || newScene == Application.loadedLevelName)
 		{
 			return;
 		}
 
-		if (!isAudioPlaying && newScene == firstEditorScreen) 
+		if (!isAudioPlaying && (newScene == firstEditorScreen || newScene == firstScreenName) ) 
 		{
 			isAudioPlaying = true;
 			//music.Play();
@@ -88,7 +113,32 @@ public class ScreenManager : MonoBehaviour {
 			backScreens.Add(newScene,Application.loadedLevelName);
 		}
 
-		Debug.Log (newScene);
 		Application.LoadLevel (newScene);
 	}
+
+
+	public void GoToSceneAsync(string newScene,float waitTime = -1, int waitFrames = 10)
+	{	
+		if(newScene == Application.loadedLevelName)
+		{
+			return;
+		}
+
+		if (!isAudioPlaying && (newScene == firstEditorScreen || newScene == firstScreenName) ) 
+		{
+			isAudioPlaying = true;
+		}
+
+		if(!backScreens.ContainsKey(newScene))
+		{
+			backScreens.Add(newScene,Application.loadedLevelName);
+		}
+
+		timeBeforeNextScreen = waitTime;
+		framesBeforeSwitch = waitFrames;
+
+		waitingScreen = Application.LoadLevelAsync(newScene);
+		waitingScreen.allowSceneActivation = false;
+	}
+
 }
