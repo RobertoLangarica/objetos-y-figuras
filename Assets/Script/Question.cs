@@ -45,7 +45,7 @@ public class Question : MonoBehaviour {
 
 	public void questionSound(string soundToPlay)
 	{
-		Debug.Log(data.getFigureByName(soundToPlay).getInfoByName(soundtoGo.ToString()).idSound);
+		//Debug.Log(data.getFigureByName(soundToPlay).getInfoByName(soundtoGo.ToString()).idSound);
 		AudioClip aC = (AudioClip)Resources.Load("Sounds/"+data.getFigureByName(soundToPlay).getInfoByName(soundtoGo.ToString()).idSound);
 		showToast(false,0);
 
