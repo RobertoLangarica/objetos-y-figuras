@@ -8,8 +8,12 @@ public class RotateButton : MonoBehaviour {
 	protected float random;
 	protected int randvalue;
 	protected bool rotate = true;
+	protected Pencil Pencil;
+
+	protected bool dontStopRotation;
 	// Use this for initialization
 	void Start () {
+		Pencil = FindObjectOfType<Pencil>();
 		random = Random.Range(0.1f,0.5f);
 		randvalue = Random.Range(0,2);
 		if(randvalue==0)
@@ -34,6 +38,9 @@ public class RotateButton : MonoBehaviour {
 
 	public void stopRotate()
 	{
-		rotate = rotate == true ? false: true;
+		if(!Pencil.showing)
+		{
+			rotate = rotate == true ? false: true;
+		}
 	}
 }

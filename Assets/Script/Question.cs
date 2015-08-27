@@ -32,7 +32,7 @@ public class Question : MonoBehaviour {
 		toast = GameObject.Find("Question");
 		robots = GameObject.FindGameObjectsWithTag("RobotQuestion");
 
-		toast.GetComponent<RectTransform>().anchoredPosition = new Vector2(0,-360);
+		toast.GetComponent<RectTransform>().anchoredPosition = new Vector2(0,-Screen.height*0.5f);
 
 		initialAnchoredPos = toast.GetComponent<RectTransform>().anchoredPosition;
 		showToast(false);
