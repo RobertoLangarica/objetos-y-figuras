@@ -9,7 +9,7 @@ public class soundOver : MonoBehaviour {
 	{
 		AudioClip aC = (AudioClip)Resources.Load("Sounds/"+soundToPlay);
 
-		if(!audioSource.isPlaying)
+		//if(!audioSource.isPlaying)
 		{
 			audioSource.clip = aC;
 			audioSource.Play();
