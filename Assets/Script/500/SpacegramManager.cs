@@ -238,45 +238,6 @@ public class SpacegramManager : MonoBehaviour
 	
 	public void checkForLevelComplete()
 	{
-		/*Debug.Log("GM-> Ejercicio correcto");
-		//Lo marcamos como completo
-		UserDataManager.instance.markLevelAsComplete(currentLevel.name);
-		//Removemos las piezas y el placeholder
-		//removeShapesAndPlaceHolder();
-		//Agregamos la imagen bonita de la nave y el boton de continue
-		initializeReferenceImage();
-		continueBtn.gameObject.SetActive(true);
-		
-		GameObject.FindObjectOfType<ShipsPanel>().refresh();
-
-		return;*/
-		#if UNITY_EDITOR
-		if(placeholder.isCorrect())
-		{
-			Debug.Log("GM-> Ejercicio correcto");
-			AnalyticManager.instance.finsh("Construye","SpaceGram",currentLevel.name);
-			//Lo marcamos como completo
-			UserDataManager.instance.markLevelAsComplete(currentLevel.name);
-			//Removemos las piezas y el placeholder
-			//removeShapesAndPlaceHolder();
-			//Agregamos la imagen bonita de la nave y el boton de continue
-			initializeReferenceImage();
-			continueBtn.interactable = false;
-			//sendBtn.gameObject.SetActive(true);
-			GameObject.FindObjectOfType<DragRecognizer>().enabled = false;
-			input.selected = null;
-			input.gameObject.SetActive(false);
-
-			if((UserDataManager.instance.getCompletedLevels().Length%3) == 0)
-			{
-				if(UserDataManager.instance.level < LevelManager.instance.maxLevel)
-				{
-					UserDataManager.instance.level = UserDataManager.instance.level+1;
-				}
-			}
-			notification.showToast("correcto",audioRight,2);
-		}
-	#else
 		if(placeholder.isCorrect())
 		{
 			Debug.Log("GM-> Ejercicio correcto");
@@ -299,7 +260,6 @@ public class SpacegramManager : MonoBehaviour
 			}
 			notification.showToast("correcto",audioRight,2);
 		}
-	#endif
 	}
 
 	public void verifyExcercise()
