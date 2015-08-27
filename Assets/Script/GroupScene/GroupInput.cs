@@ -37,6 +37,7 @@ public class GroupInput : MonoBehaviour
 					elapsedDragTime = 0;
 				}
 				selected = gesture.StartSelection.GetComponent<GroupFigure>();
+				selected.GetComponent<SpriteRenderer>().sortingLayerName = "SelectedShape";
 				selected.onTouchBegan(Camera.main.ScreenToWorldPoint(gesture.StartPosition));
 				initialP = Input.mousePosition;
 			}
@@ -76,6 +77,7 @@ public class GroupInput : MonoBehaviour
 			if(selected)
 			{
 				selected.opnTouchEnded();
+				selected.GetComponent<SpriteRenderer>().sortingLayerName = "Shapes";
 				selected = null;
 			}
 			break;
