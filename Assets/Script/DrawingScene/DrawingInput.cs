@@ -43,8 +43,6 @@ public class DrawingInput : MonoBehaviour
 	{
 		if (!paintStarted)return;
 
-		float tempMag = 0;
-
 		switch(gesture.Phase)
 		{			
 		case (ContinuousGesturePhase.Started):

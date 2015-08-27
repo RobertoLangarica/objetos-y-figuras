@@ -90,6 +90,7 @@ public class GroupScene : MonoBehaviour
 		excerciseFinished = false;
 		AnalyticManager.instance.startGame();
 		continueBtn.GetComponent<Button>().interactable = true;
+
 		if(typeOfGroup == EGroups.FREE)
 		{
 			FindObjectOfType<DrawingInput>().erraseAll();
@@ -420,14 +421,9 @@ public class GroupScene : MonoBehaviour
 				}
 			}
 			int max = 0;
-			bool tie = false;
 			ndx = 0;
 			for(int i = 1;i < evaluation.Count;i+=2)
 			{
-				if(evaluation[i] == max)
-				{
-					tie = true;
-				}
 				if(evaluation[i] > max)
 				{
 					max = evaluation[i];
