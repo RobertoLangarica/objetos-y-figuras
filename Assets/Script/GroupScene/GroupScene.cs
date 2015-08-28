@@ -21,6 +21,7 @@ public class GroupScene : MonoBehaviour
 	public AudioClip audioWrong;
 	public AudioClip audioRight;
 	public AudioClip finalAudio;
+	public AudioClip positionatedAudio;
 	public GameObject pencil;
 	public DragRecognizer input;
 	public List<GameObject> kindsOfShapes = new List<GameObject>();
@@ -38,7 +39,6 @@ public class GroupScene : MonoBehaviour
 	protected GameObject[] containerImg;
 	protected int[] availableColors;
 	protected int[] previousShapes;
-	protected float[] availableScales;
 	protected Rect[] containersInRect;
 	protected bool excerciseFinished;
 
@@ -46,9 +46,7 @@ public class GroupScene : MonoBehaviour
 	{
 		loader = GameObject.FindObjectOfType<XMLLoader>();
 
-		availableColors = new int[9]{0,1,2,3,4,5,6,7,8};
-
-		availableScales = new float[]{0.1f,0.3f,0.5f,0.7f,1};
+		availableColors = new int[8]{0,1,3,4,5,6,7,8};
 
 		GameObject tempGo = GameObject.Find("Containers");
 		Vector3[] tempV3 = new Vector3[4];
@@ -89,7 +87,9 @@ public class GroupScene : MonoBehaviour
 	{
 		excerciseFinished = false;
 		AnalyticManager.instance.startGame();
+
 		continueBtn.GetComponent<Button>().interactable = true;
+		input.enabled = true;
 
 		if(typeOfGroup == EGroups.FREE)
 		{
@@ -220,10 +220,11 @@ public class GroupScene : MonoBehaviour
 		{
 		case(EGroups.SHAPE):
 		{
-			int rdmColor = Random.Range(0,7);
+			List<int> colorArr = new List<int>(){0,1,3,4,5,6,7,8};
+			int rdmColor = Random.Range(0,colorArr.Count-1);
 			for(int i = 0;i < currentShapes.Length;i++)
 			{
-				currentShapes[i].GetComponent<GroupFigure>().color = (BaseShape.EShapeColor)rdmColor;
+				currentShapes[i].GetComponent<GroupFigure>().color = (BaseShape.EShapeColor)colorArr[rdmColor];
 				currentShapes[i].GetComponent<GroupFigure>().size = BaseShape.EShapeSize.SIZE2;
 			}
 		}
@@ -231,12 +232,13 @@ public class GroupScene : MonoBehaviour
 		case(EGroups.SIZE):
 		{
 			int group = -1;
-			int rdmColor = Random.Range(0,7);
+			List<int> colorArr = new List<int>(){0,1,3,4,5,6,7,8};
+			int rdmColor = Random.Range(0,colorArr.Count-1);
 			int currSize = 0;
-			List<int> sizeArr = new List<int>(){0,1,2,3,4};
+			List<int> sizeArr = new List<int>(){0,2,4};
 			for(int i = 0;i < currentShapes.Length;i++)
 			{
-				currentShapes[i].GetComponent<GroupFigure>().color = (BaseShape.EShapeColor)rdmColor;
+				currentShapes[i].GetComponent<GroupFigure>().color = (BaseShape.EShapeColor)colorArr[rdmColor];
 				if(group == -1 || group != currentShapes[i].GetComponent<GroupFigure>().group)
 				{
 					currSize = sizeArr[Random.Range(0,sizeArr.Count-1)];
@@ -251,13 +253,13 @@ public class GroupScene : MonoBehaviour
 		{
 			int group = -1;
 			int rdmColor = 0;
-			List<int> sizeArr = new List<int>(){0,1,2,3,4,5,6,7,8};
+			List<int> colorArr = new List<int>(){0,1,3,4,5,6,7,8};
 			for(int i = 0;i < currentShapes.Length;i++)
 			{
 				if(group == -1 || group != currentShapes[i].GetComponent<GroupFigure>().group)
 				{
-					rdmColor = sizeArr[Random.Range(0,sizeArr.Count-1)];
-					sizeArr.RemoveAt(sizeArr.IndexOf(rdmColor));
+					rdmColor = colorArr[Random.Range(0,colorArr.Count-1)];
+					colorArr.RemoveAt(colorArr.IndexOf(rdmColor));
 					group = currentShapes[i].GetComponent<GroupFigure>().group;
 				}
 				currentShapes[i].GetComponent<GroupFigure>().size = BaseShape.EShapeSize.SIZE2;
@@ -272,8 +274,8 @@ public class GroupScene : MonoBehaviour
 			int tempInt = 0;
 			int[] selectColor = new int[askedColors];
 			int[] selectSize = new int[askedSizes];
-			List<int> sizeArr = new List<int>(){0,1,2,3,4};
-			List<int> colorArr = new List<int>(){0,1,2,3,4,5,6,7,8};
+			List<int> sizeArr = new List<int>(){0,2,4};
+			List<int> colorArr = new List<int>(){0,1,3,4,5,6,7,8};
 
 			for(int i = 0;i < selectColor.Length;i++)
 			{
@@ -392,60 +394,75 @@ public class GroupScene : MonoBehaviour
 		List<int> evaluation = new List<int>();
 		int ndx = 0;
 
-		if(containerRect.Contains(currPos) && typeOfGroup != EGroups.FREE)
+		if(containerRect.Contains(currPos))
 		{
 			for(int i = 0;i < containersInRect.Length;i++)
 			{
 				if(containersInRect[i].Contains(currPos))
 				{
-					evaluation.Add(shape.GetComponent<GroupFigure>().group);
-					evaluation.Add(10);
-					for(int j = 0;j < currentShapes.Length;j++)
+					if(audioSource && positionatedAudio)
 					{
-						currPos = new Vector2(currentShapes[j].transform.localPosition.x,currentShapes[j].transform.localPosition.y);
-						if(!currentShapes[j].Equals(shape) && containersInRect[i].Contains(currPos))
-						{
-							ndx = evaluation.IndexOf(currentShapes[j].GetComponent<GroupFigure>().group);
-							if(ndx != -1)
-							{
-								evaluation[ndx+1] = evaluation[ndx+1] + 10;
-							}
-							else
-							{
-								evaluation.Add(currentShapes[j].GetComponent<GroupFigure>().group);
-								evaluation.Add(10);
-							}
-						}
+						audioSource.PlayOneShot(positionatedAudio);
 					}
 					break;
 				}
 			}
-			int max = 0;
-			ndx = 0;
-			for(int i = 1;i < evaluation.Count;i+=2)
+			if(typeOfGroup != EGroups.FREE)
 			{
-				if(evaluation[i] > max)
+				for(int i = 0;i < containersInRect.Length;i++)
 				{
-					max = evaluation[i];
-					ndx = evaluation[i-1];
+					if(containersInRect[i].Contains(currPos))
+					{
+						evaluation.Add(shape.GetComponent<GroupFigure>().group);
+						evaluation.Add(10);
+						for(int j = 0;j < currentShapes.Length;j++)
+						{
+							currPos = new Vector2(currentShapes[j].transform.localPosition.x,currentShapes[j].transform.localPosition.y);
+							if(!currentShapes[j].Equals(shape) && containersInRect[i].Contains(currPos))
+							{
+								ndx = evaluation.IndexOf(currentShapes[j].GetComponent<GroupFigure>().group);
+								if(ndx != -1)
+								{
+									evaluation[ndx+1] = evaluation[ndx+1] + 10;
+								}
+								else
+								{
+									evaluation.Add(currentShapes[j].GetComponent<GroupFigure>().group);
+									evaluation.Add(10);
+								}
+							}
+						}
+						break;
+					}
+				}
+				int max = 0;
+				ndx = 0;
+				for(int i = 1;i < evaluation.Count;i+=2)
+				{
+					if(evaluation[i] > max)
+					{
+						max = evaluation[i];
+						ndx = evaluation[i-1];
+					}
 				}
 			}
 		}
 		if (wasLastPiece () && typeOfGroup != EGroups.FREE) 
 		{
 			lastDetected = true;
-			verifyExcersice();
+			verifyExcersice(false);
 		}
 	}
 
-	protected void shapeFeedback(bool isCorrect)
+	protected void shapeFeedback(bool isCorrect,bool isButton)
 	{
 		if(isCorrect)
 		{
 			notification.showToast("correcto",audioRight,2);
 			continueBtn.GetComponent<Button>().interactable = false;
+			input.enabled = false;
 		}
-		else
+		else if(isButton)
 		{
 			if(audioSource && audioWrong)
 			{
@@ -468,7 +485,7 @@ public class GroupScene : MonoBehaviour
 		return true;
 	}
 
-	public void verifyExcersice()
+	public void verifyExcersice(bool isButton)
 	{
 		bool lose = false;
 		bool firstCheck = true;
@@ -539,10 +556,10 @@ public class GroupScene : MonoBehaviour
 		lastDetected = false;
 		if(lose)
 		{
-			shapeFeedback(false);
+			shapeFeedback(false,isButton);
 			return;
 		}
-		shapeFeedback(true);
+		shapeFeedback(true,isButton);
 	}
 
 	protected void nextLevel()
