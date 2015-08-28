@@ -66,6 +66,11 @@ public class TangramManager : MonoBehaviour
 				{
 					audioSource.PlayOneShot(positionatedAudio);
 				}
+
+				if(excerciseFinished)
+				{
+					input.selected = null;
+				}
 			}
 		}
 	}
@@ -459,7 +464,7 @@ public class TangramManager : MonoBehaviour
 						}
 					}
 				}
-				input.selected = null;
+				//input.selected = null;
 				input.gameObject.SetActive(false);
 				nextLevel();
 				return true;
