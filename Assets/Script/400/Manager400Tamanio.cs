@@ -26,6 +26,8 @@ public class Manager400Tamanio : MonoBehaviour {
 	public AudioClip audioWrong;
 	public AudioClip audioRight;
 	public AudioClip finalAudio;
+	public AudioClip snapAudio;
+
 	public Notification notification;
 	public string exerciseType;
 
@@ -648,6 +650,12 @@ public class Manager400Tamanio : MonoBehaviour {
 
 					containers[i].isEmpty = false;
 					((Shape400)input.selected).container = containers[i];
+
+					//Audio de snap
+					if(audioSource && snapAudio)
+					{
+						audioSource.PlayOneShot(snapAudio);
+					}
 
 					if(isCorrect())
 					{
