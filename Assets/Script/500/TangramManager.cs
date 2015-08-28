@@ -22,6 +22,7 @@ public class TangramManager : MonoBehaviour
 	public AudioClip audioWrong;
 	public AudioClip audioRight;
 	public AudioClip finalAudio;
+	public AudioClip positionatedAudio;
 	
 	protected Level currentLevel;
 	protected List<string> previousLevel = new List<string>();
@@ -36,13 +37,12 @@ public class TangramManager : MonoBehaviour
 	{		
 		loader = GameObject.FindObjectOfType<XMLLoader>();
 
-		input.onAnyDrag += onDrag;
-		input.onDragFinish += onDragFinish;
-		input.allowRotation = !cannotRotate;
-
 		levelStart();
 		notification = GameObject.Find("Notification").GetComponent<Notification>();
 		notification.onClose += levelStart;
+
+		input.onAnyDrag += onDrag;
+		input.allowRotation = !cannotRotate;
 	}
 	
 	void onDrag()
@@ -54,12 +54,24 @@ public class TangramManager : MonoBehaviour
 	{
 		checkForLevelComplete();
 		DOTween.Play("SnapMove");
+		if(input.selected != null)
+		{
+			if(input.selected.gameObject.GetComponent<Shape>().isPositionated)
+			{
+				if(audioSource && positionatedAudio)
+				{
+					audioSource.PlayOneShot(positionatedAudio);
+				}
+			}
+		}
 	}
 
 	protected void levelStart()
 	{
 		AnalyticManager.instance.startGame();
 		excerciseFinished = false;
+
+		input.onDragFinish -= onDragFinish;
 		for(int i = 0;i < shapes.Count;i++)
 		{
 			if(shapes[i] != null)
@@ -106,6 +118,7 @@ public class TangramManager : MonoBehaviour
 		input.gameObject.SetActive(true);
 		
 		SetColor();
+		input.onDragFinish += onDragFinish;
 	}
 
 	void initializeShapes(Level initLevel)
@@ -323,7 +336,7 @@ public class TangramManager : MonoBehaviour
 			result = fTypeAllShapes[Random.Range(0,fTypeAllShapes.Count-1)];
 			fTypeAllShapes.Remove(result);
 		}
-		//result = loader.data.levels500[25];
+		//result = loader.data.levels500[22];
 		return result;
 	}
 

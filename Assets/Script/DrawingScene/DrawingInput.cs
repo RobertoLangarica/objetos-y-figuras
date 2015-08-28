@@ -147,12 +147,14 @@ public class DrawingInput : MonoBehaviour
 
 	public void switchToPaint()
 	{
+		CursorChanger.instance.pencil();
 		erraser.SetActive(false);
 		isErrasing = false;
 	}
 
 	public void switchToErase()
 	{
+		CursorChanger.instance.ereaser();
 		erraser.SetActive(true);
 		moveErraser(Camera.main.ScreenToWorldPoint(Input.mousePosition));
 		isErrasing = true;
