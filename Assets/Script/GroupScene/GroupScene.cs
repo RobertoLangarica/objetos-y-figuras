@@ -23,6 +23,7 @@ public class GroupScene : MonoBehaviour
 	public AudioClip finalAudio;
 	public AudioClip positionatedAudio;
 	public GameObject pencil;
+	public Text subtitle;
 	public DragRecognizer input;
 	public List<GameObject> kindsOfShapes = new List<GameObject>();
 
@@ -71,6 +72,7 @@ public class GroupScene : MonoBehaviour
 			pencil.GetComponent<Pencil>().onOpen = onPencilOpen;
 		}
 		startLevel();
+		changeSutitle();
 	}
 	
 	public void onPencilClose()
@@ -81,6 +83,33 @@ public class GroupScene : MonoBehaviour
 	public void onPencilOpen()
 	{
 		input.enabled = false;
+	}
+
+	protected void changeSutitle()
+	{
+		switch(typeOfGroup)
+		{
+		case(EGroups.COLOR):
+		{
+			subtitle.text = "\"Color\"";
+		}
+			break;
+		case(EGroups.FREE):
+		{
+			subtitle.text = "\"Canasta Revuelta\"";
+		}
+			break;
+		case(EGroups.SHAPE):
+		{
+			subtitle.text = "\"Figura\"";
+		}
+			break;
+		case(EGroups.SIZE):
+		{
+			subtitle.text = "\"Tamaño\"";
+		}
+			break;
+		}
 	}
 
 	protected void startLevel()

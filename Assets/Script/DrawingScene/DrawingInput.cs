@@ -106,19 +106,19 @@ public class DrawingInput : MonoBehaviour
 			tempMag = (prevVec - nVec3).magnitude;
 			if(tempMag > bWidth)
 			{
-				Vector3 difVec = prevVec - nVec3;
-				Vector3 defaultVec = new Vector3(1,0,0);
-				float rotZ = Vector3.Angle(difVec,defaultVec);
-				if(prevVec.y < nVec3.y)
-				{
-					rotZ *= -1;
-				}
 
 				Vector3 nScale = go.transform.localScale;
 				nScale.x *= (tempMag/bWidth)*0.5f;
 				go.transform.localScale = nScale;
-				go.transform.localRotation = Quaternion.Euler(new Vector3(0,0,rotZ));
 			}
+			Vector3 difVec = prevVec - nVec3;
+			Vector3 defaultVec = new Vector3(1,0,0);
+			float rotZ = Vector3.Angle(difVec,defaultVec);
+			if(prevVec.y < nVec3.y)
+			{
+				rotZ *= -1;
+			}
+			go.transform.localRotation = Quaternion.Euler(new Vector3(0,0,rotZ));
 		}
 		allPainted.Add (go);
 	}
