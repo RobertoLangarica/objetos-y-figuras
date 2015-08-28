@@ -157,6 +157,7 @@ public class Manager400Sequence : MonoBehaviour {
 		
 		yield return new WaitForSeconds(0.5f);
 		finishButton.interactable = true;
+		input.gameObject.SetActive(true);
 		showNextExcercise();
 	}
 	
@@ -451,6 +452,7 @@ public class Manager400Sequence : MonoBehaviour {
 	public void onFinishExcercise()
 	{
 		finishButton.interactable = false;
+		input.gameObject.SetActive(false);
 		checkAndShowIfExcerciseIsCorrect();
 	}
 	
@@ -492,6 +494,7 @@ public class Manager400Sequence : MonoBehaviour {
 			}
 			
 			finishButton.interactable = true;
+			input.gameObject.SetActive(true);
 		}
 		else
 		{
@@ -520,6 +523,7 @@ public class Manager400Sequence : MonoBehaviour {
 				}
 				
 				finishButton.interactable = true;
+				input.gameObject.SetActive(true);
 			}
 			else
 			{
