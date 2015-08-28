@@ -54,7 +54,7 @@ public class SoundShapeManager : MonoBehaviour {
 		}
 	}
 	void OnDisable() {
-		AnalyticManager.instance.finsh("Observa", startSoundName,startSoundName);
+		AnalyticManager.instance.finsh("Conoce", startSoundName,startSoundName);
 	}
 
 }

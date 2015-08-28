@@ -79,20 +79,32 @@ public class CursorChanger : MonoBehaviour {
 	protected void searchButtons()
 	{
 		GameObject[] buttons;
+		GameObject[] piecesConoce;
 		buttons = GameObject.FindGameObjectsWithTag("UIButton");
-
+		piecesConoce = GameObject.FindGameObjectsWithTag("MenuShape");
 		foreach(GameObject button in buttons)
 		{
-			eventTrigger = button.AddComponent<EventTrigger>();
-			//button.GetComponent<Button>().OnPointerEnter.AddListener(() => { overButton(); });
-			//button.GetComponent<Button>().OnPointerExit.AddListener(() => { upChange(); }); 
-			//button.GetComponent<Button>().OnPointerDown.AddListener(() => { downButton(); }); 
-			//button.GetComponent<Button>().onClick.AddListener(() => { overButton(); }); 
+			//eventTrigger = button.AddComponent<EventTrigger>();
 			eventTrigger = button.GetComponent<EventTrigger>();
 
-			Debug.Log(eventTrigger);
+			Debug.Log(button);
 
-			AddEventTrigger(ereaser, EventTriggerType.PointerEnter);
+			AddEventTrigger(overButton, EventTriggerType.PointerEnter);
+			AddEventTrigger(upChange, EventTriggerType.PointerExit);
+			AddEventTrigger(downButton, EventTriggerType.PointerDown);
+			AddEventTrigger(overButton, EventTriggerType.PointerClick);
+		}
+		foreach(GameObject pieces in piecesConoce)
+		{
+			//eventTrigger = pieces.AddComponent<EventTrigger>();
+			eventTrigger = pieces.GetComponent<EventTrigger>();
+			
+			Debug.Log(eventTrigger);
+			
+			AddEventTrigger(overButton, EventTriggerType.PointerEnter);
+			AddEventTrigger(upChange, EventTriggerType.PointerExit);
+			AddEventTrigger(downButton, EventTriggerType.PointerDown);
+			AddEventTrigger(overButton, EventTriggerType.PointerClick);
 		}
 	}
 
@@ -112,6 +124,12 @@ public class CursorChanger : MonoBehaviour {
 
 	void OnLevelWasLoaded()
 	{
+		StartCoroutine("waiting");
+	}
+
+	IEnumerator waiting()
+	{
+		yield return new WaitForSeconds(.5f);
 		searchButtons();
 	}
 }
