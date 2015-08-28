@@ -221,7 +221,6 @@ public class BaseShape : MonoBehaviour {
 		get{return currentAlpha;}
 		set
 		{
-			Debug.Log (value);
 			initialAlpha = value;
 			currentAlpha = value;
 			rendererColor.a = value;
