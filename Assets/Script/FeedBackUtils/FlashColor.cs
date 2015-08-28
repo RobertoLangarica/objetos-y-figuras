@@ -53,7 +53,7 @@ public class FlashColor : MonoBehaviour {
 		}	
 	}
 
-	public void startFlash(float delay,SpriteRenderer renderer)
+	public void startFlash(SpriteRenderer renderer, float delay = 0.2f)
 	{
 		if(coloring)
 		{
@@ -67,5 +67,11 @@ public class FlashColor : MonoBehaviour {
 		destinationColor = colorToFlash;
 		colorElapsed = 0;
 		coloring = true;
+	}
+
+	public void startFlash(SpriteRenderer renderer, Color color, float delay = 0.2f)
+	{
+		colorToFlash = color;
+		startFlash(renderer,delay);
 	}
 }

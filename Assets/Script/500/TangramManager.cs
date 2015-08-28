@@ -58,6 +58,10 @@ public class TangramManager : MonoBehaviour
 		{
 			if(input.selected.gameObject.GetComponent<Shape>().isPositionated)
 			{
+				//Flash de color
+				SpriteRenderer sr = input.selected.spriteRenderer;
+				input.selected.GetComponent<FlashColor>().startFlash(sr,0.05f);
+
 				if(audioSource && positionatedAudio)
 				{
 					audioSource.PlayOneShot(positionatedAudio);
