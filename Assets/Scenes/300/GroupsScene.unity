@@ -244,6 +244,14 @@ Prefab:
       propertyPath: m_TagString
       value: UIButton
       objectReference: {fileID: 0}
+    - target: {fileID: 11439824, guid: e7bccb3f588f54258b99f4bf6a39fb74, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 11439824, guid: e7bccb3f588f54258b99f4bf6a39fb74, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e7bccb3f588f54258b99f4bf6a39fb74, type: 2}
   m_RootGameObject: {fileID: 501208322}
@@ -1710,7 +1718,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1429981218}
         m_MethodName: verifyExcersice
-        m_Mode: 1
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
@@ -1718,7 +1726,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
@@ -3684,20 +3692,17 @@ MonoBehaviour:
   audioWrong: {fileID: 8300000, guid: bc3e42b1cfd814c7ca8c47f06f5f34f6, type: 3}
   audioRight: {fileID: 8300000, guid: 318359f5b273647359c865c1f8588657, type: 3}
   finalAudio: {fileID: 0}
+  positionatedAudio: {fileID: 8300000, guid: 318359f5b273647359c865c1f8588657, type: 3}
   pencil: {fileID: 668710161}
   input: {fileID: 1429981220}
   kindsOfShapes:
   - {fileID: 174750, guid: 28c69b0c3d43d7f41813ed923d1f5ca2, type: 2}
   - {fileID: 101676, guid: 692bc53bb1ac7914fae4e1b1de5c3839, type: 2}
-  - {fileID: 174280, guid: 57a86603e3b8db14e9b77ddb0fe0a084, type: 2}
   - {fileID: 174280, guid: b725fd75f00da2b40b934b281aa53408, type: 2}
   - {fileID: 174280, guid: db2465bf231f5da4eb6b2ece988a502d, type: 2}
-  - {fileID: 174280, guid: 42433215f8e261f43a164167726aaa21, type: 2}
   - {fileID: 174280, guid: 9e0f3959c5b3e654fb170bc20e291f86, type: 2}
   - {fileID: 174280, guid: 110ad1d75350a864591d6699e88a65f0, type: 2}
   - {fileID: 174280, guid: 3c5964bc28b132e419e738344094b1f0, type: 2}
-  - {fileID: 174280, guid: 4cec402ae68e00e46906a6899334bb92, type: 2}
-  - {fileID: 174280, guid: 16553f53110ac8b4fa854f8aac36e5be, type: 2}
   - {fileID: 174280, guid: a3d0c84869fb90b44805083341b2fd4c, type: 2}
   - {fileID: 174280, guid: 27b4093dbd7a5d646a128f315c63fea1, type: 2}
   - {fileID: 174280, guid: 92e1a7391d065eb4d8c301d3982eacc2, type: 2}
@@ -4766,7 +4771,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AspectMode: 0
-  m_AspectRatio: 1.77929151
+  m_AspectRatio: 2.06193089
 --- !u!114 &1946142816
 MonoBehaviour:
   m_ObjectHideFlags: 0
