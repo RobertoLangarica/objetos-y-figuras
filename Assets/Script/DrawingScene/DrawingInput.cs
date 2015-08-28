@@ -81,7 +81,6 @@ public class DrawingInput : MonoBehaviour
 			break;
 		}
 	}
-
 	//protected int count = 0;
 	protected void spawnNewPoint(Vector3 nVec3)
 	{
@@ -100,7 +99,7 @@ public class DrawingInput : MonoBehaviour
 		}*/
 		go.GetComponent<SpriteRenderer>().color = currentColor;
 
-		if(!newLine)
+		if(!newLine && allPainted.Count > 0)
 		{
 			Vector3 prevVec = allPainted[allPainted.Count-1].transform.position;
 			tempMag = (prevVec - nVec3).magnitude;
@@ -147,14 +146,20 @@ public class DrawingInput : MonoBehaviour
 
 	public void switchToPaint()
 	{
-		CursorChanger.instance.pencil();
+		if(CursorChanger.instance)
+		{
+			CursorChanger.instance.pencil();
+		}
 		erraser.SetActive(false);
 		isErrasing = false;
 	}
 
 	public void switchToErase()
 	{
-		CursorChanger.instance.ereaser();
+		if(CursorChanger.instance)
+		{
+			CursorChanger.instance.ereaser();
+		}
 		erraser.SetActive(true);
 		moveErraser(Camera.main.ScreenToWorldPoint(Input.mousePosition));
 		isErrasing = true;
