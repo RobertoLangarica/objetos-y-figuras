@@ -508,12 +508,16 @@ public class TangramManager : MonoBehaviour
 			notification.showToast("correcto",audioRight,2);
 			continueBtn.GetComponent<Button>().interactable = false;
 		}
-		else if(fTypeAllShapes != null&& tType == ETangramTypes.ALL_SHAPES)
+		else if(fTypeAllShapes != null && tType == ETangramTypes.ALL_SHAPES)
 		{
 			if(fTypeAllShapes.Count > 0)
 			{
 				notification.showToast("correcto",audioRight,2);
 				continueBtn.GetComponent<Button>().interactable = false;
+			}
+			else
+			{
+				GameObject.FindObjectOfType<FinishPopUp>().show();
 			}
 		}
 		else
