@@ -18,6 +18,7 @@ public class Manager400Sequence : MonoBehaviour {
 	public AudioClip audioWrong;
 	public AudioClip audioRight;
 	public AudioClip finalAudio;
+	public AudioClip snapAudio;
 	
 	protected Rect shapesRect;
 	protected Container400[] containers;
@@ -624,6 +625,12 @@ public class Manager400Sequence : MonoBehaviour {
 
 					containers[i].isEmpty = false;
 					((Shape400)input.selected).container = containers[i];
+
+					//Audio de snap
+					if(audioSource && snapAudio)
+					{
+						audioSource.PlayOneShot(snapAudio);
+					}
 					
 					if(isCorrect())
 					{
