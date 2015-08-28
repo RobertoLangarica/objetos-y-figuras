@@ -272,9 +272,9 @@ RectTransform:
   - {fileID: 980049351}
   m_Father: {fileID: 1517155879}
   m_RootOrder: 0
-  m_AnchorMin: {x: .0378629789, y: .0565650165}
-  m_AnchorMax: {x: .94750005, y: .784333944}
-  m_AnchoredPosition: {x: -.000837912899, y: -.000368118286}
+  m_AnchorMin: {x: .292862862, y: .0565650165}
+  m_AnchorMax: {x: .693750024, y: .779000044}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
 --- !u!1001 &137096089
@@ -1035,6 +1035,7 @@ GameObject:
   - 114: {fileID: 429713122}
   - 114: {fileID: 429713121}
   - 114: {fileID: 429713120}
+  - 114: {fileID: 429713124}
   m_Layer: 5
   m_Name: PeniclBtn
   m_TagString: UIButton
@@ -1197,6 +1198,19 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 222504198}
   m_GameObject: {fileID: 429713118}
+--- !u!114 &429713124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11422946, guid: 3dfb11f8ce87d5444b495aba7495d891,
+    type: 2}
+  m_PrefabInternal: {fileID: 222504198}
+  m_GameObject: {fileID: 429713118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delegates: []
 --- !u!1 &463362448
 GameObject:
   m_ObjectHideFlags: 0
@@ -1254,6 +1268,7 @@ GameObject:
   - 222: {fileID: 513641039}
   - 114: {fileID: 513641038}
   - 114: {fileID: 513641037}
+  - 114: {fileID: 513641040}
   m_Layer: 5
   m_Name: Switch2EraseBtn
   m_TagString: UIButton
@@ -1363,6 +1378,19 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 222504198}
   m_GameObject: {fileID: 513641035}
+--- !u!114 &513641040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11422944, guid: 3dfb11f8ce87d5444b495aba7495d891,
+    type: 2}
+  m_PrefabInternal: {fileID: 222504198}
+  m_GameObject: {fileID: 513641035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delegates: []
 --- !u!1 &518501330
 GameObject:
   m_ObjectHideFlags: 0
@@ -2065,6 +2093,7 @@ GameObject:
   - 222: {fileID: 905573765}
   - 114: {fileID: 905573764}
   - 114: {fileID: 905573763}
+  - 114: {fileID: 905573767}
   m_Layer: 5
   m_Name: EraseAllBtn
   m_TagString: UIButton
@@ -2174,6 +2203,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
+--- !u!114 &905573767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11422940, guid: 3dfb11f8ce87d5444b495aba7495d891,
+    type: 2}
+  m_PrefabInternal: {fileID: 222504198}
+  m_GameObject: {fileID: 905573762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delegates: []
 --- !u!1 &954368322
 GameObject:
   m_ObjectHideFlags: 0
@@ -2263,6 +2305,7 @@ GameObject:
   - 114: {fileID: 980049352}
   - 114: {fileID: 980049358}
   - 114: {fileID: 980049357}
+  - 114: {fileID: 980049359}
   m_Layer: 5
   m_Name: Hexagono
   m_TagString: MenuShape
@@ -2458,6 +2501,17 @@ MonoBehaviour:
   initialSize: 5
   initialAlpha: 1
   scaleMultiplier: {x: 1, y: 1, z: 1}
+--- !u!114 &980049359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 980049350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8234f5bfe797264ba4ae7491bbc0fe9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1031491241
 GameObject:
   m_ObjectHideFlags: 0
@@ -2799,6 +2853,7 @@ GameObject:
   - 114: {fileID: 1355136511}
   - 114: {fileID: 1355136510}
   - 114: {fileID: 1355136509}
+  - 114: {fileID: 1355136513}
   m_Layer: 5
   m_Name: ClueBtn
   m_TagString: UIButton
@@ -2922,6 +2977,19 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 222504198}
   m_GameObject: {fileID: 1355136507}
+--- !u!114 &1355136513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11444408, guid: 3dfb11f8ce87d5444b495aba7495d891,
+    type: 2}
+  m_PrefabInternal: {fileID: 222504198}
+  m_GameObject: {fileID: 1355136507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delegates: []
 --- !u!1 &1517155878
 GameObject:
   m_ObjectHideFlags: 0
@@ -3148,19 +3216,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22424676, guid: 9ba7193f21963954884f59ccae1bbf91, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 363.854828
+      value: 160.354858
       objectReference: {fileID: 0}
     - target: {fileID: 22424676, guid: 9ba7193f21963954884f59ccae1bbf91, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -122.506798
+      value: -136.456909
       objectReference: {fileID: 0}
     - target: {fileID: 22424676, guid: 9ba7193f21963954884f59ccae1bbf91, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 727.709656
+      value: 320.709717
       objectReference: {fileID: 0}
     - target: {fileID: 22424676, guid: 9ba7193f21963954884f59ccae1bbf91, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 245.013596
+      value: 272.913818
       objectReference: {fileID: 0}
     - target: {fileID: 22424676, guid: 9ba7193f21963954884f59ccae1bbf91, type: 2}
       propertyPath: m_AnchorMin.x
@@ -3308,6 +3376,7 @@ GameObject:
   - 114: {fileID: 1674234288}
   - 114: {fileID: 1674234287}
   - 114: {fileID: 1674234286}
+  - 114: {fileID: 1674234290}
   m_Layer: 5
   m_Name: ExitBtn
   m_TagString: UIButton
@@ -3429,6 +3498,19 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 222504198}
   m_GameObject: {fileID: 1674234284}
+--- !u!114 &1674234290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11471246, guid: 3dfb11f8ce87d5444b495aba7495d891,
+    type: 2}
+  m_PrefabInternal: {fileID: 222504198}
+  m_GameObject: {fileID: 1674234284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delegates: []
 --- !u!1 &1703932741
 GameObject:
   m_ObjectHideFlags: 0
@@ -3440,6 +3522,7 @@ GameObject:
   - 222: {fileID: 1703932745}
   - 114: {fileID: 1703932744}
   - 114: {fileID: 1703932743}
+  - 114: {fileID: 1703932746}
   m_Layer: 5
   m_Name: Switch2PaintBtn
   m_TagString: UIButton
@@ -3549,6 +3632,19 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 222504198}
   m_GameObject: {fileID: 1703932741}
+--- !u!114 &1703932746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11422942, guid: 3dfb11f8ce87d5444b495aba7495d891,
+    type: 2}
+  m_PrefabInternal: {fileID: 222504198}
+  m_GameObject: {fileID: 1703932741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delegates: []
 --- !u!1 &1958567656
 GameObject:
   m_ObjectHideFlags: 0
