@@ -26,6 +26,8 @@ public class Manager400Tamanio : MonoBehaviour {
 	public AudioClip audioWrong;
 	public AudioClip audioRight;
 	public AudioClip finalAudio;
+	public AudioClip snapAudio;
+
 	public Notification notification;
 	public string exerciseType;
 
@@ -254,18 +256,25 @@ public class Manager400Tamanio : MonoBehaviour {
 		{
 			color = Random.Range(0,System.Enum.GetValues(typeof(BaseShape.EShapeColor)).Length-1);
 
-			if(colorShown.Contains(color))
+			if(color != 7)
 			{
-				if(colorCount < 14)
+				if(colorShown.Contains(color))
 				{
-					color = -1;
-				}
-				else
-				{
-					//se va repetir
-					colorShown.Clear();
-				}
+					if(colorCount < 14)
+					{
+						color = -1;
+					}
+					else
+					{
+						//se va repetir
+						colorShown.Clear();
+					}
 
+				}
+			}
+			else
+			{
+				color = -1;
 			}
 
 			colorCount++;
@@ -323,12 +332,15 @@ public class Manager400Tamanio : MonoBehaviour {
 				{
 					shapes[i].scaleMultiplier.x = 2;
 					shapes[i].scaleMultiplier.y = scale.y/scale2.y;
+					shapes[i].scaleMultiplier.z = shapes[i].scaleMultiplier.y;
 				}
 				else
 				{
 					shapes[i].scaleMultiplier.y = 2;
 					shapes[i].scaleMultiplier.x = scale.x/scale2.x;
+					shapes[i].scaleMultiplier.z = shapes[i].scaleMultiplier.x;
 				}
+
 
 				shapes[i].setSizeByInt(sizes[i]);
 			}
@@ -372,11 +384,13 @@ public class Manager400Tamanio : MonoBehaviour {
 					{
 						placeholders[i].scaleMultiplier.x = 2;
 						placeholders[i].scaleMultiplier.y = scale.y/scale2.y;
+						placeholders[i].scaleMultiplier.z = placeholders[i].scaleMultiplier.y;
 					}
 					else
 					{
 						placeholders[i].scaleMultiplier.y = 2;
 						placeholders[i].scaleMultiplier.x = scale.x/scale2.x;
+						placeholders[i].scaleMultiplier.z = placeholders[i].scaleMultiplier.x;
 					}
 
 					placeholders[i].setSizeByInt(sizes[i]);
@@ -636,6 +650,12 @@ public class Manager400Tamanio : MonoBehaviour {
 
 					containers[i].isEmpty = false;
 					((Shape400)input.selected).container = containers[i];
+
+					//Audio de snap
+					if(audioSource && snapAudio)
+					{
+						audioSource.PlayOneShot(snapAudio);
+					}
 
 					if(isCorrect())
 					{

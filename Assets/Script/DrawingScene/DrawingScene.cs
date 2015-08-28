@@ -9,7 +9,6 @@ public class DrawingScene : MonoBehaviour
 	public Image image;
 	public Button nextButton;
 	public Text acknowledge;
-	public Notification notification;
 	public AudioSource audioSource;
 	public AudioClip audioRight;
 
@@ -134,6 +133,7 @@ public class DrawingScene : MonoBehaviour
 			{
 				imageIn = false;
 				nextButton.interactable = true;
+				pencilInput.canDraw = true;
 			}
 			
 			image.transform.localScale = currentScale;
@@ -144,17 +144,10 @@ public class DrawingScene : MonoBehaviour
 	public void showNextImage()
 	{
 		nextButton.interactable = false;
-
-		notification.onClose += onCloseNotification;
-		notification.showToast("correcto",audioRight,2.0f);
-	}
-
-	protected void onCloseNotification()
-	{
-		notification.onClose -= onCloseNotification;
-
+		pencilInput.canDraw = false;
+	
 		outCurrentImage();
-
+		
 		
 		if(current == photos.Length-1)
 		{
@@ -170,7 +163,7 @@ public class DrawingScene : MonoBehaviour
 			loading = true;
 		}
 	}
-
+	
 	protected void outCurrentImage()
 	{
 		percent = 0;
@@ -207,8 +200,6 @@ public class DrawingScene : MonoBehaviour
 		{
 			current = 0;
 		}
-
-		Debug.Log ("Loading: "+photo.name.Split('.')[0]);
 	}
 
 

@@ -81,7 +81,6 @@ public class DrawingInput : MonoBehaviour
 			break;
 		}
 	}
-
 	//protected int count = 0;
 	protected void spawnNewPoint(Vector3 nVec3)
 	{
@@ -100,25 +99,25 @@ public class DrawingInput : MonoBehaviour
 		}*/
 		go.GetComponent<SpriteRenderer>().color = currentColor;
 
-		if(!newLine)
+		if(!newLine && allPainted.Count > 0)
 		{
 			Vector3 prevVec = allPainted[allPainted.Count-1].transform.position;
 			tempMag = (prevVec - nVec3).magnitude;
 			if(tempMag > bWidth)
 			{
-				Vector3 difVec = prevVec - nVec3;
-				Vector3 defaultVec = new Vector3(1,0,0);
-				float rotZ = Vector3.Angle(difVec,defaultVec);
-				if(prevVec.y < nVec3.y)
-				{
-					rotZ *= -1;
-				}
 
 				Vector3 nScale = go.transform.localScale;
 				nScale.x *= (tempMag/bWidth)*0.5f;
 				go.transform.localScale = nScale;
-				go.transform.localRotation = Quaternion.Euler(new Vector3(0,0,rotZ));
 			}
+			Vector3 difVec = prevVec - nVec3;
+			Vector3 defaultVec = new Vector3(1,0,0);
+			float rotZ = Vector3.Angle(difVec,defaultVec);
+			if(prevVec.y < nVec3.y)
+			{
+				rotZ *= -1;
+			}
+			go.transform.localRotation = Quaternion.Euler(new Vector3(0,0,rotZ));
 		}
 		allPainted.Add (go);
 	}
@@ -147,14 +146,20 @@ public class DrawingInput : MonoBehaviour
 
 	public void switchToPaint()
 	{
-		CursorChanger.instance.pencil();
+		if(CursorChanger.instance)
+		{
+			CursorChanger.instance.pencil();
+		}
 		erraser.SetActive(false);
 		isErrasing = false;
 	}
 
 	public void switchToErase()
 	{
-		CursorChanger.instance.ereaser();
+		if(CursorChanger.instance)
+		{
+			CursorChanger.instance.ereaser();
+		}
 		erraser.SetActive(true);
 		moveErraser(Camera.main.ScreenToWorldPoint(Input.mousePosition));
 		isErrasing = true;
