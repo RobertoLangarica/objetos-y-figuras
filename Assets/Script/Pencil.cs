@@ -49,8 +49,11 @@ public class Pencil : MonoBehaviour {
 		EreaseAllBtn.SetActive(true);
 		if(showing)
 		{
-			//Debug.Log("cerrado");
-			CursorChanger.instance.bPencil=false;
+			if(CursorChanger.instance)
+			{
+				CursorChanger.instance.bPencil=false;
+			}
+
 			onClose();
 			moveBtn(true);
 			showing=false;
@@ -61,8 +64,11 @@ public class Pencil : MonoBehaviour {
 		}
 		else
 		{
-			CursorChanger.instance.bPencil=true;
-			CursorChanger.instance.pencil();
+			if(CursorChanger.instance)
+			{
+				CursorChanger.instance.bPencil=true;
+				CursorChanger.instance.pencil();
+			}
 			onOpen();
 			showing=true;
 			moveBtn(false);
