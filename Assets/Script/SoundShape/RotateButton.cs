@@ -8,12 +8,16 @@ public class RotateButton : MonoBehaviour {
 	protected float random;
 	protected int randvalue;
 	protected bool rotate = true;
+	protected bool prevRot;
 	protected Pencil Pencil;
 
 	protected bool dontStopRotation;
 	// Use this for initialization
 	void Start () {
 		Pencil = FindObjectOfType<Pencil>();
+		Pencil.onClose += penciolClose;
+		Pencil.onOpen += pencilOpen;
+
 		random = Random.Range(0.1f,0.5f);
 		randvalue = Random.Range(0,2);
 		if(randvalue==0)
@@ -25,8 +29,6 @@ public class RotateButton : MonoBehaviour {
 		randvalue = Random.Range(0,360);
 		this.transform.eulerAngles = new Vector3(this.transform.eulerAngles.x,this.transform.eulerAngles.y,randvalue);
 	}
-
-
 
 	void Update()
 	{
@@ -42,5 +44,16 @@ public class RotateButton : MonoBehaviour {
 		{
 			rotate = rotate == true ? false: true;
 		}
+	}
+
+	void penciolClose()
+	{
+		rotate = prevRot;
+	}
+
+	void pencilOpen()
+	{
+		prevRot = rotate;
+		rotate = false;
 	}
 }
