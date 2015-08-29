@@ -183,7 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c49ed014673f07847be2bb1995e31a70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  makePersistent: 1
+  makePersistent: 0
   detectUnityRemote: 1
   mouseInputProviderPrefab: {fileID: 11400000, guid: 2fc6e1e218b70c94285691a647d862aa,
     type: 2}
@@ -1828,11 +1828,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22416644, guid: 3dfb11f8ce87d5444b495aba7495d891, type: 2}
       propertyPath: m_AnchorMin.x
-      value: .330839097
+      value: .342861891
       objectReference: {fileID: 0}
     - target: {fileID: 22416644, guid: 3dfb11f8ce87d5444b495aba7495d891, type: 2}
       propertyPath: m_AnchorMax.x
-      value: .660152555
+      value: .672175348
       objectReference: {fileID: 0}
     - target: {fileID: 11446954, guid: 3dfb11f8ce87d5444b495aba7495d891, type: 2}
       propertyPath: m_FontData.m_Font
@@ -1844,6 +1844,26 @@ Prefab:
       value: 
       objectReference: {fileID: 12800000, guid: 2797b776964bcdc4bb43101030da6a78,
         type: 3}
+    - target: {fileID: 11451776, guid: 3dfb11f8ce87d5444b495aba7495d891, type: 2}
+      propertyPath: delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Circle
+      objectReference: {fileID: 0}
+    - target: {fileID: 11446954, guid: 3dfb11f8ce87d5444b495aba7495d891, type: 2}
+      propertyPath: m_Text
+      value: "\xEDrculo"
+      objectReference: {fileID: 0}
+    - target: {fileID: 11446956, guid: 3dfb11f8ce87d5444b495aba7495d891, type: 2}
+      propertyPath: m_Text
+      value: C
+      objectReference: {fileID: 0}
+    - target: {fileID: 22416644, guid: 3dfb11f8ce87d5444b495aba7495d891, type: 2}
+      propertyPath: m_AnchorMin.y
+      value: .816964149
+      objectReference: {fileID: 0}
+    - target: {fileID: 22416644, guid: 3dfb11f8ce87d5444b495aba7495d891, type: 2}
+      propertyPath: m_AnchorMax.y
+      value: .977576911
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11471246, guid: 3dfb11f8ce87d5444b495aba7495d891, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 3dfb11f8ce87d5444b495aba7495d891, type: 2}
@@ -2532,8 +2552,8 @@ RectTransform:
   - {fileID: 579866636}
   m_Father: {fileID: 1245870112}
   m_RootOrder: 6
-  m_AnchorMin: {x: .330839097, y: .76808387}
-  m_AnchorMax: {x: .660152555, y: 1}
+  m_AnchorMin: {x: .342861891, y: .816964149}
+  m_AnchorMax: {x: .672175348, y: .977576911}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
@@ -2757,7 +2777,7 @@ MonoBehaviour:
             Culture=neutral, PublicKeyToken=null
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Circle
+          m_StringArgument: Rectangle
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
