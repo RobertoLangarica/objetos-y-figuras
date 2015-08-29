@@ -36,22 +36,7 @@ public class SpacegramManager : MonoBehaviour
 			return;
 		}
 
-		if(UserDataManager.instance.isLevelComplete(currentLevel.name))
-		{
-			Debug.Log("GM-> Nivel completado previamente.");
-			//initializeReferenceImage();
-			initializeShapes();
-			//continueBtn.gameObject.SetActive(false);
-			//sendBtn.gameObject.SetActive(true);
-		}
-		else
-		{
-			Debug.Log("GM-> Inicializando nuevo nivel.");
-			initializeShapes();
-			//sendBtn.gameObject.SetActive(false);
-			//continueBtn.gameObject.SetActive(false);
-		}
-
+		initializeShapes();
 		input.onAnyDrag += onDrag;
 		input.onDragFinish += onDragFinish;
 		input.allowRotation = !cannotRotate;

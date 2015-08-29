@@ -39,38 +39,25 @@ public class UserDataManager
 	protected void createDefaultData()
 	{
 		PlayerPrefs.SetInt("version",version);
-		PlayerPrefs.SetInt("level",0);
-		PlayerPrefs.SetString("levels","");
-		PlayerPrefs.SetString("name","");
-		PlayerPrefs.SetString("shipSelected","");
-		if (!PlayerPrefs.HasKey ("premiumVersion")) 
-		{
-			premiumVersion = "freeVersion";
-		}
+		int tutor = 0;
 
+		#if UNITY_STANDALONE
+		//Por default activo en stand alone
+		tutor = 1;
+		#endif
+
+		PlayerPrefs.SetInt("tutorMode",tutor);
+	}
+
+	public bool tutorMode
+	{
+		get{return PlayerPrefs.GetInt("tutorMode")==1;}
+		set{PlayerPrefs.SetInt("tutorMode",value ? 1:0);}
 	}
 
 	protected void resolveVersion()
 	{
 		PlayerPrefs.SetInt("version",version);
-	}
-
-	public string name
-	{
-		get{return PlayerPrefs.GetString("name");}
-		set{PlayerPrefs.SetString("name",value);}
-	}
-
-	public int level
-	{
-		get{return PlayerPrefs.GetInt("level");}
-		set{PlayerPrefs.SetInt("level",value);}
-	}
-	
-	public string premiumVersion
-	{
-		get{return PlayerPrefs.GetString("premiumVersion");}
-		set{PlayerPrefs.SetString("premiumVersion",value);}
 	}
 
 	public void cleanData()
@@ -80,44 +67,6 @@ public class UserDataManager
 		createDefaultData();
 	}
 
-	public string shipSelected
-	{
-		get{return PlayerPrefs.GetString("shipSelected");}
-		set{PlayerPrefs.SetString("shipSelected",value);}
-	}
-
-	public bool isLevelComplete(string levelName)
-	{
-		return PlayerPrefs.HasKey(levelName);
-	}
-
-	public void markLevelAsComplete(string levelName)
-	{
-		//Guardamos una cadena para siempre tener referencia a los niveles pasados
-		string levels = PlayerPrefs.GetString("levels");
-
-		if(levels == "")
-		{
-			levels = levelName;
-		}
-		else
-		{
-			levels = levels+","+levelName;
-		}
-
-		PlayerPrefs.SetString("levels",levels);
-		PlayerPrefs.SetInt(levelName,1);
-	}
-
-	public string[] getCompletedLevels()
-	{
-		string levels = PlayerPrefs.GetString("levels");
-
-		if(levels == "")
-		{
-			return null;
-		}
-		return levels.Split(new char[1]{','});
-	}
+	public void foo(){}
 }
 

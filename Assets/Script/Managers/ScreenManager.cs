@@ -24,9 +24,11 @@ public class ScreenManager : MonoBehaviour {
 
 		backScreens = new Dictionary<string, string>();
 
+		//Solo que se inicialize user data
+		UserDataManager.instance.foo();
+
 		//Cliente
 		#if UNITY_EDITOR
-		UserDataManager.instance.cleanData();
 		GoToScene(firstEditorScreen);
 		#else
 		GoToScene(firstScreenName);
