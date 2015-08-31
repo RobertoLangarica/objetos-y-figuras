@@ -15,6 +15,9 @@ public class Question : MonoBehaviour {
 
 	public bool firstTime = false;
 	public string firstTimeText;
+	protected bool showing = false;
+	protected float waitForClick;
+
 	// Use this for initialization
 	void Start () {
 
@@ -48,21 +51,23 @@ public class Question : MonoBehaviour {
 		//Debug.Log(data.getFigureByName(soundToPlay).getInfoByName(soundtoGo.ToString()).idSound);
 		AudioClip aC = (AudioClip)Resources.Load("Sounds/"+data.getFigureByName(soundToPlay).getInfoByName(soundtoGo.ToString()).idSound);
 		showToast(false,0);
+		showing = true;
+		waitForClick = 0.5f;
 
 		audioSource.clip = aC;
 
 		audioSource.Play();
 		currentToast = soundToPlay+"_"+soundtoGo;
-		if(audioSource.clip!=null)
+		float time = 3.0f;
+
+		StopCoroutine("hideToastWhenSoundEnd");
+		if(audioSource.clip!=null && audioSource.clip.length > time)
 		{
-			StopCoroutine("hideToastWhenSoundEnd");
-			StartCoroutine("hideToastWhenSoundEnd",new object[2]{audioSource.clip.length,soundToPlay+"_"+soundtoGo});
+			time = audioSource.clip.length;
 		}
-		else
-		{
-			StopCoroutine("hideToastWhenSoundEnd");
-			StartCoroutine("hideToastWhenSoundEnd",new object[2]{3f,soundToPlay+"_"+soundtoGo});
-		}
+
+		StartCoroutine("hideToastWhenSoundEnd",new object[2]{time,soundToPlay+"_"+soundtoGo});
+
 		questionText(soundToPlay+"_"+soundtoGo);
 		soundtoGo++;
 
@@ -77,21 +82,23 @@ public class Question : MonoBehaviour {
 	{
 		AudioClip aC = (AudioClip)Resources.Load("Sounds/"+soundToPlay+"_"+soundtoGo);
 		showToast(false,0);
-		
+		showing = true;
+		waitForClick = 0.6f;
+
 		audioSource.clip = aC;
 		
 		audioSource.Play();
 		currentToast = soundToPlay+"_"+soundtoGo;
-		if(audioSource.clip!=null)
+		float time = 3.0f;
+		
+		StopCoroutine("hideToastWhenSoundEnd");
+		if(audioSource.clip!=null && audioSource.clip.length > time)
 		{
-			StopCoroutine("hideToastWhenSoundEnd");
-			StartCoroutine("hideToastWhenSoundEnd",new object[2]{audioSource.clip.length,soundToPlay+"_"+soundtoGo});
+			time = audioSource.clip.length;
 		}
-		else
-		{
-			StopCoroutine("hideToastWhenSoundEnd");
-			StartCoroutine("hideToastWhenSoundEnd",new object[2]{3f,soundToPlay+"_"+soundtoGo});
-		}
+		
+		StartCoroutine("hideToastWhenSoundEnd",new object[2]{time,soundToPlay+"_"+soundtoGo});
+		
 		questionText(soundToPlay+"_"+soundtoGo);
 	}
 	protected void questionText(string textToPlay)
@@ -140,11 +147,31 @@ public class Question : MonoBehaviour {
 
 	IEnumerator hideToastWhenSoundEnd(object[] parms)
 	{
-		yield return new WaitForSeconds((float)parms[0]+3f);
+		yield return new WaitForSeconds((float)parms[0]);
 		if(string.Compare(currentToast,(string)parms[1])==0)
 		{
+			showing = false;
 			showToast(false);
 		}
 	}
 
+	void Update()
+	{
+		//Se cierra al click en la pantalla
+		if(showing)
+		{
+			waitForClick -= Time.deltaTime;
+			if(waitForClick <= 0 && Input.GetMouseButtonUp(0))
+			{
+				StopCoroutine("hideToastWhenSoundEnd");
+				showing = false;
+				showToast(false);
+			}
+		}
+	}
+
+	protected void forceClose()
+	{
+		showToast(false);
+	}
 }

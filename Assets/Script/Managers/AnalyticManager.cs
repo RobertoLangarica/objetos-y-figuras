@@ -45,13 +45,13 @@ public class AnalyticManager : MonoBehaviour {
 		{
 			UnityAnalytics.CustomEvent(activityName, new Dictionary<string, object>
 			                           {
-				{ "Fiinished "+exerciseType, exerciseName },
+				{ "Finished "+exerciseType, exerciseName },
 			});
 			UnityAnalytics.CustomEvent(exerciseType, new Dictionary<string, object>
 			                           {
 				{ "Finish "+exerciseName, gameTime },
 			});
-			Debug.Log("Termino: "+exerciseType+" time: "+gameTime);
+			//Debug.Log("Termino: "+exerciseType+" time: "+gameTime);
 		}
 		else
 		{
@@ -63,7 +63,7 @@ public class AnalyticManager : MonoBehaviour {
 			                           {
 				{ "not Finish"+exerciseName, gameTime },
 			});
-			Debug.Log("NO termino "+"time: "+gameTime);
+			//Debug.Log("NO termino "+"time: "+gameTime);
 		}
 
 	}
