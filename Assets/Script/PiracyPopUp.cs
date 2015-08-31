@@ -8,7 +8,7 @@ public class PiracyPopUp : MonoBehaviour
 	{
 		if(UserDataManager.instance.showPopUp == false || UserDataManager.instance.startGame == false)
 		{
-			gameObject.transform.parent.gameObject.SetActive(false);
+			gameObject.SetActive(false);
 		}
 	}
 
@@ -28,7 +28,7 @@ public class PiracyPopUp : MonoBehaviour
 
 	public void closePopUp()
 	{
-		gameObject.transform.parent.gameObject.SetActive(false);
+		gameObject.SetActive(false);
 		UserDataManager.instance.startGame = false;
 	}
 }
