@@ -148,7 +148,9 @@ public class DrawingInput : MonoBehaviour
 	{
 		if(CursorChanger.instance)
 		{
+			CursorChanger.instance.bPencil=false;
 			CursorChanger.instance.pencil();
+			CursorChanger.instance.bPencil=true;
 		}
 		erraser.SetActive(false);
 		isErrasing = false;
@@ -158,7 +160,9 @@ public class DrawingInput : MonoBehaviour
 	{
 		if(CursorChanger.instance)
 		{
+			CursorChanger.instance.bPencil=false;
 			CursorChanger.instance.ereaser();
+			CursorChanger.instance.bPencil=true;
 		}
 		erraser.SetActive(true);
 		moveErraser(Camera.main.ScreenToWorldPoint(Input.mousePosition));
@@ -172,7 +176,10 @@ public class DrawingInput : MonoBehaviour
 			Destroy(val);
 		}
 		allPainted = new List<GameObject> ();
-		switchToPaint();
+		if(canDraw)
+		{
+			switchToPaint();
+		}
 	}
 
 	public void erraseThisBrush(GameObject go)
@@ -187,11 +194,12 @@ public class DrawingInput : MonoBehaviour
 	}
 	public void drawingTrue()
 	{
-		switchToPaint();
 		if(hiding)
 			return;
+
 		if(canDraw)
 		{
+			switchToPaint();
 			foreach (GameObject val in allPainted) 
 			{
 				val.SetActive(true);

@@ -66,8 +66,8 @@ public class Pencil : MonoBehaviour {
 		{
 			if(CursorChanger.instance)
 			{
-				CursorChanger.instance.bPencil=true;
 				CursorChanger.instance.pencil();
+				CursorChanger.instance.bPencil=true;
 			}
 			onOpen();
 			showing=true;

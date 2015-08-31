@@ -114,7 +114,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Radius: .5
+  m_Radius: .200000003
   m_Center: {x: 0, y: 0}
 --- !u!50 &38751588
 Rigidbody2D:
@@ -347,6 +347,10 @@ Prefab:
       propertyPath: delegates.Array.data[1].callback.m_TypeName
       value: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI, Version=1.0.0.0,
         Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 5828086, guid: 3dfb11f8ce87d5444b495aba7495d891, type: 2}
+      propertyPath: m_Radius
+      value: .200000003
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3dfb11f8ce87d5444b495aba7495d891, type: 2}
