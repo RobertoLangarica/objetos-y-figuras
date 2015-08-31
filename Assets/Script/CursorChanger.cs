@@ -10,6 +10,7 @@ public class CursorChanger : MonoBehaviour {
 	public Texture2D downButtonTexture;
 	public Texture2D overDragTexture;
 	public Texture2D downDragTexture;
+	public Texture2D rotateTexture;
 	public Texture2D pencilTexture;
 	public Texture2D ereaserTexture;
 
@@ -28,43 +29,46 @@ public class CursorChanger : MonoBehaviour {
 	
 	public void upChange() 
 	{
-		Debug.Log("up");
+		//Debug.Log("up");
 		changer(null);
 	}
 
 	public void overButton() 
 	{
-		Debug.Log("over");
+		//Debug.Log("over");
 		changer(overButtonTexture);
 	}
 
 	public void downButton()
 	{
-		Debug.Log("down");
+		//Debug.Log("down");
 		changer(downButtonTexture);
 	}
 
 	public void overDrag()
 	{
-		Debug.Log("overDrag");
+		//Debug.Log("overDrag");
 		changer(overDragTexture);
 	}
 
 	public void downDrag()
 	{
-		Debug.Log("upDrag");
+		//Debug.Log("upDrag");
 		changer(downDragTexture);
 	}
 
 	public void pencil()
 	{
-		Debug.Log("pencil");
+		//Debug.Log("pencil");
+		Debug.Log(pencilTexture.height);
+		hotSpot = new Vector2(0,pencilTexture.height);
 		changer(pencilTexture);
 	}
 	
 	public void ereaser()
 	{
-		Debug.Log("ereaser");
+		//Debug.Log("ereaser");
+		hotSpot = new Vector2(ereaserTexture.width*0.5f,ereaserTexture.height*0.5f);
 		changer(ereaserTexture);
 	}
 
@@ -72,7 +76,8 @@ public class CursorChanger : MonoBehaviour {
 	{
 		if(!bPencil)
 		{
-			//Cursor.SetCursor(texture, hotSpot, cursorMode);
+			Cursor.SetCursor(texture, hotSpot, cursorMode);
+			hotSpot = Vector2.zero;
 		}
 	}
 
@@ -124,12 +129,14 @@ public class CursorChanger : MonoBehaviour {
 
 	void OnLevelWasLoaded()
 	{
+		bPencil=false;
+		changer(null);
 		StartCoroutine("waiting");
 	}
 
 	IEnumerator waiting()
 	{
-		yield return new WaitForSeconds(.5f);
+		yield return new WaitForSeconds(.1f);
 		searchButtons();
 	}
 }
