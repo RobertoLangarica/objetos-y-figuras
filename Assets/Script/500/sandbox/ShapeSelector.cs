@@ -190,6 +190,12 @@ public class ShapeSelector : MonoBehaviour {
 
 	public void onPencilOpen()
 	{
+		if(input.selected != null)
+		{
+			input.selected.rotateHandler = false;
+			input.selected = null;
+		}
+
 		input.gameObject.SetActive(false);
 	}
 
