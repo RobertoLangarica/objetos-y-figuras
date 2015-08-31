@@ -273,8 +273,6 @@ public class BaseShape : MonoBehaviour {
 					transform.localScale = new Vector3(1*scaleMultiplier.x,1*scaleMultiplier.y,1*scaleMultiplier.z);
 					break;
 				}
-
-				//Debug.Log (transform.localScale.y+"___"+scaleMultiplier);
 			}
 		}
 		
