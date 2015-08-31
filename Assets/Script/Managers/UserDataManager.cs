@@ -22,6 +22,9 @@ public class UserDataManager
 
 	UserDataManager()
 	{
+		PlayerPrefs.SetInt("startGame",1);
+		//PlayerPrefs.SetInt("piracyPopUp",1);
+
 		if(PlayerPrefs.HasKey("version"))
 		{
 			if(PlayerPrefs.GetInt("version") != version)
@@ -47,12 +50,25 @@ public class UserDataManager
 		#endif
 
 		PlayerPrefs.SetInt("tutorMode",tutor);
+		PlayerPrefs.SetInt("piracyPopUp",1);
 	}
 
 	public bool tutorMode
 	{
 		get{return PlayerPrefs.GetInt("tutorMode")==1;}
 		set{PlayerPrefs.SetInt("tutorMode",value ? 1:0);}
+	}
+
+	public bool showPopUp
+	{
+		get{return PlayerPrefs.GetInt("piracyPopUp")==1;}
+		set{PlayerPrefs.SetInt("piracyPopUp",value ? 1:0);}
+	}
+
+	public bool startGame
+	{
+		get{return PlayerPrefs.GetInt("startGame")==1;}
+		set{PlayerPrefs.SetInt("startGame",value ? 1:0);}
 	}
 
 	protected void resolveVersion()
