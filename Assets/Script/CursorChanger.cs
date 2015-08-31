@@ -60,7 +60,6 @@ public class CursorChanger : MonoBehaviour {
 	public void pencil()
 	{
 		//Debug.Log("pencil");
-		Debug.Log(pencilTexture.height);
 		hotSpot = new Vector2(0,pencilTexture.height);
 		changer(pencilTexture);
 	}
@@ -74,8 +73,10 @@ public class CursorChanger : MonoBehaviour {
 
 	protected void changer(Texture2D texture)
 	{
+		Debug.Log("chan");
 		if(!bPencil)
 		{
+			Debug.Log("lapizfalsw");
 			Cursor.SetCursor(texture, hotSpot, cursorMode);
 			hotSpot = Vector2.zero;
 		}
@@ -104,7 +105,7 @@ public class CursorChanger : MonoBehaviour {
 			//eventTrigger = pieces.AddComponent<EventTrigger>();
 			eventTrigger = pieces.GetComponent<EventTrigger>();
 			
-			//Debug.Log(pieces);
+			Debug.Log(pieces);
 			
 			AddEventTrigger(overButton, EventTriggerType.PointerEnter);
 			AddEventTrigger(upChange, EventTriggerType.PointerExit);

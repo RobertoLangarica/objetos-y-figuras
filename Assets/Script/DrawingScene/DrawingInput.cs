@@ -148,7 +148,9 @@ public class DrawingInput : MonoBehaviour
 	{
 		if(CursorChanger.instance)
 		{
+			CursorChanger.instance.bPencil=false;
 			CursorChanger.instance.pencil();
+			CursorChanger.instance.bPencil=true;
 		}
 		erraser.SetActive(false);
 		isErrasing = false;
@@ -192,11 +194,12 @@ public class DrawingInput : MonoBehaviour
 	}
 	public void drawingTrue()
 	{
-		switchToPaint();
 		if(hiding)
 			return;
+
 		if(canDraw)
 		{
+			switchToPaint();
 			foreach (GameObject val in allPainted) 
 			{
 				val.SetActive(true);
