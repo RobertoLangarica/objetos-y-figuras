@@ -346,7 +346,7 @@ public class TangramManager : MonoBehaviour
 			result = fTypeAllShapes[Random.Range(0,fTypeAllShapes.Count-1)];
 			fTypeAllShapes.Remove(result);
 		}
-		//result = loader.data.levels500[22];
+		//result = loader.data.levels500[29];
 		return result;
 	}
 
