@@ -57,6 +57,11 @@ public class CursorChanger : MonoBehaviour {
 		changer(downDragTexture);
 	}
 
+	public void rotate()
+	{
+		changer(rotateTexture);
+	}
+
 	public void pencil()
 	{
 		//Debug.Log("pencil");
