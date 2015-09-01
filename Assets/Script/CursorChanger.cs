@@ -19,12 +19,15 @@ public class CursorChanger : MonoBehaviour {
 
 	public bool bPencil;
 
+	protected Texture2D currentTexture;
+
 	
 	EventTrigger eventTrigger = null;
 
 	void Awake()
 	{
 		instance = this;
+		currentTexture = ereaserTexture;
 	}
 	
 	public void upChange() 
@@ -53,7 +56,7 @@ public class CursorChanger : MonoBehaviour {
 
 	public void downDrag()
 	{
-		//Debug.Log("upDrag");
+		Debug.Log("Drag texture");
 		changer(downDragTexture);
 	}
 
@@ -80,8 +83,11 @@ public class CursorChanger : MonoBehaviour {
 	{
 		if(!bPencil)
 		{
-			Cursor.SetCursor(texture, hotSpot, cursorMode);
-			hotSpot = Vector2.zero;
+			if(currentTexture != texture)
+			{
+				currentTexture = texture;
+				Cursor.SetCursor(texture, hotSpot, cursorMode);
+			}
 		}
 	}
 

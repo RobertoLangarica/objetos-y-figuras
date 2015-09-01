@@ -49,7 +49,7 @@ public class InternalShape : MonoBehaviour
 	{
 		Shape shp = go.GetComponent<Shape>();
 		bool flag = false;
-		if(go.name == "GCircle")
+		if(go.name == "GCircle" && requiredAngle[0] > 360)
 		{
 			return true;
 		}
