@@ -60,7 +60,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 491040}
-  - 58: {fileID: 5871230}
+  - 60: {fileID: 6074320}
   m_Layer: 8
   m_Name: move
   m_TagString: Untagged
@@ -119,17 +119,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 415858}
   m_RootOrder: 1
---- !u!58 &5871230
-CircleCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 191040}
-  m_Enabled: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Radius: 3.00999999
-  m_Center: {x: 0, y: 0}
 --- !u!58 &5891040
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -141,6 +130,30 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_Radius: 4.09000015
   m_Center: {x: 0, y: 0}
+--- !u!60 &6074320
+PolygonCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 191040}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Poly:
+    m_Paths:
+    - - {x: 0, y: 3.04800749}
+      - {x: 1.30071628, y: 2.70668435}
+      - {x: 2.44319701, y: 1.67585289}
+      - {x: 2.92295408, y: .142735898}
+      - {x: 2.57747245, y: -1.45291591}
+      - {x: 1.65394306, y: -2.44363236}
+      - {x: -.0615831017, y: -3.03185463}
+      - {x: -1.71684122, y: -2.37631392}
+      - {x: -2.7106874, y: -1.32799673}
+      - {x: -2.98158908, y: -.356500983}
+      - {x: -2.90449834, y: .88981837}
+      - {x: -2.31110859, y: 1.93831038}
+      - {x: -1.35066772, y: 2.70668435}
 --- !u!114 &11401816
 MonoBehaviour:
   m_ObjectHideFlags: 1
