@@ -96,22 +96,23 @@ public class TangramManager : MonoBehaviour
 				Destroy(placeholder[i].gameObject);
 			}
 		}
-		shapes = new List<GameObject>();
-		placeholder = new List<Placeholder>();
+
+		shapes.Clear();
+		placeholder.Clear();
 
 		continueBtn.GetComponent<Button>().interactable = true;
 
 		switch(tType)
 		{
-		case(ETangramTypes.SAME_SHAPE):
-		{
-			currentLevel = selectLevel();
-		}
+			case(ETangramTypes.SAME_SHAPE):
+			{
+				currentLevel = selectLevel();
+			}
 			break;
-		case(ETangramTypes.ALL_SHAPES):
-		{
-			currentLevel = takeLevel();
-		}
+			case(ETangramTypes.ALL_SHAPES):
+			{
+				currentLevel = takeLevel();
+			}
 			break;
 		}
 		
@@ -140,7 +141,7 @@ public class TangramManager : MonoBehaviour
 		
 		float min;
 		float max;
-		float posTemp = -0.03f;
+
 		for(int i = 0; i < pieces.Length; i++)
 		{
 			if(Random.value < 0.5f)
@@ -224,11 +225,11 @@ public class TangramManager : MonoBehaviour
 			//Que la figura no se ponga en una rotacion invalida
 			Shape sp = go.GetComponent<Shape>();
 			sp.name = pieces[i].name;
+			sp.sortingOrder = input.nextSort;
 			sp.onRotationComplete();
 			input.onDragFinish += sp.onRotationComplete;
 			
-			go.transform.localPosition = new Vector3 (go.transform.localPosition.x,go.transform.localPosition.y,posTemp);
-			posTemp -= .01f;
+			go.transform.localPosition = new Vector3 (go.transform.localPosition.x,go.transform.localPosition.y,0);
 		}
 	}
 	
