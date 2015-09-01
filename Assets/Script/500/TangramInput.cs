@@ -388,6 +388,10 @@ public class TangramInput : MonoBehaviour {
 				{
 					if(rotating)
 					{
+						if(CursorChanger.instance)
+						{
+							CursorChanger.instance.rotate();
+						}
 						currentVector = Camera.main.ScreenToWorldPoint(new Vector3(gesture.Position.x,gesture.Position.y))
 							- _selected.transform.position;
 						currentVector.z = initVector.z;
@@ -401,6 +405,10 @@ public class TangramInput : MonoBehaviour {
 					}
 					else
 					{
+						if(CursorChanger.instance)
+						{
+							CursorChanger.instance.downDrag();
+						}
 						pos = new Vector3(_selected.transform.position.x + gesture.DeltaMove.x*cu
 						                  ,_selected.transform.position.y + gesture.DeltaMove.y*cu
 						                  ,_selected.transform.position.z);
@@ -439,6 +447,10 @@ public class TangramInput : MonoBehaviour {
 			}
 			onDragFinish();
 			ignoreNextRotation = false;
+			if(CursorChanger.instance)
+			{
+				CursorChanger.instance.upChange();
+			}
 			//_selected = null;
 			break;
 			
@@ -463,7 +475,7 @@ public class TangramInput : MonoBehaviour {
 					_selected.transform.eulerAngles = new Vector3(0,0
 					                                              ,_selected.transform.eulerAngles.z + gesture.DeltaRotation);
 				}
-				break;
+			break;
 		}
 	}
 
