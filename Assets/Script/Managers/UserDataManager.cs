@@ -44,7 +44,7 @@ public class UserDataManager
 		PlayerPrefs.SetInt("version",version);
 		int tutor = 0;
 
-		#if UNITY_STANDALONE
+		#if UNITY_STANDALONE || UNITY_EDITOR
 		//Por default activo en stand alone
 		tutor = 1;
 		#endif

@@ -136,10 +136,6 @@ public class DrawingInput : MonoBehaviour
 
 				allPainted.Add (go);
 			}
-			else
-			{
-				Debug.Log(tempMag);
-			}
 		}
 		else
 		{
