@@ -8,9 +8,15 @@ public class Placeholder : MonoBehaviour
 {
 	public List<InternalShape> internalShapes = new List<InternalShape>();
 
+	[HideInInspector]
+	public GameObject input;
+	[HideInInspector]
+	public bool canTurnOn = true;
+
 	public void fillChildInfo(int idPlaceHolderChild, GameObject[] shapes,int[] angle,float range)
 	{
 		InternalShape intShp = transform.GetChild(idPlaceHolderChild).gameObject.GetComponent<InternalShape>();
+		intShp.father = this;
 		int i = 0;
 
 		for(i = 0;i < shapes.Length;i++)
@@ -53,12 +59,14 @@ public class Placeholder : MonoBehaviour
 								if(!internalShapes[i].checkScale)
 								{
 									internalShapes[i].setPiece(tempshps[j]);
+									input.SetActive(false);
 								}
 								else
 								{
 									if(internalShapes[i].havevSameScale(tempshps[j]))
 									{
 										internalShapes[i].setPiece(tempshps[j]);
+										input.SetActive(false);
 									}
 								}
 							}
@@ -76,5 +84,13 @@ public class Placeholder : MonoBehaviour
 			}
 		}
 		return true;
+	}
+
+	public void turnOnInput()
+	{
+		if(canTurnOn)
+		{
+			input.SetActive(true);
+		}
 	}
 }

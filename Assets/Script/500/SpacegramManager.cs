@@ -151,6 +151,7 @@ public class SpacegramManager : MonoBehaviour
 		//placeholder
 		GameObject tmp = (GameObject)Resources.Load("Placeholders/"+lvlToPrepare);
 		placeholder = ((GameObject)GameObject.Instantiate(tmp)).GetComponent<Placeholder>();
+		placeholder.input = input.gameObject;
 
 		//Inicializamos los valores para el placeholder
 		initializePlaceholder();
@@ -164,7 +165,6 @@ public class SpacegramManager : MonoBehaviour
 		List<int> colorsShown = new List<int>();
 		int count = 0;
 		int repeatcount = 0;
-		Debug.Log("S");
 		while(count < shapes.Length)
 		{
 			rand = Random.Range(1,System.Enum.GetValues(typeof(BaseShape.EShapeColor)).Length-1);
@@ -240,10 +240,10 @@ public class SpacegramManager : MonoBehaviour
 	{
 		if(placeholder.isCorrect())
 		{
+			placeholder.canTurnOn = false;
 			AnalyticManager.instance.finsh("Construye","SpaceGram",currentLevel.name);
 			initializeReferenceImage();
 			continueBtn.interactable = false;
-			GameObject.FindObjectOfType<DragRecognizer>().enabled = false;
 			input.selected = null;
 			input.gameObject.SetActive(false);
 			notification.showToast("correcto",audioRight,2);

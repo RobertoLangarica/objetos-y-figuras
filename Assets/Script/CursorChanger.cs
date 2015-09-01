@@ -56,7 +56,7 @@ public class CursorChanger : MonoBehaviour {
 
 	public void downDrag()
 	{
-		Debug.Log("Drag texture");
+		//Debug.Log("Drag texture");
 		changer(downDragTexture);
 	}
 

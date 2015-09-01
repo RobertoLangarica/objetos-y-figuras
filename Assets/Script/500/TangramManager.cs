@@ -47,7 +47,7 @@ public class TangramManager : MonoBehaviour
 	
 	void onDrag()
 	{
-		DOTween.Kill("SnapMove");
+		//DOTween.Kill("SnapMove");
 	}
 	
 	void onDragFinish()
@@ -121,7 +121,7 @@ public class TangramManager : MonoBehaviour
 		GameObject tmp = (GameObject)Resources.Load("500/"+currentLevel.name);
 		previousLevel.Add(currentLevel.name);
 		placeholder.Add(((GameObject)GameObject.Instantiate(tmp,Vector3.zero,Quaternion.identity)).GetComponent<Placeholder>());
-		Debug.Log (currentLevel.name);
+		placeholder[0].input = input.gameObject;
 		
 		initializePlaceholder();
 
@@ -239,7 +239,6 @@ public class TangramManager : MonoBehaviour
 		List<int> colorsShown = new List<int>();
 		int count = 0;
 		int repeatcount = 0;
-		Debug.Log("S");
 		while(count < shapes.Count)
 		{
 			rand = Random.Range(1,System.Enum.GetValues(typeof(BaseShape.EShapeColor)).Length-1);
@@ -368,6 +367,7 @@ public class TangramManager : MonoBehaviour
 						previousLevel.Add(val.name);
 						placeholder.Add(((GameObject)GameObject.Instantiate(tmp,Vector3.zero,Quaternion.identity)).GetComponent<Placeholder>());
 						placeholder[count].gameObject.GetComponent<SpriteRenderer>().enabled = false;
+						placeholder[count].input = input.gameObject;
 						count++;
 					}
 					if(currLevel > 2 && val.difficulty == 2)
@@ -376,6 +376,7 @@ public class TangramManager : MonoBehaviour
 						previousLevel.Add(val.name);
 						placeholder.Add(((GameObject)GameObject.Instantiate(tmp,Vector3.zero,Quaternion.identity)).GetComponent<Placeholder>());
 						placeholder[count].gameObject.GetComponent<SpriteRenderer>().enabled = false;
+						placeholder[count].input = input.gameObject;
 						count++;
 						if(otherPieces == null && currentLevel.pieces[0].name != val.pieces[0].name)
 						{
@@ -453,6 +454,7 @@ public class TangramManager : MonoBehaviour
 		{
 			if(placeholder[i].isCorrect())
 			{
+				placeholder[i].canTurnOn = false;
 				if(currLevel > 2 && currLevel < 5)
 				{
 					Shape[] temp = FindObjectsOfType<Shape>() as Shape[];
@@ -465,7 +467,6 @@ public class TangramManager : MonoBehaviour
 						}
 					}
 				}
-				//input.selected = null;
 				input.gameObject.SetActive(false);
 				nextLevel();
 				return true;
