@@ -114,7 +114,7 @@ public class CursorChanger : MonoBehaviour {
 			//eventTrigger = pieces.AddComponent<EventTrigger>();
 			eventTrigger = pieces.GetComponent<EventTrigger>();
 			
-			Debug.Log(pieces);
+			//Debug.Log(pieces);
 			
 			AddEventTrigger(overButton, EventTriggerType.PointerEnter);
 			AddEventTrigger(upChange, EventTriggerType.PointerExit);
