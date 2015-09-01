@@ -57,6 +57,11 @@ public class CursorChanger : MonoBehaviour {
 		changer(downDragTexture);
 	}
 
+	public void rotate()
+	{
+		changer(rotateTexture);
+	}
+
 	public void pencil()
 	{
 		//Debug.Log("pencil");
@@ -73,10 +78,8 @@ public class CursorChanger : MonoBehaviour {
 
 	protected void changer(Texture2D texture)
 	{
-		Debug.Log("chan");
 		if(!bPencil)
 		{
-			Debug.Log("lapizfalsw");
 			Cursor.SetCursor(texture, hotSpot, cursorMode);
 			hotSpot = Vector2.zero;
 		}

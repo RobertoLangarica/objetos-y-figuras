@@ -40,6 +40,10 @@ public class GroupInput : MonoBehaviour
 				selected.GetComponent<SpriteRenderer>().sortingLayerName = "SelectedShape";
 				selected.onTouchBegan(Camera.main.ScreenToWorldPoint(gesture.StartPosition));
 				initialP = Input.mousePosition;
+				if(CursorChanger.instance)
+				{
+					CursorChanger.instance.downDrag();
+				}
 			}
 			break;
 			
@@ -79,6 +83,10 @@ public class GroupInput : MonoBehaviour
 				selected.opnTouchEnded();
 				selected.GetComponent<SpriteRenderer>().sortingLayerName = "Shapes";
 				selected = null;
+			}
+			if(CursorChanger.instance)
+			{
+				CursorChanger.instance.upChange();
 			}
 			break;
 		}
