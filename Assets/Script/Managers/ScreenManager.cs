@@ -26,17 +26,20 @@ public class ScreenManager : MonoBehaviour {
 
 		//Solo que se inicialize user data
 		UserDataManager.instance.foo();
+	
+		transform.SetAsLastSibling();
+	}
 
+	void Start()
+	{
 		//Cliente
 		#if UNITY_EDITOR
 		GoToScene(firstEditorScreen);
 		#else
 		GoToScene(firstScreenName);
 		#endif
-	
-		transform.SetAsLastSibling ();
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		
