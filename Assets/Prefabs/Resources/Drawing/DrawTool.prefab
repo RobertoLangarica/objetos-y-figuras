@@ -297,6 +297,9 @@ MonoBehaviour:
   canDraw: 1
   input: {fileID: 193040}
   hiding: 0
+  randomizeColor: 1
+  drawDistanceTolerance: .125
+  currentColor: {r: .133000001, g: .564999998, b: .944999993, a: 1}
 --- !u!114 &11464324
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -461,7 +464,7 @@ MonoBehaviour:
   EventMessageTarget: {fileID: 0}
   SendMessageToSelection: 0
   IsExclusive: 0
-  MoveTolerance: .25
+  MoveTolerance: .125
   ApplySameDirectionConstraint: 0
 --- !u!114 &11493032
 MonoBehaviour:
@@ -655,6 +658,7 @@ MonoBehaviour:
   Switch2EraseBtn: {fileID: 193042}
   Switch2PaintBtn: {fileID: 0}
   EreaseAllBtn: {fileID: 193046}
+  showing: 0
   startOpen: 0
 --- !u!114 &11493044
 MonoBehaviour:
