@@ -10,6 +10,9 @@ public class DrawingInput : MonoBehaviour
 	public GameObject input;
 	public bool hiding = false;
 	public bool randomizeColor = true;
+	public float drawDistanceTolerance = 0.125f;
+
+	protected float tolerance;
 	protected float bWidth;
 	protected bool paintStarted = true;
 	protected bool newLine = true;
@@ -30,13 +33,16 @@ public class DrawingInput : MonoBehaviour
 		erraser = transform.FindChild ("Erraser").gameObject;
 		erraser.SetActive (false);
 	
-		bWidth = brushType.renderer.bounds.size.x*brushType.transform.localScale.x*0.5f;
+		bWidth = brushType.renderer.bounds.size.x*brushType.transform.localScale.x;
 		input.GetComponent<DragRecognizer>().OnGesture += OnDrag;
 
 		if(randomizeColor)
 		{
 			currentColor = BaseShape.getColorFromIndex(Random.Range(0,System.Enum.GetValues(typeof(BaseShape.EShapeColor)).Length-1));
 		}
+
+		tolerance = drawDistanceTolerance*((Camera.main.orthographicSize*2*100)/Screen.height);
+		tolerance *= tolerance;
 	}
 
 	void OnDrag(DragGesture gesture)
@@ -54,20 +60,20 @@ public class DrawingInput : MonoBehaviour
 			}
 			else
 			{
-				spawnNewPoint(Camera.main.ScreenToWorldPoint(gesture.Position));
+				spawnNewPoint(Camera.main.ScreenToWorldPoint(gesture.Position),false);
 			}
 		}
 			break;
 		case (ContinuousGesturePhase.Updated):
 		{
-			if(!isErrasing)
+			if(isErrasing)
 			{
-				spawnNewPoint(Camera.main.ScreenToWorldPoint(gesture.Position));
-				newLine = false;
+				moveErraser(Camera.main.ScreenToWorldPoint(Input.mousePosition));
 			}
 			else
 			{
-				moveErraser(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+				spawnNewPoint(Camera.main.ScreenToWorldPoint(gesture.Position),true);
+				newLine = false;
 			}
 		}
 			break;
@@ -75,51 +81,74 @@ public class DrawingInput : MonoBehaviour
 		case (ContinuousGesturePhase.Ended):
 		{
 			erraser.SetActive(false);
-			//paintStarted = false;
 			newLine = true;
 		}
 			break;
 		}
 	}
-	//protected int count = 0;
-	protected void spawnNewPoint(Vector3 nVec3)
+	
+	protected void spawnNewPoint(Vector3 nVec3,bool processLastPoint)
 	{
 		if(!canDraw) return;
-		GameObject go;
+
+
+
+		GameObject go = null;
 		float tempMag = 0;
-
 		nVec3.z = 0;
-		go = GameObject.Instantiate(brushType,nVec3,Quaternion.identity) as GameObject;
-		go.transform.SetParent(paintedFather.transform);
-		/*count++;
-		if(count >= 50)
-		{
-			count = 0;
-			currentColor = BaseShape.getColorFromIndex(Random.Range(0,System.Enum.GetValues(typeof(BaseShape.EShapeColor)).Length-1));
-		}*/
-		go.GetComponent<SpriteRenderer>().color = currentColor;
 
-		if(!newLine && allPainted.Count > 0)
+
+		//Si el lapìz se desactiva durante el update y se vuelve a activar ya no hay lastPoint
+		if(processLastPoint && allPainted.Count == 0)
 		{
+			processLastPoint = false;
+		}
+
+		//Si no a superado la tolerancia no se dibuja
+		if(processLastPoint)
+		{
+			//Debug.Log ("Processing last point");
 			Vector3 prevVec = allPainted[allPainted.Count-1].transform.position;
-			tempMag = (prevVec - nVec3).magnitude;
-			if(tempMag > bWidth)
+			tempMag = (prevVec - nVec3).sqrMagnitude;
+
+			if(tempMag >= tolerance)
 			{
+				go = GameObject.Instantiate(brushType,nVec3,Quaternion.identity) as GameObject;
+				go.transform.SetParent(paintedFather.transform);
+				go.GetComponent<SpriteRenderer>().color = currentColor;
+
+				tempMag = (prevVec - nVec3).magnitude;
 
 				Vector3 nScale = go.transform.localScale;
-				nScale.x *= (tempMag/bWidth)*0.5f;
+				nScale.x *= (tempMag/bWidth);
 				go.transform.localScale = nScale;
+				
+				//Rotado
+				Vector3 difVec = prevVec - nVec3;
+				Vector3 defaultVec = new Vector3(1,0,0);
+				float rotZ = Vector3.Angle(difVec,defaultVec);
+
+				if(prevVec.y < nVec3.y)
+				{
+					rotZ *= -1;
+				}
+				go.transform.localRotation = Quaternion.Euler(new Vector3(0,0,rotZ));
+
+				allPainted.Add (go);
 			}
-			Vector3 difVec = prevVec - nVec3;
-			Vector3 defaultVec = new Vector3(1,0,0);
-			float rotZ = Vector3.Angle(difVec,defaultVec);
-			if(prevVec.y < nVec3.y)
+			else
 			{
-				rotZ *= -1;
+				Debug.Log(tempMag);
 			}
-			go.transform.localRotation = Quaternion.Euler(new Vector3(0,0,rotZ));
 		}
-		allPainted.Add (go);
+		else
+		{
+			go = GameObject.Instantiate(brushType,nVec3,Quaternion.identity) as GameObject;
+			go.transform.SetParent(paintedFather.transform);
+			go.GetComponent<SpriteRenderer>().color = currentColor;
+
+			allPainted.Add (go);
+		}
 	}
 
 	protected void moveErraser(Vector3 nVec3)
