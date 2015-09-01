@@ -53,8 +53,8 @@ public class ShapeSelector : MonoBehaviour {
 
 		if(pencil)
 		{
-			pencil.onClose = onPencilClose;
-			pencil.onOpen = onPencilOpen;
+			pencil.onClose += onPencilClose;
+			pencil.onOpen += onPencilOpen;
 		}
 
 		setColorToSelectedColor(6);
