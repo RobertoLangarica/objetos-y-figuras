@@ -80,7 +80,7 @@ public class Question : MonoBehaviour {
 
 	public void firstQuestionSound(string soundToPlay)
 	{
-		AudioClip aC = (AudioClip)Resources.Load("Sounds/"+soundToPlay+"_"+soundtoGo);
+		AudioClip aC = (AudioClip)Resources.Load("Sounds/"+data.getFigureByName(soundToPlay).getInfoByName(soundtoGo.ToString()).idSound);
 		showToast(false,0);
 		showing = true;
 		waitForClick = 0.6f;
