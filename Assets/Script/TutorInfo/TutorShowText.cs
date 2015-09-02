@@ -16,22 +16,10 @@ public class TutorShowText : MonoBehaviour {
 	{
 		if(!UserDataManager.instance.tutorMode)
 		{
-			//this.gameObject.SetActive(false);
+			this.gameObject.SetActive(false);
+			return;
 		}
-		TextAsset tempTxt = (TextAsset)Resources.Load ("Texts/toastTexts");
-		
-		//Ya eixste el archivo y solo checamos la version
-		data = Teacher.LoadFromText(tempTxt.text);//Levels.Load(path);
-
-		showTutorText shtutor;
-		shtutor = data.getShowTutorTextByName(textToShow);
-
-		shtutor.text = shtutor.text.Replace("@",System.Environment.NewLine);
-		shtutor.text = shtutor.text.Replace("()","<b>");
-		shtutor.text = shtutor.text.Replace("(*)","</b>");
-
-		text.text =  shtutor.text;
-		title.text = shtutor.title;
+		panelButonShow.GetComponentInChildren<Button>().interactable=false;
 		StartCoroutine("lateStart");
 	}
 
@@ -40,12 +28,30 @@ public class TutorShowText : MonoBehaviour {
 	{
 		yield return  new WaitForSeconds(.1f);
 		//Debug.Log(title.cachedTextGenerator.fontSizeUsedForBestFit);
+
+		TextAsset tempTxt = (TextAsset)Resources.Load ("Texts/toastTexts");
+		
+		//Ya eixste el archivo y solo checamos la version
+		data = Teacher.LoadFromText(tempTxt.text);//Levels.Load(path);
+		
+		showTutorText shtutor;
+		shtutor = data.getShowTutorTextByName(textToShow);
+		
+		shtutor.text = shtutor.text.Replace("@",System.Environment.NewLine);
+		shtutor.title = shtutor.title.Replace("@",System.Environment.NewLine);
+		shtutor.text = shtutor.text.Replace("()","<b>");
+		shtutor.text = shtutor.text.Replace("(*)","</b>");
+		
+		text.text =  shtutor.text;
+		title.text = shtutor.title;
+		yield return new WaitForSeconds(.1f);
 		if(title.cachedTextGenerator.fontSizeUsedForBestFit <50)
 		{
 			text.resizeTextMaxSize = 12;
 		}
-		yield return  new WaitForSeconds(.3f);
-		//panelShowText.SetActive(false);
+		yield return  new WaitForSeconds(.1f);
+		panelButonShow.GetComponentInChildren<Button>().interactable=true;
+		panelShowText.SetActive(false);
 	}
 
 	public void exitPopUp()
