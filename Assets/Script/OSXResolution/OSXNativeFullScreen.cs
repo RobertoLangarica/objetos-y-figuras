@@ -9,14 +9,7 @@ public class OSXNativeFullScreen : MonoBehaviour
 		#if UNITY_STANDALONE_OSX
 		Resolution[] resolutions = Screen.resolutions;
 		Array.Reverse(resolutions);
-
-		foreach (Resolution res in resolutions) 
-		{
-			print(res.width + "x" + res.height);
-		}
-
 		Screen.SetResolution(resolutions[0].width, resolutions[0].height, true);
-		Debug.Log("Full Screen Resolution set for UNITY_STANDALONE_OSX");
 		#endif
 	}
 	
