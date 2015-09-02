@@ -1320,8 +1320,8 @@ RectTransform:
   - {fileID: 1989956562}
   m_Father: {fileID: 1830109783}
   m_RootOrder: 1
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: .0250000004, y: .0250000004}
+  m_AnchorMax: {x: .98119998, y: .981249988}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
@@ -1766,7 +1766,7 @@ AudioSource:
   m_GameObject: {fileID: 1176041453}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: d4a7c68e821a0354f9b34e24b510cdad, type: 3}
   m_PlayOnAwake: 1
   m_Volume: .5
   m_Pitch: 1
@@ -3639,7 +3639,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 35
 --- !u!1001 &1833086435
 Prefab:
   m_ObjectHideFlags: 0
@@ -3729,11 +3729,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22445998, guid: 05f5f3a825ed1ae4d96ca4cf437f6cc9, type: 2}
       propertyPath: m_SizeDelta.y
-      value: -171.654373
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11487992, guid: 05f5f3a825ed1ae4d96ca4cf437f6cc9, type: 2}
       propertyPath: textToShow
       value: conoce
+      objectReference: {fileID: 0}
+    - target: {fileID: 22445998, guid: 05f5f3a825ed1ae4d96ca4cf437f6cc9, type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -46.6463699
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 05f5f3a825ed1ae4d96ca4cf437f6cc9, type: 2}
@@ -4139,9 +4143,10 @@ GameObject:
   - 222: {fileID: 1989956565}
   - 114: {fileID: 1989956564}
   - 114: {fileID: 1989956563}
+  - 114: {fileID: 1989956566}
   m_Layer: 5
   m_Name: Button
-  m_TagString: Untagged
+  m_TagString: UIButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4159,8 +4164,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 943210650}
   m_RootOrder: 0
-  m_AnchorMin: {x: .903614223, y: 0}
-  m_AnchorMax: {x: 1, y: .105078392}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: .096385777, y: .105078392}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
@@ -4247,6 +4252,19 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 1833086435}
   m_GameObject: {fileID: 1989956561}
+--- !u!114 &1989956566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11478610, guid: 05f5f3a825ed1ae4d96ca4cf437f6cc9,
+    type: 2}
+  m_PrefabInternal: {fileID: 1833086435}
+  m_GameObject: {fileID: 1989956561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delegates: []
 --- !u!1 &2030277756
 GameObject:
   m_ObjectHideFlags: 0
@@ -4258,9 +4276,10 @@ GameObject:
   - 222: {fileID: 2030277760}
   - 114: {fileID: 2030277759}
   - 114: {fileID: 2030277758}
+  - 114: {fileID: 2030277761}
   m_Layer: 5
   m_Name: Button
-  m_TagString: Untagged
+  m_TagString: UIButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4367,6 +4386,19 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 1833086435}
   m_GameObject: {fileID: 2030277756}
+--- !u!114 &2030277761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11478612, guid: 05f5f3a825ed1ae4d96ca4cf437f6cc9,
+    type: 2}
+  m_PrefabInternal: {fileID: 1833086435}
+  m_GameObject: {fileID: 2030277756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delegates: []
 --- !u!1 &2071495065
 GameObject:
   m_ObjectHideFlags: 0
@@ -4462,7 +4494,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: .0249774121, y: .235289931}
   m_AnchorMax: {x: .957539737, y: 1}
-  m_AnchoredPosition: {x: 0, y: -31.3307114}
+  m_AnchoredPosition: {x: 0, y: -46.6463699}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &2089086707
