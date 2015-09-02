@@ -18,6 +18,8 @@ public class InternalShape : MonoBehaviour
 	public float range;
 	[HideInInspector]
 	public float distRange = 0.3f;
+	[HideInInspector]
+	public Placeholder father;
 
 	public bool isOption(GameObject go)
 	{
@@ -97,8 +99,16 @@ public class InternalShape : MonoBehaviour
 		correctPiece = true;
 		go.GetComponent<Shape>().isPositionated = true;
 		DOTween.Kill("SnapMove",true);
-		go.transform.DOMove(transform.position,0.2f).SetEase(Ease.InOutSine).SetId("SnapMove");
+		go.transform.DOMove(transform.position,0.2f).SetEase(Ease.InOutSine).SetId("SnapMove").OnComplete(()=>{tweenCallback();});
 		rotAngle = getClosestAngle(go);
 		go.transform.DOLocalRotate(new Vector3(0,0,rotAngle),0.2f).SetEase(Ease.InOutSine).SetId("SnapMove");
+	}
+
+	protected void tweenCallback()
+	{
+		if(father != null)
+		{
+			father.turnOnInput();
+		}
 	}
 }

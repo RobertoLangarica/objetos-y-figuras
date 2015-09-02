@@ -56,7 +56,7 @@ public class CursorChanger : MonoBehaviour {
 
 	public void downDrag()
 	{
-		Debug.Log("Drag texture");
+		//Debug.Log("Drag texture");
 		changer(downDragTexture);
 	}
 
@@ -114,7 +114,7 @@ public class CursorChanger : MonoBehaviour {
 			//eventTrigger = pieces.AddComponent<EventTrigger>();
 			eventTrigger = pieces.GetComponent<EventTrigger>();
 			
-			Debug.Log(pieces);
+			//Debug.Log(pieces);
 			
 			AddEventTrigger(overButton, EventTriggerType.PointerEnter);
 			AddEventTrigger(upChange, EventTriggerType.PointerExit);
