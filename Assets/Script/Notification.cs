@@ -45,7 +45,7 @@ public class Notification : MonoBehaviour
 	
 	public void showToast(string toastXMLName,float duration = -1)
 	{
-		AudioClip aC = (AudioClip)Resources.Load("Sounds/"+toastXMLName);
+		AudioClip aC = (AudioClip)Resources.Load("Sounds/"+data.getNotifyByName(toastXMLName).idSound);
 
 		currentToast = toastXMLName;
 
@@ -74,14 +74,31 @@ public class Notification : MonoBehaviour
 
 	public void showToast(string toastXMLName,AudioClip sound,float duration = -1)
 	{
+		AudioClip aC = (AudioClip)Resources.Load("Sounds/"+data.getNotifyByName(toastXMLName).idSound);
+
 		currentToast = toastXMLName;
 
 		if(duration < 0)
 		{
-			duration = sound.length;
+			if(aC)
+			{
+				duration = aC.length;
+			}
+			else
+			{
+				duration = 3.0f;
+			}
+		}
+		if(aC)
+		{
+			audioSource.PlayOneShot(aC);
 		}
 
-		audioSource.PlayOneShot(sound);
+		if(sound)
+		{
+			audioSource.PlayOneShot(sound);
+		}
+
 		StartCoroutine("hideToastWhenSoundEnd",new object[2]{duration,toastXMLName});
 		
 		changeText(toastXMLName);
