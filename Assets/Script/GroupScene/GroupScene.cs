@@ -92,21 +92,25 @@ public class GroupScene : MonoBehaviour
 		case(EGroups.COLOR):
 		{
 			subtitle.text = "\"Color\"";
+			FindObjectOfType<TutorShowText>().textToShow = "color";
 		}
 			break;
 		case(EGroups.FREE):
 		{
 			subtitle.text = "\"Canasta Revuelta\"";
+			FindObjectOfType<TutorShowText>().textToShow = "canasta";
 		}
 			break;
 		case(EGroups.SHAPE):
 		{
-			subtitle.text = "\"Figura\"";
+			subtitle.text = "\"Forma\"";
+			FindObjectOfType<TutorShowText>().textToShow = "forma";
 		}
 			break;
 		case(EGroups.SIZE):
 		{
 			subtitle.text = "\"Tamaño\"";
+			FindObjectOfType<TutorShowText>().textToShow = "tamaño";
 		}
 			break;
 		}
