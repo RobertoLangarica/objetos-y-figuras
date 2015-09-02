@@ -14,6 +14,12 @@ public class showTutorText
 	[XmlAttribute("idSound")]
 	public string idSound;//id del sonido
 
+	[XmlAttribute("title")]
+	public string title;//titulo
+
+	[XmlAttribute("description")]
+	public string description;//description
+
 	//Constructor existente para evitar problemas con XMLSerializer
 	public showTutorText()
 	{}
