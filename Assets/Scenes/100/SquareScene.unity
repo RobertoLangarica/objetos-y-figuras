@@ -255,6 +255,14 @@ Prefab:
       propertyPath: m_Transition
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11424676, guid: 967893e6f86672f409e95fbbb9a47465, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: cuadrado
+      objectReference: {fileID: 0}
+    - target: {fileID: 11420316, guid: 967893e6f86672f409e95fbbb9a47465, type: 2}
+      propertyPath: delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: cuadrado
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 967893e6f86672f409e95fbbb9a47465, type: 2}
   m_RootGameObject: {fileID: 557911914}
@@ -557,7 +565,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11451776, guid: 3dfb11f8ce87d5444b495aba7495d891, type: 2}
       propertyPath: delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Square
+      value: cuadrado
       objectReference: {fileID: 0}
     - target: {fileID: 11451776, guid: 3dfb11f8ce87d5444b495aba7495d891, type: 2}
       propertyPath: delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -661,7 +669,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11451776, guid: 3dfb11f8ce87d5444b495aba7495d891, type: 2}
       propertyPath: delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Square
+      value: cuadrado
       objectReference: {fileID: 0}
     - target: {fileID: 11451776, guid: 3dfb11f8ce87d5444b495aba7495d891, type: 2}
       propertyPath: delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -679,6 +687,7 @@ Prefab:
     - target: {fileID: 11428104, guid: 3dfb11f8ce87d5444b495aba7495d891, type: 2}
       propertyPath: MoveTolerance
       value: .125
+      objectReference: {fileID: 0}
     - target: {fileID: 5828086, guid: 3dfb11f8ce87d5444b495aba7495d891, type: 2}
       propertyPath: m_Radius
       value: .200000003
@@ -1262,7 +1271,7 @@ MonoBehaviour:
             Culture=neutral, PublicKeyToken=null
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Square
+          m_StringArgument: cuadrado
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 557911920}
@@ -1334,7 +1343,7 @@ MonoBehaviour:
               Culture=neutral, PublicKeyToken=null
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: Square
+            m_StringArgument: cuadrado
             m_BoolArgument: 0
           m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
@@ -2904,7 +2913,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75f53f3b6b4a0e24985cfe0a555c9e26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startSoundName: Square
+  startSoundName: cuadrado
 --- !u!81 &1169323140
 AudioListener:
   m_ObjectHideFlags: 0
@@ -3734,7 +3743,7 @@ MonoBehaviour:
               Culture=neutral, PublicKeyToken=null
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: Square
+            m_StringArgument: cuadrado
             m_BoolArgument: 0
           m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
@@ -3752,7 +3761,7 @@ MonoBehaviour:
               Culture=neutral, PublicKeyToken=null
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: Square
+            m_StringArgument: cuadrado
             m_BoolArgument: 0
           m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
