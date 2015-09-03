@@ -171,9 +171,7 @@ public class PopupBeforeTutor : MonoBehaviour {
 
 	IEnumerator closePopUp()
 	{
-		Debug.Log("S");
 		yield return  new WaitForSeconds(10);
-		Debug.Log("SSW");
 		show(false);
 	}
 }
