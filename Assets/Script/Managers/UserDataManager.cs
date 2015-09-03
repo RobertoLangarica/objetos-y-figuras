@@ -51,6 +51,7 @@ public class UserDataManager
 
 		PlayerPrefs.SetInt("tutorMode",tutor);
 		PlayerPrefs.SetInt("piracyPopUp",1);
+		PlayerPrefs.SetInt("validateGame",0);
 	}
 
 	public bool tutorMode
@@ -69,6 +70,12 @@ public class UserDataManager
 	{
 		get{return PlayerPrefs.GetInt("startGame")==1;}
 		set{PlayerPrefs.SetInt("startGame",value ? 1:0);}
+	}
+	
+	public bool validateGame
+	{
+		get{return PlayerPrefs.GetInt("validateGame")==1;}
+		set{PlayerPrefs.SetInt("validateGame",value ? 1:0);}
 	}
 
 	protected void resolveVersion()
