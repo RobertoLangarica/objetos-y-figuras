@@ -132,6 +132,8 @@ public class PopupBeforeTutor : MonoBehaviour {
 
 		if(shouldShow)
 		{
+			
+			StartCoroutine("closePopUp");
 			inverseTime = 1/0.25f;
 			destinationScale = Vector3.one;
 			onEnd += completeIntro;
@@ -165,5 +167,13 @@ public class PopupBeforeTutor : MonoBehaviour {
 	protected void advance()
 	{
 		ScreenManager.instance.GoToScene(screenToShow);
+	}
+
+	IEnumerator closePopUp()
+	{
+		Debug.Log("S");
+		yield return  new WaitForSeconds(10);
+		Debug.Log("SSW");
+		show(false);
 	}
 }
