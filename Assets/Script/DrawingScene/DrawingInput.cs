@@ -173,7 +173,7 @@ public class DrawingInput : MonoBehaviour
 
 	public void switchToPaint()
 	{
-		if(CursorChanger.instance)
+		if(CursorChanger.instance&&canDraw)
 		{
 			CursorChanger.instance.bPencil=false;
 			CursorChanger.instance.pencil();

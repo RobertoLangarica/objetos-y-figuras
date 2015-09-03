@@ -47,10 +47,12 @@ public class Pencil : MonoBehaviour {
 		Switch2EraseBtn.SetActive(true);
 		Switch2PaintBtn.SetActive(true);
 		EreaseAllBtn.SetActive(true);
+
 		if(showing)
 		{
 			if(CursorChanger.instance)
 			{
+				Debug.Log("S");
 				CursorChanger.instance.bPencil=false;
 			}
 
@@ -116,5 +118,10 @@ public class Pencil : MonoBehaviour {
 		DrawingInput a = FindObjectOfType<DrawingInput>();
 		a.GetComponent<DrawingInput>().change2Draw();
 		a.GetComponent<DrawingInput>().drawingTrue();
+		a.GetComponent<DrawingInput>().switchToPaint();
+		if(CursorChanger.instance)
+		{
+			CursorChanger.instance.bPencil=false;
+		}
 	}
 }

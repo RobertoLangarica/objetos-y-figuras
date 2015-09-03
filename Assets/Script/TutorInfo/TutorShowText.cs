@@ -14,6 +14,7 @@ public class TutorShowText : MonoBehaviour {
 	public string textToShow ="";
 	void Start()
 	{
+		Debug.Log(UserDataManager.instance.tutorMode);
 		if(!UserDataManager.instance.tutorMode)
 		{
 			this.gameObject.SetActive(false);

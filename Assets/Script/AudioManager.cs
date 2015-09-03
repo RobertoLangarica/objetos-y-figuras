@@ -41,7 +41,7 @@ public class AudioManager : MonoBehaviour {
 
 			//Debug.Log("Sound1");
 		}
-		else if(Application.loadedLevel < 8)
+		else if(Application.loadedLevel < 7)
 		{
 			MainMusic.volume=0;
 			GameMusic.volume=1;
@@ -58,10 +58,15 @@ public class AudioManager : MonoBehaviour {
 		else
 		{
 			MainMusic.Stop();
-			GameMusic.audio.clip = GameAudio;
 			MainMusic.volume=0;
 			GameMusic.volume=1;
-			GameMusic.Play();
+			GameMusic.audio.clip = GameAudio;
+			if(!GameMusic.isPlaying)
+			{
+				GameMusic.Play();
+			}
+
+
 		}
 
 		searchButtons();

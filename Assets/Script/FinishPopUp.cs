@@ -31,6 +31,18 @@ public class FinishPopUp : MonoBehaviour
 		if(audioSource)
 		{
 			audioSource.Play();
+			Invoke("playVoice",audioSource.clip.length);
+		}
+	}
+
+	protected void playVoice()
+	{
+		Debug.Log("Felicidades");
+		AudioClip aC = (AudioClip)Resources.Load("Sounds/felicidades_has_completado_la_mision");
+		if(aC)
+		{
+			Debug.Log("Play");
+			Camera.main.audio.PlayOneShot(aC);
 		}
 	}
 
