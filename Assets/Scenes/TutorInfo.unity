@@ -298,7 +298,7 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1033392508}
   m_RootOrder: 2
-  m_AnchorMin: {x: 0, y: .180065796}
+  m_AnchorMin: {x: 0, y: .401730686}
   m_AnchorMax: {x: 1, y: .836066067}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
@@ -336,10 +336,7 @@ MonoBehaviour:
     novedosas  y divertidas para trabajar  los aprendizajes esperados de \xE9sta y
     otras competencias que te ayudar\xE1n a desarrollar  en tus alumnos la percepci\xF3n
     geom\xE9trica as\xED como la adquisici\xF3n de nuevo vocabulario mediante el uso
-    de un lenguaje matem\xE1tico m\xE1s formal.\r\n\nEn cada actividad encontrar\xE1s
-    un icono como el icono en la parte inferior izquierda que te indicar\xE1 la competencia
-    y aprendizaje esperado que favorece, as\xED como algunas sugerencias did\xE1cticas
-    que te apoyar\xE1n para potencializar los aprendizajes de tus alumnos y alumnas.\r\n"
+    de un lenguaje matem\xE1tico m\xE1s formal.\r"
 --- !u!222 &327712861
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -378,7 +375,7 @@ MonoBehaviour:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Sprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -436,8 +433,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1033392508}
   m_RootOrder: 3
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: .0788358748, y: .118328959}
+  m_AnchorMin: {x: 0, y: .272143066}
+  m_AnchorMax: {x: .0788358748, y: .390472025}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
@@ -611,7 +608,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Sprite: {fileID: 21300000, guid: 158e0fa4ab0f43f4c851895643c26481, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 303c0f0158575094b881abd4fcd46f6d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -659,6 +656,7 @@ RectTransform:
   - {fileID: 1525583589}
   - {fileID: 2010263729}
   - {fileID: 1168912267}
+  - {fileID: 1956011687}
   m_Father: {fileID: 1285738746}
   m_RootOrder: 1
   m_AnchorMin: {x: .0250000004, y: .0250000004}
@@ -702,9 +700,10 @@ GameObject:
   m_Component:
   - 224: {fileID: 1168912267}
   - 114: {fileID: 1168912266}
+  - 114: {fileID: 1168912268}
   m_Layer: 5
   m_Name: Toggle
-  m_TagString: Untagged
+  m_TagString: UIButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -779,11 +778,23 @@ RectTransform:
   - {fileID: 107165679}
   m_Father: {fileID: 1033392508}
   m_RootOrder: 6
-  m_AnchorMin: {x: .802237749, y: .0718624443}
-  m_AnchorMax: {x: .848668933, y: .14623262}
+  m_AnchorMin: {x: .100731909, y: .0960676149}
+  m_AnchorMax: {x: .147163093, y: .157206133}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
+--- !u!114 &1168912268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1168912265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delegates: []
 --- !u!1 &1213703167
 GameObject:
   m_ObjectHideFlags: 0
@@ -971,7 +982,7 @@ GameObject:
   - 222: {fileID: 1525583591}
   - 114: {fileID: 1525583590}
   m_Layer: 5
-  m_Name: Text
+  m_Name: label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -989,8 +1000,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1033392508}
   m_RootOrder: 4
-  m_AnchorMin: {x: .313419461, y: 4.65661287e-10}
-  m_AnchorMax: {x: .77980274, y: .180065796}
+  m_AnchorMin: {x: .165213972, y: .0766934231}
+  m_AnchorMax: {x: .990200043, y: .157206133}
   m_AnchoredPosition: {x: .000379122794, y: .000215031207}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
@@ -1019,13 +1030,84 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Para activar o desactivar el modo tutor haz click en el boton '
+  m_Text: "Activar modo tutor (Se recomienda desactivar si se instala en una computadora
+    que usar\xE1n los alumnos) "
 --- !u!222 &1525583591
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1525583588}
+--- !u!1 &1956011686
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 1956011687}
+  - 222: {fileID: 1956011689}
+  - 114: {fileID: 1956011688}
+  m_Layer: 5
+  m_Name: Text 2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1956011687
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1956011686}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: .999975026, y: .999975026, z: .999975026}
+  m_Children: []
+  m_Father: {fileID: 1033392508}
+  m_RootOrder: 7
+  m_AnchorMin: {x: .0988036469, y: .144950584}
+  m_AnchorMax: {x: 1, y: .392736256}
+  m_AnchoredPosition: {x: .000180341303, y: .00018030405}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: .5, y: .5}
+--- !u!114 &1956011688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1956011686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 1
+    m_FontStyle: 0
+    m_BestFit: 1
+    m_MinSize: 1
+    m_MaxSize: 35
+    m_Alignment: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "Si est\xE1 activo el modo tutor, en cada actividad encontrar\xE1s un icono
+    como este en la parte inferior izquierda de la pantalla que te indicar\xE1 la
+    competencia y aprendizaje esperado que favorece, as\xED como algunas sugerencias
+    did\xE1cticas que te apoyar\xE1n para potencializar los aprendizajes de tus alumnos
+    y alumnas.\r\n"
+--- !u!222 &1956011689
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1956011686}
 --- !u!1 &2010263728
 GameObject:
   m_ObjectHideFlags: 0
@@ -1037,9 +1119,10 @@ GameObject:
   - 222: {fileID: 2010263732}
   - 114: {fileID: 2010263731}
   - 114: {fileID: 2010263730}
+  - 114: {fileID: 2010263733}
   m_Layer: 5
   m_Name: Button
-  m_TagString: Untagged
+  m_TagString: UIButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1130,7 +1213,7 @@ MonoBehaviour:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Sprite: {fileID: 21300014, guid: f46c2807590594f878a1886f3b6e912e, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -1142,3 +1225,15 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2010263728}
+--- !u!114 &2010263733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2010263728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delegates: []

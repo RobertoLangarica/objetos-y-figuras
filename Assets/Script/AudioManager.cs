@@ -79,7 +79,10 @@ public class AudioManager : MonoBehaviour {
 		SoundsAS.audio.clip = SoundsAC;
 		foreach(GameObject button in buttons)
 		{
-			button.GetComponent<Button>().onClick.AddListener(() => { soundButton(); }); 
+			if(button.GetComponent<Button>())
+			{
+				button.GetComponent<Button>().onClick.AddListener(() => { soundButton(); }); 
+			}
 		}
 	}
 
