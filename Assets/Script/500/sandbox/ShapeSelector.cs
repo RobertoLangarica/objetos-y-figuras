@@ -176,7 +176,6 @@ public class ShapeSelector : MonoBehaviour {
 		img_pentagon.color = color;
 		img_circle.color = color;
 
-		Debug.Log (drawInput);
 		if(drawInput)
 		{
 			drawInput.currentColor = color;
