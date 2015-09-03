@@ -14,7 +14,6 @@ public class TutorShowText : MonoBehaviour {
 	public string textToShow ="";
 	void Start()
 	{
-		Debug.Log(UserDataManager.instance.tutorMode);
 		if(!UserDataManager.instance.tutorMode)
 		{
 			this.gameObject.SetActive(false);
@@ -40,8 +39,8 @@ public class TutorShowText : MonoBehaviour {
 		
 		shtutor.text = shtutor.text.Replace("@",System.Environment.NewLine);
 		shtutor.title = shtutor.title.Replace("@",System.Environment.NewLine);
-		shtutor.text = shtutor.text.Replace("()","<b>");
-		shtutor.text = shtutor.text.Replace("(*)","</b>");
+		shtutor.text = shtutor.text.Replace("()","<color=black>");
+		shtutor.text = shtutor.text.Replace("(*)","</color>");
 		
 		text.text =  shtutor.text;
 		title.text = shtutor.title;
