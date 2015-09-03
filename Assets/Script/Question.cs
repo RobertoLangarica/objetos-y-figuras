@@ -42,7 +42,23 @@ public class Question : MonoBehaviour {
 
 		if(firstTime)
 		{
-			firstQuestionSound(firstTimeText);
+			if(Application.loadedLevelName == "DrawingScene")
+			{
+				AudioClip aC = (AudioClip)Resources.Load("Sounds/observa");
+				if(aC)
+				{
+					audioSource.PlayOneShot(aC);
+					Invoke("soundFirstTime",aC.length);
+				}
+				else
+				{
+					firstQuestionSound(firstTimeText);
+				}
+			}
+			else
+			{
+				firstQuestionSound(firstTimeText);
+			}
 		}
 	}
 
@@ -76,6 +92,11 @@ public class Question : MonoBehaviour {
 
 			soundtoGo=0;
 		}
+	}
+
+	protected void soundFirstTime()
+	{
+		firstQuestionSound(firstTimeText);
 	}
 
 	public void firstQuestionSound(string soundToPlay)
