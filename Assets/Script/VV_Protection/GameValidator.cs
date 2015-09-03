@@ -8,8 +8,16 @@ public class GameValidator : MonoBehaviour
 	{
 		if(UserDataManager.instance.isAPirateGame)
 		{
-			if(ScreenManager.instance)
-			{ScreenManager.instance.GoToScene("Validation");}
+			bool validate = true;
+			#if UNITY_EDITOR
+				validate = false;
+			#endif
+
+			if(validate)
+			{
+				if(ScreenManager.instance)
+				{ScreenManager.instance.GoToScene("Validation");}
+			}
 		}
 	}	
 }

@@ -1352,7 +1352,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1550876486}
   m_Father: {fileID: 0}
   m_RootOrder: 3
 --- !u!114 &482666572
@@ -1867,7 +1868,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "BEEP!\nFe-li-ci-da-des\nHaz TERMINADO la \nmisi\xF3n..."
+  m_Text: "BEEP!\nFe-li-ci-da-des\nHaz COMPLETADO la \nmisi\xF3n..."
 --- !u!222 &623740333
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3467,6 +3468,50 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 717218221}
   m_GameObject: {fileID: 1263406129}
+--- !u!1001 &1284255965
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 482666571}
+    m_Modifications:
+    - target: {fileID: 488070, guid: c6c357cb9be5a4a9caf46dcbc487fe2b, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 488070, guid: c6c357cb9be5a4a9caf46dcbc487fe2b, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 488070, guid: c6c357cb9be5a4a9caf46dcbc487fe2b, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 488070, guid: c6c357cb9be5a4a9caf46dcbc487fe2b, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 488070, guid: c6c357cb9be5a4a9caf46dcbc487fe2b, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 488070, guid: c6c357cb9be5a4a9caf46dcbc487fe2b, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 488070, guid: c6c357cb9be5a4a9caf46dcbc487fe2b, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 488070, guid: c6c357cb9be5a4a9caf46dcbc487fe2b, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: c6c357cb9be5a4a9caf46dcbc487fe2b, type: 2}
+  m_RootGameObject: {fileID: 1550876484}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
 --- !u!1 &1308092278
 GameObject:
   m_ObjectHideFlags: 0
@@ -4013,6 +4058,46 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 627520101}
   m_GameObject: {fileID: 1517746337}
+--- !u!1 &1550876484
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 188070, guid: c6c357cb9be5a4a9caf46dcbc487fe2b, type: 2}
+  m_PrefabInternal: {fileID: 1284255965}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1550876486}
+  - 114: {fileID: 1550876485}
+  m_Layer: 0
+  m_Name: Validator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1550876485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11459270, guid: c6c357cb9be5a4a9caf46dcbc487fe2b,
+    type: 2}
+  m_PrefabInternal: {fileID: 1284255965}
+  m_GameObject: {fileID: 1550876484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35cd2d3108e594e04939bfa395ad6eec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1550876486
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 488070, guid: c6c357cb9be5a4a9caf46dcbc487fe2b, type: 2}
+  m_PrefabInternal: {fileID: 1284255965}
+  m_GameObject: {fileID: 1550876484}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 482666571}
+  m_RootOrder: 0
 --- !u!1 &1609712848
 GameObject:
   m_ObjectHideFlags: 0
@@ -4530,6 +4615,7 @@ MonoBehaviour:
   input: {fileID: 174756776}
   hiding: 0
   randomizeColor: 1
+  drawDistanceTolerance: .125
   currentColor: {r: .133000001, g: .564999998, b: .944999993, a: 1}
 --- !u!4 &1783247454
 Transform:
