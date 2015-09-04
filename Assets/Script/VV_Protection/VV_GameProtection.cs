@@ -19,9 +19,6 @@ public class VV_GameProtection : MonoBehaviour
 	{
 		onError		+= foo;
 		onSuccess	+= foo;
-
-		validateSerial("BE94-1164-D2AD-90A1-7B6B-B200-C46C-9A0A");
-		validateSerial("2946-B4FA-3864-CC00-14FF-0FDF-6BB8-D67B");
 	}
 
 	public void foo(string message)
@@ -31,9 +28,7 @@ public class VV_GameProtection : MonoBehaviour
 
 	public void validateSerial(string serial)
 	{
-		#if UNITY_EDITOR
 		serial = serial.Replace("-",string.Empty);
-		#endif
 
 		serial = serial.ToUpperInvariant();
 

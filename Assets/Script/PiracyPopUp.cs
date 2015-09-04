@@ -6,7 +6,8 @@ public class PiracyPopUp : MonoBehaviour
 {
 	void Start()
 	{
-		if(UserDataManager.instance.showPopUp == false || UserDataManager.instance.startGame == false)
+
+		if(!UserDataManager.instance.isAPirateGame && (UserDataManager.instance.showPopUp == false || UserDataManager.instance.startGame == false))
 		{
 			gameObject.SetActive(false);
 		}
@@ -30,5 +31,10 @@ public class PiracyPopUp : MonoBehaviour
 	{
 		gameObject.SetActive(false);
 		UserDataManager.instance.startGame = false;
+
+		if(UserDataManager.instance.isAPirateGame)
+		{
+			ScreenManager.instance.GoToScene("Validation");
+		}
 	}
 }
