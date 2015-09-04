@@ -843,7 +843,6 @@ GameObject:
   - 224: {fileID: 1062189090}
   - 222: {fileID: 1062189092}
   - 114: {fileID: 1062189091}
-  - 114: {fileID: 1062189089}
   m_Layer: 5
   m_Name: SerialInput
   m_TagString: Untagged
@@ -851,17 +850,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1062189089
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1062189088}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a96e03365dd98b84c965850070b400f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &1062189090
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1142,8 +1130,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1062189089}
-        m_MethodName: closePopUp
+      - m_Target: {fileID: 1110980292}
+        m_MethodName: onAccept
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
