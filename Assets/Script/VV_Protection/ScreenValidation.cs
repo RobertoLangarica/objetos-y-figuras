@@ -95,7 +95,10 @@ public class ScreenValidation : MonoBehaviour {
 	{
 		//Ya no es pirata
 		UserDataManager.instance.isAPirateGame = false;
-
+		if(AnalyticManager.instance)
+		{
+			AnalyticManager.instance.serialCodeSend(serialValidated);
+		}
 		//EL usuario cancela la accion
 		if(ScreenManager.instance)
 		{
