@@ -7,13 +7,16 @@ public class TutorScreen : MonoBehaviour {
 	protected bool go = true;
 	void Start()
 	{
+		Toggle toggle = GameObject.Find("Toggle").GetComponent<Toggle>();
 
-		if(GameObject.Find("Toggle").GetComponent<Toggle>().isOn !=UserDataManager.instance.tutorMode)
+		if(toggle)
 		{
-			go=false;
-			GameObject.Find("Toggle").GetComponent<Toggle>().isOn = UserDataManager.instance.tutorMode;
+			if(toggle.isOn !=UserDataManager.instance.tutorMode)
+			{
+				go=false;
+				toggle.isOn = UserDataManager.instance.tutorMode;
+			}
 		}
-
 	}
 
 	public void activateTutor()
