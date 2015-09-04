@@ -18,74 +18,75 @@ public class CursorChanger : MonoBehaviour {
 	public Vector2 hotSpot = Vector2.zero;
 
 	public bool bPencil;
-
-	protected Texture2D currentTexture;
-
+	
+	protected string currentState = "";
 	
 	EventTrigger eventTrigger = null;
 
 	void Awake()
 	{
 		instance = this;
-		currentTexture = ereaserTexture;
 	}
 	
 	public void upChange() 
 	{
-		//Debug.Log("up");
-		changer(null);
+		changer(null,"up");
 	}
 
 	public void overButton() 
 	{
-		//Debug.Log("over");
-		changer(overButtonTexture);
+		changer(overButtonTexture,"over");
 	}
 
 	public void downButton()
 	{
-		//Debug.Log("down");
-		changer(downButtonTexture);
+		changer(downButtonTexture,"down");
 	}
 
 	public void overDrag()
 	{
-		//Debug.Log("overDrag");
-		changer(overDragTexture);
+		changer(overDragTexture,"overDrag");
 	}
 
 	public void downDrag()
 	{
-		//Debug.Log("Drag texture");
-		changer(downDragTexture);
+		changer(downDragTexture,"Drag texture");
 	}
 
 	public void rotate()
 	{
-		changer(rotateTexture);
+		changer(rotateTexture,"rotate");
 	}
 
 	public void pencil()
 	{
-		//Debug.Log("pencil");
-		hotSpot = new Vector2(0,pencilTexture.height);
-		changer(pencilTexture);
+		hotSpot = new Vector2(0,pencilTexture.height*0.98f);
+		changer(pencilTexture,"pencil");
 	}
 	
 	public void ereaser()
 	{
-		//Debug.Log("ereaser");
 		hotSpot = new Vector2(ereaserTexture.width*0.5f,ereaserTexture.height*0.5f);
-		changer(ereaserTexture);
+		changer(ereaserTexture,"ereaser");
 	}
 
-	protected void changer(Texture2D texture)
+	/*void Update()
+	{
+		if(bPencil)
+		{
+			hotSpot = new Vector2(0,pencilTexture.height);
+			Cursor.SetCursor(pencilTexture, Vector2.zero,CursorMode.Auto);
+		}
+	}*/
+
+	protected void changer(Texture2D texture,string state)
 	{
 		if(!bPencil)
 		{
-			if(currentTexture != texture)
+			if(!currentState.Equals(state))
 			{
-				currentTexture = texture;
+				Debug.Log ("Cmbiando a estado: "+state);
+				currentState = state;
 				Cursor.SetCursor(texture, hotSpot, cursorMode);
 				hotSpot = Vector2.zero;
 			}
@@ -141,7 +142,7 @@ public class CursorChanger : MonoBehaviour {
 	void OnLevelWasLoaded()
 	{
 		bPencil=false;
-		changer(null);
+		changer(null,"up");
 		StartCoroutine("waiting");
 	}
 
