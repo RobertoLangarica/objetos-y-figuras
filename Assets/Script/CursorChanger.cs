@@ -87,6 +87,7 @@ public class CursorChanger : MonoBehaviour {
 			{
 				currentTexture = texture;
 				Cursor.SetCursor(texture, hotSpot, cursorMode);
+				hotSpot = Vector2.zero;
 			}
 		}
 	}

@@ -22,6 +22,11 @@ public class FinishPopUp : MonoBehaviour
 		ScreenManager.instance.showPrevScene();
 	}
 
+	public void reloadScreen()
+	{
+		Application.LoadLevel (Application.loadedLevelName);
+	}
+
 	public void show()
 	{
 		choseRobot();

@@ -5,7 +5,7 @@ using DG.Tweening;
 
 public class Question : MonoBehaviour {
 
-	protected AudioSource audioSource;
+	public AudioSource audioSource;
 	protected int soundtoGo =0;
 	protected Teacher data;
 	protected GameObject toast;
@@ -17,10 +17,11 @@ public class Question : MonoBehaviour {
 	public string firstTimeText;
 	protected bool showing = false;
 	protected float waitForClick;
+	protected Notification notification;
 
 	// Use this for initialization
 	void Start () {
-
+		notification = Object.FindObjectOfType<Notification>();
 		if(GameObject.Find("Main Camera").GetComponent<AudioSource>()==null)
 		{
 			audioSource = GameObject.Find("Main Camera").AddComponent<AudioSource>();
@@ -71,7 +72,13 @@ public class Question : MonoBehaviour {
 		waitForClick = 0.5f;
 
 		audioSource.clip = aC;
-
+		if(notification)
+		{
+			if(notification.showing)
+			{
+				return;
+			}
+		}
 		audioSource.Play();
 		currentToast = soundToPlay+"_"+soundtoGo;
 		float time = 3.0f;
@@ -138,7 +145,7 @@ public class Question : MonoBehaviour {
 		toast.GetComponentInChildren<Text>().text = infTemp.text;
 	}
 
-	protected void showToast(bool show,float delay = .5f)
+	public void showToast(bool show,float delay = .5f)
 	{
 		float val = Screen.height*0.4f;
 
@@ -194,5 +201,12 @@ public class Question : MonoBehaviour {
 	protected void forceClose()
 	{
 		showToast(false);
+	}
+
+	IEnumerator lateStart()
+	{
+		yield return new WaitForSeconds(.2f);
+
+		Debug.Log(notification);
 	}
 }

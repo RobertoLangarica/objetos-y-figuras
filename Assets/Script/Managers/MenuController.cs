@@ -43,12 +43,13 @@ public class MenuController : MonoBehaviour {
 
 			go.transform.SetParent(content.transform);
 			go.GetComponent<MenuItems>().lvlName = level.name;
-			go.GetComponent<LayoutElement>().minWidth = (Screen.width/8.0f)*u;
+			go.GetComponent<LayoutElement>().minWidth = (Screen.height/4.5f)*u;
+			go.GetComponent<LayoutElement>().minHeight = (Screen.height/5f)*u;
 			go.transform.localPosition = new Vector3(go.transform.localPosition.x,go.transform.localPosition.y,0);
 			levelsPrefab.Add(go);
 		}
 
-		left.DOFade(0,0.2f);
+		left.DOFade(0,0.2f).OnComplete(()=>{left.gameObject.SetActive(false);});
 	}
 
 	void Update()
@@ -75,17 +76,17 @@ public class MenuController : MonoBehaviour {
 			if(val <= 0)
 			{
 				//Solo derecha
-				right.DOFade(1,0.2f);
+				right.DOFade(1,0.2f).OnStart(()=>{right.gameObject.SetActive(true);});
 			}
 			else if(val >= 1.0f)
 			{
 				//Solo izquierda
-				left.DOFade(1,0.2f);
+				left.DOFade(1,0.2f).OnStart(()=>{left.gameObject.SetActive(true);});
 			}
 			else
 			{
-				left.DOFade(1,0.2f);
-				right.DOFade(1,0.2f);
+				left.DOFade(1,0.2f).OnStart(()=>{left.gameObject.SetActive(true);});
+				right.DOFade(1,0.2f).OnStart(()=>{right.gameObject.SetActive(true);});
 			}
 		}
 		if(mov)
@@ -101,8 +102,8 @@ public class MenuController : MonoBehaviour {
 
 	public void onStartDrag()
 	{
-		right.DOFade(0,0.2f);
-		left.DOFade(0,0.2f);
+		right.DOFade(0,0.2f).OnComplete(()=>{right.gameObject.SetActive(false);});
+		left.DOFade(0,0.2f).OnComplete(()=>{left.gameObject.SetActive(false);});
 		checkScrollPosition = false;
 	}
 
