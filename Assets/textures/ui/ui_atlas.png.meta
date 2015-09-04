@@ -147,6 +147,8 @@ TextureImporter:
     21300284: slide_izquierda_over
     21300286: slide_izquierda_up
     21300288: window_background
+    21300290: correcto
+    21300292: incorrecto
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -213,16 +215,6 @@ TextureImporter:
     - name: agrupa_canasta_over
       rect:
         serializedVersion: 2
-        x: 1820
-        y: 1411
-        width: 224
-        height: 224
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: agrupa_canasta_up
-      rect:
-        serializedVersion: 2
         x: 248
         y: 1376
         width: 224
@@ -230,7 +222,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: agrupa_color_down
+    - name: agrupa_canasta_up
       rect:
         serializedVersion: 2
         x: 476
@@ -240,7 +232,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: agrupa_color_over
+    - name: agrupa_color_down
       rect:
         serializedVersion: 2
         x: 248
@@ -250,7 +242,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: agrupa_color_up
+    - name: agrupa_color_over
       rect:
         serializedVersion: 2
         x: 2
@@ -260,37 +252,27 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: agrupa_down
+    - name: agrupa_color_up
       rect:
         serializedVersion: 2
-        x: 1455
+        x: 1567
         y: 1202
         width: 224
         height: 224
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
+    - name: agrupa_down
+      rect:
+        serializedVersion: 2
+        x: 1795
+        y: 1090
+        width: 224
+        height: 224
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: agrupa_figura_down
-      rect:
-        serializedVersion: 2
-        x: 1795
-        y: 1183
-        width: 224
-        height: 224
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: agrupa_figura_over
-      rect:
-        serializedVersion: 2
-        x: 1795
-        y: 955
-        width: 224
-        height: 224
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: agrupa_figura_up
       rect:
         serializedVersion: 2
         x: 704
@@ -300,7 +282,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: agrupa_over
+    - name: agrupa_figura_over
       rect:
         serializedVersion: 2
         x: 476
@@ -310,7 +292,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: agrupa_tamano_down
+    - name: agrupa_figura_up
       rect:
         serializedVersion: 2
         x: 230
@@ -320,7 +302,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: agrupa_tamano_over
+    - name: agrupa_over
       rect:
         serializedVersion: 2
         x: 2
@@ -330,7 +312,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: agrupa_tamano_up
+    - name: agrupa_tamano_down
       rect:
         serializedVersion: 2
         x: 1044
@@ -340,7 +322,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: agrupa_up
+    - name: agrupa_tamano_over
       rect:
         serializedVersion: 2
         x: 704
@@ -350,11 +332,31 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
+    - name: agrupa_tamano_up
+      rect:
+        serializedVersion: 2
+        x: 458
+        y: 881
+        width: 224
+        height: 224
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: agrupa_up
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 692
+        width: 224
+        height: 224
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: avanzar_down
       rect:
         serializedVersion: 2
-        x: 1890
-        y: 1751
+        x: 1480
+        y: 1706
         width: 108
         height: 108
       alignment: 0
@@ -363,8 +365,8 @@ TextureImporter:
     - name: avanzar_off
       rect:
         serializedVersion: 2
-        x: 1890
-        y: 1639
+        x: 1480
+        y: 1594
         width: 108
         height: 108
       alignment: 0
@@ -373,8 +375,8 @@ TextureImporter:
     - name: avanzar_over
       rect:
         serializedVersion: 2
-        x: 1683
-        y: 1318
+        x: 1480
+        y: 1482
         width: 108
         height: 108
       alignment: 0
@@ -383,8 +385,8 @@ TextureImporter:
     - name: avanzar_up
       rect:
         serializedVersion: 2
-        x: 1683
-        y: 1206
+        x: 1932
+        y: 1525
         width: 108
         height: 108
       alignment: 0
@@ -393,8 +395,8 @@ TextureImporter:
     - name: borrar_down
       rect:
         serializedVersion: 2
-        x: 1683
-        y: 1094
+        x: 1932
+        y: 1413
         width: 108
         height: 108
       alignment: 0
@@ -403,8 +405,8 @@ TextureImporter:
     - name: borrar_over
       rect:
         serializedVersion: 2
-        x: 932
-        y: 1381
+        x: 1455
+        y: 1370
         width: 108
         height: 108
       alignment: 0
@@ -413,8 +415,8 @@ TextureImporter:
     - name: borrar_up
       rect:
         serializedVersion: 2
-        x: 932
-        y: 1269
+        x: 1795
+        y: 1318
         width: 108
         height: 108
       alignment: 0
@@ -424,7 +426,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 932
-        y: 1157
+        y: 1381
         width: 108
         height: 108
       alignment: 0
@@ -434,7 +436,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 932
-        y: 1045
+        y: 1269
         width: 108
         height: 108
       alignment: 0
@@ -443,8 +445,8 @@ TextureImporter:
     - name: borrartodo_up
       rect:
         serializedVersion: 2
-        x: 1272
-        y: 1260
+        x: 932
+        y: 1157
         width: 108
         height: 108
       alignment: 0
@@ -463,34 +465,14 @@ TextureImporter:
     - name: cerrar_down
       rect:
         serializedVersion: 2
-        x: 1272
-        y: 1148
+        x: 932
+        y: 1045
         width: 108
         height: 108
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: cerrar_off
-      rect:
-        serializedVersion: 2
-        x: 1272
-        y: 1036
-        width: 108
-        height: 108
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cerrar_over
-      rect:
-        serializedVersion: 2
-        x: 1272
-        y: 924
-        width: 108
-        height: 108
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: cerrar_up
       rect:
         serializedVersion: 2
         x: 932
@@ -500,7 +482,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: configuracion_down
+    - name: cerrar_over
       rect:
         serializedVersion: 2
         x: 914
@@ -510,227 +492,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: configuracion_off
-      rect:
-        serializedVersion: 2
-        x: 1612
-        y: 982
-        width: 108
-        height: 108
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: configuracion_over
-      rect:
-        serializedVersion: 2
-        x: 1612
-        y: 870
-        width: 108
-        height: 108
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: configuracion_up
-      rect:
-        serializedVersion: 2
-        x: 1272
-        y: 812
-        width: 108
-        height: 108
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: conoce_down
-      rect:
-        serializedVersion: 2
-        x: 458
-        y: 881
-        width: 224
-        height: 224
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: conoce_over
-      rect:
-        serializedVersion: 2
-        x: 230
-        y: 692
-        width: 224
-        height: 224
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: conoce_up
-      rect:
-        serializedVersion: 2
-        x: 2
-        y: 579
-        width: 224
-        height: 224
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: construye_down
-      rect:
-        serializedVersion: 2
-        x: 1384
-        y: 974
-        width: 224
-        height: 224
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: construye_iguales_down
-      rect:
-        serializedVersion: 2
-        x: 1044
-        y: 916
-        width: 224
-        height: 224
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: construye_iguales_over
-      rect:
-        serializedVersion: 2
-        x: 686
-        y: 809
-        width: 224
-        height: 224
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: construye_iguales_up
-      rect:
-        serializedVersion: 2
-        x: 458
-        y: 653
-        width: 224
-        height: 224
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: construye_libre_down
-      rect:
-        serializedVersion: 2
-        x: 230
-        y: 464
-        width: 224
-        height: 224
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: construye_libre_over
-      rect:
-        serializedVersion: 2
-        x: 2
-        y: 351
-        width: 224
-        height: 224
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: construye_libre_up
-      rect:
-        serializedVersion: 2
-        x: 1384
-        y: 746
-        width: 224
-        height: 224
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: construye_over
-      rect:
-        serializedVersion: 2
-        x: 1026
-        y: 688
-        width: 224
-        height: 224
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: construye_spacegram_down
-      rect:
-        serializedVersion: 2
-        x: 686
-        y: 581
-        width: 224
-        height: 224
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: construye_spacegram_over
-      rect:
-        serializedVersion: 2
-        x: 458
-        y: 425
-        width: 224
-        height: 224
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: construye_spacegram_up
-      rect:
-        serializedVersion: 2
-        x: 230
-        y: 236
-        width: 224
-        height: 224
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: construye_tangram_down
-      rect:
-        serializedVersion: 2
-        x: 2
-        y: 123
-        width: 224
-        height: 224
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: construye_tangram_over
-      rect:
-        serializedVersion: 2
-        x: 230
-        y: 8
-        width: 224
-        height: 224
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: construye_tangram_up
-      rect:
-        serializedVersion: 2
-        x: 1724
-        y: 727
-        width: 224
-        height: 224
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: construye_up
-      rect:
-        serializedVersion: 2
-        x: 1724
-        y: 499
-        width: 224
-        height: 224
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: contenedor-2innerglow
-      rect:
-        serializedVersion: 2
-        x: 1960
-        y: 1979
-        width: 67
-        height: 67
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 16, y: 16, z: 16, w: 16}
-    - name: delinear_down
+    - name: cerrar_up
       rect:
         serializedVersion: 2
         x: 914
@@ -740,7 +502,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: delinear_off
+    - name: configuracion_down
       rect:
         serializedVersion: 2
         x: 914
@@ -750,7 +512,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: delinear_over
+    - name: configuracion_off
       rect:
         serializedVersion: 2
         x: 2
@@ -760,7 +522,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: delinear_up
+    - name: configuracion_over
       rect:
         serializedVersion: 2
         x: 114
@@ -770,11 +532,261 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
+    - name: configuracion_up
+      rect:
+        serializedVersion: 2
+        x: 914
+        y: 485
+        width: 108
+        height: 108
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: conoce_down
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 579
+        width: 224
+        height: 224
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: conoce_over
+      rect:
+        serializedVersion: 2
+        x: 1272
+        y: 1142
+        width: 224
+        height: 224
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: conoce_up
+      rect:
+        serializedVersion: 2
+        x: 1044
+        y: 916
+        width: 224
+        height: 224
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: construye_down
+      rect:
+        serializedVersion: 2
+        x: 686
+        y: 809
+        width: 224
+        height: 224
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: construye_iguales_down
+      rect:
+        serializedVersion: 2
+        x: 458
+        y: 653
+        width: 224
+        height: 224
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: construye_iguales_over
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 464
+        width: 224
+        height: 224
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: construye_iguales_up
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 351
+        width: 224
+        height: 224
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: construye_libre_down
+      rect:
+        serializedVersion: 2
+        x: 1500
+        y: 974
+        width: 224
+        height: 224
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: construye_libre_over
+      rect:
+        serializedVersion: 2
+        x: 1272
+        y: 914
+        width: 224
+        height: 224
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: construye_libre_up
+      rect:
+        serializedVersion: 2
+        x: 1026
+        y: 688
+        width: 224
+        height: 224
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: construye_over
+      rect:
+        serializedVersion: 2
+        x: 686
+        y: 581
+        width: 224
+        height: 224
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: construye_spacegram_down
+      rect:
+        serializedVersion: 2
+        x: 458
+        y: 425
+        width: 224
+        height: 224
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: construye_spacegram_over
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 236
+        width: 224
+        height: 224
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: construye_spacegram_up
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 123
+        width: 224
+        height: 224
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: construye_tangram_down
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 8
+        width: 224
+        height: 224
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: construye_tangram_over
+      rect:
+        serializedVersion: 2
+        x: 1728
+        y: 862
+        width: 224
+        height: 224
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: construye_tangram_up
+      rect:
+        serializedVersion: 2
+        x: 1500
+        y: 746
+        width: 224
+        height: 224
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: construye_up
+      rect:
+        serializedVersion: 2
+        x: 1728
+        y: 634
+        width: 224
+        height: 224
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: contenedor-2innerglow
+      rect:
+        serializedVersion: 2
+        x: 1960
+        y: 1827
+        width: 67
+        height: 67
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 16, y: 16, z: 16, w: 16}
+    - name: correcto
+      rect:
+        serializedVersion: 2
+        x: 1960
+        y: 1974
+        width: 72
+        height: 72
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: delinear_down
+      rect:
+        serializedVersion: 2
+        x: 914
+        y: 373
+        width: 108
+        height: 108
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: delinear_off
+      rect:
+        serializedVersion: 2
+        x: 458
+        y: 85
+        width: 108
+        height: 108
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: delinear_over
+      rect:
+        serializedVersion: 2
+        x: 570
+        y: 85
+        width: 108
+        height: 108
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: delinear_up
+      rect:
+        serializedVersion: 2
+        x: 682
+        y: 85
+        width: 108
+        height: 108
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: dibujar_down
       rect:
         serializedVersion: 2
-        x: 1254
-        y: 700
+        x: 686
+        y: 241
         width: 108
         height: 108
       alignment: 0
@@ -783,8 +795,8 @@ TextureImporter:
     - name: dibujar_over
       rect:
         serializedVersion: 2
-        x: 1612
-        y: 758
+        x: 1026
+        y: 348
         width: 108
         height: 108
       alignment: 0
@@ -793,8 +805,8 @@ TextureImporter:
     - name: dibujar_up
       rect:
         serializedVersion: 2
-        x: 1612
-        y: 646
+        x: 914
+        y: 261
         width: 108
         height: 108
       alignment: 0
@@ -813,8 +825,8 @@ TextureImporter:
     - name: idea_down
       rect:
         serializedVersion: 2
-        x: 1254
-        y: 588
+        x: 798
+        y: 241
         width: 108
         height: 108
       alignment: 0
@@ -823,8 +835,8 @@ TextureImporter:
     - name: idea_off
       rect:
         serializedVersion: 2
-        x: 1254
-        y: 476
+        x: 1138
+        y: 348
         width: 108
         height: 108
       alignment: 0
@@ -833,8 +845,8 @@ TextureImporter:
     - name: idea_over
       rect:
         serializedVersion: 2
-        x: 914
-        y: 485
+        x: 794
+        y: 129
         width: 108
         height: 108
       alignment: 0
@@ -843,18 +855,28 @@ TextureImporter:
     - name: idea_up
       rect:
         serializedVersion: 2
-        x: 914
-        y: 373
+        x: 794
+        y: 17
         width: 108
         height: 108
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: incorrecto
+      rect:
+        serializedVersion: 2
+        x: 1960
+        y: 1898
+        width: 72
+        height: 72
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: lapiz_down
       rect:
         serializedVersion: 2
-        x: 1594
-        y: 534
+        x: 906
+        y: 129
         width: 108
         height: 108
       alignment: 0
@@ -863,8 +885,8 @@ TextureImporter:
     - name: lapiz_off
       rect:
         serializedVersion: 2
-        x: 1594
-        y: 422
+        x: 906
+        y: 17
         width: 108
         height: 108
       alignment: 0
@@ -873,8 +895,8 @@ TextureImporter:
     - name: lapiz_over
       rect:
         serializedVersion: 2
-        x: 1254
-        y: 364
+        x: 1018
+        y: 149
         width: 108
         height: 108
       alignment: 0
@@ -883,8 +905,8 @@ TextureImporter:
     - name: lapiz_up
       rect:
         serializedVersion: 2
-        x: 1254
-        y: 252
+        x: 1018
+        y: 37
         width: 108
         height: 108
       alignment: 0
@@ -903,8 +925,8 @@ TextureImporter:
     - name: menu_down
       rect:
         serializedVersion: 2
-        x: 914
-        y: 261
+        x: 1710
+        y: 522
         width: 108
         height: 108
       alignment: 0
@@ -913,8 +935,8 @@ TextureImporter:
     - name: menu_off
       rect:
         serializedVersion: 2
-        x: 560
-        y: 85
+        x: 1822
+        y: 522
         width: 108
         height: 108
       alignment: 0
@@ -923,8 +945,8 @@ TextureImporter:
     - name: menu_over
       rect:
         serializedVersion: 2
-        x: 672
-        y: 85
+        x: 1934
+        y: 522
         width: 108
         height: 108
       alignment: 0
@@ -933,8 +955,8 @@ TextureImporter:
     - name: menu_up
       rect:
         serializedVersion: 2
-        x: 784
-        y: 241
+        x: 1710
+        y: 410
         width: 108
         height: 108
       alignment: 0
@@ -943,8 +965,8 @@ TextureImporter:
     - name: mute_down
       rect:
         serializedVersion: 2
-        x: 896
-        y: 149
+        x: 1482
+        y: 406
         width: 108
         height: 108
       alignment: 0
@@ -953,8 +975,8 @@ TextureImporter:
     - name: mute_off
       rect:
         serializedVersion: 2
-        x: 784
-        y: 129
+        x: 1594
+        y: 406
         width: 108
         height: 108
       alignment: 0
@@ -963,8 +985,8 @@ TextureImporter:
     - name: observa_down
       rect:
         serializedVersion: 2
-        x: 1366
-        y: 518
+        x: 1254
+        y: 686
         width: 224
         height: 224
       alignment: 0
@@ -1023,7 +1045,7 @@ TextureImporter:
     - name: ordena_cortolargo_down
       rect:
         serializedVersion: 2
-        x: 1550
+        x: 1608
         y: 1740
         width: 336
         height: 151
@@ -1073,7 +1095,7 @@ TextureImporter:
     - name: ordena_grandepequeno_over
       rect:
         serializedVersion: 2
-        x: 1480
+        x: 1592
         y: 1585
         width: 336
         height: 151
@@ -1093,8 +1115,8 @@ TextureImporter:
     - name: ordena_over
       rect:
         serializedVersion: 2
-        x: 1366
-        y: 290
+        x: 1482
+        y: 518
         width: 224
         height: 224
       alignment: 0
@@ -1103,7 +1125,7 @@ TextureImporter:
     - name: ordena_secuencia_down
       rect:
         serializedVersion: 2
-        x: 1480
+        x: 1592
         y: 1430
         width: 336
         height: 151
@@ -1133,8 +1155,8 @@ TextureImporter:
     - name: ordena_up
       rect:
         serializedVersion: 2
-        x: 1026
-        y: 232
+        x: 1254
+        y: 458
         width: 224
         height: 224
       alignment: 0
@@ -1143,8 +1165,8 @@ TextureImporter:
     - name: palomita_down
       rect:
         serializedVersion: 2
-        x: 784
-        y: 17
+        x: 1822
+        y: 410
         width: 108
         height: 108
       alignment: 0
@@ -1153,8 +1175,8 @@ TextureImporter:
     - name: palomita_off
       rect:
         serializedVersion: 2
-        x: 896
-        y: 37
+        x: 1934
+        y: 410
         width: 108
         height: 108
       alignment: 0
@@ -1163,8 +1185,8 @@ TextureImporter:
     - name: palomita_over
       rect:
         serializedVersion: 2
-        x: 1008
-        y: 120
+        x: 1250
+        y: 346
         width: 108
         height: 108
       alignment: 0
@@ -1173,8 +1195,8 @@ TextureImporter:
     - name: palomita_up
       rect:
         serializedVersion: 2
-        x: 1008
-        y: 8
+        x: 1130
+        y: 236
         width: 108
         height: 108
       alignment: 0
@@ -1183,8 +1205,8 @@ TextureImporter:
     - name: regresar_down
       rect:
         serializedVersion: 2
-        x: 1120
-        y: 120
+        x: 1362
+        y: 346
         width: 108
         height: 108
       alignment: 0
@@ -1193,8 +1215,8 @@ TextureImporter:
     - name: regresar_off
       rect:
         serializedVersion: 2
-        x: 1120
-        y: 8
+        x: 1130
+        y: 124
         width: 108
         height: 108
       alignment: 0
@@ -1203,8 +1225,8 @@ TextureImporter:
     - name: regresar_over
       rect:
         serializedVersion: 2
-        x: 1232
-        y: 120
+        x: 1130
+        y: 12
         width: 108
         height: 108
       alignment: 0
@@ -1213,8 +1235,8 @@ TextureImporter:
     - name: regresar_up
       rect:
         serializedVersion: 2
-        x: 1232
-        y: 8
+        x: 1706
+        y: 298
         width: 108
         height: 108
       alignment: 0
@@ -1223,8 +1245,8 @@ TextureImporter:
     - name: reiniciar_down
       rect:
         serializedVersion: 2
-        x: 1344
-        y: 140
+        x: 1474
+        y: 294
         width: 108
         height: 108
       alignment: 0
@@ -1233,8 +1255,8 @@ TextureImporter:
     - name: reiniciar_off
       rect:
         serializedVersion: 2
-        x: 1344
-        y: 28
+        x: 1586
+        y: 294
         width: 108
         height: 108
       alignment: 0
@@ -1243,8 +1265,8 @@ TextureImporter:
     - name: reiniciar_over
       rect:
         serializedVersion: 2
-        x: 1456
-        y: 178
+        x: 1242
+        y: 234
         width: 108
         height: 108
       alignment: 0
@@ -1253,8 +1275,8 @@ TextureImporter:
     - name: reiniciar_up
       rect:
         serializedVersion: 2
-        x: 1456
-        y: 66
+        x: 1354
+        y: 234
         width: 108
         height: 108
       alignment: 0
@@ -1273,8 +1295,8 @@ TextureImporter:
     - name: retro_left
       rect:
         serializedVersion: 2
-        x: 1952
-        y: 718
+        x: 1956
+        y: 853
         width: 90
         height: 233
       alignment: 0
@@ -1283,8 +1305,8 @@ TextureImporter:
     - name: retro_right
       rect:
         serializedVersion: 2
-        x: 458
-        y: 7
+        x: 1948
+        y: 1637
         width: 98
         height: 186
       alignment: 0
@@ -1333,8 +1355,8 @@ TextureImporter:
     - name: slide_derecha_down
       rect:
         serializedVersion: 2
-        x: 1568
-        y: 178
+        x: 1818
+        y: 298
         width: 108
         height: 108
       alignment: 0
@@ -1343,8 +1365,8 @@ TextureImporter:
     - name: slide_derecha_off
       rect:
         serializedVersion: 2
-        x: 1594
-        y: 310
+        x: 1930
+        y: 298
         width: 108
         height: 108
       alignment: 0
@@ -1353,8 +1375,8 @@ TextureImporter:
     - name: slide_derecha_over
       rect:
         serializedVersion: 2
-        x: 1568
-        y: 66
+        x: 1242
+        y: 122
         width: 108
         height: 108
       alignment: 0
@@ -1363,8 +1385,8 @@ TextureImporter:
     - name: slide_derecha_up
       rect:
         serializedVersion: 2
-        x: 1680
-        y: 198
+        x: 1242
+        y: 10
         width: 108
         height: 108
       alignment: 0
@@ -1373,8 +1395,8 @@ TextureImporter:
     - name: slide_izquierda_down
       rect:
         serializedVersion: 2
-        x: 1706
-        y: 387
+        x: 1354
+        y: 122
         width: 108
         height: 108
       alignment: 0
@@ -1383,8 +1405,8 @@ TextureImporter:
     - name: slide_izquierda_off
       rect:
         serializedVersion: 2
-        x: 1680
-        y: 86
+        x: 1354
+        y: 10
         width: 108
         height: 108
       alignment: 0
@@ -1393,8 +1415,8 @@ TextureImporter:
     - name: slide_izquierda_over
       rect:
         serializedVersion: 2
-        x: 1818
-        y: 387
+        x: 1466
+        y: 182
         width: 108
         height: 108
       alignment: 0
@@ -1403,8 +1425,8 @@ TextureImporter:
     - name: slide_izquierda_up
       rect:
         serializedVersion: 2
-        x: 1930
-        y: 387
+        x: 1466
+        y: 70
         width: 108
         height: 108
       alignment: 0
@@ -1413,8 +1435,8 @@ TextureImporter:
     - name: toast_background
       rect:
         serializedVersion: 2
-        x: 1960
-        y: 1921
+        x: 1550
+        y: 1934
         width: 54
         height: 54
       alignment: 0
@@ -1423,8 +1445,8 @@ TextureImporter:
     - name: toast_border
       rect:
         serializedVersion: 2
-        x: 1960
-        y: 1863
+        x: 1550
+        y: 1876
         width: 54
         height: 54
       alignment: 0
@@ -1434,7 +1456,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1550
-        y: 1934
+        y: 1818
         width: 54
         height: 54
       alignment: 0
