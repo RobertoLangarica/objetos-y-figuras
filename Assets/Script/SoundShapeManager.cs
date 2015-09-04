@@ -16,10 +16,12 @@ public class SoundShapeManager : MonoBehaviour {
 		if(!GameObject.Find("Main Camera").GetComponent<AudioSource>())
 		{
 			audioSource = GameObject.Find("Main Camera").AddComponent<AudioSource>();
+			audioSource.volume = 0.5f;
 		}
 		else
 		{
 			audioSource = GameObject.Find("Main Camera").GetComponent<AudioSource>();
+			audioSource.volume = 0.5f;
 		}
 		//Se llama starGame en el analytic para setear el tiempo = 0
 		AnalyticManager.instance.startGame();
