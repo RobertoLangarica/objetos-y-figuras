@@ -4,21 +4,92 @@ using System.Security.Cryptography;
 using System.IO;
 using System.Text;
 using System;
+using System.Text.RegularExpressions;
 
 public class VV_GameProtection : MonoBehaviour 
 {
+	[HideInInspector]
+	public delegate void OnMessage(string message);
+	[HideInInspector]
+	public OnMessage onError;
+	[HideInInspector]
+	public OnMessage onSuccess;
 
 	void Start () 
 	{
+		onError		+= foo;
+		onSuccess	+= foo;
+
 		validateSerial("BE94-1164-D2AD-90A1-7B6B-B200-C46C-9A0A");
 		validateSerial("2946-B4FA-3864-CC00-14FF-0FDF-6BB8-D67B");
 	}
 
+	public void foo(string message)
+	{
+		//Debug.Log ("Message: "+message);
+	}
+
 	public void validateSerial(string serial)
 	{
-		string decrypted = Decrypt(serial);
+		#if UNITY_EDITOR
+		serial = serial.Replace("-",string.Empty);
+		#endif
 
-		Debug.Log(decrypted);
+		serial = serial.ToUpperInvariant();
+
+		Regex sintaxValidator = new Regex("[^A-F0-9]");
+
+		if(serial.Length != 32)
+		{
+			Debug.Log ("Largo inadecuado");
+			//El tamaño no es el adecuado
+			onError("El número de serie es inválido.");
+		}
+		else if(sintaxValidator.IsMatch(serial))
+		{
+			Debug.Log ("No es hexadecimal");
+			//No viene en formato hexadecimal
+			onError("El número de serie es inválido.");
+		}
+
+		string decrypted = Decrypt(serial);
+		string[] parts = decrypted.Split('_');
+
+		if(parts.Length != 3)
+		{
+			Debug.Log ("La cadena desencriptada es otra cosa");
+			onError("El número de serie es inválido.");
+		}
+		else
+		{
+
+			if(parts[0].Equals("OYF") && parts[2].Equals("VV"))
+			{
+				Regex comparer = new Regex(@"\d{8}");
+
+				if(parts[1].Length != 8)
+				{
+					Debug.Log ("Se desencripto otra cosa");
+					onError("El número de serie es inválido.");
+				}
+				else if(comparer.IsMatch(parts[1]))
+				{
+					//Valido
+					Debug.Log ("El serial se valido exitosamente.");
+					onSuccess("El número de serie es válido.");
+				}
+				else
+				{
+					Debug.Log ("Se desencripto otra cosa");
+					onError("El número de serie es inválido.");
+				}
+			}
+			else
+			{
+				Debug.Log ("Se desencripto otra cosa");
+				onError("El número de serie es inválido.");
+			}
+		}
 	}
 
 	protected string Decrypt(string text)
@@ -26,32 +97,60 @@ public class VV_GameProtection : MonoBehaviour
 		//Nos traemos la key e IV
 		TextAsset asset = Resources.Load("KIV/OYFVV2015_KIV") as TextAsset;
 		string[] lines = asset.text.Split("\n"[0]);
+		MemoryStream msDecrypt = null;
+		CryptoStream csDecrypt = null;
 
 		//Leemos key e IV
 		RijndaelManaged rm = new RijndaelManaged();
 		rm.Key = Convert.FromBase64String(lines[0]);
 		rm.IV = Convert.FromBase64String(lines[1]);
-		
-		byte[] textBytes = StringToByteArrayFastest(text.Replace("-",""));
-		byte[] plainTextBytes = new byte[textBytes.Length];
-		
-		//Descifrado
-		//Stream con la informacion cifrada
-		MemoryStream msDecrypt = new MemoryStream(textBytes);
-		// Crear un flujo de descifrado basado en el flujo de los datos
-		CryptoStream csDecrypt = new CryptoStream(msDecrypt, rm.CreateDecryptor(rm.Key, rm.IV), CryptoStreamMode.Read);
-		
-		int decryptedBytesCount = csDecrypt.Read(plainTextBytes,0,plainTextBytes.Length);
-		
-		msDecrypt.Close();
-		csDecrypt.Close();
-		
-		return Encoding.UTF8.GetString(plainTextBytes,0,decryptedBytesCount);
+
+		try
+		{
+			byte[] textBytes = StringToByteArrayFastest(text.Replace("-",""));
+			byte[] plainTextBytes = new byte[textBytes.Length];
+			
+			//Descifrado
+			//Stream con la informacion cifrada
+			msDecrypt = new MemoryStream(textBytes);
+			// Crear un flujo de descifrado basado en el flujo de los datos
+			csDecrypt = new CryptoStream(msDecrypt, rm.CreateDecryptor(rm.Key, rm.IV), CryptoStreamMode.Read);
+			
+			int decryptedBytesCount = csDecrypt.Read(plainTextBytes,0,plainTextBytes.Length);
+			
+			msDecrypt.Close();
+			csDecrypt.Close();
+			
+			return Encoding.UTF8.GetString(plainTextBytes,0,decryptedBytesCount);
+		}
+		catch(Exception ex)
+		{
+			Debug.Log ("Ocurrio un error al desencriptar");
+			return "";
+		}
+		finally
+		{
+			if(msDecrypt != null)
+			{
+				msDecrypt.Close();
+			}
+
+			if(csDecrypt != null)
+			{
+				csDecrypt.Close();
+			}
+		}
+
+		return "";
 	}
 
 	public byte[] StringToByteArrayFastest(string hex) {
 		if (hex.Length % 2 == 1)
-			throw new Exception("The binary key cannot have an odd number of digits");
+		{
+			Debug.Log("The binary key cannot have an odd number of digits");
+			onError("Formato inválido.");
+		}
+			
 		
 		byte[] arr = new byte[hex.Length >> 1];
 		
