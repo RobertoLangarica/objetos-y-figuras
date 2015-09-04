@@ -52,7 +52,6 @@ public class Pencil : MonoBehaviour {
 		{
 			if(CursorChanger.instance)
 			{
-				Debug.Log("S");
 				CursorChanger.instance.bPencil=false;
 			}
 
