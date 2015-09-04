@@ -11,6 +11,7 @@ public class ScreenValidation : MonoBehaviour {
 	public InputField serialInput;
 
 	protected VV_GameProtection protection;
+	protected string serialValidated;
 
 	// Use this for initialization
 	void Start () 
@@ -61,6 +62,7 @@ public class ScreenValidation : MonoBehaviour {
 		}
 		else
 		{
+			serialValidated = serialInput.text;
 			protection.validateSerial(serialInput.text);
 		}
 	}
