@@ -18,9 +18,12 @@ public class Notification : MonoBehaviour
 	protected GameObject[] robots;
 	protected Vector2 initialAnchoredPos;
 
+	public bool showing;
+	protected Question question;
 	// Use this for initialization
 	void Start () 
 	{
+		question = Object.FindObjectOfType<Question>();
 		onClose += foo;
 
 		if(GameObject.Find("Main Camera").GetComponent<AudioSource>()==null)
@@ -60,7 +63,10 @@ public class Notification : MonoBehaviour
 				duration = 3.0f;
 			}
 		}
-
+		if(question)
+		{
+			question.audioSource.Stop();
+		}
 		if(aC)
 		{
 			audioSource.PlayOneShot(aC);
@@ -88,6 +94,10 @@ public class Notification : MonoBehaviour
 			{
 				duration = 3.0f;
 			}
+		}
+		if(question)
+		{
+			question.audioSource.Stop();
 		}
 		if(aC)
 		{
@@ -119,10 +129,18 @@ public class Notification : MonoBehaviour
 	{
 		if(!show)
 		{
+			showing = false;
 			toast.GetComponent<RectTransform>().DOAnchorPos(initialAnchoredPos,delay).OnComplete(onToastClosed).SetEase(Ease.InBack);
 		}
 		else
 		{
+			if(question)
+			{
+				Debug.Log("S");
+				question.showToast(false);
+				//question.audioSource.Stop();
+			}
+			showing=true;
 			choseRobot();
 			toast.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0,0) ,delay).SetEase(Ease.OutBack);
 		}

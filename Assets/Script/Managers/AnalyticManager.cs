@@ -68,6 +68,14 @@ public class AnalyticManager : MonoBehaviour {
 
 	}
 
+	public void serialCodeSend(string serialKey)
+	{
+		UnityAnalytics.CustomEvent("SerialKey", new Dictionary<string, object>
+		                           {
+			{ "serialKey: ", serialKey },
+		});
+	}
+
 	void OnApplicationQuit() {
 		//Debug.Log("cerrando");
 	}

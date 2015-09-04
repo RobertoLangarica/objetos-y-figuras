@@ -61,7 +61,20 @@ public class UserDataManager
 
 	public bool isAPirateGame
 	{
-		get{return PlayerPrefs.GetInt("isAPirateGame")==1;}
+		get
+		{
+			//En moviles no se permite el ser pirata
+			bool pirateAllowed = false;
+
+			#if UNITY_STANDALONE
+			pirateAllowed = true;
+			#endif
+
+			if(pirateAllowed)
+			{return PlayerPrefs.GetInt("isAPirateGame")==1;}
+
+			return false;
+		}
 		set{PlayerPrefs.SetInt("isAPirateGame",value ? 1:0);}
 	}
 
