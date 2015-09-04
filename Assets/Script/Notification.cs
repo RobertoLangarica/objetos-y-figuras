@@ -40,7 +40,7 @@ public class Notification : MonoBehaviour
 		toast = GameObject.Find("Notification");
 		robots = GameObject.FindGameObjectsWithTag("Robot");
 
-		toast.GetComponent<RectTransform>().anchoredPosition = new Vector2(0,-Screen.height*0.5f);
+		toast.GetComponent<RectTransform>().anchoredPosition = new Vector2(0,-Screen.height);
 		initialAnchoredPos = toast.GetComponent<RectTransform>().anchoredPosition;
 	}
 
