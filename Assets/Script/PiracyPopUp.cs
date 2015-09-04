@@ -4,6 +4,8 @@ using System.Collections;
 
 public class PiracyPopUp : MonoBehaviour 
 {
+	public Toggle tog;
+
 	void Start()
 	{
 		if(UserDataManager.instance.showPopUp == false || UserDataManager.instance.startGame == false)
@@ -14,8 +16,6 @@ public class PiracyPopUp : MonoBehaviour
 
 	public void changeFirstRun()
 	{
-		Toggle tog = gameObject.GetComponent<Toggle>();
-
 		if(tog.isOn)
 		{
 			UserDataManager.instance.showPopUp = false;
