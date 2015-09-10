@@ -125,7 +125,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 159880}
   m_LocalRotation: {x: 0, y: 0, z: .707106829, w: .707106829}
-  m_LocalPosition: {x: 1.77999997, y: 1.23000002, z: 0}
+  m_LocalPosition: {x: 1.77999997, y: 1.33000004, z: 0}
   m_LocalScale: {x: .441691905, y: .441691905, z: .441691905}
   m_Children: []
   m_Father: {fileID: 459878}
@@ -149,7 +149,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 159884}
   m_LocalRotation: {x: 0, y: 0, z: 1, w: -4.37113883e-08}
-  m_LocalPosition: {x: -0, y: -2.49000001, z: 0}
+  m_LocalPosition: {x: 0, y: -2.58999991, z: 0}
   m_LocalScale: {x: .435194433, y: .435194403, z: .435194403}
   m_Children: []
   m_Father: {fileID: 459878}
@@ -161,8 +161,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 159886}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.04999995, y: -2.51999998, z: 0}
-  m_LocalScale: {x: .359737515, y: .524189115, z: .41112864}
+  m_LocalPosition: {x: -1.10000002, y: -2.59200001, z: 0}
+  m_LocalScale: {x: .36383158, y: .550398588, z: .41112864}
   m_Children: []
   m_Father: {fileID: 459878}
   m_RootOrder: 3
@@ -173,8 +173,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 159888}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.05999994, y: -2.51999998, z: 0}
-  m_LocalScale: {x: -.359737247, y: .524189591, z: .411128879}
+  m_LocalPosition: {x: 1.09099996, y: -2.59200001, z: 0}
+  m_LocalScale: {x: -.363831609, y: .550398588, z: .41112864}
   m_Children: []
   m_Father: {fileID: 459878}
   m_RootOrder: 4
@@ -195,6 +195,8 @@ MonoBehaviour:
   - {fileID: 11459884}
   - {fileID: 11459886}
   - {fileID: 11459888}
+  input: {fileID: 0}
+  canTurnOn: 1
 --- !u!114 &11459880
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -212,6 +214,7 @@ MonoBehaviour:
   requiredAngle: 
   range: 0
   distRange: .300000012
+  father: {fileID: 0}
 --- !u!114 &11459882
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -229,6 +232,7 @@ MonoBehaviour:
   requiredAngle: 
   range: 0
   distRange: .300000012
+  father: {fileID: 0}
 --- !u!114 &11459884
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -246,6 +250,7 @@ MonoBehaviour:
   requiredAngle: 
   range: 0
   distRange: .300000012
+  father: {fileID: 0}
 --- !u!114 &11459886
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -263,6 +268,7 @@ MonoBehaviour:
   requiredAngle: 
   range: 0
   distRange: .300000012
+  father: {fileID: 0}
 --- !u!114 &11459888
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -280,6 +286,7 @@ MonoBehaviour:
   requiredAngle: 
   range: 0
   distRange: .300000012
+  father: {fileID: 0}
 --- !u!212 &21259880
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -345,7 +345,7 @@ public class TangramManager : MonoBehaviour
 			result = fTypeAllShapes[Random.Range(0,fTypeAllShapes.Count-1)];
 			fTypeAllShapes.Remove(result);
 		}
-		//result = loader.data.levels500[29];
+		//result = loader.data.levels500[19];
 		return result;
 	}
 
@@ -355,11 +355,11 @@ public class TangramManager : MonoBehaviour
 		int count = 1;
 		Level otherPieces = null;
 
-		if(currLevel < 5 && tType == ETangramTypes.SAME_SHAPE)
+		foreach(Level val in loader.data.levels500)
 		{
-			foreach(Level val in loader.data.levels500)
+			if(val.fType == currentLevel.fType && !val.Equals(currentLevel))
 			{
-				if(val.fType == currentLevel.fType && !val.Equals(currentLevel))
+				if(tType == ETangramTypes.SAME_SHAPE)
 				{
 					if(currLevel < 3 && currentLevel.pieces[0].name == val.pieces[0].name)
 					{
@@ -383,6 +383,31 @@ public class TangramManager : MonoBehaviour
 							otherPieces = val;
 						}
 					}
+				}
+				else
+				{
+					SpriteRenderer spt;
+					SpriteRenderer[] sptArr;
+
+					tmp = (GameObject)Resources.Load("500/"+val.name);
+					previousLevel.Add(val.name);
+					placeholder.Add(((GameObject)GameObject.Instantiate(tmp,Vector3.zero,Quaternion.identity)).GetComponent<Placeholder>());
+					spt = placeholder[count].gameObject.GetComponent<SpriteRenderer>(); 
+					sptArr = placeholder[count].gameObject.GetComponentsInChildren<SpriteRenderer>() as SpriteRenderer[];
+					if(spt)
+					{
+						spt.enabled = false;
+					}
+					else if(sptArr.Length > 0)
+					{
+						for(int i = 0;i < sptArr.Length;i++)
+						{
+							sptArr[i].enabled = false;
+						}
+					}
+					placeholder[count].input = input.gameObject;
+					count++;
+
 				}
 			}
 		}
