@@ -85,7 +85,6 @@ public class CursorChanger : MonoBehaviour {
 		{
 			if(!currentState.Equals(state))
 			{
-				Debug.Log ("Cmbiando a estado: "+state);
 				currentState = state;
 				Cursor.SetCursor(texture, hotSpot, cursorMode);
 				hotSpot = Vector2.zero;
