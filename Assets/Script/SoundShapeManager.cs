@@ -50,10 +50,32 @@ public class SoundShapeManager : MonoBehaviour {
 			audioSource.clip = aC;
 			if(!GameObject.FindObjectOfType<DrawingInput>().canDraw)
 			{
-
 				audioSource.Play();
 			}
 		}
+	}
+
+	public void overSoundNotStoping(string soundToPlay)
+	{
+		bool sameName = false;
+		if(audio.clip)
+		{
+			if(audioSource.isPlaying&&soundToPlay == audioSource.clip.name)
+			{
+				sameName = true;
+				Debug.Log("S");
+			}
+		}
+		//Debug.Log(soundToPlay);
+		//Debug.Log(audioSource.clip.name);
+		AudioClip aC = (AudioClip)Resources.Load("Sounds/"+soundToPlay);
+
+		audioSource.clip = aC;
+		if(!GameObject.FindObjectOfType<DrawingInput>().canDraw&&!sameName)
+		{
+			audioSource.Play();
+		}
+
 	}
 	void OnDisable() {
 		AnalyticManager.instance.finsh("Conoce", startSoundName,startSoundName);

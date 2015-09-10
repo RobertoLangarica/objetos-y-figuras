@@ -7,9 +7,18 @@ public class soundOver : MonoBehaviour {
 
 	public void selectSound(string soundToPlay)
 	{
+		bool sameName = false;
+		if(audio.clip)
+		{
+			if(audioSource.isPlaying&&soundToPlay == audioSource.clip.name)
+			{
+				sameName = true;
+				Debug.Log("S");
+			}
+		}
 		AudioClip aC = (AudioClip)Resources.Load("Sounds/"+soundToPlay);
 
-		//if(!audioSource.isPlaying)
+		if(!sameName)
 		{
 			audioSource.clip = aC;
 			audioSource.Play();
