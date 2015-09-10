@@ -173,12 +173,13 @@ public class DrawingInput : MonoBehaviour
 
 	public void switchToPaint()
 	{
-		if(CursorChanger.instance&&canDraw)
+		if(CursorChanger.instance != null && canDraw)
 		{
 			CursorChanger.instance.bPencil=false;
 			CursorChanger.instance.pencil();
 			CursorChanger.instance.bPencil=true;
 		}
+
 		erraser.SetActive(false);
 		isErrasing = false;
 	}

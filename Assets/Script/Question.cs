@@ -36,7 +36,7 @@ public class Question : MonoBehaviour {
 		toast = GameObject.Find("Question");
 		robots = GameObject.FindGameObjectsWithTag("RobotQuestion");
 
-		toast.GetComponent<RectTransform>().anchoredPosition = new Vector2(0,-Screen.height*0.5f);
+		toast.GetComponent<RectTransform>().anchoredPosition = new Vector2(0,-Screen.height);
 
 		initialAnchoredPos = toast.GetComponent<RectTransform>().anchoredPosition;
 		showToast(false);
