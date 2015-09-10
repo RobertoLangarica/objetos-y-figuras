@@ -51,12 +51,19 @@ public class UserDataManager
 		PlayerPrefs.SetInt("tutorMode",tutor);
 		PlayerPrefs.SetInt("piracyPopUp",1);
 		PlayerPrefs.SetInt("isAPirateGame",1);//Pirateado por default
+		PlayerPrefs.SetInt("TermsAccepted",1);
 	}
 
 	public bool tutorMode
 	{
 		get{return PlayerPrefs.GetInt("tutorMode")==1;}
 		set{PlayerPrefs.SetInt("tutorMode",value ? 1:0);}
+	}
+
+	public bool TermsAccepted
+	{
+		get{return PlayerPrefs.GetInt("TermsAccepted")==1;}
+		set{PlayerPrefs.SetInt("TermsAccepted",value ? 1:0);}
 	}
 
 	public bool isAPirateGame

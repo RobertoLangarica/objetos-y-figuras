@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class TerminosCondiciones : MonoBehaviour {
+public class TermsAndConditions : MonoBehaviour {
 
 	public GameObject TYC;
 	public Text textSize;
@@ -17,16 +17,15 @@ public class TerminosCondiciones : MonoBehaviour {
 
 	public void openTerms()
 	{
-
 		TYC.SetActive(true);
 	}
 
 	IEnumerator lateStart()
 	{
 		yield return new WaitForSeconds(.01f);
-		Debug.Log(txtWantedSize.cachedTextGenerator.fontSizeUsedForBestFit);
+		//Debug.Log(txtWantedSize.cachedTextGenerator.fontSizeUsedForBestFit);
 		int txtSizeValue = txtWantedSize.cachedTextGenerator.fontSizeUsedForBestFit;
-		Debug.Log(txtWantedSize.preferredHeight);
+		//Debug.Log(txtWantedSize.preferredHeight);
 		textSize.resizeTextMaxSize = txtSizeValue;
 		txtWantedSize.text="";
 		yield return new WaitForSeconds(.01f);
@@ -42,10 +41,12 @@ public class TerminosCondiciones : MonoBehaviour {
 		if(accepted)
 		{
 			//closePopUp
+			UserDataManager.instance.TermsAccepted = false;
 			TYC.SetActive(false);
 		}
 		else
 		{
+			UserDataManager.instance.showPopUp = true;
 			Application.Quit();
 		}
 	}
