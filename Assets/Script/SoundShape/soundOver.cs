@@ -13,7 +13,6 @@ public class soundOver : MonoBehaviour {
 			if(audioSource.isPlaying&&soundToPlay == audioSource.clip.name)
 			{
 				sameName = true;
-				Debug.Log("S");
 			}
 		}
 		AudioClip aC = (AudioClip)Resources.Load("Sounds/"+soundToPlay);

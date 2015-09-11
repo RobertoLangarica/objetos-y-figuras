@@ -16,6 +16,7 @@ public class Question : MonoBehaviour {
 	public bool firstTime = false;
 	public string firstTimeText;
 	protected bool showing = false;
+	public bool soundIsPlaying = false;
 	protected float waitForClick;
 	protected Notification notification;
 
@@ -49,6 +50,7 @@ public class Question : MonoBehaviour {
 				if(aC)
 				{
 					audioSource.PlayOneShot(aC);
+					soundIsPlaying = true;
 					Invoke("soundFirstTime",aC.length);
 				}
 				else
@@ -80,13 +82,19 @@ public class Question : MonoBehaviour {
 			}
 		}
 		audioSource.Play();
+		soundIsPlaying = true;
 		currentToast = soundToPlay+"_"+soundtoGo;
 		float time = 3.0f;
 
 		StopCoroutine("hideToastWhenSoundEnd");
-		if(audioSource.clip!=null && audioSource.clip.length > time)
+		StopCoroutine("soundPlaying");
+		if(audioSource.clip!=null)
 		{
-			time = audioSource.clip.length;
+			StartCoroutine("soundPlaying",audioSource.clip.length);
+			if(audioSource.clip.length > time)
+			{
+				time = audioSource.clip.length;
+			}
 		}
 
 		StartCoroutine("hideToastWhenSoundEnd",new object[2]{time,soundToPlay+"_"+soundtoGo});
@@ -96,7 +104,6 @@ public class Question : MonoBehaviour {
 
 		if(soundtoGo>=data.getFigureByName(soundToPlay).infos.Length)
 		{
-
 			soundtoGo=0;
 		}
 	}
@@ -116,13 +123,19 @@ public class Question : MonoBehaviour {
 		audioSource.clip = aC;
 		
 		audioSource.Play();
+		soundIsPlaying = true;
 		currentToast = soundToPlay+"_"+soundtoGo;
 		float time = 3.0f;
 		
 		StopCoroutine("hideToastWhenSoundEnd");
-		if(audioSource.clip!=null && audioSource.clip.length > time)
+		StopCoroutine("soundPlaying");
+		if(audioSource.clip!=null)
 		{
-			time = audioSource.clip.length;
+			StartCoroutine("soundPlaying",audioSource.clip.length);
+			if(audioSource.clip.length > time)
+			{
+				time = audioSource.clip.length;
+			}
 		}
 		
 		StartCoroutine("hideToastWhenSoundEnd",new object[2]{time,soundToPlay+"_"+soundtoGo});
@@ -192,6 +205,7 @@ public class Question : MonoBehaviour {
 			if(waitForClick <= 0 && Input.GetMouseButtonUp(0))
 			{
 				StopCoroutine("hideToastWhenSoundEnd");
+				StopCoroutine("soundPlaying");
 				showing = false;
 				showToast(false);
 			}
@@ -208,5 +222,11 @@ public class Question : MonoBehaviour {
 		yield return new WaitForSeconds(.2f);
 
 		Debug.Log(notification);
+	}
+
+	IEnumerator soundPlaying(float time)
+	{
+		yield return new WaitForSeconds(time);
+		soundIsPlaying = false;
 	}
 }
