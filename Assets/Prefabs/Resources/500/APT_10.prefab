@@ -107,7 +107,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 159428}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.819999993, y: -.819999993, z: 0}
+  m_LocalPosition: {x: -.819999993, y: -.839999974, z: 0}
   m_LocalScale: {x: .681852281, y: .681852162, z: .681852162}
   m_Children: []
   m_Father: {fileID: 459426}
@@ -131,8 +131,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 159432}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.74000001, y: -.839999974, z: 0}
-  m_LocalScale: {x: .340150833, y: .33307308, z: .532916307}
+  m_LocalPosition: {x: 1.79100001, y: -.838, z: 0}
+  m_LocalScale: {x: .340150833, y: .341452003, z: .532916307}
   m_Children: []
   m_Father: {fileID: 459426}
   m_RootOrder: 2
@@ -143,7 +143,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 159434}
   m_LocalRotation: {x: 0, y: 0, z: .707106829, w: -.707106829}
-  m_LocalPosition: {x: 0, y: -2.95000005, z: 0}
+  m_LocalPosition: {x: 0, y: -3.0250001, z: 0}
   m_LocalScale: {x: .438711941, y: .43871215, z: .43871209}
   m_Children: []
   m_Father: {fileID: 459426}
@@ -164,6 +164,8 @@ MonoBehaviour:
   - {fileID: 11459428}
   - {fileID: 11459432}
   - {fileID: 11459434}
+  input: {fileID: 0}
+  canTurnOn: 1
 --- !u!114 &11459428
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -181,6 +183,7 @@ MonoBehaviour:
   requiredAngle: 
   range: 0
   distRange: .300000012
+  father: {fileID: 0}
 --- !u!114 &11459430
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -198,6 +201,7 @@ MonoBehaviour:
   requiredAngle: 
   range: 0
   distRange: .300000012
+  father: {fileID: 0}
 --- !u!114 &11459432
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -215,6 +219,7 @@ MonoBehaviour:
   requiredAngle: 
   range: 0
   distRange: .300000012
+  father: {fileID: 0}
 --- !u!114 &11459434
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -232,6 +237,7 @@ MonoBehaviour:
   requiredAngle: 
   range: 0
   distRange: .300000012
+  father: {fileID: 0}
 --- !u!212 &21259428
 SpriteRenderer:
   m_ObjectHideFlags: 1
