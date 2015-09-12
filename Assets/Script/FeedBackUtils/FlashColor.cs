@@ -36,16 +36,16 @@ public class FlashColor : MonoBehaviour {
 
 			if(currentColor == destinationColor)
 			{
-				if(currentColor == initialColor)
-				{
+				//if(currentColor == initialColor)
+				//{
 					coloring = false;
 					onFinish();
-				}
-				else
+				//}
+				/*else
 				{
 					destinationColor = initialColor;
 					colorElapsed = 0;
-				}
+				}*/
 			}
 
 			spriteRenderer.color = currentColor;
@@ -62,9 +62,11 @@ public class FlashColor : MonoBehaviour {
 
 		inverseColorTime = (1.0f/delay)*0.5f;
 		spriteRenderer = renderer;
-		currentColor = spriteRenderer.color;
-		initialColor = currentColor;
-		destinationColor = colorToFlash;
+		currentColor = colorToFlash;
+		initialColor = spriteRenderer.color;
+		destinationColor = spriteRenderer.color;
+		spriteRenderer.color = colorToFlash;
+
 		colorElapsed = 0;
 		coloring = true;
 	}
