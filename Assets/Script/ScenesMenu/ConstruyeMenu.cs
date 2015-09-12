@@ -3,6 +3,10 @@ using System.Collections;
 
 public class ConstruyeMenu : MonoBehaviour {
 
+	void Start()
+	{
+		MenuController.currLevel=0;
+	}
 	public void selectSandBox()
 	{
 		ScreenManager.instance.GoToScene("SandBoxScene");

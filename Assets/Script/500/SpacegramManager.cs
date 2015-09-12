@@ -24,10 +24,16 @@ public class SpacegramManager : MonoBehaviour
 	protected Level currentLevel;
 	protected Placeholder placeholder;
 	protected GameObject reference;
-
+	protected int currLevel = 0;
 	// Use this for initialization
 	void Start ()
 	{
+		Level[] levlDificultie = LevelManager.instance.getLevels(MenuController.currLevel);
+		int rand = Random.Range(0,levlDificultie.Length);
+
+		lvlToPrepare = levlDificultie[rand].name;
+		MenuController.currLevel++;
+
 		currentLevel = LevelManager.instance.getLevel(lvlToPrepare);
 		
 		if(currentLevel == null)
@@ -238,6 +244,13 @@ public class SpacegramManager : MonoBehaviour
 	
 	public void checkForLevelComplete()
 	{
+		foreach(GameObject val in shapes)
+		{
+			if(val != null)
+			{
+				val.GetComponent<Shape>().isPositionated = false;
+			}
+		}
 		if(placeholder.isCorrect())
 		{
 			placeholder.canTurnOn = false;
@@ -277,8 +290,10 @@ public class SpacegramManager : MonoBehaviour
 
 	protected void removeShapesAndPlaceHolder()
 	{
+
 		foreach(GameObject shape in shapes)
 		{
+			Debug.Log("S");
 			shape.renderer.material.DOFade(0,0.5f);
 		}
 
@@ -292,11 +307,18 @@ public class SpacegramManager : MonoBehaviour
 		{
 			UserDataManager.instance.level = UserDataManager.instance.level+1;
 		}*/
-		ScreenManager.instance.GoToScene("SpacegramMenu");
+		if(MenuController.currLevel <4)
+		{
+			ScreenManager.instance.GoToScene("SpacegramMenu");
+		}
+		else
+		{
+			GameObject.FindObjectOfType<FinishPopUp>().show();
+		}
 	}
 
 	public void exitGame()
 	{
-		ScreenManager.instance.GoToScene("SpacegramMenu");
+		ScreenManager.instance.GoToScene("Construye");
 	}
 }
