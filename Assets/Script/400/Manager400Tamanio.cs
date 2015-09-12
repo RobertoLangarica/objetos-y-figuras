@@ -312,8 +312,9 @@ public class Manager400Tamanio : MonoBehaviour {
 				//pos.x = Random.Range(shapesRect.xMin,shapesRect.xMax);
 
 				//Contenido en el container
-				gap = (containers[i].max.x-containers[i].min.x)*0.25f;
-				pos.x = Random.Range(containers[i].min.x+gap,containers[i].max.x-gap);
+				//gap = (containers[i].max.x-containers[i].min.x)*0.25f;
+				//pos.x = Random.Range(containers[i].min.x+gap,containers[i].max.x-gap);
+				pos.x = containers[i].getCenter().x;
 			}
 
 			shapes.Add( (GameObject.Instantiate(tmp,pos,Quaternion.identity) as GameObject).GetComponent<Shape400>());
