@@ -52,4 +52,9 @@ public class PiracyPopUp : MonoBehaviour
 	{
 		Application.OpenURL("http://www.curiosamente.com/terminos-y-condiciones");
 	}
+
+	public void toRegistro()
+	{
+		Application.OpenURL("http://www.curiosamente.com/registro");
+	}
 }
