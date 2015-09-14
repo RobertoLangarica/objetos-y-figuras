@@ -112,9 +112,11 @@ public class TangramManager : MonoBehaviour
 			case(ETangramTypes.ALL_SHAPES):
 			{
 				currentLevel = takeLevel();
+			Debug.Log("S");
 			}
 			break;
 		}
+		Debug.Log(currentLevel);
 		
 		initializeShapes(currentLevel);
 
@@ -136,6 +138,7 @@ public class TangramManager : MonoBehaviour
 		GameObject go;
 		//AnalyticManager.instance.startGame();
 		//Imagenes
+		Debug.Log(initLevel);
 		Piece[] pieces = initLevel.pieces;
 		Pair[] pairs = initLevel.pairs;
 		
@@ -331,10 +334,11 @@ public class TangramManager : MonoBehaviour
 		Level result = null;
 		if(fTypeAllShapes == null)
 		{
+			Debug.Log("S");
 			fTypeAllShapes = new List<Level>();
 			for(int i = 0;i < loader.data.levels500.Length;i++)
 			{
-				if(loader.data.levels500[i].fType == "allPieces")
+				if(loader.data.levels500[i].difficulty == 7)
 				{
 					fTypeAllShapes.Add(loader.data.levels500[i]);
 				}
@@ -345,7 +349,7 @@ public class TangramManager : MonoBehaviour
 			result = fTypeAllShapes[Random.Range(0,fTypeAllShapes.Count-1)];
 			fTypeAllShapes.Remove(result);
 		}
-		//result = loader.data.levels500[19];
+		//result = loader.data.levels500[24];
 		return result;
 	}
 

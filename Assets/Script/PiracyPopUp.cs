@@ -5,7 +5,7 @@ using System.Collections;
 public class PiracyPopUp : MonoBehaviour 
 {
 	public Toggle tog;
-
+	public TermsAndConditions terms;
 	void Start()
 	{
 
@@ -36,5 +36,15 @@ public class PiracyPopUp : MonoBehaviour
 		{
 			ScreenManager.instance.GoToScene("Validation");
 		}
+
+		//if(UserDataManager.instance.TermsAccepted)
+		//{
+		//	terms.openTerms();
+		//}
+	}
+
+	public void toCuriosamente()
+	{
+		Application.OpenURL("http://www.curiosamente.com/terminos-y-condiciones");
 	}
 }

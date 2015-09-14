@@ -165,7 +165,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: .0249774121, y: .235289931}
   m_AnchorMax: {x: .957539737, y: 1}
-  m_AnchoredPosition: {x: 0, y: -18.11306}
+  m_AnchoredPosition: {x: 0, y: -31.4705734}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &44995154
@@ -181,7 +181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: .352941185, g: .352941185, b: .352941185, a: 1}
   m_FontData:
     m_Font: {fileID: 12800000, guid: 2797b776964bcdc4bb43101030da6a78, type: 3}
     m_FontSize: 30
@@ -439,6 +439,10 @@ Prefab:
     - target: {fileID: 5828086, guid: 3dfb11f8ce87d5444b495aba7495d891, type: 2}
       propertyPath: m_Radius
       value: .200000003
+      objectReference: {fileID: 0}
+    - target: {fileID: 132462, guid: 3dfb11f8ce87d5444b495aba7495d891, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3dfb11f8ce87d5444b495aba7495d891, type: 2}
@@ -763,6 +767,14 @@ Prefab:
     - target: {fileID: 11486432, guid: 2dd5213e4dc4f6d41856eceaefba78d9, type: 2}
       propertyPath: delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
       value: triangulo_isosceles
+      objectReference: {fileID: 0}
+    - target: {fileID: 11424676, guid: 2dd5213e4dc4f6d41856eceaefba78d9, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: overSoundNotStoping
+      objectReference: {fileID: 0}
+    - target: {fileID: 11486432, guid: 2dd5213e4dc4f6d41856eceaefba78d9, type: 2}
+      propertyPath: delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: overSoundNotStoping
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2dd5213e4dc4f6d41856eceaefba78d9, type: 2}
@@ -1469,7 +1481,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22445998, guid: 05f5f3a825ed1ae4d96ca4cf437f6cc9, type: 2}
       propertyPath: m_SizeDelta.y
-      value: -85.7376709
+      value: -172.563538
       objectReference: {fileID: 0}
     - target: {fileID: 11487992, guid: 05f5f3a825ed1ae4d96ca4cf437f6cc9, type: 2}
       propertyPath: textToShow
@@ -1477,7 +1489,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22445998, guid: 05f5f3a825ed1ae4d96ca4cf437f6cc9, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -18.11306
+      value: -31.4705734
+      objectReference: {fileID: 0}
+    - target: {fileID: 22446012, guid: 05f5f3a825ed1ae4d96ca4cf437f6cc9, type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 05f5f3a825ed1ae4d96ca4cf437f6cc9, type: 2}
@@ -2715,7 +2731,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1257634548}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_AnchorMin: {x: .27851516, y: .540566623}
   m_AnchorMax: {x: .757716775, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -2771,7 +2787,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1169323139}
-          m_MethodName: overSound
+          m_MethodName: overSoundNotStoping
           m_Mode: 5
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -2837,7 +2853,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1169323139}
-        m_MethodName: overSound
+        m_MethodName: overSoundNotStoping
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2980,7 +2996,7 @@ Prefab:
       objectReference: {fileID: 1169323139}
     - target: {fileID: 11424676, guid: 12652bfe40477664bb1f89556c891a93, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: overSound
+      value: overSoundNotStoping
       objectReference: {fileID: 0}
     - target: {fileID: 11486432, guid: 12652bfe40477664bb1f89556c891a93, type: 2}
       propertyPath: delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2988,7 +3004,7 @@ Prefab:
       objectReference: {fileID: 1169323139}
     - target: {fileID: 11486432, guid: 12652bfe40477664bb1f89556c891a93, type: 2}
       propertyPath: delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: overSound
+      value: overSoundNotStoping
       objectReference: {fileID: 0}
     - target: {fileID: 11424676, guid: 12652bfe40477664bb1f89556c891a93, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
@@ -3935,10 +3951,10 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 973218743}
   - {fileID: 1904167906}
   - {fileID: 1458818940}
   - {fileID: 1607644560}
-  - {fileID: 973218743}
   - {fileID: 1609753167}
   m_Father: {fileID: 2114201239}
   m_RootOrder: 0
@@ -4379,7 +4395,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1257634548}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_AnchorMin: {x: .174394727, y: .131165504}
   m_AnchorMax: {x: .369807422, y: .433479011}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -4403,7 +4419,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1169323139}
-          m_MethodName: overSound
+          m_MethodName: overSoundNotStoping
           m_Mode: 5
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -4469,7 +4485,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1169323139}
-        m_MethodName: overSound
+        m_MethodName: overSoundNotStoping
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4589,7 +4605,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1257634548}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_AnchorMin: {x: .469711244, y: .125606924}
   m_AnchorMax: {x: .617187619, y: .427920431}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -4613,7 +4629,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1169323139}
-          m_MethodName: overSound
+          m_MethodName: overSoundNotStoping
           m_Mode: 5
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -4679,7 +4695,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1169323139}
-        m_MethodName: overSound
+        m_MethodName: overSoundNotStoping
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5241,7 +5257,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: .352941185, g: .352941185, b: .352941185, a: 1}
   m_FontData:
     m_Font: {fileID: 12800000, guid: 2797b776964bcdc4bb43101030da6a78, type: 3}
     m_FontSize: 14
@@ -5503,7 +5519,7 @@ Prefab:
       objectReference: {fileID: 1169323139}
     - target: {fileID: 11424676, guid: 0525ff4a650275a4f82db62d309480b5, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: overSound
+      value: overSoundNotStoping
       objectReference: {fileID: 0}
     - target: {fileID: 11486432, guid: 0525ff4a650275a4f82db62d309480b5, type: 2}
       propertyPath: delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -5511,7 +5527,7 @@ Prefab:
       objectReference: {fileID: 1169323139}
     - target: {fileID: 11486432, guid: 0525ff4a650275a4f82db62d309480b5, type: 2}
       propertyPath: delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: overSound
+      value: overSoundNotStoping
       objectReference: {fileID: 0}
     - target: {fileID: 11424678, guid: 0525ff4a650275a4f82db62d309480b5, type: 2}
       propertyPath: m_Sprite
@@ -5745,7 +5761,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1257634548}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_AnchorMin: {x: .681378007, y: .131165504}
   m_AnchorMax: {x: .876896918, y: .433479011}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -5769,7 +5785,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1169323139}
-          m_MethodName: overSound
+          m_MethodName: overSoundNotStoping
           m_Mode: 5
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -5835,7 +5851,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1169323139}
-        m_MethodName: overSound
+        m_MethodName: overSoundNotStoping
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6559,8 +6575,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6176febaa074ec54190f43c9ccd605b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
   firstTime: 0
   firstTimeText: 
+  showing: 0
 --- !u!114 &2070431058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6887,7 +6905,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22424676, guid: d5d8f7d261021914688da828b65556a6, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22424676, guid: d5d8f7d261021914688da828b65556a6, type: 2}
       propertyPath: m_AnchoredPosition.x
@@ -6948,6 +6966,14 @@ Prefab:
     - target: {fileID: 11486432, guid: d5d8f7d261021914688da828b65556a6, type: 2}
       propertyPath: delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
       value: triangulo
+      objectReference: {fileID: 0}
+    - target: {fileID: 11424676, guid: d5d8f7d261021914688da828b65556a6, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: overSoundNotStoping
+      objectReference: {fileID: 0}
+    - target: {fileID: 11486432, guid: d5d8f7d261021914688da828b65556a6, type: 2}
+      propertyPath: delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: overSoundNotStoping
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d5d8f7d261021914688da828b65556a6, type: 2}

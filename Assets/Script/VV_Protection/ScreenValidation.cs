@@ -2,13 +2,14 @@
 using UnityEngine.UI;
 using System.Collections;
 using System.Text.RegularExpressions;
+using System.Text;
 
 public class ScreenValidation : MonoBehaviour {
 
 	public Button acceptBtn;
 	public Image valid;
 	public Image invalid;
-	public InputField serialInput;
+	public InputField[] serialInputs;
 
 	protected VV_GameProtection protection;
 	protected string serialValidated;
@@ -19,29 +20,28 @@ public class ScreenValidation : MonoBehaviour {
 		valid.gameObject.SetActive(false);
 		invalid.gameObject.SetActive(false);
 		acceptBtn.interactable = false;
-		serialInput.text = string.Empty;
-		//serialInput.characterValidation = InputField.CharacterValidation.Alphanumeric;
 
-		serialInput.onValidateInput += characterValidation;
+
+		foreach(InputField input in serialInputs)
+		{
+			input.text = string.Empty;
+			input.onValidateInput += characterValidation;
+		}
 
 		protection = GetComponent<VV_GameProtection>();
 		protection.onSuccess += succes;
 		protection.onError += fail;
+
+
+		serialInputs[0].Select();
+		serialInputs[0].ActivateInputField();
 	}
 	
 	private char characterValidation(string input, int charIndex, char addedChar)
 	{
 		Regex sintaxValidator = new Regex("[^A-Fa-f0-9]");
 
-		if(charIndex == 4 || charIndex == 9 || charIndex == 14 || charIndex == 19  || charIndex == 24  || charIndex == 29 || charIndex == 34)
-		{
-			if(addedChar != '-')
-			{
-				//empty char
-				return '\0';
-			}
-		}
-		else if(sintaxValidator.IsMatch(addedChar.ToString()))
+		if(sintaxValidator.IsMatch(addedChar.ToString()))
 		{
 			//empty char
 			return '\0';
@@ -50,11 +50,11 @@ public class ScreenValidation : MonoBehaviour {
 		return addedChar;
 	}
 	
-	public void onSerialChange()
+	public void onSerialChange(int index)
 	{
-		//serialInput.characterValidation
+		string serial = getFullSerialString();
 
-		if(serialInput.text.Length < 39 )
+		if(serial.Length < 32 )
 		{
 			invalid.gameObject.SetActive(false);
 			valid.gameObject.SetActive(false);
@@ -62,9 +62,27 @@ public class ScreenValidation : MonoBehaviour {
 		}
 		else
 		{
-			serialValidated = serialInput.text;
-			protection.validateSerial(serialInput.text);
+			serialValidated = serial;
+			protection.validateSerial(serial);
 		}
+
+		if(index < serialInputs.Length-1 && serialInputs[index].text.Length == 4)
+		{
+			serialInputs[index+1].Select();
+			serialInputs[index+1].ActivateInputField();
+		}
+	}
+
+	protected string getFullSerialString()
+	{
+		int l = serialInputs.Length;
+		StringBuilder builder = new StringBuilder("");
+		for(int i = 0; i < l; i++)
+		{
+			builder.Append(serialInputs[i].text);
+		}
+
+		return builder.ToString();
 	}
 
 	protected void succes(string m)
