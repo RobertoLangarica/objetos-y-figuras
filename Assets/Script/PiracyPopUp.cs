@@ -8,11 +8,16 @@ public class PiracyPopUp : MonoBehaviour
 	public TermsAndConditions terms;
 	void Start()
 	{
-
+		#if UNITY_STANDALONE
 		if(!UserDataManager.instance.isAPirateGame && (UserDataManager.instance.showPopUp == false || UserDataManager.instance.startGame == false))
 		{
 			gameObject.SetActive(false);
 		}
+		#endif
+
+		#if UNITY_ANDROID || UNITY_IOS
+		gameObject.SetActive(false);
+		#endif
 	}
 
 	public void changeFirstRun()
