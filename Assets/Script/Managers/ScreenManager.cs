@@ -26,6 +26,7 @@ public class ScreenManager : MonoBehaviour {
 
 		//Solo que se inicialize user data
 		UserDataManager.instance.foo();
+		//UserDataManager.instance.cleanData();
 	
 		transform.SetAsLastSibling();
 	}
