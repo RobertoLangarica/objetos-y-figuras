@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 using DG.Tweening;
 
@@ -48,7 +49,9 @@ public class Notification : MonoBehaviour
 	
 	public void showToast(string toastXMLName,float duration = -1)
 	{
-		AudioClip aC = (AudioClip)Resources.Load("Sounds/"+data.getNotifyByName(toastXMLName).idSound);
+		notify[] result = data.getNotifyArrByName(toastXMLName);
+		int rdm = Random.Range(0,result.Length);
+		AudioClip aC = (AudioClip)Resources.Load("Sounds/"+result[rdm].idSound);
 
 		currentToast = toastXMLName;
 
@@ -74,13 +77,15 @@ public class Notification : MonoBehaviour
 
 		StartCoroutine("hideToastWhenSoundEnd",new object[2]{duration,toastXMLName});
 
-		changeText(toastXMLName);
+		changeText(result[rdm].text);
 
 	}
 
 	public void showToast(string toastXMLName,AudioClip sound,float duration = -1)
 	{
-		AudioClip aC = (AudioClip)Resources.Load("Sounds/"+data.getNotifyByName(toastXMLName).idSound);
+		notify[] result = data.getNotifyArrByName(toastXMLName);
+		int rdm = Random.Range(0,result.Length);
+		AudioClip aC = (AudioClip)Resources.Load("Sounds/"+result[rdm].idSound);
 
 		currentToast = toastXMLName;
 
@@ -111,7 +116,7 @@ public class Notification : MonoBehaviour
 
 		StartCoroutine("hideToastWhenSoundEnd",new object[2]{duration,toastXMLName});
 		
-		changeText(toastXMLName);
+		changeText(result[rdm].text);
 		
 	}
 	
@@ -122,7 +127,7 @@ public class Notification : MonoBehaviour
 		infTemp = data.getNotifyByName(notifyXMLName);
 
 		show(true);
-		toast.GetComponentInChildren<Text>().text = infTemp.text;
+		toast.GetComponentInChildren<Text>().text = notifyXMLName;
 	}
 	
 	protected void show(bool show,float delay = .5f)

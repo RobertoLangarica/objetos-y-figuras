@@ -87,6 +87,20 @@ public class Teacher
 		
 		return null;
 	}
+	
+	public notify[] getNotifyArrByName(string Name)
+	{
+		List<notify> result = new List<notify>();
+		foreach(notify l in _notify)
+		{
+			if(l.name == Name)
+			{
+				result.Add(l);
+			}
+		}
+		
+		return result.ToArray();
+	}
 
 	public showTutorText getShowTutorTextByName(string Name)
 	{
