@@ -40,4 +40,9 @@ public class TutorScreen : MonoBehaviour {
 	{
 		ScreenManager.instance.showPrevScene();
 	}
+
+	public void toRegistro()
+	{
+		Application.OpenURL("http://www.curiosamente.com/registro");
+	}
 }
