@@ -35,7 +35,7 @@ public class DrawingInput : MonoBehaviour
 	
 		bWidth = brushType.renderer.bounds.size.x*brushType.transform.localScale.x;
 		//Menos 2 pixeles (el sprite est a 100pixeles por cada unidad)
-		bWidth -=  .02f;
+		//bWidth -=  .02f;
 		input.GetComponent<DragRecognizer>().OnGesture += OnDrag;
 
 		if(randomizeColor)
