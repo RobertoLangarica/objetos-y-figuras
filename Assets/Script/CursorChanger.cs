@@ -81,6 +81,7 @@ public class CursorChanger : MonoBehaviour {
 
 	protected void changer(Texture2D texture,string state)
 	{
+		#if UNITY_STANDALONE
 		if(!bPencil)
 		{
 			if(!currentState.Equals(state))
@@ -90,6 +91,7 @@ public class CursorChanger : MonoBehaviour {
 				hotSpot = Vector2.zero;
 			}
 		}
+		#endif
 	}
 
 	protected void searchButtons()
