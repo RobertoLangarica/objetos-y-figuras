@@ -28,12 +28,40 @@ public class SpacegramManager : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		Level[] levlDificultie = LevelManager.instance.getLevels(MenuController.currLevel);
+		input.onAnyDrag += onDrag;
+		input.onDragFinish += onDragFinish;
+		input.allowRotation = !cannotRotate;
+		
+		notification.onClose += onContinue;
+		startNewLevel();
+	}	
+	void startNewLevel()
+	{
+		for(int i = 0;i < shapes.Length;i++)
+		{
+			if(shapes[i] != null)
+			{
+				input.onDragFinish -= shapes[i].GetComponent<Shape>().onRotationComplete;
+				shapes[i].GetComponent<Shape>().destroy(0.5f);
+			}
+		}
+		if(reference)
+		{
+			Destroy(reference);
+		}
+		if(placeholder)
+		{
+			Destroy(placeholder.gameObject);
+		}
+		input.gameObject.SetActive(true);
+
+
+		Level[] levlDificultie = LevelManager.instance.getLevels(currLevel);
 		int rand = Random.Range(0,levlDificultie.Length);
-
+		
 		lvlToPrepare = levlDificultie[rand].name;
-		MenuController.currLevel++;
-
+		currLevel++;
+		
 		currentLevel = LevelManager.instance.getLevel(lvlToPrepare);
 		
 		if(currentLevel == null)
@@ -41,14 +69,9 @@ public class SpacegramManager : MonoBehaviour
 			Debug.LogError("GM-> No existe el nivel especificado: "+lvlToPrepare);
 			return;
 		}
-
+		
 		initializeShapes();
-		input.onAnyDrag += onDrag;
-		input.onDragFinish += onDragFinish;
-		input.allowRotation = !cannotRotate;
-
-		notification.onClose += onContinue;
-	}	
+	}
 
 	void onDrag()
 	{
@@ -96,7 +119,11 @@ public class SpacegramManager : MonoBehaviour
 	void initializeShapes()
 	{
 		GameObject go;
-		AnalyticManager.instance.startGame();
+
+		if(AnalyticManager.instance)
+		{
+			AnalyticManager.instance.startGame();
+		}
 		//Imagenes
 		Piece[] pieces = currentLevel.pieces;
 		Pair[] pairs = currentLevel.pairs;
@@ -254,7 +281,10 @@ public class SpacegramManager : MonoBehaviour
 		if(placeholder.isCorrect())
 		{
 			placeholder.canTurnOn = false;
-			AnalyticManager.instance.finsh("Construye","SpaceGram",currentLevel.name);
+			if(AnalyticManager.instance)
+			{
+				AnalyticManager.instance.finsh("Construye","SpaceGram",currentLevel.name);
+			}
 			initializeReferenceImage();
 			continueBtn.interactable = false;
 			input.selected = null;
@@ -290,7 +320,6 @@ public class SpacegramManager : MonoBehaviour
 
 	protected void removeShapesAndPlaceHolder()
 	{
-
 		foreach(GameObject shape in shapes)
 		{
 			Debug.Log("S");
@@ -307,9 +336,13 @@ public class SpacegramManager : MonoBehaviour
 		{
 			UserDataManager.instance.level = UserDataManager.instance.level+1;
 		}*/
-		if(MenuController.currLevel <4)
+		if(currLevel <4)
 		{
-			ScreenManager.instance.GoToScene("SpacegramMenu");
+			//Debug.Log("S");
+			//removeShapesAndPlaceHolder();
+			//ScreenManager.instance.GoToScene("SpacegramMenu");
+			//eliminar nivel y cargar el nuevo
+			startNewLevel();
 		}
 		else
 		{
