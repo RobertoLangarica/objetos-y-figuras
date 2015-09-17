@@ -57,4 +57,9 @@ public class PiracyPopUp : MonoBehaviour
 	{
 		Application.OpenURL("http://www.curiosamente.com/registro");
 	}
+	
+	public void toInfo()
+	{
+		Application.OpenURL("http://www.curiosamente.com/registro");
+	}
 }
