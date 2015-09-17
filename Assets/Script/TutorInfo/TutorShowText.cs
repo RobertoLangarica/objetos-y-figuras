@@ -20,6 +20,10 @@ public class TutorShowText : MonoBehaviour {
 			return;
 		}
 		panelButonShow.GetComponentInChildren<Button>().interactable=false;
+
+		//print(Screen.currentResolution.width);
+		//print(Screen.currentResolution.height);
+
 		StartCoroutine("lateStart");
 	}
 
@@ -36,22 +40,30 @@ public class TutorShowText : MonoBehaviour {
 		
 		showTutorText shtutor;
 		shtutor = data.getShowTutorTextByName(textToShow);
-		
 		shtutor.text = shtutor.text.Replace("@",System.Environment.NewLine);
 		shtutor.title = shtutor.title.Replace("@",System.Environment.NewLine);
 		shtutor.text = shtutor.text.Replace("()","<color=black>");
 		shtutor.text = shtutor.text.Replace("(*)","</color>");
 		
-		text.text =  shtutor.text;
+		text.text =  System.Environment.NewLine+shtutor.text;
 		title.text = shtutor.title;
 		yield return new WaitForSeconds(.1f);
-		if(title.cachedTextGenerator.fontSizeUsedForBestFit <50)
-		{
-			text.resizeTextMaxSize = 12;
-		}
+
+		//if(title.cachedTextGenerator.fontSizeUsedForBestFit <50)
+		//{
+		//	text.resizeTextMaxSize = 12;
+		//}
+		//else if(title.cachedTextGenerator.fontSizeUsedForBestFit >100)
+		//{
+		//	text.resizeTextMaxSize =title.cachedTextGenerator.fontSizeUsedForBestFit;
+		//	Debug.Log(title.cachedTextGenerator.fontSizeUsedForBestFit);
+		//}
+		text.resizeTextMaxSize =(int)(title.cachedTextGenerator.fontSizeUsedForBestFit*.5);
+		Debug.Log(text.resizeTextMaxSize);
 		yield return  new WaitForSeconds(.1f);
 		panelButonShow.GetComponentInChildren<Button>().interactable=true;
 		panelShowText.SetActive(false);
+		panelShowText.GetComponent<RectTransform>().anchoredPosition = new Vector2(0,0);
 	}
 
 	public void exitPopUp()
