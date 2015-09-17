@@ -361,8 +361,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 828758227}
   m_RootOrder: 1
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: .616330802, y: 1}
+  m_AnchorMin: {x: .00984656811, y: .23750633}
+  m_AnchorMax: {x: .621253788, y: .786244512}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
@@ -1764,6 +1764,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f697a606eb16a1d4fa2b794d39e807b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  showing: 0
 --- !u!222 &454059390
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2001,7 +2002,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: .0249774121, y: .235289931}
   m_AnchorMax: {x: .957539737, y: 1}
-  m_AnchoredPosition: {x: 0, y: -45.0379028}
+  m_AnchoredPosition: {x: 0, y: -33.4986877}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &481658279
@@ -2065,7 +2066,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22446012, guid: 05f5f3a825ed1ae4d96ca4cf437f6cc9, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: .939449251
       objectReference: {fileID: 0}
     - target: {fileID: 22487990, guid: 05f5f3a825ed1ae4d96ca4cf437f6cc9, type: 2}
       propertyPath: m_LocalPosition.x
@@ -2141,7 +2142,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22445998, guid: 05f5f3a825ed1ae4d96ca4cf437f6cc9, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: -185.746521
       objectReference: {fileID: 0}
     - target: {fileID: 11487992, guid: 05f5f3a825ed1ae4d96ca4cf437f6cc9, type: 2}
       propertyPath: textToShow
@@ -2153,7 +2154,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22445998, guid: 05f5f3a825ed1ae4d96ca4cf437f6cc9, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -45.0379028
+      value: -33.4986877
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 05f5f3a825ed1ae4d96ca4cf437f6cc9, type: 2}
@@ -2237,7 +2238,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1547556246}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: .939449191
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2334,7 +2335,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "BEEP!\nFe-li-ci-da-des\nHaz COMPLETADO la \nmisi\xF3n..."
+  m_Text: "\xA1Felicidades!\nHaz completado la \nmisi\xF3n."
 --- !u!222 &558288667
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2780,7 +2781,7 @@ MonoBehaviour:
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 10
+    m_MinSize: 2
     m_MaxSize: 104
     m_Alignment: 1
     m_RichText: 1
@@ -3368,11 +3369,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1643009239}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_AnchorMin: {x: .207000017, y: 0}
   m_AnchorMax: {x: .879631162, y: .249839425}
-  m_AnchoredPosition: {x: 0, y: -5.55000019}
-  m_SizeDelta: {x: 0, y: 11.1000004}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1054634966
 MonoBehaviour:
@@ -3453,8 +3454,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6176febaa074ec54190f43c9ccd605b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
   firstTime: 1
   firstTimeText: Alto-Bajo
+  soundIsPlaying: 0
 --- !u!114 &1113215357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3580,7 +3583,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1643009239}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_AnchorMin: {x: .195315614, y: .822580278}
   m_AnchorMax: {x: .861368895, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -4052,9 +4055,9 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1643009239}
-  m_RootOrder: 0
-  m_AnchorMin: {x: .195315614, y: .233419716}
-  m_AnchorMax: {x: .808159828, y: .835709929}
+  m_RootOrder: 4
+  m_AnchorMin: {x: .207000017, y: .234793946}
+  m_AnchorMax: {x: .808004916, y: .845995843}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
@@ -4073,7 +4076,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Sprite: {fileID: 21300234, guid: f46c2807590594f878a1886f3b6e912e, type: 3}
-  m_Type: 0
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -4231,7 +4234,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1643009239}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_AnchorMin: {x: .059315607, y: .118549272}
   m_AnchorMax: {x: .212000012, y: .865290165}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -4341,6 +4344,8 @@ GameObject:
   - 222: {fileID: 1313850123}
   - 114: {fileID: 1313850122}
   - 114: {fileID: 1313850121}
+  - 114: {fileID: 1313850126}
+  - 114: {fileID: 1313850125}
   - 114: {fileID: 1313850124}
   m_Layer: 5
   m_Name: BtnCalificar
@@ -4456,6 +4461,32 @@ MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1313850119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delegates: []
+--- !u!114 &1313850125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11438882, guid: f356cfc29c1936d459b3f0d2c2feb5cc,
+    type: 2}
+  m_PrefabInternal: {fileID: 1798246237}
+  m_GameObject: {fileID: 1313850119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delegates: []
+--- !u!114 &1313850126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11422184, guid: f356cfc29c1936d459b3f0d2c2feb5cc,
+    type: 2}
+  m_PrefabInternal: {fileID: 1798246237}
   m_GameObject: {fileID: 1313850119}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -4584,7 +4615,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1643009239}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_AnchorMin: {x: .781315625, y: .217000008}
   m_AnchorMax: {x: .969733834, y: .835709929}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -5040,8 +5071,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1203044811}
   m_RootOrder: 0
-  m_AnchorMin: {x: 0, y: .76390928}
-  m_AnchorMax: {x: 1, y: .852545977}
+  m_AnchorMin: {x: .330000013, y: .787310004}
+  m_AnchorMax: {x: .667136431, y: .852545977}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
@@ -5057,20 +5088,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: .352941185, g: .352941185, b: .352941185, a: 1}
   m_FontData:
     m_Font: {fileID: 12800000, guid: 23f28d5849f3f244dabe1d306be3b7a9, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 10
-    m_MaxSize: 104
+    m_MinSize: 2
+    m_MaxSize: 84
     m_Alignment: 4
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '"Bajo-Alto"'
+  m_Text: Bajo-Alto
 --- !u!222 &1531449644
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5363,11 +5394,11 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1226629122}
   - {fileID: 1150328589}
   - {fileID: 1307475792}
   - {fileID: 1054634965}
   - {fileID: 1389890310}
+  - {fileID: 1226629122}
   - {fileID: 1879991132}
   - {fileID: 1885724228}
   - {fileID: 1313850120}
