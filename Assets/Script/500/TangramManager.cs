@@ -35,6 +35,7 @@ public class TangramManager : MonoBehaviour
 
 	void Start ()
 	{		
+		showTutor();
 		loader = GameObject.FindObjectOfType<XMLLoader>();
 
 		levelStart();
@@ -72,6 +73,29 @@ public class TangramManager : MonoBehaviour
 					input.selected = null;
 				}
 			}
+		}
+	}
+
+	protected void showTutor()
+	{
+		switch(tType)
+		{
+		case(ETangramTypes.SAME_SHAPE):
+		{
+			if(FindObjectOfType<TutorShowText>())
+			{
+				FindObjectOfType<TutorShowText>().textToShow = "construyeconiguales";
+			}
+		}
+			break;
+		case(ETangramTypes.ALL_SHAPES):
+		{
+			if(FindObjectOfType<TutorShowText>())
+			{
+				FindObjectOfType<TutorShowText>().textToShow = "construyefiguras";
+			}
+		}
+			break;
 		}
 	}
 
