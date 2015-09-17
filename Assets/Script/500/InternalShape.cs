@@ -83,8 +83,8 @@ public class InternalShape : MonoBehaviour
 
 	public bool havevSameScale(GameObject go)
 	{
-		Vector2 goScale = new Vector2(Mathf.Round(go.transform.localScale.x *1000)*0.001f,Mathf.Round(go.transform.localScale.y *1000)*0.001f);
-		Vector2 mScale = new Vector2(Mathf.Round(transform.localScale.x *1000)*0.001f,Mathf.Round(transform.localScale.y *1000)*0.001f);
+		Vector2 goScale = new Vector2(Mathf.Abs(Mathf.Round(go.transform.localScale.x *1000)*0.001f),Mathf.Abs(Mathf.Round(go.transform.localScale.y *1000)*0.001f));
+		Vector2 mScale = new Vector2(Mathf.Abs(Mathf.Round(transform.localScale.x *1000)*0.001f),Mathf.Abs(Mathf.Round(transform.localScale.y *1000)*0.001f));
 		if(goScale == mScale)
 		{
 			return true;

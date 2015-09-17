@@ -23,7 +23,8 @@ public class TangramManager : MonoBehaviour
 	public AudioClip audioRight;
 	public AudioClip finalAudio;
 	public AudioClip positionatedAudio;
-	
+	public GameObject subtitle;
+
 	protected Level currentLevel;
 	protected List<string> previousLevel = new List<string>();
 	protected int currLevel = 1;
@@ -84,6 +85,7 @@ public class TangramManager : MonoBehaviour
 		{
 			if(FindObjectOfType<TutorShowText>())
 			{
+				subtitle.GetComponent<Text>().text = "Con iguales";
 				FindObjectOfType<TutorShowText>().textToShow = "construyeconiguales";
 			}
 		}
@@ -92,6 +94,7 @@ public class TangramManager : MonoBehaviour
 		{
 			if(FindObjectOfType<TutorShowText>())
 			{
+				subtitle.GetComponent<Text>().text = "Figuras";
 				FindObjectOfType<TutorShowText>().textToShow = "construyefiguras";
 			}
 		}
@@ -140,7 +143,7 @@ public class TangramManager : MonoBehaviour
 			}
 			break;
 		}
-		Debug.Log(currentLevel);
+		//Debug.Log(currentLevel);
 		
 		initializeShapes(currentLevel);
 
@@ -358,7 +361,6 @@ public class TangramManager : MonoBehaviour
 		Level result = null;
 		if(fTypeAllShapes == null)
 		{
-			Debug.Log("S");
 			fTypeAllShapes = new List<Level>();
 			for(int i = 0;i < loader.data.levels500.Length;i++)
 			{
