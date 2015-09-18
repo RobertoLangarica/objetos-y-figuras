@@ -62,6 +62,7 @@ public class PiracyPopUp : MonoBehaviour
 	{
 		tog.isOn = UserDataManager.instance.showPopUp;
 
+		gameObject.SetActive(true);
 		gameObject.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0,0),0.5f).SetEase(Ease.OutBack);
 		gameObject.GetComponent<RectTransform>().DOScale(new Vector3(1,1,1),0.5f).SetEase(Ease.OutBack).OnComplete(()=>{gameObject.GetComponent<Image>().enabled = true;});
 	}
