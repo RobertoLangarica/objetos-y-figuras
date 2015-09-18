@@ -8,10 +8,13 @@ public class PiracyPopUp : MonoBehaviour
 	public Toggle tog;
 	public TermsAndConditions terms;
 	public Transform hidePos;
+	public GameObject pcPopUp;
+	public GameObject mobilePopUp;
 
 	void Start()
 	{
 		#if UNITY_STANDALONE
+		mobilePopUp.SetActive(false);
 		if(!UserDataManager.instance.isAPirateGame && (UserDataManager.instance.showPopUp == false || UserDataManager.instance.startGame == false))
 		{
 			gameObject.SetActive(false);
@@ -19,7 +22,11 @@ public class PiracyPopUp : MonoBehaviour
 		#endif
 
 		#if UNITY_ANDROID || UNITY_IOS
-		//gameObject.SetActive(false);
+		pcPopUp.SetActive(false);
+		if(UserDataManager.instance.showPopUp == false || UserDataManager.instance.startGame == false)
+		{
+			gameObject.SetActive(false);
+		}
 		#endif
 	}
 
@@ -41,14 +48,14 @@ public class PiracyPopUp : MonoBehaviour
 		UserDataManager.instance.startGame = false;
 		gameObject.GetComponent<Image>().enabled = false;
 		gameObject.GetComponent<RectTransform>().DOScale(Vector3.zero,0.5f).SetEase(Ease.InBack);
-		gameObject.GetComponent<RectTransform>().DOMove(hidePos.position,0.5f).SetEase(Ease.InBack);
-		
-		#if UNITY_STANDALONE
-		if(UserDataManager.instance.isAPirateGame)
-		{
-			ScreenManager.instance.GoToScene("Validation");
-		}
-		#endif
+		gameObject.GetComponent<RectTransform>().DOMove(hidePos.position,0.5f).SetEase(Ease.InBack).OnComplete(()=>{
+			#if UNITY_STANDALONE
+			if(UserDataManager.instance.isAPirateGame)
+			{
+				ScreenManager.instance.GoToScene("Validation");
+			}
+			#endif
+		});
 	}
 
 	public void showPopUp()
