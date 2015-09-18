@@ -164,7 +164,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22445998, guid: 05f5f3a825ed1ae4d96ca4cf437f6cc9, type: 2}
       propertyPath: m_SizeDelta.y
-      value: -85.7376709
+      value: -174.381866
       objectReference: {fileID: 0}
     - target: {fileID: 11487992, guid: 05f5f3a825ed1ae4d96ca4cf437f6cc9, type: 2}
       propertyPath: textToShow
@@ -172,7 +172,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22445998, guid: 05f5f3a825ed1ae4d96ca4cf437f6cc9, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -18.11306
+      value: -31.7500229
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 05f5f3a825ed1ae4d96ca4cf437f6cc9, type: 2}
@@ -392,8 +392,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6176febaa074ec54190f43c9ccd605b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
   firstTime: 0
   firstTimeText: 
+  soundIsPlaying: 0
 --- !u!114 &109436249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1090,11 +1092,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11446956, guid: 3dfb11f8ce87d5444b495aba7495d891, type: 2}
       propertyPath: m_FontData.m_MaxSize
-      value: 56
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 11446954, guid: 3dfb11f8ce87d5444b495aba7495d891, type: 2}
       propertyPath: m_FontData.m_MaxSize
-      value: 56
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 11414232, guid: 3dfb11f8ce87d5444b495aba7495d891, type: 2}
       propertyPath: m_PreserveAspect
@@ -1192,6 +1194,18 @@ Prefab:
     - target: {fileID: 5828086, guid: 3dfb11f8ce87d5444b495aba7495d891, type: 2}
       propertyPath: m_Radius
       value: .200000003
+      objectReference: {fileID: 0}
+    - target: {fileID: 11446954, guid: 3dfb11f8ce87d5444b495aba7495d891, type: 2}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11446954, guid: 3dfb11f8ce87d5444b495aba7495d891, type: 2}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11446954, guid: 3dfb11f8ce87d5444b495aba7495d891, type: 2}
+      propertyPath: m_Color.b
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3dfb11f8ce87d5444b495aba7495d891, type: 2}
@@ -1295,8 +1309,8 @@ MonoBehaviour:
     m_FontSize: 3
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 10
-    m_MaxSize: 60
+    m_MinSize: 2
+    m_MaxSize: 300
     m_Alignment: 4
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -1993,7 +2007,6 @@ GameObject:
   - 224: {fileID: 567505329}
   - 222: {fileID: 567505332}
   - 114: {fileID: 567505331}
-  - 114: {fileID: 567505330}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -2017,22 +2030,9 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -6647}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
---- !u!114 &567505330
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11446012, guid: 05f5f3a825ed1ae4d96ca4cf437f6cc9,
-    type: 2}
-  m_PrefabInternal: {fileID: 36846825}
-  m_GameObject: {fileID: 567505328}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1200242548, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ShowMaskGraphic: 1
 --- !u!114 &567505331
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2446,7 +2446,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: .0249774121, y: .235289931}
   m_AnchorMax: {x: .957539737, y: 1}
-  m_AnchoredPosition: {x: 0, y: -18.11306}
+  m_AnchoredPosition: {x: 0, y: -31.7500229}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &848507170
@@ -2462,7 +2462,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: .352941185, g: .352941185, b: .352941185, a: 1}
   m_FontData:
     m_Font: {fileID: 12800000, guid: 2797b776964bcdc4bb43101030da6a78, type: 3}
     m_FontSize: 30
@@ -2615,8 +2615,8 @@ MonoBehaviour:
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 10
-    m_MaxSize: 56
+    m_MinSize: 2
+    m_MaxSize: 300
     m_Alignment: 5
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -3379,14 +3379,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: .196078435, g: .196078435, b: .196078435, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FontData:
     m_Font: {fileID: 12800000, guid: 2797b776964bcdc4bb43101030da6a78, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 10
-    m_MaxSize: 56
+    m_MinSize: 2
+    m_MaxSize: 300
     m_Alignment: 3
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -3602,7 +3602,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: .352941185, g: .352941185, b: .352941185, a: 1}
   m_FontData:
     m_Font: {fileID: 12800000, guid: 2797b776964bcdc4bb43101030da6a78, type: 3}
     m_FontSize: 14
@@ -3807,6 +3807,7 @@ GameObject:
   - 114: {fileID: 1561861985}
   - 114: {fileID: 1561861984}
   - 114: {fileID: 1561861988}
+  - 114: {fileID: 1561861989}
   m_Layer: 5
   m_Name: ExitBtn
   m_TagString: UIButton
@@ -3932,6 +3933,19 @@ CanvasRenderer:
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 11469490, guid: 3dfb11f8ce87d5444b495aba7495d891,
+    type: 2}
+  m_PrefabInternal: {fileID: 370772934}
+  m_GameObject: {fileID: 1561861982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delegates: []
+--- !u!114 &1561861989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11431422, guid: 3dfb11f8ce87d5444b495aba7495d891,
     type: 2}
   m_PrefabInternal: {fileID: 370772934}
   m_GameObject: {fileID: 1561861982}
@@ -4537,6 +4551,7 @@ GameObject:
   - 114: {fileID: 1712588685}
   - 114: {fileID: 1712588689}
   - 114: {fileID: 1712588690}
+  - 114: {fileID: 1712588691}
   m_Layer: 5
   m_Name: PeniclBtn
   m_TagString: UIButton
@@ -4716,6 +4731,91 @@ MonoBehaviour:
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 11469488, guid: 3dfb11f8ce87d5444b495aba7495d891,
+    type: 2}
+  m_PrefabInternal: {fileID: 370772934}
+  m_GameObject: {fileID: 1712588683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_MethodName: changeCursor
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+              Culture=neutral, PublicKeyToken=null
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: over
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_MethodName: changeCursor
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+              Culture=neutral, PublicKeyToken=null
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: exit
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_MethodName: changeCursor
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+              Culture=neutral, PublicKeyToken=null
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: down
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_MethodName: changeCursor
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+              Culture=neutral, PublicKeyToken=null
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: click
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+--- !u!114 &1712588691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11431420, guid: 3dfb11f8ce87d5444b495aba7495d891,
     type: 2}
   m_PrefabInternal: {fileID: 370772934}
   m_GameObject: {fileID: 1712588683}
