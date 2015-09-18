@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using DG.Tweening;
 
 public class PiracyPopUp : MonoBehaviour 
 {
 	public Toggle tog;
 	public TermsAndConditions terms;
+	public Transform hidePos;
+
 	void Start()
 	{
 		#if UNITY_STANDALONE
@@ -16,7 +19,7 @@ public class PiracyPopUp : MonoBehaviour
 		#endif
 
 		#if UNITY_ANDROID || UNITY_IOS
-		gameObject.SetActive(false);
+		//gameObject.SetActive(false);
 		#endif
 	}
 
@@ -34,18 +37,26 @@ public class PiracyPopUp : MonoBehaviour
 
 	public void closePopUp()
 	{
-		gameObject.SetActive(false);
+		//gameObject.SetActive(false);
 		UserDataManager.instance.startGame = false;
-
+		gameObject.GetComponent<Image>().enabled = false;
+		gameObject.GetComponent<RectTransform>().DOScale(Vector3.zero,0.5f).SetEase(Ease.InBack);
+		gameObject.GetComponent<RectTransform>().DOMove(hidePos.position,0.5f).SetEase(Ease.InBack);
+		
+		#if UNITY_STANDALONE
 		if(UserDataManager.instance.isAPirateGame)
 		{
 			ScreenManager.instance.GoToScene("Validation");
 		}
+		#endif
+	}
 
-		//if(UserDataManager.instance.TermsAccepted)
-		//{
-		//	terms.openTerms();
-		//}
+	public void showPopUp()
+	{
+		tog.isOn = UserDataManager.instance.showPopUp;
+
+		gameObject.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0,0),0.5f).SetEase(Ease.OutBack);
+		gameObject.GetComponent<RectTransform>().DOScale(new Vector3(1,1,1),0.5f).SetEase(Ease.OutBack).OnComplete(()=>{gameObject.GetComponent<Image>().enabled = true;});
 	}
 
 	public void toCuriosamente()
@@ -54,11 +65,6 @@ public class PiracyPopUp : MonoBehaviour
 	}
 
 	public void toRegistro()
-	{
-		Application.OpenURL("http://www.curiosamente.com/registro");
-	}
-	
-	public void toInfo()
 	{
 		Application.OpenURL("http://www.curiosamente.com/registro");
 	}
