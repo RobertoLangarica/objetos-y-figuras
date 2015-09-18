@@ -59,7 +59,7 @@ public class TutorShowText : MonoBehaviour {
 		//	Debug.Log(title.cachedTextGenerator.fontSizeUsedForBestFit);
 		//}
 		text.resizeTextMaxSize =(int)(title.cachedTextGenerator.fontSizeUsedForBestFit*.5);
-		Debug.Log(text.resizeTextMaxSize);
+		//Debug.Log(text.resizeTextMaxSize);
 		yield return  new WaitForSeconds(.1f);
 		panelButonShow.GetComponentInChildren<Button>().interactable=true;
 		panelShowText.SetActive(false);

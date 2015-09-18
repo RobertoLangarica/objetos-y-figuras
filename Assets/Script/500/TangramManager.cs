@@ -139,7 +139,6 @@ public class TangramManager : MonoBehaviour
 			case(ETangramTypes.ALL_SHAPES):
 			{
 				currentLevel = takeLevel();
-			Debug.Log("S");
 			}
 			break;
 		}
@@ -165,7 +164,7 @@ public class TangramManager : MonoBehaviour
 		GameObject go;
 		//AnalyticManager.instance.startGame();
 		//Imagenes
-		Debug.Log(initLevel);
+		//Debug.Log(initLevel);
 		Piece[] pieces = initLevel.pieces;
 		Pair[] pairs = initLevel.pairs;
 		
