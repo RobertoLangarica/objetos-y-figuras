@@ -14,14 +14,14 @@ public class SoundShapeManager : MonoBehaviour {
 
 	void Awake()
 	{
-		if(!GameObject.Find("Main Camera").GetComponent<AudioSource>())
+		if(!GameObject.Find("AudioOver").GetComponent<AudioSource>())
 		{
-			audioSource = GameObject.Find("Main Camera").AddComponent<AudioSource>();
+			audioSource = GameObject.Find("AudioOver").AddComponent<AudioSource>();
 			audioSource.volume = 1;//0.5f;
 		}
 		else
 		{
-			audioSource = GameObject.Find("Main Camera").GetComponent<AudioSource>();
+			audioSource = GameObject.Find("AudioOver").GetComponent<AudioSource>();
 			audioSource.volume = 1;//0.5f;
 		}
 		question = GameObject.FindObjectOfType<Question>();
@@ -39,7 +39,13 @@ public class SoundShapeManager : MonoBehaviour {
 		shapes = GameObject.Find("Shapes");
 		shapeBtn = shapes.gameObject.GetComponentsInChildren<Button>();
 
+		StartCoroutine("soundStart");
+		//overSound(startSoundName);
+	}
 
+	IEnumerator soundStart()
+	{
+		yield return new WaitForSeconds(.1f);
 		overSound(startSoundName);
 	}
 

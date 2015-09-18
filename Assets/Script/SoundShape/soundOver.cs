@@ -8,6 +8,13 @@ public class soundOver : MonoBehaviour {
 	public void selectSound(string soundToPlay)
 	{
 		bool sameName = false;
+		if(GameObject.Find("AudioOver").GetComponent<AudioSource>())
+		{
+			audioSource = GameObject.Find("AudioOver").GetComponent<AudioSource>();
+			audioSource.volume = 1;//0.5f;
+		}
+
+
 		if(audio.clip)
 		{
 			if(audioSource.isPlaying&&soundToPlay == audioSource.clip.name)
