@@ -27,7 +27,7 @@ public class AudioManager : MonoBehaviour {
 			{
 				GameMusic.Stop();
 			}
-			MainMusic.volume=1;
+			MainMusic.volume=.8f;
 			GameMusic.volume=0;
 
 			MainMusic.audio.clip = MainAudio0;
@@ -44,7 +44,7 @@ public class AudioManager : MonoBehaviour {
 		else if(Application.loadedLevel < 8)
 		{
 			MainMusic.volume=0;
-			GameMusic.volume=1;
+			GameMusic.volume=.8f;
 			if(!MainMusic.isPlaying)
 			{
 				MainMusic.audio.clip = MainAudio0;
@@ -59,7 +59,7 @@ public class AudioManager : MonoBehaviour {
 		{
 			MainMusic.Stop();
 			MainMusic.volume=0;
-			GameMusic.volume=1;
+			GameMusic.volume=.8f;
 			GameMusic.audio.clip = GameAudio;
 			if(!GameMusic.isPlaying)
 			{

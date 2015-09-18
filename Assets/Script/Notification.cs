@@ -72,7 +72,7 @@ public class Notification : MonoBehaviour
 		}
 		if(aC)
 		{
-			audioSource.PlayOneShot(aC);
+			audioSource.PlayOneShot(aC,1);
 		}
 
 		StartCoroutine("hideToastWhenSoundEnd",new object[2]{duration,toastXMLName});
@@ -106,12 +106,12 @@ public class Notification : MonoBehaviour
 		}
 		if(aC)
 		{
-			audioSource.PlayOneShot(aC);
+			audioSource.PlayOneShot(aC,1);
 		}
 
 		if(sound)
 		{
-			audioSource.PlayOneShot(sound);
+			audioSource.PlayOneShot(sound,1);
 		}
 
 		StartCoroutine("hideToastWhenSoundEnd",new object[2]{duration,toastXMLName});

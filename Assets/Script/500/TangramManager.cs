@@ -62,11 +62,11 @@ public class TangramManager : MonoBehaviour
 			{
 				//Flash de color
 				SpriteRenderer sr = input.selected.spriteRenderer;
-				input.selected.GetComponent<FlashColor>().startFlash(sr,0.05f);
+				input.selected.GetComponent<FlashColor>().startFlash(sr,0.6f);
 
 				if(audioSource && positionatedAudio)
 				{
-					audioSource.PlayOneShot(positionatedAudio);
+					audioSource.PlayOneShot(positionatedAudio,1);
 				}
 
 				if(excerciseFinished)
@@ -548,7 +548,7 @@ public class TangramManager : MonoBehaviour
 			}
 			if(audioSource && audioWrong)
 			{
-				audioSource.PlayOneShot(audioWrong);
+				audioSource.PlayOneShot(audioWrong,1);
 			}
 			return;
 		}

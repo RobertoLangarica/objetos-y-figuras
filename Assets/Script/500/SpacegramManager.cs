@@ -88,11 +88,11 @@ public class SpacegramManager : MonoBehaviour
 			{
 				//Flash de color
 				SpriteRenderer sr = input.selected.spriteRenderer;
-				input.selected.GetComponent<FlashColor>().startFlash(sr,0.1f);
+				input.selected.GetComponent<FlashColor>().startFlash(sr,0.6f);
 
 				if(audioSource && positionatedAudio)
 				{
-					audioSource.PlayOneShot(positionatedAudio);
+					audioSource.PlayOneShot(positionatedAudio,1);
 				}
 			}
 		}
@@ -313,7 +313,7 @@ public class SpacegramManager : MonoBehaviour
 			}
 			if(audioSource && audioWrong)
 			{
-				audioSource.PlayOneShot(audioWrong);
+				audioSource.PlayOneShot(audioWrong,1);
 			}
 		}
 	}
