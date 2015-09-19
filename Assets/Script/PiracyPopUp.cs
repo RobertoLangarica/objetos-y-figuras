@@ -11,6 +11,9 @@ public class PiracyPopUp : MonoBehaviour
 	public GameObject pcPopUp;
 	public GameObject mobilePopUp;
 
+	public GameObject tooglePC;
+	public GameObject toogleMobile;
+
 	void Start()
 	{
 		#if UNITY_STANDALONE
@@ -60,7 +63,9 @@ public class PiracyPopUp : MonoBehaviour
 
 	public void showPopUp()
 	{
-		tog.isOn = UserDataManager.instance.showPopUp;
+		//tog.isOn = UserDataManager.instance.showPopUp;
+		tooglePC.SetActive(false);
+		toogleMobile.SetActive(false);
 
 		gameObject.SetActive(true);
 		gameObject.GetComponent<RectTransform>().DOAnchorPos(new Vector2(0,0),0.5f).SetEase(Ease.OutBack);
