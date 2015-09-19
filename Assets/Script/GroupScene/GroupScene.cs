@@ -91,7 +91,7 @@ public class GroupScene : MonoBehaviour
 		{
 		case(EGroups.COLOR):
 		{
-			subtitle.text = "Por Color";
+			subtitle.text = "Por color";
 			if(FindObjectOfType<TutorShowText>())
 			{
 				FindObjectOfType<TutorShowText>().textToShow = "color";
@@ -100,7 +100,7 @@ public class GroupScene : MonoBehaviour
 			break;
 		case(EGroups.FREE):
 		{
-			subtitle.text = "Canasta Revuelta";
+			subtitle.text = "Canasta revuelta";
 			if(FindObjectOfType<TutorShowText>())
 			{
 				FindObjectOfType<TutorShowText>().textToShow = "canasta";
@@ -109,7 +109,7 @@ public class GroupScene : MonoBehaviour
 			break;
 		case(EGroups.SHAPE):
 		{
-			subtitle.text = "Por Forma";
+			subtitle.text = "Por forma";
 			if(FindObjectOfType<TutorShowText>())
 			{
 				FindObjectOfType<TutorShowText>().textToShow = "forma";
@@ -118,7 +118,7 @@ public class GroupScene : MonoBehaviour
 			break;
 		case(EGroups.SIZE):
 		{
-			subtitle.text = "Por Tamaño";
+			subtitle.text = "Por tamaño";
 			if(FindObjectOfType<TutorShowText>())
 			{
 				FindObjectOfType<TutorShowText>().textToShow = "tamaño";
