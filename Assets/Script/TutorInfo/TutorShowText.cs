@@ -12,6 +12,8 @@ public class TutorShowText : MonoBehaviour {
 	public Text	text;
 	public Scrollbar scrollBar;
 	public string textToShow ="";
+
+	public GameObject[] standAlone;
 	void Start()
 	{
 		if(!UserDataManager.instance.tutorMode)
@@ -25,6 +27,16 @@ public class TutorShowText : MonoBehaviour {
 		//print(Screen.currentResolution.height);
 
 		StartCoroutine("lateStart");
+		foreach(GameObject standalone in standAlone)
+		{
+			standalone.SetActive(false);
+		}
+#if UNITY_STANDALONE
+		foreach(GameObject standalone in standAlone)
+		{
+			standalone.SetActive(true);
+		}
+#endif
 	}
 
 

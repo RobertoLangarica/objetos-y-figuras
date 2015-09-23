@@ -7,7 +7,7 @@ public class FinishPopUp : MonoBehaviour
 {
 	public AudioSource audioSource;
 	protected GameObject[] robots;
-
+	public GameObject[] standAlone;
 	// Use this for initialization
 	void Start () 
 	{
@@ -15,6 +15,17 @@ public class FinishPopUp : MonoBehaviour
 		transform.GetChild(0).GetComponent<Image>().enabled = false;
 
 		robots = GameObject.FindGameObjectsWithTag("RobotPopUp");
+
+		foreach(GameObject standalone in standAlone)
+		{
+			standalone.SetActive(false);
+		}
+		#if UNITY_STANDALONE
+		foreach(GameObject standalone in standAlone)
+		{
+			standalone.SetActive(true);
+		}
+		#endif
 	}
 
 	public void onExit()

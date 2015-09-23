@@ -346,6 +346,8 @@ public class SpacegramManager : MonoBehaviour
 		}
 		else
 		{
+			Debug.Log("S");
+			Debug.Log(GameObject.FindObjectOfType<FinishPopUp>());
 			GameObject.FindObjectOfType<FinishPopUp>().show();
 		}
 	}

@@ -141,7 +141,7 @@ public class Notification : MonoBehaviour
 		{
 			if(question)
 			{
-				Debug.Log("S");
+				//Debug.Log("S");
 				question.showToast(false);
 				//question.audioSource.Stop();
 			}
