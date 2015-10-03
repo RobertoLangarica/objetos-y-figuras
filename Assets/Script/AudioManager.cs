@@ -14,6 +14,8 @@ public class AudioManager : MonoBehaviour {
 	public AudioClip MainAudio1;
 	public AudioClip GameAudio;
 	public AudioClip SoundsAC;
+
+	protected float volumen=0.6f;
 	void Awake()
 	{
 		MainMusic.loop = true;
@@ -27,7 +29,7 @@ public class AudioManager : MonoBehaviour {
 			{
 				GameMusic.Stop();
 			}
-			MainMusic.volume=.8f;
+			MainMusic.volume=volumen;
 			GameMusic.volume=0;
 
 			MainMusic.audio.clip = MainAudio0;
@@ -44,7 +46,7 @@ public class AudioManager : MonoBehaviour {
 		else if(Application.loadedLevel < 8)
 		{
 			MainMusic.volume=0;
-			GameMusic.volume=.8f;
+			GameMusic.volume=volumen;
 			if(!MainMusic.isPlaying)
 			{
 				MainMusic.audio.clip = MainAudio0;
@@ -59,7 +61,7 @@ public class AudioManager : MonoBehaviour {
 		{
 			MainMusic.Stop();
 			MainMusic.volume=0;
-			GameMusic.volume=.8f;
+			GameMusic.volume=volumen;
 			GameMusic.audio.clip = GameAudio;
 			if(!GameMusic.isPlaying)
 			{
