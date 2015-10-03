@@ -10,6 +10,14 @@ public class ScreenManager : MonoBehaviour {
 	public string screenBeforeClose;//Pantalla que no tiene back (cierra la app)
 	public AudioSource music;
 
+	[HideInInspector]
+	public bool blocked = false;
+	[HideInInspector]
+	public bool backAllowed = true;
+
+	protected float waitTime;
+	protected string waitScreen;
+
 	protected bool isAudioPlaying = true;
 	protected Dictionary<string,string> backScreens;
 
@@ -74,6 +82,13 @@ public class ScreenManager : MonoBehaviour {
 					
 					waitingScreen.allowSceneActivation = true;
 					waitingScreen = null;
+
+					//No se pueden encimar estas 2 acciones
+					if(blocked)
+					{
+						//Cambia de pantalla con delay
+						StartCoroutine("waitForScreen");
+					}
 				}
 			}
 		}
@@ -81,6 +96,7 @@ public class ScreenManager : MonoBehaviour {
 	
 	public void showPrevScene()	
 	{
+		if(blocked || !backAllowed){return;}
 
 		if(Application.loadedLevelName == screenBeforeClose)
 		{
@@ -100,7 +116,7 @@ public class ScreenManager : MonoBehaviour {
 
 	public void GoToScene(string newScene)
 	{
-		if(waitingScreen != null || newScene == Application.loadedLevelName)
+		if(blocked || waitingScreen != null || newScene == Application.loadedLevelName)
 		{
 			return;
 		}
@@ -125,6 +141,8 @@ public class ScreenManager : MonoBehaviour {
 
 	public void GoToSceneAsync(string newScene,float waitTime = -1, int waitFrames = 10)
 	{	
+		if(blocked){return;}
+
 		if(newScene == Application.loadedLevelName)
 		{
 			return;
@@ -147,4 +165,25 @@ public class ScreenManager : MonoBehaviour {
 		waitingScreen.allowSceneActivation = false;
 	}
 
+	public void GoToSceneDelayed(string newScene, float delay = 5)
+	{
+		blocked = true;
+		waitScreen = newScene;
+		waitTime = delay;
+
+		//Hay un nivel asincrono cargando?
+		//No se pueden encimar las acciones
+		if(waitingScreen == null)
+		{
+			StartCoroutine("waitForScreen");
+		}
+	}
+
+	IEnumerator waitForScreen()
+	{
+		yield return new WaitForSeconds(1.5f);
+		blocked = false;
+		GoToScene(waitScreen);
+	}
+	
 }

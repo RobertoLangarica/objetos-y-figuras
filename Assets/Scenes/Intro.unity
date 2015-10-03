@@ -250,6 +250,46 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 1210756305}
   m_GameObject: {fileID: 353861957}
+--- !u!1 &471183555
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 471183557}
+  - 114: {fileID: 471183556}
+  m_Layer: 0
+  m_Name: SerialBlocker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &471183556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 471183555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba1ae1675050542ceb65de69544b214e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  API_ROOT: http://api.curiosamente.com/
+--- !u!4 &471183557
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 471183555}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 276.980591, y: 202.160522, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
 --- !u!1 &670427439
 GameObject:
   m_ObjectHideFlags: 0
@@ -284,6 +324,8 @@ MonoBehaviour:
   firstEditorScreen: SplashScreen
   screenBeforeClose: GameMenu
   music: {fileID: 0}
+  blocked: 0
+  backAllowed: 1
 --- !u!4 &670427441
 Transform:
   m_ObjectHideFlags: 0

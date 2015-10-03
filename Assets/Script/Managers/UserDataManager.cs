@@ -52,6 +52,65 @@ public class UserDataManager
 		PlayerPrefs.SetInt("piracyPopUp",1);
 		PlayerPrefs.SetInt("isAPirateGame",1);//Pirateado por default
 		PlayerPrefs.SetInt("TermsAccepted",1);
+
+		PlayerPrefs.SetString("serial","");
+		PlayerPrefs.SetInt("serialCount",0);
+
+		PlayerPrefs.SetInt("blockedSerialCount",0);
+	}
+
+	public void saveSerialNumber(string value)
+	{
+		int index = PlayerPrefs.GetInt("serialCount");
+		index++;
+		PlayerPrefs.SetString("serial"+index.ToString(),value);
+		PlayerPrefs.SetInt("serialCount",index);
+	}
+
+	public string[] getAllPreviousValidatedSerials()
+	{
+		string[] result;
+		int index = PlayerPrefs.GetInt("serialCount");
+		result = new string[index];
+
+		for(int i = 1; i <= index; i++)
+		{
+			result[i-1] = PlayerPrefs.GetString("serial"+i.ToString());
+		}
+
+		return result;
+	}
+
+	public void saveBlockedSerialNumber(string value)
+	{
+		int index = PlayerPrefs.GetInt("blockedSerialCount");
+		index++;
+		PlayerPrefs.SetString("blockedSerial"+index.ToString(),value);
+		PlayerPrefs.SetInt("blockedSerialCount",index);
+	}
+
+	public bool isPreviouslyBlocked(string value)
+	{
+		int index = PlayerPrefs.GetInt("blockedSerialCount");
+		string tmp;
+
+		for(int i = 1; i <= index; i++)
+		{
+			tmp = PlayerPrefs.GetString("blockedSerial"+i.ToString());
+
+			if(tmp.Equals(value))
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	public string currentSerial
+	{
+		get{return PlayerPrefs.GetString("serial");}
+		set{PlayerPrefs.SetString("serial",value);}
 	}
 
 	public bool tutorMode
