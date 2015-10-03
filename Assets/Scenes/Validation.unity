@@ -768,6 +768,7 @@ RectTransform:
   - {fileID: 1681914535}
   - {fileID: 1671901922}
   - {fileID: 2117840283}
+  - {fileID: 1230163916}
   m_Father: {fileID: 1062189090}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: .150000006}
@@ -1463,8 +1464,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 323926749}
   m_RootOrder: 4
-  m_AnchorMin: {x: .781315625, y: .217000008}
-  m_AnchorMax: {x: .969733834, y: .835709929}
+  m_AnchorMin: {x: .765054584, y: .191230506}
+  m_AnchorMax: {x: .965087891, y: .830609679}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
@@ -2123,7 +2124,7 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 323926749}
   m_RootOrder: 2
-  m_AnchorMin: {x: .0542984828, y: .122992836}
+  m_AnchorMin: {x: .0542984828, y: .109288231}
   m_AnchorMax: {x: .202522174, y: .856811404}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
@@ -2392,8 +2393,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 323926749}
   m_RootOrder: 9
-  m_AnchorMin: {x: .403804749, y: .0833478719}
-  m_AnchorMax: {x: .599407971, y: .35422793}
+  m_AnchorMin: {x: .441047162, y: -.00282498635}
+  m_AnchorMax: {x: .562165737, y: .196330786}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
@@ -2529,6 +2530,73 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1209309201}
+--- !u!1 &1230163915
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 1230163916}
+  - 222: {fileID: 1230163918}
+  - 114: {fileID: 1230163917}
+  m_Layer: 5
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1230163916
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1230163915}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 323926749}
+  m_RootOrder: 14
+  m_AnchorMin: {x: .167496324, y: .184007898}
+  m_AnchorMax: {x: .838106394, y: .338310957}
+  m_AnchoredPosition: {x: .957702637, y: 7.85998535}
+  m_SizeDelta: {x: -13.5599365, y: -1.52587891e-05}
+  m_Pivot: {x: .5, y: .5}
+--- !u!114 &1230163917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1230163915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: .352941185, g: .352941185, b: .352941185, a: 1}
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 2797b776964bcdc4bb43101030da6a78, type: 3}
+    m_FontSize: 36
+    m_FontStyle: 0
+    m_BestFit: 1
+    m_MinSize: 2
+    m_MaxSize: 300
+    m_Alignment: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "<color=\"blue\">\xBFNecesitas ayuda?</color>\nContactanos al (33) 20-03-05-08
+    o env\xEDanos un correo a soporte@curiosamente.com"
+--- !u!222 &1230163918
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1230163915}
 --- !u!1 &1268428747
 GameObject:
   m_ObjectHideFlags: 0

@@ -87,6 +87,13 @@ public class ScreenValidation : MonoBehaviour {
 
 	protected void succes(string m)
 	{
+		//¿Ya esta bloqueado el numero de serie?
+		if(UserDataManager.instance.isPreviouslyBlocked(serialValidated))
+		{
+			fail ("");
+			return;
+		}
+
 		valid.gameObject.SetActive(true);
 		invalid.gameObject.SetActive(false);
 
@@ -117,7 +124,19 @@ public class ScreenValidation : MonoBehaviour {
 		{
 			AnalyticManager.instance.serialCodeSend(serialValidated);
 		}
-		//EL usuario cancela la accion
+
+		//Guardamos el numero de serie
+		UserDataManager.instance.currentSerial = serialValidated;
+		UserDataManager.instance.saveSerialNumber(serialValidated);
+
+		//Vemos si esta bloqueado el numero de serie mientras todo continua normal
+		if(SerialBlocker.instance)
+		{
+			//Guardamos el serial como instalacion
+			SerialBlocker.instance.saveSerialAsInstalled(UserDataManager.instance.currentSerial);
+			SerialBlocker.instance.askIsTheSerialIsBlocked(UserDataManager.instance.currentSerial);
+		}
+
 		if(ScreenManager.instance)
 		{
 			ScreenManager.instance.GoToScene("GameMenu");
