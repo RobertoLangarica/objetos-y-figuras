@@ -42,7 +42,7 @@ public class SerialBlocker : MonoBehaviour
 	{
 		Debug.Log("Llamado a la API para guardar el serial como instalado.");
 
-		serialToSave = serialToSave.ToUpper();
+		serialToSave = serialToSave.ToUpperInvariant();
 		//Para ser post al parecer necesita datos
 		WWWForm form = new WWWForm();
 		form.AddField("data",serialToSave);

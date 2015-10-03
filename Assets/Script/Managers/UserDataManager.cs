@@ -61,6 +61,7 @@ public class UserDataManager
 
 	public void saveSerialNumber(string value)
 	{
+		value = value.ToUpperInvariant();
 		int index = PlayerPrefs.GetInt("serialCount");
 		index++;
 		PlayerPrefs.SetString("serial"+index.ToString(),value);
@@ -83,6 +84,7 @@ public class UserDataManager
 
 	public void saveBlockedSerialNumber(string value)
 	{
+		value = value.ToUpperInvariant();
 		int index = PlayerPrefs.GetInt("blockedSerialCount");
 		index++;
 		PlayerPrefs.SetString("blockedSerial"+index.ToString(),value);
