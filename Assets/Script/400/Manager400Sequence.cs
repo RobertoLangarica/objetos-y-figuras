@@ -173,7 +173,7 @@ public class Manager400Sequence : MonoBehaviour {
 		int optionsCount = 0;
 		int size = Random.Range(minSize,maxSize);
 		List<int> tmpFigures = new List<int>();
-		List<int> prevIndex = new List<int>();
+		//List<int> prevIndex = new List<int>();
 		int refsCount = 0;
 		bool cloneFirstShape = false;
 
@@ -375,7 +375,7 @@ public class Manager400Sequence : MonoBehaviour {
 		while(c < shapes.Count)
 		{
 			Vector3 pos = Vector3.zero;
-			float gap = 0;
+			//float gap = 0;
 			int i;
 			idx = Random.Range(0,positions.Count);
 			i = positions[idx];

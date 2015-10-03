@@ -152,7 +152,7 @@ public class Question : MonoBehaviour {
 		shape = textToPlay.Substring(0,textToPlay.IndexOf('_'));
 
 		infTemp = data.getFigureByName(shape).getInfoByName(number);
-		Figures[] figure = data.figure;
+		//Figures[] figure = data.figure;
 
 		showToast(true);
 		toast.GetComponentInChildren<Text>().text = infTemp.text;
@@ -160,7 +160,7 @@ public class Question : MonoBehaviour {
 
 	public void showToast(bool show,float delay = .5f)
 	{
-		float val = Screen.height*0.4f;
+		//float val = Screen.height*0.4f;
 
 		if(!show)
 		{

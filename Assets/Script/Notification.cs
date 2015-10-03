@@ -122,9 +122,9 @@ public class Notification : MonoBehaviour
 	
 	protected void changeText(string notifyXMLName)
 	{
-		notify infTemp = new notify();
+		//notify infTemp = new notify();
 
-		infTemp = data.getNotifyByName(notifyXMLName);
+		//infTemp = data.getNotifyByName(notifyXMLName);
 
 		show(true);
 		toast.GetComponentInChildren<Text>().text = notifyXMLName;
