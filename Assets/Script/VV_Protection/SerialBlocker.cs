@@ -33,7 +33,8 @@ public class SerialBlocker : MonoBehaviour
 	{
 		Debug.Log("Validando si esta bloqueado el numero de serie");
 
-		WWW www = new WWW (API_ROOT+"serial/blocked/:"+serialToValidate);
+		serialToValidate = serialToValidate.ToUpper();
+		WWW www = new WWW (API_ROOT+"serial/blocked/"+serialToValidate);
 		StartCoroutine (WaitForRequest (www));
 	}
 
@@ -41,11 +42,12 @@ public class SerialBlocker : MonoBehaviour
 	{
 		Debug.Log("Llamado a la API para guardar el serial como instalado.");
 
+		serialToSave = serialToSave.ToUpper();
 		//Para ser post al parecer necesita datos
 		WWWForm form = new WWWForm();
 		form.AddField("data",serialToSave);
 
-		WWW www = new WWW (API_ROOT+"serial/installed/:"+serialToSave,form);
+		WWW www = new WWW (API_ROOT+"serial/installed/"+serialToSave,form);
 		StartCoroutine (WaitForSave (www));
 	}
 
@@ -63,7 +65,7 @@ public class SerialBlocker : MonoBehaviour
 
 		if(result["success"].AsBool)
 		{
-			if(data.Equals("\"Y\"") || data.Equals("\"U\""))
+			if(data.Equals("\"Y\""))
 			{
 				Debug.Log("Serial bloqueado");
 				//El bloqueado es el activo?
