@@ -32,7 +32,7 @@ public class MenuController : MonoBehaviour {
 		LevelManager.instance.getLevel("1");
 
 		//Todos los niveles
-		Level[] levels = LevelManager.instance.getAllLevels();
+		//Level[] levels = LevelManager.instance.getAllLevels();
 
 		//foreach(Level level in levels)
 		//{

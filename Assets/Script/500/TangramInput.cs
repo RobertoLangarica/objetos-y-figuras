@@ -537,7 +537,7 @@ public class TangramInput : MonoBehaviour {
 				
 			});
 			
-			BaseShape first = null;
+			//BaseShape first = null;
 			rotating = true;
 			
 			foreach(RaycastHit2D hit in gesture.Raycast.Hits2D)
@@ -615,7 +615,7 @@ public class TangramInput : MonoBehaviour {
 				
 			});
 
-			BaseShape first = null;
+			//BaseShape first = null;
 			bool addeRotator = false;
 			foreach(RaycastHit2D hit in e.Raycast.Hits2D)
 			{

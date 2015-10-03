@@ -11,7 +11,7 @@ public class Container400 : MonoBehaviour {
 	[HideInInspector]
 	public int secondValue;
 	[HideInInspector]
-	public bool active = true;
+	public new bool active = true;
 	[HideInInspector]
 	public int next = -1;
 

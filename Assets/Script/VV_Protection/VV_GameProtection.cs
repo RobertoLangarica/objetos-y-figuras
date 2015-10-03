@@ -120,7 +120,7 @@ public class VV_GameProtection : MonoBehaviour
 		}
 		catch(Exception ex)
 		{
-			Debug.Log ("Ocurrio un error al desencriptar");
+			Debug.Log ("Ocurrio un error al desencriptar "+ex.Message);
 			return "";
 		}
 		finally
@@ -135,8 +135,6 @@ public class VV_GameProtection : MonoBehaviour
 				csDecrypt.Close();
 			}
 		}
-
-		return "";
 	}
 
 	public byte[] StringToByteArrayFastest(string hex) {

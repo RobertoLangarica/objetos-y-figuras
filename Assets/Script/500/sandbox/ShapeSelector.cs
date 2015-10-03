@@ -121,7 +121,7 @@ public class ShapeSelector : MonoBehaviour {
 		input.ignoreNextRotation = true;
 
 		input.selected = shape.GetComponent<SandboxShape>();
-		Sprite sprite = input.selected.spriteRenderer.sprite;
+		//Sprite sprite = input.selected.spriteRenderer.sprite;
 
 		input.selected.sortingLayer = "SelectedShape";
 		input.onDragFinish += shape.GetComponent<SandboxShape>().onDragFinish;

@@ -282,7 +282,7 @@ public class Manager400Tamanio : MonoBehaviour {
 
 		colorShown.Add(color);
 
-		float u = (Camera.main.orthographicSize*2*100)/Screen.height;
+		//float u = (Camera.main.orthographicSize*2*100)/Screen.height;
 		Vector2 spriteSize = Vector2.zero;
 
 		//Instanciamos las figuras arrastrables
@@ -584,7 +584,7 @@ public class Manager400Tamanio : MonoBehaviour {
 		
 		List<Shape400> first	= new List<Shape400>();
 		List<Shape400> second	= new List<Shape400>();
-		List<Shape400> refList;
+		//List<Shape400> refList;
 		
 		foreach(Shape400 s in shapes)
 		{

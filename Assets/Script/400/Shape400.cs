@@ -153,7 +153,7 @@ public class Shape400 : BaseShape {
 		}
 	}
 
-	public void enabled(bool value)
+	public new void enabled(bool value)
 	{
 		transform.GetChild(0).gameObject.name = value ? "move":"test";
 	}

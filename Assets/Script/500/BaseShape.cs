@@ -164,7 +164,6 @@ public class BaseShape : MonoBehaviour {
 			break;
 			case EShapeColor.NONE:
 				return;
-				break;
 			}
 
 			rendererColor.a = currentAlpha;
@@ -289,28 +288,20 @@ public class BaseShape : MonoBehaviour {
 		{
 		case EShapeSize.SIZE1:
 			return new Vector3(0.16666f,0.16666f,16666f);
-			break;
 		case EShapeSize.SIZE2:
 			return new Vector3(0.25000f,0.25000f,16666f);
-			break;
 		case EShapeSize.SIZE3:
 			return new Vector3(0.33333f,0.33333f,16666f);
-			break;
 		case EShapeSize.SIZE4:
 			return new Vector3(0.41666f,0.41666f,16666f);
-			break;
 		case EShapeSize.SIZE5:
 			return new Vector3(0.50000f,0.50000f,16666f);
-			break;
 		case EShapeSize.SIZE6:
 			return new Vector3(0.66666f,0.66666f,16666f);
-			break;
 		case EShapeSize.SIZE7:
 			return new Vector3(0.83333f,0.83333f,16666f);
-			break;
 		case EShapeSize.SIZE8:
 			return new Vector3(1,1,1);
-			break;
 		}
 
 		return Vector3.zero;

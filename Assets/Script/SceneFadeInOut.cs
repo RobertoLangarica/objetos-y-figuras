@@ -9,7 +9,7 @@ public class SceneFadeInOut : MonoBehaviour {
 	
 	
 	private bool sceneFading;      // Whether or not the scene is still fading in.
-	private bool colorStart = true;
+	//private bool colorStart = true;
 	
 	private Transform color;
 	private Canvas mCanvas;
@@ -36,7 +36,7 @@ public class SceneFadeInOut : MonoBehaviour {
 	public void Fade()
 	{
 		color.GetComponent<Image>().color = new Color(0,0,0,1);
-		colorStart = false;
+		//colorStart = false;
 		sceneFading = true;
 		mCanvas.sortingOrder=100;
 	}
@@ -61,7 +61,7 @@ public class SceneFadeInOut : MonoBehaviour {
 			
 			// The scene is no longer starting.
 			sceneFading = false;
-			colorStart = true;
+			//colorStart = true;
 			//mCanvas.sortingOrder=-1;
 		}
 	}
