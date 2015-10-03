@@ -229,7 +229,7 @@ public class TangramManager : MonoBehaviour
 			{
 				tempV3.x = tempV3.y = float.Parse(pieces[i].scaleCiclre);
 			}
-			go.transform.FindChild("rotate").localScale = (tempV3)*1.7f;
+			go.transform.FindChild("rotate").localScale = (tempV3)*1.18f;
 
 			if(pieces[i].scaleSquare != null)
 			{
