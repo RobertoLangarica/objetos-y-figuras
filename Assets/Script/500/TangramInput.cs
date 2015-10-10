@@ -12,6 +12,8 @@ public class TangramInput : MonoBehaviour {
 	public bool allowRotation = true;//Indica si se permite la rotacion de las piezas (sobreescribe a rotateOnlyWhenSelected)
 	public AudioSource dragSound;//sonido para el drag
 	public bool preventOutOfScreen = false;
+	[Range(0,1)]
+	public float screenPercentToCheckOutOfScreen = 1;
 
 	[HideInInspector]
 	protected BaseShape _selected;
@@ -65,8 +67,10 @@ public class TangramInput : MonoBehaviour {
 
 	void Start()
 	{
-		minPosition = Camera.main.ScreenToWorldPoint(new Vector3(0,0,0));
-		maxPosition = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width,Screen.height,0));
+		minPosition = Camera.main.ScreenToWorldPoint(new Vector3(0+(Screen.width*(1-screenPercentToCheckOutOfScreen))
+		                                                         ,0+(Screen.height*(1-screenPercentToCheckOutOfScreen))
+		                                                         ,0));
+		maxPosition = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width*screenPercentToCheckOutOfScreen,Screen.height*screenPercentToCheckOutOfScreen,0));
 
 		multipleFingersSelection = new Dictionary<int, BaseShape>();
 		multipleFingersRotateSelection = new Dictionary<int, BaseShape>();
