@@ -33,10 +33,12 @@ public class ShapeSelector : MonoBehaviour {
 	protected int selectedColor;
 	protected DrawingInput drawInput;
 	protected Pencil pencil;
+	protected bool dragDetected = false;
 
 	void Start()
 	{
 		input.onDragFinish+=onDragFinish;
+		input.onDragStart+=onDragStart;
 
 		Vector3[] corners = new Vector3[4];
 
@@ -72,6 +74,8 @@ public class ShapeSelector : MonoBehaviour {
 			return;
 		}
 
+		dragDetected = false;
+
 		//Cerramos el lapiz
 		if(pencil && pencil.showing)
 		{
@@ -80,6 +84,12 @@ public class ShapeSelector : MonoBehaviour {
 
 		GameObject shape = null;
 		Image reference = null;
+
+		if(input.selected != null)
+		{
+			//Alguna figura flotando en donde no debe
+			onDragFinish();
+		}
 
 		waitingForCompleteDragOnCreated = true;
 
@@ -160,6 +170,20 @@ public class ShapeSelector : MonoBehaviour {
 				pos.z = input.selected.transform.position.z;
 				input.selected.transform.position = pos;
 			}
+		}
+	}
+
+	public void onDragStart()
+	{
+		dragDetected = true;
+	}
+
+	public void onMenuDragFinish()
+	{
+		//si el drag no se detecto en el input entonces evitamos que se quede la figura sin destruir
+		if(!dragDetected)
+		{
+			onDragFinish();
 		}
 	}
 
