@@ -119,7 +119,7 @@ public class SpacegramManager : MonoBehaviour
 	void initializeShapes()
 	{
 		GameObject go;
-
+		continueBtn.interactable = true;
 		if(AnalyticManager.instance)
 		{
 			AnalyticManager.instance.startGame();
