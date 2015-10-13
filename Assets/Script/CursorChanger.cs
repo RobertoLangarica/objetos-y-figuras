@@ -137,7 +137,7 @@ public class CursorChanger : MonoBehaviour {
 		EventTrigger.Entry entry = new EventTrigger.Entry() { callback = trigger, eventID = triggerType };
 
 		// Add the EventTrigger.Entry to delegates list on the EventTrigger
-		eventTrigger.delegates.Add(entry);
+		eventTrigger.triggers.Add(entry);
 	}
 
 	void OnLevelWasLoaded()

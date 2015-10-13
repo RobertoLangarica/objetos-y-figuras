@@ -33,7 +33,7 @@ public class DrawingInput : MonoBehaviour
 		erraser = transform.FindChild ("Erraser").gameObject;
 		erraser.SetActive (false);
 	
-		bWidth = brushType.renderer.bounds.size.x*brushType.transform.localScale.x;
+		bWidth = brushType.GetComponent<Renderer>().bounds.size.x*brushType.transform.localScale.x;
 		//Menos 2 pixeles (el sprite est a 100pixeles por cada unidad)
 		//bWidth -=  .02f;
 		input.GetComponent<DragRecognizer>().OnGesture += OnDrag;

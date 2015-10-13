@@ -32,8 +32,8 @@ public class AudioManager : MonoBehaviour {
 			MainMusic.volume=volumen;
 			GameMusic.volume=0;
 
-			MainMusic.audio.clip = MainAudio0;
-			GameMusic.audio.clip = MainAudio1;
+			MainMusic.GetComponent<AudioSource>().clip = MainAudio0;
+			GameMusic.GetComponent<AudioSource>().clip = MainAudio1;
 
 			if(!MainMusic.isPlaying)
 			{
@@ -49,8 +49,8 @@ public class AudioManager : MonoBehaviour {
 			GameMusic.volume=volumen;
 			if(!MainMusic.isPlaying)
 			{
-				MainMusic.audio.clip = MainAudio0;
-				GameMusic.audio.clip = MainAudio1;
+				MainMusic.GetComponent<AudioSource>().clip = MainAudio0;
+				GameMusic.GetComponent<AudioSource>().clip = MainAudio1;
 				MainMusic.Play();
 				GameMusic.Play();
 			}
@@ -62,7 +62,7 @@ public class AudioManager : MonoBehaviour {
 			MainMusic.Stop();
 			MainMusic.volume=0;
 			GameMusic.volume=volumen;
-			GameMusic.audio.clip = GameAudio;
+			GameMusic.GetComponent<AudioSource>().clip = GameAudio;
 			if(!GameMusic.isPlaying)
 			{
 				GameMusic.Play();
@@ -78,7 +78,7 @@ public class AudioManager : MonoBehaviour {
 	{
 		GameObject[] buttons;
 		buttons = GameObject.FindGameObjectsWithTag("UIButton");
-		SoundsAS.audio.clip = SoundsAC;
+		SoundsAS.GetComponent<AudioSource>().clip = SoundsAC;
 		foreach(GameObject button in buttons)
 		{
 			if(button.GetComponent<Button>())

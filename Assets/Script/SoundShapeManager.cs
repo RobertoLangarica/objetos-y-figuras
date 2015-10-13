@@ -66,7 +66,7 @@ public class SoundShapeManager : MonoBehaviour {
 	public void overSoundNotStoping(string soundToPlay)
 	{
 		bool sameName = false;
-		if(audio.clip)
+		if(GetComponent<AudioSource>().clip)
 		{
 			if(audioSource.isPlaying&&soundToPlay == audioSource.clip.name)
 			{

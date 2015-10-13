@@ -109,11 +109,11 @@ public class SpacegramManager : MonoBehaviour
 
 		reference = GameObject.Instantiate(tmp) as GameObject;
 		
-		reference.renderer.material.color = new Color(reference.renderer.material.color.r
-		                                              ,reference.renderer.material.color.g
-		                                              ,reference.renderer.material.color.b
+		reference.GetComponent<Renderer>().material.color = new Color(reference.GetComponent<Renderer>().material.color.r
+		                                              ,reference.GetComponent<Renderer>().material.color.g
+		                                              ,reference.GetComponent<Renderer>().material.color.b
 		                                              ,0);
-		reference.renderer.material.DOFade(1,1);
+		reference.GetComponent<Renderer>().material.DOFade(1,1);
 	}
 
 	void initializeShapes()
@@ -323,10 +323,10 @@ public class SpacegramManager : MonoBehaviour
 		foreach(GameObject shape in shapes)
 		{
 			Debug.Log("S");
-			shape.renderer.material.DOFade(0,0.5f);
+			shape.GetComponent<Renderer>().material.DOFade(0,0.5f);
 		}
 
-		placeholder.renderer.material.DOFade(0,0.5f);
+		placeholder.GetComponent<Renderer>().material.DOFade(0,0.5f);
 	}
 
 	public void onContinue()

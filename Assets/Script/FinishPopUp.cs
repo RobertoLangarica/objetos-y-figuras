@@ -58,7 +58,7 @@ public class FinishPopUp : MonoBehaviour
 		if(aC)
 		{
 			Debug.Log("Play");
-			Camera.main.audio.PlayOneShot(aC);
+			Camera.main.GetComponent<AudioSource>().PlayOneShot(aC);
 		}
 	}
 

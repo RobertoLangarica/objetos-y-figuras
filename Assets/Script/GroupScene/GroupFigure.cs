@@ -89,27 +89,27 @@ public class GroupFigure : BaseShape
 
 		if(!destroying)
 		{
-			Vector3 centerDif = transform.position - transform.collider2D.bounds.center;
+			Vector3 centerDif = transform.position - transform.GetComponent<Collider2D>().bounds.center;
 			Vector3 nVec3 = transform.position;
 			
-			if((transform.collider2D.bounds.center).x - (transform.collider2D.bounds.size.x * 0.5f) < boundaryLeft) 
+			if((transform.GetComponent<Collider2D>().bounds.center).x - (transform.GetComponent<Collider2D>().bounds.size.x * 0.5f) < boundaryLeft) 
 			{
-				nVec3.x = boundaryLeft + (transform.collider2D.bounds.size.x * 0.5f);
+				nVec3.x = boundaryLeft + (transform.GetComponent<Collider2D>().bounds.size.x * 0.5f);
 				nVec3.x += centerDif.x;
 			}
-			if((transform.collider2D.bounds.center).x + (transform.collider2D.bounds.size.x * 0.5f) > boundaryRight) 
+			if((transform.GetComponent<Collider2D>().bounds.center).x + (transform.GetComponent<Collider2D>().bounds.size.x * 0.5f) > boundaryRight) 
 			{
-				nVec3.x = boundaryRight - (transform.collider2D.bounds.size.x * 0.5f);
+				nVec3.x = boundaryRight - (transform.GetComponent<Collider2D>().bounds.size.x * 0.5f);
 				nVec3.x += centerDif.x;
 			}
-			if((transform.collider2D.bounds.center).y - (transform.collider2D.bounds.size.y * 0.5f) < boundaryBottom) 
+			if((transform.GetComponent<Collider2D>().bounds.center).y - (transform.GetComponent<Collider2D>().bounds.size.y * 0.5f) < boundaryBottom) 
 			{
-				nVec3.y = boundaryBottom + (transform.collider2D.bounds.size.y * 0.5f);
+				nVec3.y = boundaryBottom + (transform.GetComponent<Collider2D>().bounds.size.y * 0.5f);
 				nVec3.y += centerDif.y;
 			}
-			if((transform.collider2D.bounds.center).y + (transform.collider2D.bounds.size.y * 0.5f) > boundaryTop) 
+			if((transform.GetComponent<Collider2D>().bounds.center).y + (transform.GetComponent<Collider2D>().bounds.size.y * 0.5f) > boundaryTop) 
 			{
-				nVec3.y = boundaryTop - (transform.collider2D.bounds.size.y * 0.5f);
+				nVec3.y = boundaryTop - (transform.GetComponent<Collider2D>().bounds.size.y * 0.5f);
 				nVec3.y += centerDif.y;
 			}
 			transform.position = nVec3;

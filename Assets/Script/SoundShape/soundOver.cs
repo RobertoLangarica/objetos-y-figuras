@@ -15,7 +15,7 @@ public class soundOver : MonoBehaviour {
 		}
 
 
-		if(audio.clip)
+		if(GetComponent<AudioSource>().clip)
 		{
 			if(audioSource.isPlaying&&soundToPlay == audioSource.clip.name)
 			{
