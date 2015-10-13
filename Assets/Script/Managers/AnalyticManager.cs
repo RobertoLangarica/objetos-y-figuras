@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEngine.Cloud.Analytics;
+using UnityEngine.Analytics;
 using System.Collections.Generic;
 
 public class AnalyticManager : MonoBehaviour {
@@ -43,11 +43,12 @@ public class AnalyticManager : MonoBehaviour {
 	{
 		if(finish)
 		{
-			UnityAnalytics.CustomEvent(activityName, new Dictionary<string, object>
+			Debug.Log("S");
+			Analytics.CustomEvent(activityName, new Dictionary<string, object>
 			                           {
 				{ "Finished "+exerciseType, exerciseName },
 			});
-			UnityAnalytics.CustomEvent(exerciseType, new Dictionary<string, object>
+			Analytics.CustomEvent(exerciseType, new Dictionary<string, object>
 			                           {
 				{ "Finish "+exerciseName, gameTime },
 			});
@@ -55,11 +56,11 @@ public class AnalyticManager : MonoBehaviour {
 		}
 		else
 		{
-			UnityAnalytics.CustomEvent(activityName, new Dictionary<string, object>
+			Analytics.CustomEvent(activityName, new Dictionary<string, object>
 			                           {
 				{ "not Finished "+exerciseType, exerciseName },
 			});
-			UnityAnalytics.CustomEvent(exerciseType, new Dictionary<string, object>
+			Analytics.CustomEvent(exerciseType, new Dictionary<string, object>
 			                           {
 				{ "not Finish"+exerciseName, gameTime },
 			});
@@ -70,7 +71,7 @@ public class AnalyticManager : MonoBehaviour {
 
 	public void serialCodeSend(string serialKey)
 	{
-		UnityAnalytics.CustomEvent("SerialKey", new Dictionary<string, object>
+		Analytics.CustomEvent("SerialKey", new Dictionary<string, object>
 		                           {
 			{ "serialKey: ", serialKey },
 		});
