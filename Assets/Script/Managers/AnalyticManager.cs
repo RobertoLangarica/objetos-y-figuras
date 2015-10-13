@@ -43,7 +43,6 @@ public class AnalyticManager : MonoBehaviour {
 	{
 		if(finish)
 		{
-			Debug.Log("S");
 			Analytics.CustomEvent(activityName, new Dictionary<string, object>
 			                           {
 				{ "Finished "+exerciseType, exerciseName },

@@ -73,8 +73,10 @@ public class SoundShapeManager : MonoBehaviour {
 				sameName = true;
 			}
 		}
-		//Debug.Log(soundToPlay);
-		//Debug.Log(audioSource.clip.name);
+		Debug.Log(soundToPlay);
+		Debug.Log(audioSource.clip.name);
+
+		Debug.Log (sameName);
 		AudioClip aC = (AudioClip)Resources.Load("Sounds/"+soundToPlay);
 
 
