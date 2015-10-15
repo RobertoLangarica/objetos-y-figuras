@@ -73,9 +73,10 @@ public class TutorShowText : MonoBehaviour {
 		text.resizeTextMaxSize =(int)(title.cachedTextGenerator.fontSizeUsedForBestFit*.5);
 		//Debug.Log(text.resizeTextMaxSize);
 		yield return  new WaitForSeconds(.1f);
-		panelButonShow.GetComponentInChildren<Button>().interactable=true;
 		panelShowText.SetActive(false);
 		panelShowText.GetComponent<RectTransform>().anchoredPosition = new Vector2(0,0);
+		yield return  new WaitForSeconds(.6f);
+		panelButonShow.GetComponentInChildren<Button>().interactable=true;
 	}
 
 	public void exitPopUp()
