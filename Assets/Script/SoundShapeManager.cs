@@ -66,17 +66,15 @@ public class SoundShapeManager : MonoBehaviour {
 	public void overSoundNotStoping(string soundToPlay)
 	{
 		bool sameName = false;
-		if(GetComponent<AudioSource>().clip)
+		if(GameObject.Find("AudioOver").GetComponent<AudioSource>().clip)
 		{
 			if(audioSource.isPlaying&&soundToPlay == audioSource.clip.name)
 			{
 				sameName = true;
 			}
 		}
-		Debug.Log(soundToPlay);
-		Debug.Log(audioSource.clip.name);
+		//Debug.Log(GetComponent<AudioSource>().clip);
 
-		Debug.Log (sameName);
 		AudioClip aC = (AudioClip)Resources.Load("Sounds/"+soundToPlay);
 
 
