@@ -118,14 +118,15 @@ public class ScreenValidation : MonoBehaviour {
 
 	public void onAccept()
 	{
-		//Ya no es pirata
+		//TODO Validamos que sea valido el numero de serie
 		UserDataManager.instance.isAPirateGame = false;
+
 		if(AnalyticManager.instance)
 		{
 			AnalyticManager.instance.serialCodeSend(serialValidated);
 		}
 
-		//Guardamos el numero de serie
+		//TODO Guardamos el numero de serie solo despues de validarlo
 		UserDataManager.instance.currentSerial = serialValidated;
 		UserDataManager.instance.saveSerialNumber(serialValidated);
 

@@ -12,20 +12,7 @@ public class SerialBlocker : MonoBehaviour
 	{
 		#if UNITY_STANDALONE
 		instance = this;
-		#endif
-	}
-
-	void Start () 
-	{
-		#if UNITY_STANDALONE
 		DontDestroyOnLoad(this);
-
-		//Validamos si el serial activo no esta bloqueado
-		if(!UserDataManager.instance.isAPirateGame)
-		{
-			//Ya no es pirata y tiene por lo tanto un numero de serie validado en local
-			askIsTheSerialIsBlocked(UserDataManager.instance.currentSerial);
-		}
 		#endif
 	}
 
