@@ -1,20 +1,32 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 using SimpleJSON;
 
-public class SerialBlocker : MonoBehaviour 
+public class SerialValidator : MonoBehaviour 
 {
-	public string API_ROOT = "http://api.curiosamente.com/";
+	public Action OnSerialActivated;
+	public Action OnSerialActivationFailed;//locallyFailed
+	public Action OnSerialActivationOutOfReach;
 
-	public static SerialBlocker instance;
+	public string API_ROOT = "http://api.curiosamente.com/";
+	public bool cleanDataAtStart = false; 
+
+	public static SerialValidator instance;
 
 	void Awake()
 	{
+		if(cleanDataAtStart)
+		{
+			UserDataManager.instance.cleanData();	
+		}
+
 		#if UNITY_STANDALONE
 		instance = this;
 		DontDestroyOnLoad(this);
 		#endif
 	}
+
 
 	public void askIsTheSerialIsBlocked(string serialToValidate)
 	{
@@ -36,6 +48,72 @@ public class SerialBlocker : MonoBehaviour
 
 		WWW www = new WWW (API_ROOT+"serial/installed/"+serialToSave,form);
 		StartCoroutine (WaitForSave (www));
+	}
+
+	public void activateSerial(string serialToActivate)
+	{
+		Debug.Log("Llamado a la API para activar el serial.");
+
+		serialToActivate = serialToActivate.ToUpperInvariant();
+		//Para ser post al parecer necesita datos
+		WWWForm form = new WWWForm();
+		form.AddField("data",serialToActivate);
+
+		WWW www = new WWW (API_ROOT+"serial/activate/"+serialToActivate,form);
+		StartCoroutine (WaitForActivation (www));
+	}
+
+
+	private IEnumerator WaitForActivation(WWW www) 
+	{
+		yield return www;
+
+		//error?
+		if (www.error == null) 
+		{
+			//Sin error
+			Debug.Log (www.text);
+			onSerialActivationAPIResponse(SimpleJSON.JSON.Parse(www.text));
+		}
+		else 
+		{
+			Debug.Log (www.error);
+			if(OnSerialActivationOutOfReach != null)
+			{
+				OnSerialActivationOutOfReach();
+			}
+		}
+	}
+
+	void onSerialActivationAPIResponse(JSONNode result)
+	{
+		/*
+		 * TRUE /FALSE
+		 * */
+
+		string data;
+		data = result["data"].ToString();
+
+		if(result["data"].AsBool)
+		{
+			//Se valido exitosamente
+			if(OnSerialActivated != null)
+			{
+				OnSerialActivated();
+			}
+		}
+		else
+		{
+			//Es invalido el serial
+			if(OnSerialActivationFailed != null)
+			{
+				OnSerialActivationFailed();
+			}
+		}
+
+
+
+
 	}
 
 	void onSerialBlockedAPIResponse(JSONNode result)

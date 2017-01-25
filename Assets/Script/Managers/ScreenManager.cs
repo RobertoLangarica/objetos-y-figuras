@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -97,16 +98,16 @@ public class ScreenManager : MonoBehaviour {
 	{
 		if(blocked || !backAllowed){return;}
 
-		if(Application.loadedLevelName == screenBeforeClose)
+		if(SceneManager.GetActiveScene().name == screenBeforeClose)
 		{
 			Application.Quit();
 		}
 		else
 		{
 			//Mostramos la pantalla anterior
-			if(backScreens.ContainsKey(Application.loadedLevelName))
+			if(backScreens.ContainsKey(SceneManager.GetActiveScene().name))
 			{
-				string name = Application.loadedLevelName;
+				string name = SceneManager.GetActiveScene().name;
 				GoToScene(backScreens[name]);
 				backScreens.Remove(name);
 			}
@@ -115,7 +116,7 @@ public class ScreenManager : MonoBehaviour {
 
 	public void GoToScene(string newScene)
 	{
-		if(blocked || waitingScreen != null || newScene == Application.loadedLevelName)
+		if(blocked || waitingScreen != null || newScene == SceneManager.GetActiveScene().name)
 		{
 			return;
 		}
@@ -131,7 +132,7 @@ public class ScreenManager : MonoBehaviour {
 
 		if(!backScreens.ContainsKey(newScene))
 		{
-			backScreens.Add(newScene,Application.loadedLevelName);
+			backScreens.Add(newScene,SceneManager.GetActiveScene().name);
 		}
 
 		Application.LoadLevel (newScene);
@@ -142,7 +143,8 @@ public class ScreenManager : MonoBehaviour {
 	{	
 		if(blocked){return;}
 
-		if(newScene == Application.loadedLevelName)
+
+		if(newScene == SceneManager.GetActiveScene().name)
 		{
 			return;
 		}
@@ -154,7 +156,7 @@ public class ScreenManager : MonoBehaviour {
 
 		if(!backScreens.ContainsKey(newScene))
 		{
-			backScreens.Add(newScene,Application.loadedLevelName);
+			backScreens.Add(newScene,SceneManager.GetActiveScene().name);
 		}
 
 		timeBeforeNextScreen = waitTime;

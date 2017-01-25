@@ -84,6 +84,12 @@ public class UserDataManager
 
 	public void saveBlockedSerialNumber(string value)
 	{
+		if(isPreviouslyBlocked(value))
+		{
+			//evitamos clones
+			return;	
+		}
+
 		value = value.ToUpperInvariant();
 		int index = PlayerPrefs.GetInt("blockedSerialCount");
 		index++;
@@ -95,6 +101,7 @@ public class UserDataManager
 	{
 		int index = PlayerPrefs.GetInt("blockedSerialCount");
 		string tmp;
+		value = value.ToUpperInvariant();
 
 		for(int i = 1; i <= index; i++)
 		{

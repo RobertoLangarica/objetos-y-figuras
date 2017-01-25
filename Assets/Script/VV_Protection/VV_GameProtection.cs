@@ -15,6 +15,8 @@ public class VV_GameProtection : MonoBehaviour
 	[HideInInspector]
 	public OnMessage onSuccess;
 
+	public bool _mustShowDebugInfo = true;
+
 	void Start () 
 	{
 		onError		+= foo;
@@ -36,13 +38,16 @@ public class VV_GameProtection : MonoBehaviour
 
 		if(serial.Length != 32)
 		{
-			Debug.Log ("Largo inadecuado");
+			if(_mustShowDebugInfo)
+				Debug.Log ("Largo inadecuado");
+			
 			//El tamaño no es el adecuado
 			onError("El número de serie es inválido.");
 		}
 		else if(sintaxValidator.IsMatch(serial))
 		{
-			Debug.Log ("No es hexadecimal");
+			if(_mustShowDebugInfo)
+				Debug.Log ("No es hexadecimal");
 			//No viene en formato hexadecimal
 			onError("El número de serie es inválido.");
 		}
@@ -52,7 +57,8 @@ public class VV_GameProtection : MonoBehaviour
 
 		if(parts.Length != 3)
 		{
-			Debug.Log ("La cadena desencriptada es otra cosa");
+			if(_mustShowDebugInfo)
+				Debug.Log ("La cadena desencriptada es otra cosa");
 			onError("El número de serie es inválido.");
 		}
 		else
@@ -64,24 +70,28 @@ public class VV_GameProtection : MonoBehaviour
 
 				if(parts[1].Length != 8)
 				{
-					Debug.Log ("Se desencripto otra cosa");
+					if(_mustShowDebugInfo)
+						Debug.Log ("Se desencripto otra cosa");
 					onError("El número de serie es inválido.");
 				}
 				else if(comparer.IsMatch(parts[1]))
 				{
 					//Valido
-					Debug.Log ("El serial se valido exitosamente.");
+					if(_mustShowDebugInfo)
+						Debug.Log ("El serial se valido exitosamente.");
 					onSuccess("El número de serie es válido.");
 				}
 				else
 				{
-					Debug.Log ("Se desencripto otra cosa");
+					if(_mustShowDebugInfo)
+						Debug.Log ("Se desencripto otra cosa");
 					onError("El número de serie es inválido.");
 				}
 			}
 			else
 			{
-				Debug.Log ("Se desencripto otra cosa");
+				if(_mustShowDebugInfo)
+					Debug.Log ("Se desencripto otra cosa");
 				onError("El número de serie es inválido.");
 			}
 		}
@@ -120,7 +130,7 @@ public class VV_GameProtection : MonoBehaviour
 		}
 		catch(Exception ex)
 		{
-			Debug.Log ("Ocurrio un error al desencriptar "+ex.Message);
+			//Debug.Log ("Ocurrio un error al desencriptar "+ex.Message);
 			return "";
 		}
 		finally
@@ -140,7 +150,8 @@ public class VV_GameProtection : MonoBehaviour
 	public byte[] StringToByteArrayFastest(string hex) {
 		if (hex.Length % 2 == 1)
 		{
-			Debug.Log("The binary key cannot have an odd number of digits");
+			if(_mustShowDebugInfo)
+				Debug.Log("The binary key cannot have an odd number of digits");
 			onError("Formato inválido.");
 		}
 			
