@@ -100,7 +100,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 148788}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.94376373, y: .839584351, z: 0}
+  m_LocalPosition: {x: 2.9437637, y: 0.83958435, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 448792}
@@ -164,13 +164,15 @@ AudioSource:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 148792}
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 99ce4bcdcb23746d6813039b8c9b3485, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: .800000012
+  m_Volume: 0.8
   m_Pitch: 1
   Loop: 1
   Mute: 0
+  Spatialize: 0
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
@@ -195,16 +197,18 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+    m_RotationOrder: 4
   panLevelCustomCurve:
     serializedVersion: 2
     m_Curve:
     - time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+    m_RotationOrder: 0
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -215,6 +219,18 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!114 &11448766
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -255,7 +271,7 @@ MonoBehaviour:
   EventMessageTarget: {fileID: 148792}
   SendMessageToSelection: 0
   IsExclusive: 0
-  MoveTolerance: .25
+  MoveTolerance: 0.25
   ApplySameDirectionConstraint: 1
 --- !u!114 &11448770
 MonoBehaviour:
@@ -280,7 +296,7 @@ MonoBehaviour:
   EventMessageTarget: {fileID: 148792}
   SendMessageToSelection: 0
   IsExclusive: 0
-  MoveTolerance: .25
+  MoveTolerance: 0.25
   ApplySameDirectionConstraint: 1
 --- !u!114 &11448772
 MonoBehaviour:
@@ -305,7 +321,7 @@ MonoBehaviour:
   EventMessageTarget: {fileID: 148792}
   SendMessageToSelection: 0
   IsExclusive: 0
-  MoveTolerance: .25
+  MoveTolerance: 0.25
   ApplySameDirectionConstraint: 1
 --- !u!114 &11448774
 MonoBehaviour:
@@ -330,7 +346,7 @@ MonoBehaviour:
   EventMessageTarget: {fileID: 148792}
   SendMessageToSelection: 0
   IsExclusive: 0
-  MoveTolerance: .25
+  MoveTolerance: 0.25
   ApplySameDirectionConstraint: 1
 --- !u!114 &11448776
 MonoBehaviour:
@@ -355,7 +371,7 @@ MonoBehaviour:
   EventMessageTarget: {fileID: 148792}
   SendMessageToSelection: 0
   IsExclusive: 0
-  MoveTolerance: .25
+  MoveTolerance: 0.25
   ApplySameDirectionConstraint: 1
 --- !u!114 &11448778
 MonoBehaviour:
@@ -380,7 +396,7 @@ MonoBehaviour:
   EventMessageTarget: {fileID: 148792}
   SendMessageToSelection: 0
   IsExclusive: 0
-  MoveTolerance: .25
+  MoveTolerance: 0.25
   ApplySameDirectionConstraint: 1
 --- !u!114 &11448780
 MonoBehaviour:
@@ -405,7 +421,7 @@ MonoBehaviour:
   EventMessageTarget: {fileID: 148792}
   SendMessageToSelection: 0
   IsExclusive: 0
-  MoveTolerance: .25
+  MoveTolerance: 0.25
   ApplySameDirectionConstraint: 1
 --- !u!114 &11448782
 MonoBehaviour:
@@ -430,7 +446,7 @@ MonoBehaviour:
   EventMessageTarget: {fileID: 148792}
   SendMessageToSelection: 0
   IsExclusive: 0
-  MoveTolerance: .25
+  MoveTolerance: 0.25
   ApplySameDirectionConstraint: 1
 --- !u!114 &11448784
 MonoBehaviour:
@@ -455,7 +471,7 @@ MonoBehaviour:
   EventMessageTarget: {fileID: 148792}
   SendMessageToSelection: 0
   IsExclusive: 0
-  MoveTolerance: .25
+  MoveTolerance: 0.25
   ApplySameDirectionConstraint: 1
 --- !u!114 &11448786
 MonoBehaviour:
@@ -470,9 +486,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedLayerName: SelectedShape
   normalLayerName: Shapes
-  rotateOnlyWhenSelected: 1
-  allowRotation: 1
+  rotateOnlyWhenSelected: 0
+  allowRotation: 0
   dragSound: {fileID: 8248792}
+  preventOutOfScreen: 1
+  screenPercentToCheckOutOfScreen: 0.95
   ignoreNextRotation: 0
 --- !u!114 &11448788
 MonoBehaviour:
@@ -498,9 +516,9 @@ MonoBehaviour:
   SendMessageToSelection: 0
   IsExclusive: 0
   RequiredTaps: 1
-  MoveTolerance: .5
+  MoveTolerance: 0.5
   MaxDuration: 0
-  MaxDelayBetweenTaps: .5
+  MaxDelayBetweenTaps: 0.5
 --- !u!114 &11448790
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -515,7 +533,7 @@ MonoBehaviour:
   Cameras: []
   IgnoreLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 3639
   RayThickness: 0
   VisualizeRaycasts: 1
   UsePhysics2D: 1
@@ -542,7 +560,7 @@ MonoBehaviour:
   EventMessageTarget: {fileID: 148792}
   SendMessageToSelection: 0
   IsExclusive: 0
-  MoveTolerance: .25
+  MoveTolerance: 0.25
   ApplySameDirectionConstraint: 0
 --- !u!114 &11456692
 MonoBehaviour:
@@ -568,9 +586,9 @@ MonoBehaviour:
   SendMessageToSelection: 0
   IsExclusive: 0
   Method: 0
-  MinDOT: -.699999988
+  MinDOT: -0.7
   MinRotation: 1
-  PivotMoveTolerance: .5
+  PivotMoveTolerance: 0.5
 --- !u!114 &11456694
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -616,4 +634,3 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 148792}
   m_IsPrefabParent: 1
-  m_IsExploded: 1
