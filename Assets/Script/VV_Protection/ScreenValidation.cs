@@ -156,7 +156,7 @@ public class ScreenValidation : MonoBehaviour {
 
 	protected void doPaste()
 	{
-		string clipboard = UnityEditor.EditorGUIUtility.systemCopyBuffer;
+		string clipboard = GUIUtility.systemCopyBuffer;
 
 		//Espacios de 4 caracteres
 		for(int i = 0; i < serialInputs.Length; i++)
