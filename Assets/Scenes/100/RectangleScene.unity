@@ -8,25 +8,25 @@ SceneSettings:
   m_PVSPortalsArray: []
   m_OcclusionBakeSettings:
     smallestOccluder: 5
-    smallestHole: .25
+    smallestHole: 0.25
     backfaceThreshold: 100
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 6
   m_Fog: 0
-  m_FogColor: {r: .5, g: .5, b: .5, a: 1}
+  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
-  m_FogDensity: .00999999978
+  m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: .200000003, g: .200000003, b: .200000003, a: 1}
-  m_AmbientEquatorColor: {r: .200000003, g: .200000003, b: .200000003, a: 1}
-  m_AmbientGroundColor: {r: .200000003, g: .200000003, b: .200000003, a: 1}
+  m_AmbientSkyColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+  m_AmbientEquatorColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+  m_AmbientGroundColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 3
   m_SkyboxMaterial: {fileID: 0}
-  m_HaloStrength: .5
+  m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
   m_HaloTexture: {fileID: 0}
@@ -40,7 +40,7 @@ RenderSettings:
 --- !u!157 &4
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 5
+  serializedVersion: 6
   m_GIWorkflowMode: 1
   m_LightmapsMode: 1
   m_GISettings:
@@ -66,7 +66,7 @@ LightmapSettings:
     m_FinalGather: 0
     m_FinalGatherRayCount: 1024
     m_ReflectionCompression: 2
-  m_LightmapSnapshot: {fileID: 0}
+  m_LightingDataAsset: {fileID: 0}
   m_RuntimeCPUUsage: 25
 --- !u!196 &5
 NavMeshSettings:
@@ -74,15 +74,15 @@ NavMeshSettings:
   m_ObjectHideFlags: 0
   m_BuildSettings:
     serializedVersion: 2
-    agentRadius: .5
+    agentRadius: 0.5
     agentHeight: 2
     agentSlope: 45
-    agentClimb: .400000006
+    agentClimb: 0.4
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
     accuratePlacement: 0
     minRegionArea: 2
-    cellSize: .166666657
+    cellSize: 0.16666666
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
 --- !u!1001 &96421968
@@ -182,15 +182,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22445998, guid: 05f5f3a825ed1ae4d96ca4cf437f6cc9, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -39.9738998
+      value: -53.106934
+      objectReference: {fileID: 0}
+    - target: {fileID: 22446012, guid: 05f5f3a825ed1ae4d96ca4cf437f6cc9, type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 0.0000010728836
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 05f5f3a825ed1ae4d96ca4cf437f6cc9, type: 2}
   m_IsPrefabParent: 0
---- !u!4 &104946879 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 488070, guid: c6c357cb9be5a4a9caf46dcbc487fe2b, type: 2}
-  m_PrefabInternal: {fileID: 1294382072}
 --- !u!114 &231802948 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 11428088, guid: 3dfb11f8ce87d5444b495aba7495d891,
@@ -222,16 +222,16 @@ RectTransform:
   m_GameObject: {fileID: 363995598}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.00002003, y: 1.00002003, z: 1.00002003}
+  m_LocalScale: {x: 1.00002, y: 1.00002, z: 1.00002}
   m_Children:
   - {fileID: 403586425}
   m_Father: {fileID: 1801565149}
   m_RootOrder: 0
-  m_AnchorMin: {x: 0, y: .119000003}
-  m_AnchorMax: {x: 1, y: .873924077}
+  m_AnchorMin: {x: 0, y: 0.119}
+  m_AnchorMax: {x: 1, y: 0.8739241}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: .5, y: .5}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &363995600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,7 +244,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: .39199999}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -296,11 +296,11 @@ RectTransform:
   - {fileID: 1799036946}
   m_Father: {fileID: 363995599}
   m_RootOrder: 0
-  m_AnchorMin: {x: .271514595, y: .243763059}
-  m_AnchorMax: {x: .722401798, y: .721959412}
-  m_AnchoredPosition: {x: 0, y: -.5}
+  m_AnchorMin: {x: 0.2715146, y: 0.24376306}
+  m_AnchorMax: {x: 0.7224018, y: 0.7219594}
+  m_AnchoredPosition: {x: 0, y: -0.5}
   m_SizeDelta: {x: 0, y: -1}
-  m_Pivot: {x: .5, y: .5}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &403586426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -333,7 +333,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: .39199999}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -400,7 +400,7 @@ MonoBehaviour:
   m_SubmitButton: Submit
   m_CancelButton: Cancel
   m_InputActionsPerSecond: 10
-  m_RepeatDelay: .5
+  m_RepeatDelay: 0.5
   m_ForceModuleActive: 0
 --- !u!114 &753499116
 MonoBehaviour:
@@ -478,19 +478,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22424676, guid: 5b896441ced1cc345b685dc3a00cbfb7, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 251.26366
       objectReference: {fileID: 0}
     - target: {fileID: 22424676, guid: 5b896441ced1cc345b685dc3a00cbfb7, type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -145.66391
       objectReference: {fileID: 0}
     - target: {fileID: 22424676, guid: 5b896441ced1cc345b685dc3a00cbfb7, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 502.5273
       objectReference: {fileID: 0}
     - target: {fileID: 22424676, guid: 5b896441ced1cc345b685dc3a00cbfb7, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 291.32782
       objectReference: {fileID: 0}
     - target: {fileID: 22424676, guid: 5b896441ced1cc345b685dc3a00cbfb7, type: 2}
       propertyPath: m_AnchorMin.x
@@ -498,7 +498,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22424676, guid: 5b896441ced1cc345b685dc3a00cbfb7, type: 2}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22424676, guid: 5b896441ced1cc345b685dc3a00cbfb7, type: 2}
       propertyPath: m_AnchorMax.x
@@ -506,15 +506,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22424676, guid: 5b896441ced1cc345b685dc3a00cbfb7, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22424676, guid: 5b896441ced1cc345b685dc3a00cbfb7, type: 2}
       propertyPath: m_Pivot.x
-      value: .5
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 22424676, guid: 5b896441ced1cc345b685dc3a00cbfb7, type: 2}
       propertyPath: m_Pivot.y
-      value: .5
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 11486432, guid: 5b896441ced1cc345b685dc3a00cbfb7, type: 2}
       propertyPath: delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -633,14 +633,14 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: .192156866, g: .301960796, b: .474509805, a: .0196078438}
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0.019607844}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
     y: 0
     width: 1
     height: 1
-  near clip plane: .300000012
+  near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
   orthographic: 1
@@ -656,7 +656,7 @@ Camera:
   m_HDR: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
-  m_StereoSeparation: .0219999999
+  m_StereoSeparation: 0.022
   m_StereoMirrorMode: 0
 --- !u!4 &1169323144
 Transform:
@@ -667,8 +667,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 104946879}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
 --- !u!1001 &1222486286
@@ -765,48 +764,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2cf9a816d96a60f429c3b50e1a3f540c, type: 2}
   m_IsPrefabParent: 0
---- !u!1001 &1294382072
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1169323144}
-    m_Modifications:
-    - target: {fileID: 488070, guid: c6c357cb9be5a4a9caf46dcbc487fe2b, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 488070, guid: c6c357cb9be5a4a9caf46dcbc487fe2b, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 488070, guid: c6c357cb9be5a4a9caf46dcbc487fe2b, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 488070, guid: c6c357cb9be5a4a9caf46dcbc487fe2b, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 488070, guid: c6c357cb9be5a4a9caf46dcbc487fe2b, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 488070, guid: c6c357cb9be5a4a9caf46dcbc487fe2b, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 488070, guid: c6c357cb9be5a4a9caf46dcbc487fe2b, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 488070, guid: c6c357cb9be5a4a9caf46dcbc487fe2b, type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: c6c357cb9be5a4a9caf46dcbc487fe2b, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &1561091563
 GameObject:
   m_ObjectHideFlags: 0
@@ -897,6 +854,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!224 &1799036946 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 22424676, guid: 5b896441ced1cc345b685dc3a00cbfb7,
@@ -998,6 +956,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1001 &1969200672
 Prefab:
   m_ObjectHideFlags: 0

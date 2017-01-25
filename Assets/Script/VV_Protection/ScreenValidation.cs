@@ -63,6 +63,7 @@ public class ScreenValidation : MonoBehaviour {
 			//El comando paste se ejcuta aun cuando hay 1 frame de diferencia entre teclas
 			if(Input.GetKey(KeyCode.V))
 			{
+				Debug.Log ("V");
 				vKey.lastFramePressed = Time.frameCount;
 
 				if(ctrlKey.lastFramePressed-1 == vKey.lastFramePressed || ctrlKey.lastFramePressed+1 == vKey.lastFramePressed || ctrlKey.lastFramePressed == vKey.lastFramePressed)
@@ -73,6 +74,7 @@ public class ScreenValidation : MonoBehaviour {
 
 			if(Input.GetKey(KeyCode.LeftCommand) || Input.GetKey(KeyCode.RightCommand) || Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
 			{
+				Debug.Log ("CONTROL");
 				ctrlKey.lastFramePressed = Time.frameCount;
 
 				if(ctrlKey.lastFramePressed-1 == vKey.lastFramePressed || ctrlKey.lastFramePressed+1 == vKey.lastFramePressed || ctrlKey.lastFramePressed == vKey.lastFramePressed)
@@ -83,6 +85,7 @@ public class ScreenValidation : MonoBehaviour {
 
 			if(pasteExecuted)
 			{
+				Debug.Log ("PASTING");
 				pasteProcessed = true;
 				doPaste();
 			}
