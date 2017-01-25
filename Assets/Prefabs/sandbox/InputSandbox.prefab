@@ -486,8 +486,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedLayerName: SelectedShape
   normalLayerName: Shapes
-  rotateOnlyWhenSelected: 0
-  allowRotation: 0
+  rotateOnlyWhenSelected: 1
+  allowRotation: 1
   dragSound: {fileID: 8248792}
   preventOutOfScreen: 1
   screenPercentToCheckOutOfScreen: 0.95
@@ -629,7 +629,15 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: allowRotation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: rotateOnlyWhenSelected
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 148792}
