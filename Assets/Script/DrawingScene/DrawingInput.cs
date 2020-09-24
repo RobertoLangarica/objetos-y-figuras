@@ -30,7 +30,7 @@ public class DrawingInput : MonoBehaviour
 		paintedFather.name = "Father";
 		paintedFather.transform.SetParent (transform);
 
-		erraser = transform.FindChild ("Erraser").gameObject;
+		erraser = transform.Find ("Erraser").gameObject;
 		erraser.SetActive (false);
 	
 		bWidth = brushType.GetComponent<Renderer>().bounds.size.x*brushType.transform.localScale.x;

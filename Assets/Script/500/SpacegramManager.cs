@@ -102,7 +102,7 @@ public class SpacegramManager : MonoBehaviour
 	{
 		foreach(GameObject shape in shapes)
 		{
-			shape.transform.FindChild("New Sprite").GetComponent<SpriteRenderer>().enabled = false;
+			shape.transform.Find("New Sprite").GetComponent<SpriteRenderer>().enabled = false;
 		}
 
 		GameObject tmp = (GameObject)Resources.Load("References/"+currentLevel.name+"_reference");
